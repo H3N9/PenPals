@@ -7,9 +7,15 @@ import Content from '../components/content'
 const Home = () =>{
     return (
         <View style={styles.home}>
-            <Homebar />
-            <Content />
-            <Navbar />
+            <View style={{flex:1}}>
+                <Homebar />
+            </View>
+            <View style={{flex:12}}>
+                <Content />
+            </View>
+            <View style={{flex:1}}>
+                <Navbar />
+            </View>
             
         </View>
     )

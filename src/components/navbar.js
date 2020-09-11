@@ -2,17 +2,18 @@ import React from 'react'
 import {StyleSheet, View, Text, TouchableOpacity} from 'react-native'
 
 
+
 const Navbar = () =>{
     return (
         <View style={styles.navbar}>
             <View style={styles.boxContent}>
                 <TouchableOpacity style={styles.button}>
-                    <Text>1</Text>
+                    <Text style={styles.textButton}></Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.boxContent}>
                 <TouchableOpacity style={styles.button}>
-                    <Text>2</Text>
+                    <Text style={styles.textButton}></Text>
                 </TouchableOpacity>
             </View>
             <View style={styles.boxContent}>
@@ -34,6 +35,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#1a396e",
         flex: 4,
         flexDirection: 'row',
+        flex: 1,
     },
     boxContent:{
         backgroundColor: '#1a396e',

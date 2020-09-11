@@ -5,6 +5,8 @@ import Home from './src/pages/home'
 
 export default function App() {
   return (
-    <Home />
+    <LinearGradient colors={['#132031', '#022b6b']} style={{flex: 1}}>
+      <Home />
+    </LinearGradient>       
   );
 }
