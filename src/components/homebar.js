@@ -1,51 +1,43 @@
-import React from 'react'
-import { StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 
 const Homebar = () => {
-    return (
-        <View style={styles.homebarWraper}>
-            <View style={styles.homebar}>
-                <View style={styles.boxContent, {flex: 3}}>
-                    <Text style={styles.textButton}>PenPals</Text>
-                </View>
-                <View style={styles.boxContent}>
-                    <TouchableOpacity style={styles.button}>
-                        <Text style={styles.textButton}>Search</Text>
-                    </TouchableOpacity>
-                </View>
-            </View>
-        </View>
-    )
-}
+  return (
+    <View style={styles.homebar}>
+      <View style={styles.boxContent}>
+        <Image
+          source={require("../../assets/logo.png")}
+          style={{ resizeMode: "cover", height: 30, width: 100 }}
+        />
+      </View>
+      <View style={styles.boxContent}>
+        <TouchableOpacity>
+          <Text style={styles.textButton}>S</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    homebarWraper:{
-        backgroundColor: "transparent",
-        justifyContent: "center",
-        marginTop: 25 ,
-        paddingTop: 10,
-        paddingBottom: 10
-    },
-    homebar: {
-        margin: 0,
-        flexDirection: 'row',
-        justifyContent: "space-around",
-    },
-    boxContent: {
-        backgroundColor: 'transparent',
-        flex: 1,
-    },
-    button: {
-        alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center',
+  homebar: {
+    margin: 0,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: 25,
+    paddingTop: 10,
+    paddingBottom: 10,
+    marginLeft: 20,
+    marginRight: 20
+  },
+  boxContent: {
+    backgroundColor: "transparent",
+  },
+  textButton: {
+    color: "#FFF",
+    textAlign: "center",
+    fontSize: 25,
+  },
+});
 
-    },
-    textButton: {
-        color: "#FFF",
-        textAlign: "center",
-        fontSize: 25
-    }
-})
-
-export default Homebar
+export default Homebar;
