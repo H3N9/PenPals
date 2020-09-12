@@ -10,6 +10,7 @@ const Home = () =>{
             <Homebar />
             <ScrollView style={{flex: 1}}>
                 <Content />
+                <Content />
             </ScrollView>
             <Navbar />       
         </View>

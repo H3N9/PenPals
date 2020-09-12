@@ -46,8 +46,8 @@ const Content = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{ flex: 1, overflow: "hidden" }}>
-            <Text style={{fontSize: 13}}>
+        <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>
+            <Text style={{fontSize: 13, color: "#777"}}>
                 ภารตะแฟลชพรีเมียร์เจลติงต๊อง โกลด์เลดี้มาร์เก็ตเคลื่อนย้าย ลิมูซีนสตูดิโอ
             </Text>
         </View>
@@ -60,17 +60,17 @@ const styles = StyleSheet.create({
   boxContent: {
     height: 130, 
     backgroundColor: "#E5EBE7",
-    margin: 5,
-    borderRadius: 7,
+    //margin: 5,
+    //borderRadius: 7,
     padding: 10,
     flexDirection: "row",
   },
   profile: {
-    width: "25%",
-    height: "70%",
+    width: "18%",
+    height: "55%",
     backgroundColor: "#CCC",
-    borderRadius: 10,
-    marginTop: "auto",
+    borderRadius: 50,
+    marginTop: 0,
     marginBottom: "auto",
     marginRight: 10
   },
