@@ -1,11 +1,10 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, Text} from 'react-native'
 import Navbar from '../components/navbar'
 import Homebar from '../components/homebar'
-import Content from '../components/content'
 import {LinearGradient} from 'expo-linear-gradient'
 
-const Home = ({navigation}) =>{
+const Account = ({navigation}) =>{
     return (
         <LinearGradient colors={["#132031", "#022b6b"]} style={{ flex: 1 }}>
         <View style={styles.home}>
@@ -13,7 +12,7 @@ const Home = ({navigation}) =>{
                 <Homebar />
             </View>
             <View style={{flex:12}}>
-                <Content />
+                <Text>Hellow</Text>
             </View>
             <View style={{flex:1}}>
                 <Navbar navigation={navigation}/>
@@ -29,4 +28,4 @@ const styles = StyleSheet.create({
         flexDirection: 'column'
     },
 })
-export default Home
+export default Account
