@@ -66,10 +66,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   profile: {
-    width: "18%",
-    height: "55%",
+    width: 70,
+    height: 70,
     backgroundColor: "#CCC",
-    borderRadius: 50,
+    borderRadius: 100,
     marginTop: 0,
     marginBottom: "auto",
     marginRight: 10
@@ -89,8 +89,8 @@ const styles = StyleSheet.create({
       borderRadius: 100,
       backgroundColor: "green",
       position: "absolute",
-      right: -5,
-      bottom: -5
+      right: -1,
+      bottom: -1
   },
   tagText:{
       marginRight: 10,
