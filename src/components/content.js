@@ -20,9 +20,13 @@ const Content = () => {
       </View>
       <View style={styles.user}>
         <View style={styles.userDetail}>
-          <View style={{ flex: 4 }}>
-            <Text style={{ fontWeight: "bold" }}>UserName</Text>
-            <Text>Bangkok, Thailand</Text>
+          <View style={{ flex: 3 }}>
+            <Text style={{ fontWeight: "bold"}}>UserName</Text>
+            <Text style={{ fontSize: 13 }}>Bangkok, Thailand</Text>
+            <View style={{flexDirection: "row"}}>
+                <Text style={styles.tagText}>Tag1</Text>
+                <Text style={styles.tagText}>Tag2</Text>
+            </View>
           </View>
           <View style={{ flex: 1 }}>
             <Text>30</Text>
@@ -42,8 +46,8 @@ const Content = () => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{ flex: 2, overflow: "hidden" }}>
-            <Text>
+        <View style={{ flex: 1, overflow: "hidden" }}>
+            <Text style={{fontSize: 13}}>
                 ภารตะแฟลชพรีเมียร์เจลติงต๊อง โกลด์เลดี้มาร์เก็ตเคลื่อนย้าย ลิมูซีนสตูดิโอ
             </Text>
         </View>
@@ -54,15 +58,15 @@ const Content = () => {
 
 const styles = StyleSheet.create({
   boxContent: {
-    height: screenHeight / 4.25, 
+    height: 130, 
     backgroundColor: "#E5EBE7",
-    margin: 10,
+    margin: 5,
     borderRadius: 7,
     padding: 10,
     flexDirection: "row",
   },
   profile: {
-    width: "28%",
+    width: "25%",
     height: "70%",
     backgroundColor: "#CCC",
     borderRadius: 10,
@@ -87,6 +91,14 @@ const styles = StyleSheet.create({
       position: "absolute",
       right: -5,
       bottom: -5
+  },
+  tagText:{
+      marginRight: 10,
+      padding: 2,
+      borderRadius: 5,
+      backgroundColor: "#FF5350",
+      fontSize: 12,
+      marginTop: 2
   }
   
 });
