@@ -75,11 +75,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#E5EBE7",
     padding: 10,
     flexDirection: "row",
-    alignItems: "center",
+
   },
   profile: {
-    width: 70,
-    height: 70,
+    width: 60,
+    height: 60,
     backgroundColor: "#CCC",
     borderRadius: 100,
     marginRight: 10
