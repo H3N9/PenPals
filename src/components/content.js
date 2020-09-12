@@ -1,5 +1,4 @@
 import React from "react";
-import { Dimensions } from "react-native";
 import {
   StyleSheet,
   View,
@@ -10,27 +9,38 @@ import {
   TouchableOpacity,
 } from "react-native";
 
-const screenHeight = Math.round(Dimensions.get("window").height);
-
 const Content = () => {
   return (
     <View style={styles.boxContent}>
+      {/* UserImageProfile */}
       <View style={styles.profile} >
+          {/* OnlineStatus */}
           <View style={styles.onlineStatus}/>
       </View>
-      <View style={styles.user}>
+
+      {/* UserImageProfile */}
+      <View style={{flex: 1}}>
         <View style={styles.userDetail}>
           <View style={{ flex: 3 }}>
-            <Text style={{ fontWeight: "bold"}}>UserName</Text>
-            <Text style={{ fontSize: 13 }}>Bangkok, Thailand</Text>
+            {/* Username */}
+            <Text style={{ fontWeight: "bold" }}>UserName</Text>
+
+            {/* location */}
+            <Text style={{ fontSize: 13, marginVertical: 2 }}>Bangkok, Thailand</Text>
+            
+            {/* Tag */}
             <View style={{flexDirection: "row"}}>
-                <Text style={styles.tagText}>Tag1</Text>
-                <Text style={styles.tagText}>Tag2</Text>
+                <Text style={styles.tagText}>Sport</Text>
+                <Text style={styles.tagText}>Music</Text>
             </View>
           </View>
+          
+          {/* Follower */}
           <View style={{ flex: 1 }}>
             <Text>30</Text>
           </View>
+
+          {/* Menu */}
           <View
             style={{
               flex: 1,
@@ -46,11 +56,14 @@ const Content = () => {
             </TouchableOpacity>
           </View>
         </View>
+
+        {/* UserContent */}
         <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>
             <Text style={{fontSize: 13, color: "#777"}}>
                 ภารตะแฟลชพรีเมียร์เจลติงต๊อง โกลด์เลดี้มาร์เก็ตเคลื่อนย้าย ลิมูซีนสตูดิโอ
             </Text>
         </View>
+
       </View>
     </View>
   );
@@ -60,22 +73,16 @@ const styles = StyleSheet.create({
   boxContent: {
     height: 130, 
     backgroundColor: "#E5EBE7",
-    //margin: 5,
-    //borderRadius: 7,
     padding: 10,
     flexDirection: "row",
+
   },
   profile: {
-    width: "18%",
-    height: "55%",
+    width: 60,
+    height: 60,
     backgroundColor: "#CCC",
-    borderRadius: 50,
-    marginTop: 0,
-    marginBottom: "auto",
+    borderRadius: 100,
     marginRight: 10
-  },
-  user:{
-      flex: 1
   },
   userDetail: {
     flexDirection: "row",
@@ -89,18 +96,17 @@ const styles = StyleSheet.create({
       borderRadius: 100,
       backgroundColor: "green",
       position: "absolute",
-      right: -5,
-      bottom: -5
+      right: -1,
+      bottom: -1
   },
   tagText:{
       marginRight: 10,
+      marginTop: 2,
       padding: 2,
       borderRadius: 5,
       backgroundColor: "#FF5350",
       fontSize: 12,
-      marginTop: 2
   }
-  
 });
 
 export default Content;
