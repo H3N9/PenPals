@@ -25,10 +25,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 25,
-    paddingTop: 10,
-    paddingBottom: 10,
-    marginLeft: 20,
-    marginRight: 20
+    paddingVertical: 10,
+    marginHorizontal: 20
   },
   boxContent: {
     backgroundColor: "transparent",

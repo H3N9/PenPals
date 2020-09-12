@@ -39,8 +39,6 @@ const styles = StyleSheet.create({
     boxContent:{
         backgroundColor: '#1a396e',
         flex: 1, 
-        paddingTop: 0,
-        paddingBottom: 0,
     },
     button:{
         alignItems: 'center',
