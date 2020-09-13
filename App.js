@@ -1,13 +1,12 @@
-import { StatusBar } from 'expo-status-bar'
 import React from 'react'
-import { StyleSheet } from 'react-native'
 import Index from './src/index'
-import {LinearGradient} from 'expo-linear-gradient'
+import {StatusBar, Text} from 'react-native'
 
 export default function App() {
   return (
-    <LinearGradient colors={["#132031", "#022b6b"]} style={{ flex: 1 }}>
+    <React.Fragment>
+      <StatusBar backgroundColor='transparent' barStyle='light-content' translucent={true} />
       <Index />
-    </LinearGradient>       
-  );
+    </React.Fragment>      
+  )
 }

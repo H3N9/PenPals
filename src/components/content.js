@@ -8,7 +8,6 @@ const Content = () =>{
     return (
             <ScrollView>
                 <View style={styles.boxMain}>
-                    <View style={styles.blockTop}></View>
                     <View style={styles.boxContent}>
                         <Text>4</Text>
                     </View>
@@ -36,10 +35,6 @@ const styles = StyleSheet.create({
             borderRadius: 10,
             height: height/2.5,
             width: width*0.9
-        },
-        blockTop:{
-            marginBottom: width*0.05,
-            backgroundColor: 'white'
         }
 })
 

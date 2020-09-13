@@ -1,17 +1,21 @@
 import React from 'react'
-import {StyleSheet, View, Text, TouchableOpacity} from 'react-native'
+import {StyleSheet, View, Dimensions, Text, TouchableOpacity, Image} from 'react-native'
+
+const height = Math.round(Dimensions.get('window').height)
+const width = Math.round(Dimensions.get('window').width)
 
 const Homebar = () =>{
     return (
             <View style={styles.homebar}>
-                <View style={styles.boxContent}>
-                    <Text style={styles.textButton}>PenPals</Text>
+                <View style={styles.boxLogo}>
+                <Image source={require("../../assets/logo.png")} style={styles.image}/>
                 </View>
-                <View style={styles.boxContent}>
+                <View style={styles.box}>
                     <TouchableOpacity style={styles.button}>
-                        <Text style={styles.textButton}>Search</Text>
+                        <Image source={require('../../assets/navbar/notification.png')} style={styles.img}/>
                     </TouchableOpacity>
                 </View>
+                
             </View>
     )
 }
@@ -19,13 +23,18 @@ const Homebar = () =>{
 const styles = StyleSheet.create({
 
     homebar: {
-        margin: 0,
         flexDirection: 'row',
         flex:1,
+        padding: 20,
     },
-    boxContent: {
-        flex: 1,
+    box: {
+        flex: 2,
         justifyContent: 'center',
+    },
+    boxLogo:{
+        flex: 3,
+        justifyContent: 'center',
+        paddingRight: 50
     },
     button:{
         alignItems: 'center',
@@ -36,6 +45,16 @@ const styles = StyleSheet.create({
         color: "#FFF",
         textAlign: "center",
         fontSize: 25
+    },
+    image:{
+        resizeMode: "cover",
+        height: 30, 
+        width: 100,
+    },
+    img:{
+        width: 30,
+        height: 30,
+        resizeMode: 'cover',
     }
 })
 

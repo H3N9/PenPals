@@ -3,6 +3,7 @@ import {StyleSheet, View, Text} from 'react-native'
 import Navbar from '../components/navbar'
 import Homebar from '../components/homebar'
 import {LinearGradient} from 'expo-linear-gradient'
+import BoxProfile from '../components/boxProfile'
 
 const Account = ({navigation}) =>{
     return (
@@ -12,7 +13,7 @@ const Account = ({navigation}) =>{
                 <Homebar />
             </View>
             <View style={{flex:12}}>
-                <Text>Hellow</Text>
+                <BoxProfile />
             </View>
             <View style={{flex:1}}>
                 <Navbar navigation={navigation}/>

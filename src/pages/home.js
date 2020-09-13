@@ -26,7 +26,8 @@ const Home = ({navigation}) =>{
 const styles = StyleSheet.create({
     home:{
         flex:1,
-        flexDirection: 'column'
-    },
+        flexDirection: 'column',
+        paddingTop: 15,
+    }
 })
 export default Home

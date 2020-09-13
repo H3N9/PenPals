@@ -18,7 +18,7 @@ const Navbar = ({ navigation }) =>{
             </View>
             <View style={stylesCondition(routeName, "Message")}>
                 <TouchableOpacity style={styles.button}>
-                    <Image source={require('../../assets/navbar/notification.png')} style={styles.img}/>
+                    <Image source={require('../../assets/navbar/chat.png')} style={styles.img}/>
                 </TouchableOpacity>
             </View>
             <View style={stylesCondition(routeName, "Account")}>
