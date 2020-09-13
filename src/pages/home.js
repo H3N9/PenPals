@@ -7,7 +7,7 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const Home = ({ navigation }) => {
   return (
-    <LinearGradient colors={["#132031", "#022b6b"]} style={{ flex: 1 }}>
+    <LinearGradient colors={["#5f5f5F", "#000000"]} style={{ flex: 1 }}>
       <Homebar />
       <ScrollView style={{flex: 1}}>
         <Content />

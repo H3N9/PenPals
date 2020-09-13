@@ -1,6 +1,6 @@
 /node_modules
-/.expo
-/.expo-shared
-/.idea
+# /.expo
+# /.expo-shared
+# /.idea
 /.vscode
-/.package.json
+# /.package.json
