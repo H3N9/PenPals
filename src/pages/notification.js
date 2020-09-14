@@ -4,16 +4,16 @@ import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
 import BoxProfile from '../components/profile/boxProfile'
 
-const Account = ({ navigation }) => {
+const Notification = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
       <Homebar />
       <ScrollView style={{flex: 1, marginHorizontal: 10, marginTop: 5}}>
-        <BoxProfile />
+
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>
   );
 };
 
-export default Account;
+export default Notification;

@@ -8,9 +8,7 @@ export default function App() {
   return (
     <React.Fragment>
       <StatusBar style="light" />
-      <LinearGradient colors={["#132031", "#022b6b"]} style={{ flex: 1 }}>
         <Index />
-      </LinearGradient>
     </React.Fragment>
   );
 }

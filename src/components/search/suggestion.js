@@ -3,13 +3,12 @@ import {
   StyleSheet,
   View,
   Text,
-  SafeAreaView,
   ScrollView,
   Image,
   TouchableOpacity,
 } from "react-native";
 
-const Content = () => {
+const Suggestion = () => {
   return (
     <View style={styles.boxContent}>
       {/* UserImageProfile */}
@@ -23,10 +22,10 @@ const Content = () => {
         <View style={styles.userDetail}>
           <View style={{ flex: 3 }}>
             {/* Username */}
-            <Text style={{ fontWeight: "bold" }}>UserName</Text>
+            <Text style={{ fontWeight: "bold", color: "#FFF" }}>UserName</Text>
 
             {/* location */}
-            <Text style={{ fontSize: 13, marginVertical: 2 }}>Bangkok, Thailand</Text>
+            <Text style={{ fontSize: 13, marginVertical: 2, color: "#FFF" }}>Bangkok, Thailand</Text>
             
             {/* Tag */}
             <View style={{flexDirection: "row"}}>
@@ -37,7 +36,7 @@ const Content = () => {
           
           {/* Follower */}
           <View style={{ flex: 1 }}>
-            <Text>30</Text>
+            <Text  style={{color: "#FFF"}}>30</Text>
           </View>
 
           {/* Menu */}
@@ -49,10 +48,10 @@ const Content = () => {
             }}
           >
             <TouchableOpacity>
-              <Text>M</Text>
+              <Text style={{color: "#FFF"}}>M</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text>S</Text>
+              <Text  style={{color: "#FFF"}}>S</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -72,9 +71,10 @@ const Content = () => {
 const styles = StyleSheet.create({
   boxContent: {
     height: 130, 
-    backgroundColor: "#E5EBE7",
+    backgroundColor: "#323232",
     padding: 10,
     flexDirection: "row",
+    marginBottom: 1
 
   },
   profile: {
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Content;
+export default Suggestion;

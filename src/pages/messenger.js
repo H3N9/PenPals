@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, ScrollView } from "react-native";
-import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
+import Navbar from "../components/navbar";
 
-const Home = ({ navigation }) => {
+const Messenger = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
       <Homebar />
@@ -15,4 +15,4 @@ const Home = ({ navigation }) => {
   );
 };
 
-export default Home;
+export default Messenger;

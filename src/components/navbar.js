@@ -11,14 +11,14 @@ const Navbar = ({ navigation }) =>{
                     <Image source={require('../../assets/navbar/friends.png')} style={styles.img}/>
                 </TouchableOpacity>
             </View>
-            <View style={stylesCondition(routeName, "Search")}>
-                <TouchableOpacity style={styles.button}>
+            <View style={stylesCondition(routeName, "Messenger")}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Messenger')}>
                     <Image source={require('../../assets/navbar/chat.png')} style={styles.img}/>
                 </TouchableOpacity>
             </View>
-            <View style={stylesCondition(routeName, "Message")}>
-                <TouchableOpacity style={styles.button}>
-                    <Image source={require('../../assets/navbar/notification.png')} style={styles.img}/>
+            <View style={stylesCondition(routeName, "Search")}>
+                <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Search')}>
+                    <Image source={require('../../assets/navbar/search.png')} style={styles.img}/>
                 </TouchableOpacity>
             </View>
             <View style={stylesCondition(routeName, "Account")}>
@@ -32,13 +32,13 @@ const Navbar = ({ navigation }) =>{
 
 const styles = StyleSheet.create({
     navbar:{
-        backgroundColor: "#1a396e",
+        backgroundColor: "#323232",
         flexDirection: 'row',
         height: 55,
 
     },
     boxContent:{
-        backgroundColor: '#1a396e',
+        backgroundColor: '#323232',
         flex: 1,
         
     },
@@ -56,9 +56,9 @@ const styles = StyleSheet.create({
 
 const stylesCondition = (routeName, name) => {
     if(routeName === name){
-        return {borderTopWidth: 3, borderColor: '#FF5350', backgroundColor: '#1a396e', flex: 1,}
+        return {borderTopWidth: 3, borderColor: '#FF5350', backgroundColor: '#323232', flex: 1,}
     }
-    return {borderTopWidth: 3, borderColor: '#1a396e', backgroundColor: '#1a396e', flex: 1,}
+    return {borderTopWidth: 3, borderColor: '#323232', backgroundColor: '#323232', flex: 1,}
 }
 
 export default Navbar
