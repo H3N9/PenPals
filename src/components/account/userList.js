@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 
 const userList = ({listName}) => {
   return (
@@ -17,10 +17,10 @@ const userList = ({listName}) => {
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          <View style={styles.infoImgProfile} />
-          <View style={styles.infoImgProfile} />
-          <View style={styles.infoImgProfile} />
-          <View style={styles.infoImgProfile} />
+          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
+          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
+          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
+          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
         </View>
       </View>
   );

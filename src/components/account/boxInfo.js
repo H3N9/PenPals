@@ -1,11 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 const BoxInfo = () => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
           <View style={styles.userInfo}>
-            <View style={styles.imgProfile} />
+            <Image style={styles.imgProfile} source={require('../../../assets/man.png')}/>
             <View style={{flex: 1}}>
               <Text style={styles.userInfoText, styles.userName}>Username</Text>
               <Text style={styles.userInfoText}>Bacgkok, Thailand</Text>

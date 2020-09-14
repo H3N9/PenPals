@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
 import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
-import BoxProfile from '../components/profile/boxProfile'
+import BoxProfile from '../components/account/boxProfile'
 
 const Notification = ({ navigation }) => {
   return (
