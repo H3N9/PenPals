@@ -6,7 +6,7 @@ import Suggestion from "../components/search/suggestion"
 const Search = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
-      <Homebar />
+      <Homebar navigation={navigation}/>
       <ScrollView style={{flex: 1, marginTop: 5}}>
           <Suggestion/>
           <Suggestion/>

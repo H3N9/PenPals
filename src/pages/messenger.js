@@ -6,7 +6,7 @@ import Chat from "../components/messenger/chat"
 const Messenger = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
-      <Homebar />
+      <Homebar navigation={navigation} />
       <ScrollView style={{flex: 1}}>
         <Chat />
       </ScrollView>

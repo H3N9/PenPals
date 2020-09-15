@@ -7,9 +7,9 @@ import BoxProfile from '../components/account/boxProfile'
 const Notification = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
-      <Homebar />
+      <Homebar navigation={navigation}/>
       <ScrollView style={{flex: 1, marginHorizontal: 10, marginTop: 5}}>
-
+        <Text style={{textAlign: "center", fontSize: 30, color: "#fff"}}>Notification Page</Text>
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>

@@ -7,7 +7,7 @@ import BoxProfile from '../components/account/boxProfile'
 const Account = ({ navigation }) => {
   return (
     <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
-      <Homebar />
+      <Homebar navigation={navigation}/>
       <ScrollView style={{flex: 1, marginHorizontal: 10, marginTop: 5}}>
         <BoxProfile />
       </ScrollView>

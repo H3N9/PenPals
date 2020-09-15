@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import {useRoute} from '@react-navigation/native'
 
-const Homebar = () => {
+const Homebar = ({navigation}) => {
   const routeName = useRoute().name
   return (
     <View style={styles.homebar}>
@@ -13,7 +13,7 @@ const Homebar = () => {
         />
       </View>
       <View style={styles.boxContent}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Notification')}>
         <Image
           source={require("../../assets/navbar/notification.png")}
           style={{ resizeMode: "cover", height: 30, width: 30 }}

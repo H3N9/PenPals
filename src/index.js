@@ -14,12 +14,12 @@ const Index = () =>{
     return (
       
       <NavigationContainer>
-          <Stack.Navigator initialRouteName="Account" screenOptions={{headerShown: false}}>
+          <Stack.Navigator initialRouteName="Home" screenOptions={{headerShown: false}}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Account" component={Account} />
             <Stack.Screen name="Messenger" component={Messenger} />
             <Stack.Screen name="Search" component={Search} />
-            {/* <Stack.Screen name="Notification" component={Notification} /> */}
+            <Stack.Screen name="Notification" component={Notification} />
           </Stack.Navigator>
       </NavigationContainer>
       

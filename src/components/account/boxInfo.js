@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
     borderWidth: 2, 
     borderColor: "#FF5350", 
     marginVertical: 10, 
-    padding: 2
+    padding: 2,
+    borderRadius: 3
   }
 })
 export default BoxInfo;
