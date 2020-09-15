@@ -11,7 +11,7 @@ const userList = ({listName}) => {
             marginBottom: 5,
           }}
         >
-          <Text style={{ fontWeight: "bold" }}>{listName} :</Text>
+          <Text style={{ fontWeight: "bold", color: "#fff" }}>{listName} :</Text>
           <TouchableOpacity>
             <Text style={{ color: "#FF5350" }}>ViewMore</Text>
           </TouchableOpacity>
@@ -28,7 +28,7 @@ const userList = ({listName}) => {
 
 const styles = StyleSheet.create({
   infoContainer: {
-    backgroundColor: "#FFF",
+    backgroundColor: "#323232",
     borderRadius: 5,
     padding: 10,
     marginVertical: 10,

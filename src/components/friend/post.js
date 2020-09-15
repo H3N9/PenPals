@@ -34,8 +34,7 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         paddingVertical: 5,
         paddingHorizontal: 10,
-        borderRadius: 10,
-        margin: 10 
+        marginBottom: 1
     },
     postImgProfile:{
         resizeMode: "cover",
