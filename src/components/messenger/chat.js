@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import MainStyle from '../../style/mainStyle'
 
 const Chat = () => {
   return (
@@ -11,10 +12,10 @@ const Chat = () => {
         </View>    
         <View style={{flex: 1, marginHorizontal: 10}}>
             <View style={{flexDirection: "row", justifyContent: "space-between"}}>
-                <Text style={{color: "#FFF", fontWeight: "bold", fontSize: 18}}>Username</Text>
-                <Text style={{color: "#FFF"}}>9.30</Text>
+                <Text style={MainStyle.textBold}>Username</Text>
+                <Text style={MainStyle.textWhite}>9.30</Text>
             </View>
-            <Text style={{color: "#AAA", marginVertical: 5}}>Lorem Ipsum is simply dummy text of the printing </Text>
+            <Text style={MainStyle.textGray}>Lorem Ipsum is simply dummy text of the printing </Text>
         </View>
       </View>
     </TouchableOpacity>

@@ -3,9 +3,11 @@ import { StyleSheet, View, ScrollView } from "react-native";
 import Homebar from "../components/homebar";
 import Navbar from "../components/navbar";
 import Chat from "../components/messenger/chat"
+import MainStyle from '../style/mainStyle'
+
 const Messenger = ({ navigation }) => {
   return (
-    <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
+    <View style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
       <ScrollView style={{flex: 1}}>
         <Chat />

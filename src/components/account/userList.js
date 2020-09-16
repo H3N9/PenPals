@@ -1,9 +1,10 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
+import MainStyle from "../../style/mainStyle"
 
 const userList = ({listName}) => {
   return (
-      <View style={styles.infoContainer}>
+      <View style={[styles.infoContainer, MainStyle.boxContent]}>
         <View
           style={{
             flexDirection: "row",
@@ -11,7 +12,7 @@ const userList = ({listName}) => {
             marginBottom: 5,
           }}
         >
-          <Text style={{ fontWeight: "bold", color: "#fff" }}>{listName} :</Text>
+          <Text style={MainStyle.textBold}>{listName} :</Text>
           <TouchableOpacity>
             <Text style={{ color: "#FF5350" }}>ViewMore</Text>
           </TouchableOpacity>
@@ -28,8 +29,6 @@ const userList = ({listName}) => {
 
 const styles = StyleSheet.create({
   infoContainer: {
-    backgroundColor: "#323232",
-    borderRadius: 5,
     padding: 10,
     marginVertical: 10,
   },

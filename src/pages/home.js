@@ -4,6 +4,7 @@ import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
 import CreatePost from '../components/friend/createPost'
 import Post from '../components/friend/post'
+import MainStyle from '../style/mainStyle'
 
 let id = 1
 
@@ -17,7 +18,7 @@ const Home = ({ navigation }) => {
   }
 
   return (
-    <View style={{ flex: 1, backgroundColor: "#1a1a1a" }}>
+    <View style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
       <ScrollView style={{flex: 1}}>
         <CreatePost addPost={addPost} />

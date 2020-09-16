@@ -6,10 +6,11 @@ import {
   Image,
   TouchableOpacity,
 } from "react-native";
+import MainStyle from '../../style/mainStyle'
 
 const Suggestion = () => {
   return (
-    <View style={styles.boxContent}>
+    <View style={[styles.boxContent, MainStyle.boxContent]}>
       <View>
         <Image
           style={{ width: 70, height: 70, borderRadius: 50 }}
@@ -21,10 +22,10 @@ const Suggestion = () => {
         <View style={styles.userDetail}>
           <View style={{ flex: 3 }}>
             {/* Username */}
-            <Text style={{ fontWeight: "bold", color: "#FFF" }}>UserName</Text>
+            <Text style={MainStyle.textBold}>UserName</Text>
 
             {/* location */}
-            <Text style={{ fontSize: 13, marginVertical: 2, color: "#FFF" }}>
+            <Text style={[{marginVertical: 2}, MainStyle.textWhite]}>
               Bangkok, Thailand
             </Text>
 
@@ -37,21 +38,21 @@ const Suggestion = () => {
 
           {/* Follower */}
           <View style={{ flex: 1 }}>
-            <Text style={{ color: "#FFF" }}>30</Text>
+            <Text style={MainStyle.textWhite}>30</Text>
           </View>
 
           <View style={styles.menuSugges}>
             <TouchableOpacity>
-              <Text style={{ color: "#FFF" }}>M</Text>
+              <Text style={MainStyle.textWhite}>M</Text>
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={{ color: "#FFF" }}>S</Text>
+              <Text style={MainStyle.textWhite}>S</Text>
             </TouchableOpacity>
           </View>
         </View>
 
         <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>
-          <Text style={{ fontSize: 13, color: "#777" }}>
+          <Text style={MainStyle.textGray}>
             ภารตะแฟลชพรีเมียร์เจลติงต๊อง โกลด์เลดี้มาร์เก็ตเคลื่อนย้าย
             ลิมูซีนสตูดิโอ
           </Text>
@@ -64,7 +65,6 @@ const Suggestion = () => {
 const styles = StyleSheet.create({
   boxContent: {
     height: 130,
-    backgroundColor: "#323232",
     padding: 10,
     flexDirection: "row",
     marginBottom: 1,
