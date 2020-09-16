@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10
   },
   editProfile: {
-    borderWidth: 2,
-    borderColor: "#FF5350",
+    backgroundColor: "#FF8850",
     marginVertical: 10,
-    padding: 2,
+    padding: 4,
     borderRadius: 3,
   },
 });
