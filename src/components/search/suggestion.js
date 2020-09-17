@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import MainStyle from '../../style/mainStyle'
+import Tag from '../account/tag'
 
 const Suggestion = () => {
   return (
@@ -31,8 +32,8 @@ const Suggestion = () => {
 
             {/* Tag */}
             <View style={{ flexDirection: "row" }}>
-              <Text style={styles.tagText}>Sport</Text>
-              <Text style={styles.tagText}>Music</Text>
+              <Tag tagName={"Name"} />
+              <Tag tagName={"JOJO"} />
             </View>
           </View>
 
