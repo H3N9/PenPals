@@ -1,8 +1,16 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import MainStyle from "../../style/mainStyle"
+import ImagPro from './imgPro'
 
 const userList = ({listName}) => {
+
+  const people = ["1", "2", "3"]
+
+  const callPeople = (value) =>{
+    return <ImagPro key={people.indexOf(value)} />
+  }
+
   return (
       <View style={[styles.infoContainer, MainStyle.boxContent]}>
         <View
@@ -18,10 +26,7 @@ const userList = ({listName}) => {
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
-          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
-          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
-          <Image style={styles.infoImgProfile} source={require('../../../assets/man.png')}/>
+          {people.map(callPeople)}
         </View>
       </View>
   );
