@@ -5,6 +5,9 @@ import Homebar from "../components/homebar";
 import CreatePost from "../components/friend/createPost";
 import Post from "../components/friend/post";
 import MainStyle from "../style/mainStyle";
+import { Dimensions } from "react-native";
+
+const screenWidth = Math.round(Dimensions.get("window").width);
 
 let id = 1;
 
@@ -21,19 +24,20 @@ const Home = ({ navigation }) => {
     const likePost = posts.filter((value) => id == value.id);
     const allPost = posts.filter((value) => id != value.id);
     if (status) {
-      likePost[0].like += 1;
-    } else {
       likePost[0].like -= 1;
+    } else {
+      likePost[0].like += 1;
     }
     allPost.push(...likePost);
     const allPostSorted = allPost.sort((a, b) => b.id - a.id);
+    console.log(...allPostSorted);
     setPosts([...allPostSorted]);
   };
 
   return (
     <View style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
-      <ScrollView style={{ flex: 1 }}>
+      <ScrollView style={stylesCondition()}>
         <CreatePost addPost={addPost} />
         {posts.map((post) => (
           <Post
@@ -50,4 +54,11 @@ const Home = ({ navigation }) => {
   );
 };
 
+const stylesCondition = () => {
+  if (screenWidth >= 768) {
+    return { flex: 1, marginHorizontal: "20%" };
+  } else {
+    return { flex: 1 };
+  }
+};
 export default Home;
