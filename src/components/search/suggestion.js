@@ -1,13 +1,9 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from "react-native";
-import MainStyle from '../../style/mainStyle'
-import Tag from '../account/tag'
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
+import MainStyle from "../../style/mainStyle";
+import Tag from "../account/tag";
+import Icon from "react-native-vector-icons/FontAwesome";
+import Entypo from "react-native-vector-icons/Entypo";
 
 const Suggestion = () => {
   return (
@@ -19,14 +15,14 @@ const Suggestion = () => {
         />
         <View style={styles.onlineStatus} />
       </View>
-      <View style={{ flex: 1, marginLeft: 5}}>
+      <View style={{ flex: 1, marginLeft: 5 }}>
         <View style={styles.userDetail}>
           <View style={{ flex: 3 }}>
             {/* Username */}
             <Text style={MainStyle.textBold}>UserName</Text>
 
             {/* location */}
-            <Text style={[{marginVertical: 2}, MainStyle.textWhite]}>
+            <Text style={[{ marginVertical: 2 }, MainStyle.textWhite]}>
               Bangkok, Thailand
             </Text>
 
@@ -44,10 +40,10 @@ const Suggestion = () => {
 
           <View style={styles.menuSugges}>
             <TouchableOpacity>
-              <Text style={MainStyle.textWhite}>M</Text>
+              <Entypo name="chat" size={22} color="white" />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Text style={MainStyle.textWhite}>S</Text>
+              <Icon name="bookmark" size={22} color="white" />
             </TouchableOpacity>
           </View>
         </View>
@@ -100,11 +96,11 @@ const styles = StyleSheet.create({
     backgroundColor: "#FF5350",
     fontSize: 12,
   },
-  menuSugges:{
-    flex: 1,
+  menuSugges: {
+    flex: 1.5,
     flexDirection: "row",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+  },
 });
 
 export default Suggestion;

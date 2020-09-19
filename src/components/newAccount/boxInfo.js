@@ -4,8 +4,8 @@ import mainStyle from "../../style/mainStyle";
 import MainStyle from "../../style/mainStyle";
 import Tag from "./tag";
 import UserList from "./userList";
+import Icon from "react-native-vector-icons/Entypo";
 const BoxInfo = ({ id }) => {
-
   const userJson = [
     {
       id: 1,
@@ -14,23 +14,26 @@ const BoxInfo = ({ id }) => {
       lastName: "Turky",
       sex: "male",
       age: "120",
-      address : "Bangkok, Thailand",
-      intro : "I love prime minister TU Lorem Ipsum is simply dummy text of the printing",
-      friendCount : "24",
-      follwerCount : "1.56K",
-      speaks : ["Thai", "English", "Spain"],
-      looking : ["Email", "Friendship", "Language"],
+      address: "Bangkok, Thailand",
+      intro:
+        "I love prime minister TU Lorem Ipsum is simply dummy text of the printing",
+      friendCount: "24",
+      follwerCount: "1.56K",
+      speaks: ["Thai", "English", "Spain"],
+      looking: ["Email", "Friendship", "Language"],
       hobAndInterTag: ["Cycling", "Football", "Photography"],
       favTag: [
         {
           name: "music",
-          list: ["silly fools", "youngOhm", "youngNo", "pee saderd"]
+          list: ["silly fools", "youngOhm", "youngNo", "pee saderd"],
         },
         {
           name: "Foods",
-          list: ["steak"]}
+          list: ["steak"],
+        },
       ],
-      about : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
+      about:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500",
     },
     {
       id: 2,
@@ -39,45 +42,74 @@ const BoxInfo = ({ id }) => {
       lastName: "Rugrawi",
       sex: "male",
       age: "21",
-      address : "Bangkok, Thailand",
-      intro : "I love prime minister TU Lorem Ipsum is simply dummy text of the printing",
-      friendCount : "13",
-      follwerCount : "12.56K",
-      speaks : ["Thai", "English", "Spain"],
-      looking : ["Email", "Friendship", "Language"],
-      hobAndInterTag: ["abc", "odoodd", "oopl", "abc", "odoodd", "oopl", "abc", "odoodd", "oopl"],
+      address: "Bangkok, Thailand",
+      intro:
+        "I love prime minister TU Lorem Ipsum is simply dummy text of the printing",
+      friendCount: "13",
+      follwerCount: "12.56K",
+      speaks: ["Thai", "English", "Spain"],
+      looking: ["Email", "Friendship", "Language"],
+      hobAndInterTag: [
+        "abc",
+        "odoodd",
+        "oopl",
+        "abc",
+        "odoodd",
+        "oopl",
+        "abc",
+        "odoodd",
+        "oopl",
+      ],
       favTag: [
         {
           name: "music",
-          list: ["silly fools", "youngOhm", "youngNo", "pee saderd", "silly fools", "youngOhm", "youngNo", "pee saderd"]
+          list: [
+            "silly fools",
+            "youngOhm",
+            "youngNo",
+            "pee saderd",
+            "silly fools",
+            "youngOhm",
+            "youngNo",
+            "pee saderd",
+          ],
         },
         {
           name: "Foods",
-          list: ["steak"]}
+          list: ["steak"],
+        },
       ],
-      about : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-    }
-  ]
+      about:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    },
+  ];
 
-  const user = userJson[id - 1]
+  const user = userJson[id - 1];
 
-  const { username, firstName, lastName, sex, age, address, intro, ...other } = user
-  const { speaks, looking, hobAndInterTag, favTag, about} = user
+  const {
+    username,
+    firstName,
+    lastName,
+    sex,
+    age,
+    address,
+    intro,
+    ...other
+  } = user;
+  const { speaks, looking, hobAndInterTag, favTag, about } = user;
   const image = require("../../../assets/5.png");
   const callTag = (value, index) => {
     return <Tag key={index} tagName={value} />;
   };
 
-  const callFavTag = (value, index) =>{
+  const callFavTag = (value, index) => {
     return (
       <View style={styles.boxTag} key={index}>
-          <Text style={styles.tagText}>{value.name} :</Text>
-          <View style={styles.boxTagList}>
-            {value.list.map(callTag)}
-          </View>
+        <Text style={styles.tagText}>{value.name} :</Text>
+        <View style={styles.boxTagList}>{value.list.map(callTag)}</View>
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <React.Fragment>
@@ -86,7 +118,9 @@ const BoxInfo = ({ id }) => {
           <Image style={styles.imgProfile} source={image} />
           <View style={{ flex: 1, justifyContent: "flex-end", marginLeft: 20 }}>
             <Text style={MainStyle.textBold}>{username}</Text>
-            <Text style={MainStyle.textWhite}>{sex} {firstName} {lastName}, {age} y.e.</Text>
+            <Text style={MainStyle.textWhite}>
+              {sex} {firstName} {lastName}, {age} y.e.
+            </Text>
             <Text style={MainStyle.textWhite}>{address}</Text>
             {/* <TouchableOpacity style={styles.editProfile}>
               <Text style={{ color: "#fff", textAlign: "center" }}>
@@ -97,7 +131,7 @@ const BoxInfo = ({ id }) => {
         </View>
       </View>
 
-      <UserList user={user}/>
+      <UserList user={user} />
 
       <View
         style={{
@@ -108,11 +142,13 @@ const BoxInfo = ({ id }) => {
       >
         <TouchableOpacity style={styles.button}>
           <Text style={[[mainStyle.textWhite], { textAlign: "center" }]}>
+            <Icon name="user" size={20} color="white" />
             Follow
           </Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>
           <Text style={[[mainStyle.textWhite], { textAlign: "center" }]}>
+            <Icon name="chat" size={20} color="white" />
             Message
           </Text>
         </TouchableOpacity>
@@ -124,7 +160,10 @@ const BoxInfo = ({ id }) => {
             Speaks
           </Text>
           {speaks.map((value, index) => (
-            <Text key={index} style={[MainStyle.textWhite, { paddingLeft: 10 }]}>
+            <Text
+              key={index}
+              style={[MainStyle.textWhite, { paddingLeft: 10 }]}
+            >
               {value}
             </Text>
           ))}
@@ -134,7 +173,10 @@ const BoxInfo = ({ id }) => {
             Looking for
           </Text>
           {looking.map((value, index) => (
-            <Text key={index} style={[MainStyle.textWhite, { paddingLeft: 10 }]}>
+            <Text
+              key={index}
+              style={[MainStyle.textWhite, { paddingLeft: 10 }]}
+            >
               {value}
             </Text>
           ))}
@@ -147,9 +189,7 @@ const BoxInfo = ({ id }) => {
         </Text>
         <View style={styles.boxTag}>
           <Text style={styles.tagText}>Tag :</Text>
-          <View style={styles.boxTagList}>
-            {hobAndInterTag.map(callTag)}
-          </View>
+          <View style={styles.boxTagList}>{hobAndInterTag.map(callTag)}</View>
         </View>
       </View>
 
@@ -210,10 +250,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 5,
   },
-  boxTagList :{
+  boxTagList: {
     flex: 3,
     flexDirection: "row",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
   },
   boxIntro: {
     flex: 1,
