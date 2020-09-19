@@ -15,12 +15,13 @@ import { Dimensions } from "react-native";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const Account = ({ navigation }) => {
+const Account = ({ route, navigation}) => {
+  const { id } = route.params;
   return (
     <View style={MainStyle.mainBackground}>
       {/* <Homebar navigation={navigation} /> */}
       <ScrollView style={stylesCondition()}>
-        <BoxProfile />
+        <BoxProfile id={ id }/>
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>

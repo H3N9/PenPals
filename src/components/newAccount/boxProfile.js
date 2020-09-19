@@ -3,10 +3,10 @@ import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import BoxInfo from "./boxInfo";
 import UserList from "./userList";
 
-const BoxProfile = () => {
+const BoxProfile = ({ id }) => {
   return (
     <React.Fragment>
-      <BoxInfo />
+      <BoxInfo id={id}/>
     </React.Fragment>
   );
 };

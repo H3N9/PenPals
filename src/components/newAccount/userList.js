@@ -3,7 +3,10 @@ import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import ImagPro from "./imgPro";
 
-const userList = () => {
+const userList = ({ user }) => {
+
+  const {friendCount, follwerCount, intro} = user
+
   return (
     <View style={styles.infoContainer}>
       <View style={styles.infoItems}>
@@ -13,7 +16,7 @@ const userList = () => {
             { textAlign: "center", fontSize: 25 },
           ]}
         >
-          123K
+          {friendCount}
         </Text>
         <Text style={[MainStyle.textWhite, { textAlign: "center" }]}>
           Friend
@@ -26,7 +29,7 @@ const userList = () => {
             { textAlign: "center", fontSize: 25 },
           ]}
         >
-          99K
+          {follwerCount}
         </Text>
         <Text style={[MainStyle.textWhite, { textAlign: "center" }]}>
           Follower
@@ -34,8 +37,7 @@ const userList = () => {
       </View>
       <View style={[styles.infoItems, { flex: 1, paddingLeft: 10 }]}>
         <Text style={MainStyle.textWhite}>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry.
+          {intro}
         </Text>
       </View>
     </View>

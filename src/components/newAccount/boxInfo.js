@@ -4,32 +4,90 @@ import mainStyle from "../../style/mainStyle";
 import MainStyle from "../../style/mainStyle";
 import Tag from "./tag";
 import UserList from "./userList";
+const BoxInfo = ({ id }) => {
 
-const BoxInfo = () => {
-  const username = "Username";
-  const address = "Antaya, Turky";
-  const intro =
-    "I love prime minister TU Lorem Ipsum is simply dummy text of the printing";
-  const desc = "Lorem Ipsum is simply dummy text of the printing";
+  const userJson = [
+    {
+      id: 1,
+      username: "Username",
+      firstName: "Antaya",
+      lastName: "Turky",
+      sex: "male",
+      age: "120",
+      address : "Bangkok, Thailand",
+      intro : "I love prime minister TU Lorem Ipsum is simply dummy text of the printing",
+      friendCount : "24",
+      follwerCount : "1.56K",
+      speaks : ["Thai", "English", "Spain"],
+      looking : ["Email", "Friendship", "Language"],
+      hobAndInterTag: ["Cycling", "Football", "Photography"],
+      favTag: [
+        {
+          name: "music",
+          list: ["silly fools", "youngOhm", "youngNo", "pee saderd"]
+        },
+        {
+          name: "Foods",
+          list: ["steak"]}
+      ],
+      about : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500"
+    },
+    {
+      id: 2,
+      username: "Poohcid",
+      firstName: "Poohcid",
+      lastName: "Rugrawi",
+      sex: "male",
+      age: "21",
+      address : "Bangkok, Thailand",
+      intro : "I love prime minister TU Lorem Ipsum is simply dummy text of the printing",
+      friendCount : "13",
+      follwerCount : "12.56K",
+      speaks : ["Thai", "English", "Spain"],
+      looking : ["Email", "Friendship", "Language"],
+      hobAndInterTag: ["abc", "odoodd", "oopl", "abc", "odoodd", "oopl", "abc", "odoodd", "oopl"],
+      favTag: [
+        {
+          name: "music",
+          list: ["silly fools", "youngOhm", "youngNo", "pee saderd", "silly fools", "youngOhm", "youngNo", "pee saderd"]
+        },
+        {
+          name: "Foods",
+          list: ["steak"]}
+      ],
+      about : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+    }
+  ]
+
+  const user = userJson[id - 1]
+
+  const { username, firstName, lastName, sex, age, address, intro, ...other } = user
+  const { speaks, looking, hobAndInterTag, favTag, about} = user
   const image = require("../../../assets/5.png");
-  const tag = ["You", "And", "I"];
-  const speak = ["Thai", "English", "Spain"];
-  const looking = ["Email", "Friendship", "Language"];
-  const about =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.";
-  const callTag = (value) => {
-    return <Tag key={tag.indexOf(value)} tagName={value} />;
+  const callTag = (value, index) => {
+    return <Tag key={index} tagName={value} />;
   };
+
+  const callFavTag = (value, index) =>{
+    return (
+      <View style={styles.boxTag} key={index}>
+          <Text style={styles.tagText}>{value.name} :</Text>
+          <View style={styles.boxTagList}>
+            {value.list.map(callTag)}
+          </View>
+      </View>
+    )
+  }
 
   return (
     <React.Fragment>
       <View style={styles.main}>
         <View style={styles.userInfo}>
           <Image style={styles.imgProfile} source={image} />
-          <View style={{ flex: 1, justifyContent: "flex-end" }}>
+          <View style={{ flex: 1, justifyContent: "flex-end", marginLeft: 20 }}>
             <Text style={MainStyle.textBold}>{username}</Text>
+            <Text style={MainStyle.textWhite}>{sex} {firstName} {lastName}, {age} y.e.</Text>
             <Text style={MainStyle.textWhite}>{address}</Text>
-            <Text style={MainStyle.textGray}>{desc}</Text>
             {/* <TouchableOpacity style={styles.editProfile}>
               <Text style={{ color: "#fff", textAlign: "center" }}>
                 Edit Profile
@@ -39,7 +97,7 @@ const BoxInfo = () => {
         </View>
       </View>
 
-      <UserList />
+      <UserList user={user}/>
 
       <View
         style={{
@@ -65,19 +123,18 @@ const BoxInfo = () => {
           <Text style={[MainStyle.textWhiteBold, { fontSize: 18 }]}>
             Speaks
           </Text>
-          {speak.map((value) => (
-            <Text style={[MainStyle.textWhite, { paddingLeft: 10 }]}>
+          {speaks.map((value, index) => (
+            <Text key={index} style={[MainStyle.textWhite, { paddingLeft: 10 }]}>
               {value}
             </Text>
           ))}
         </View>
-
         <View style={styles.abilityItem}>
           <Text style={[MainStyle.textWhiteBold, { fontSize: 18 }]}>
             Looking for
           </Text>
-          {looking.map((value) => (
-            <Text style={[MainStyle.textWhite, { paddingLeft: 10 }]}>
+          {looking.map((value, index) => (
+            <Text key={index} style={[MainStyle.textWhite, { paddingLeft: 10 }]}>
               {value}
             </Text>
           ))}
@@ -89,8 +146,10 @@ const BoxInfo = () => {
           Hobbies & interests Tag
         </Text>
         <View style={styles.boxTag}>
-          <Text style={styles.tagText}>Tag:</Text>
-          {tag.map(callTag)}
+          <Text style={styles.tagText}>Tag :</Text>
+          <View style={styles.boxTagList}>
+            {hobAndInterTag.map(callTag)}
+          </View>
         </View>
       </View>
 
@@ -98,10 +157,13 @@ const BoxInfo = () => {
         <Text style={[MainStyle.textWhiteBold, { fontSize: 18 }]}>
           Favorite Tag
         </Text>
+        {favTag.map(callFavTag)}
+        {/*}
         <View style={styles.boxTag}>
           <Text style={styles.tagText}>Tag:</Text>
           {tag.map(callTag)}
         </View>
+          */}
       </View>
 
       <View style={styles.aboutMe}>
@@ -146,7 +208,12 @@ const styles = StyleSheet.create({
   boxTag: {
     flex: 1,
     flexDirection: "row",
-    marginVertical: 20,
+    marginVertical: 5,
+  },
+  boxTagList :{
+    flex: 3,
+    flexDirection: "row",
+    flexWrap: "wrap"
   },
   boxIntro: {
     flex: 1,

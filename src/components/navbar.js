@@ -45,7 +45,7 @@ const Navbar = ({ navigation }) => {
       <View style={stylesCondition(routeName, "Account")}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Account")}
+          onPress={() => navigation.navigate("Account", {id: 1})}
         >
           <Image
             source={require("../../assets/navbar/account.png")}
