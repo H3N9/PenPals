@@ -1,4 +1,3 @@
-
 import React from "react";
 import Index from "./src/index";
 import { LinearGradient } from "expo-linear-gradient";
