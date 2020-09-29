@@ -7,8 +7,6 @@ const BoxProfile = () => {
   return (
     <React.Fragment>
       <BoxInfo />
-      <UserList listName={"Friend"}/>
-      <UserList listName={"Following"}/>
     </React.Fragment>
   );
 };
