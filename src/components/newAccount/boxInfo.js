@@ -4,7 +4,7 @@ import MainStyle from "../../style/mainStyle";
 
 const BoxInfo = ({ user }) => {
   const {username, gender, firstName, lastName, age, city, nation} = user
-  const image = require("../../../assets/"+user.image)
+  const image = require("../../../assets/5.png")
   return (
       <View style={styles.main}>
         <View style={styles.userInfo}>
