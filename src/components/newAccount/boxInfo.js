@@ -2,9 +2,9 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import mainStyle from "../../style/mainStyle";
 import MainStyle from "../../style/mainStyle";
-import Tag from "./tag";
 import UserList from "./userList";
-import Icon from "react-native-vector-icons/Entypo";
+import ListTag from "./ListTag"
+import ContactButton from "./contactButton"
 const BoxInfo = ({ id }) => {
   const userJson = [
     {
@@ -21,7 +21,12 @@ const BoxInfo = ({ id }) => {
       follwerCount: "1.56K",
       speaks: ["Thai", "English", "Spain"],
       looking: ["Email", "Friendship", "Language"],
-      hobAndInterTag: ["Cycling", "Football", "Photography"],
+      hobAndInterTag: [
+        {
+          name: "Tag",
+          list: ["Cycling", "Football", "Photography"]
+        }
+      ],
       favTag: [
         {
           name: "music",
@@ -50,15 +55,20 @@ const BoxInfo = ({ id }) => {
       speaks: ["Thai", "English", "Spain"],
       looking: ["Email", "Friendship", "Language"],
       hobAndInterTag: [
-        "abc",
-        "odoodd",
-        "oopl",
-        "abc",
-        "odoodd",
-        "oopl",
-        "abc",
-        "odoodd",
-        "oopl",
+        {
+          name: "Tag",
+          list:[
+            "abc",
+            "odoodd",
+            "oopl",
+            "abc",
+            "odoodd",
+            "oopl",
+            "abc",
+            "odoodd",
+            "oopl",
+          ]
+        }
       ],
       favTag: [
         {
@@ -98,19 +108,6 @@ const BoxInfo = ({ id }) => {
   } = user;
   const { speaks, looking, hobAndInterTag, favTag, about } = user;
   const image = require("../../../assets/5.png");
-  const callTag = (value, index) => {
-    return <Tag key={index} tagName={value} />;
-  };
-
-  const callFavTag = (value, index) => {
-    return (
-      <View style={styles.boxTag} key={index}>
-        <Text style={styles.tagText}>{value.name} :</Text>
-        <View style={styles.boxTagList}>{value.list.map(callTag)}</View>
-      </View>
-    );
-  };
-
   return (
     <React.Fragment>
       <View style={styles.main}>
@@ -122,11 +119,6 @@ const BoxInfo = ({ id }) => {
               {sex} {firstName} {lastName}, {age} y.e.
             </Text>
             <Text style={MainStyle.textWhite}>{address}</Text>
-            {/* <TouchableOpacity style={styles.editProfile}>
-              <Text style={{ color: "#fff", textAlign: "center" }}>
-                Edit Profile
-              </Text>
-            </TouchableOpacity> */}
           </View>
         </View>
       </View>
@@ -140,18 +132,8 @@ const BoxInfo = ({ id }) => {
           marginBottom: 20,
         }}
       >
-        <TouchableOpacity style={styles.button}>
-          <Text style={[[mainStyle.textWhite], { textAlign: "center" }]}>
-            <Icon name="user" size={20} color="white" />
-            Follow
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={[[mainStyle.textWhite], { textAlign: "center" }]}>
-            <Icon name="chat" size={20} color="white" />
-            Message
-          </Text>
-        </TouchableOpacity>
+        <ContactButton title={"Follow"} handle={() =>{}} />
+        <ContactButton title={"Message"} handle={() =>{}} />
       </View>
 
       <View style={styles.abilityContainer}>
@@ -182,30 +164,8 @@ const BoxInfo = ({ id }) => {
           ))}
         </View>
       </View>
-
-      <View style={{ marginHorizontal: 10 }}>
-        <Text style={[MainStyle.textWhiteBold, { fontSize: 18 }]}>
-          Hobbies & interests Tag
-        </Text>
-        <View style={styles.boxTag}>
-          <Text style={styles.tagText}>Tag :</Text>
-          <View style={styles.boxTagList}>{hobAndInterTag.map(callTag)}</View>
-        </View>
-      </View>
-
-      <View style={{ marginHorizontal: 10 }}>
-        <Text style={[MainStyle.textWhiteBold, { fontSize: 18 }]}>
-          Favorite Tag
-        </Text>
-        {favTag.map(callFavTag)}
-        {/*}
-        <View style={styles.boxTag}>
-          <Text style={styles.tagText}>Tag:</Text>
-          {tag.map(callTag)}
-        </View>
-          */}
-      </View>
-
+      <ListTag tag={hobAndInterTag} title={"Hobbies & interests Tag"}/>
+      <ListTag tag={favTag} title={"Favorite Tag"}/>
       <View style={styles.aboutMe}>
         <Text style={[MainStyle.textWhiteBold, { fontSize: 18 }]}>
           About Me
@@ -244,25 +204,6 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#FF5350",
     paddingTop: 25,
-  },
-  boxTag: {
-    flex: 1,
-    flexDirection: "row",
-    marginVertical: 5,
-  },
-  boxTagList: {
-    flex: 3,
-    flexDirection: "row",
-    flexWrap: "wrap",
-  },
-  boxIntro: {
-    flex: 1,
-    paddingHorizontal: 10,
-    padding: 5,
-  },
-  tagText: {
-    color: "white",
-    marginHorizontal: 10,
   },
   abilityContainer: {
     flex: 1,
