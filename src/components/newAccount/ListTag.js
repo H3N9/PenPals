@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text} from "react-native";
 import MainStyle from "../../style/mainStyle"
-import Tag from "../global/tag";
+import Tag from "./tag";
 
 const ListTag = ({ tag, title }) =>{
     const callTag = (value, index) => {

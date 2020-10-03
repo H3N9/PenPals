@@ -1,14 +1,14 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native'
 
 
 
-const BarMessage = () => {
-    const friendName = "YoungNo"
+const BarMessage = ({navigation, usernameAnother }) => {
+    const friendName = usernameAnother
     return(
         <View style={styles.box}>
             <View style={styles.btn}>
-                <TouchableOpacity><Text>Back</Text></TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.goBack()}><Text>Back</Text></TouchableOpacity>
             </View>
             <View style={styles.boxText}>
                 <Text>{friendName}</Text>
@@ -19,19 +19,17 @@ const BarMessage = () => {
 
 const styles = StyleSheet.create({
     box:{
-        flexDirection: 'row',
-        justifyContent: 'center',
+        flexDirection: 'column',
         backgroundColor: 'white',
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: '#ececec',
-        height: 77,
+        height: 55,
     },
     btn:{
-        textAlign: 'center',
-        alignSelf: 'flex-start'
+        alignSelf: 'flex-start',
     },
     boxText:{
-        alignSelf: 'center',
+        alignSelf: 'flex-end',
     }
 })
 

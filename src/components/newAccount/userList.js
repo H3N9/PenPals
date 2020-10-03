@@ -5,34 +5,17 @@ import ImagPro from "./imgPro";
 
 const userList = ({ user }) => {
 
-  const {friendCount, follwerCount, intro} = user
+  const friendCount = user.friend.length
+  const intro = user.intro
 
   return (
     <View style={styles.infoContainer}>
       <View style={styles.infoItems}>
-        <Text
-          style={[
-            MainStyle.textWhiteBold,
-            { textAlign: "center", fontSize: 25 },
-          ]}
-        >
+        <Text style={[MainStyle.textWhiteBold,{ textAlign: "center", fontSize: 25 },]}>
           {friendCount}
         </Text>
         <Text style={[MainStyle.textWhite, { textAlign: "center" }]}>
           Friend
-        </Text>
-      </View>
-      <View style={styles.infoItems}>
-        <Text
-          style={[
-            MainStyle.textWhiteBold,
-            { textAlign: "center", fontSize: 25 },
-          ]}
-        >
-          {follwerCount}
-        </Text>
-        <Text style={[MainStyle.textWhite, { textAlign: "center" }]}>
-          Follower
         </Text>
       </View>
       <View style={[styles.infoItems, { flex: 1, paddingLeft: 10 }]}>

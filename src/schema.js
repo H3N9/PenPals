@@ -12,6 +12,7 @@ const initData = {
                 intro:"YongNo dek dok",
                 gender: 'male',
                 age: 20,
+                image: '5.png',
                 friend:[
                     '2'
                 ],
@@ -33,6 +34,7 @@ const initData = {
                 intro:"Pooh Shit dek dok",
                 gender: 'other',
                 age: 20,
+                image: '5.png',
                 friend:[
                     '1'
                 ],
@@ -42,6 +44,28 @@ const initData = {
                 describe:"Don't know what to say",
                 favorites:[
                     '2','3'
+                ]
+            },
+            {
+                id:'3',
+                username:'Irem',
+                firstName:'Irem',
+                lastName:'Zengin',
+                nation:'Turkey',
+                city:"Anatalya",
+                intro:"Green",
+                gender: 'Female',
+                age: 17,
+                image: '5.png',
+                friend:[
+                    '1'
+                ],
+                hobbies:[
+                    '3'
+                ],
+                describe:"Don't know what to say",
+                favorites:[
+                    '1'
                 ]
             },
     ],
@@ -77,7 +101,11 @@ const initData = {
         {
             id: '1',
             user:['1','2'],
-        }
+        },
+        {
+            id: '2',
+            user:['1','3'],
+        },
     ],
     text:[
         {
@@ -100,6 +128,13 @@ const initData = {
             user:'2',
             date: new Date("October 2 2020 4:00:32"),
             text:'BullShit?'
+        },
+        {
+            id:'4',
+            message:'2',
+            user:'1',
+            date: new Date("October 2 2020 4:00:32"),
+            text:'Irem?'
         },
     ]
 }

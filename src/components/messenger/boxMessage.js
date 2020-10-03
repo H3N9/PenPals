@@ -1,34 +1,18 @@
-import React from 'react'
-import {SafeAreaView, TouchableOpacity, FlatList, StyleSheet} from 'react-native'
+import React, {useState} from 'react'
+import {SafeAreaView, TouchableOpacity, FlatList, StyleSheet, Text} from 'react-native'
+import Schema from '../../schema'
 
 
+const BoxMessage = ({texts}) => {
 
-const BoxMessage = () => {
+    const username = Schema.user
 
-    const username = "Pooh"
-    const initMessage = [
-        {
-            id: '1',
-            user: 'Pooh',
-            date: new Date(),
-            message: 'No?'
-        },
-        {
-            id: '2',
-            user: 'No',
-            date: new Date(),
-            message: 'YoungNo'
-        }
-
-    ]
-
-    const [messages, setMessage] = useState(initMessage)
-
-    const EachMessage = ({message, user}) =>{
+    const [messages, setMessage] = useState(texts)
+    const EachMessage = ({text, user}) =>{
         if(user === username){
             return(
                 <TouchableOpacity style={styles.myMess}>
-                    <Text>{message}</Text>
+                    <Text>{text}</Text>
                 </TouchableOpacity>
                 
             )
@@ -36,7 +20,7 @@ const BoxMessage = () => {
         else{
             return(
                 <TouchableOpacity style={styles.anoMess}>
-                    <Text>{message}</Text>
+                    <Text>{text}</Text>
                 </TouchableOpacity>
                 
             )
@@ -44,8 +28,8 @@ const BoxMessage = () => {
         
     }
 
-    const renderMessage = (message) =>{
-        return <EachMessage message={message.message} user={message.user} />
+    const renderMessage = ({item}) =>{
+        return <EachMessage text={item.text} user={item.user} />
     }
 
 
@@ -62,10 +46,11 @@ const styles = StyleSheet.create({
     myMess:{
         backgroundColor: 'blue',
         padding: 2,
-        alignSelf: 'flex-end'
+        alignSelf: 'flex-end',
+        flex: 1,
     },
     anoMess:{
-        backgroundColor: 'black',
+        backgroundColor: 'red',
         padding: 2,
         alignSelf: 'flex-start'
     },
