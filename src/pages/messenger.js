@@ -14,6 +14,8 @@ const Messenger = ({ navigation }) => {
       <Homebar navigation={navigation} />
       <ScrollView style={stylesCondition()}>
         <Chat />
+        <Chat />
+        <Chat />
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>
