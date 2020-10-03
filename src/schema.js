@@ -1,5 +1,43 @@
 import React from 'react'
 const auth = "1"
+
+//back end จอมปลอม
+const getProfile = (id) =>{
+    const typeFavTag = Array.from(new Set( initData.user[id].favorites.map((item1) =>{
+        const index = initData.favorites.findIndex((item2) =>{
+            return item2.id === item1
+        })
+        return initData.favorites[index].type
+    })))
+
+    //ค่าใน arry typeFavTag คือ ชื่อประเภท
+    const favTag = typeFavTag.map((item1) =>{
+        const obj = {
+            name: item1,
+            list: initData.favorites.filter((item2) =>{
+                return item2.type === item1
+            })
+        }
+        return obj
+    })
+    const hobbTag = [
+        {
+            name: "tag",
+            list: initData.user[id].hobbies.map((item1) =>{
+                const index = initData.hobbies.findIndex((item2) =>{
+                    return item2.id === item1
+                })
+                return initData.hobbies[index]
+            })
+        }
+    ]
+
+    let userJson = {...initData.user[id]}
+    userJson.hobbies = hobbTag
+    userJson.favorites = favTag
+    
+    return userJson
+}
 const initData = {
     user:[
             {
@@ -17,11 +55,11 @@ const initData = {
                     '2'
                 ],
                 hobbies:[
-                    '1'
+                    '1', '2'
                 ],
                 describe:"Don't know what to say",
                 favorites:[
-                    '3'
+                    '1', '2'
                 ]
             },
             {
@@ -39,11 +77,11 @@ const initData = {
                     '1'
                 ],
                 hobbies:[
-                    '1','2'
+                    '2'
                 ],
                 describe:"Don't know what to say",
                 favorites:[
-                    '2','3'
+                    '3'
                 ]
             },
             {
@@ -86,15 +124,18 @@ const initData = {
     favorites:[
         {
             id:'1',
-            name:'Watching'
+            name:'Watching',
+            type: 'movie'
         },
         {
             id:'2',
-            name:'Cats'
+            name:'Cats',
+            type: 'animal'
         },
         {
             id:'3',
-            name:'Porn'
+            name:'Porn',
+            type: 'movie'
         }
     ],
     message:[
@@ -139,6 +180,6 @@ const initData = {
     ]
 }
 
-const database = {user:auth, data: initData}
+const database = {user:auth, data: initData, getProfile: getProfile}
 
 export default database

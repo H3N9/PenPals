@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import BoxInfo from "./boxInfo"
 import UserList from "./userList"
@@ -9,9 +9,12 @@ import Schema from '../../schema'
 
 const BoxProfile = ({ id }) => {
 
-    const user = Schema.data.user[parseInt(id)-1]
-    const username = Schema.user
+    //const user = Schema.data.user[parseInt(id)-1]
+    const userId = Schema.user
+    const user = Schema.getProfile(userId)
     const describe = user.describe
+    const { hobbies, favorites } = user
+
     /*
             
             <ListTag tag={hobAndInterTag} title={"Hobbies & interests Tag"}/>
@@ -25,6 +28,8 @@ const BoxProfile = ({ id }) => {
                 <ContactButton title={"Follow"} handle={() =>{}} />
                 <ContactButton title={"Message"} handle={() =>{}} />
             </View>
+            <ListTag tag={hobbies} title={"Hobbies & interests Tag"}/>
+            <ListTag tag={favorites} title={"Favorite Tag"}/>
             <AboutAcc describe={describe} />
         </React.Fragment>
     )

@@ -5,7 +5,7 @@ import Tag from "./tag";
 
 const ListTag = ({ tag, title }) =>{
     const callTag = (value, index) => {
-        return <Tag key={index} tagName={value} />;
+        return <Tag key={index} tagName={value.name} />;
     };
     
     const callListTag = (value, index) => {
@@ -23,7 +23,7 @@ const ListTag = ({ tag, title }) =>{
                 {title}
             </Text>
             {tag.map(callListTag)}
-      </View>
+        </View>
     )
 }
 
