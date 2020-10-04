@@ -6,10 +6,11 @@ import {
   StyleSheet,
   TouchableOpacity,
 } from "react-native";
-import Homebar from "../components/homebar";
+// import Homebar from "../components/homebar";
 import Navbar from "../components/navbar";
 import Suggestion from "../components/search/suggestion";
 import MainStyle from "../style/mainStyle";
+import SearchBar from "../components/search/searchBar";
 import { Dimensions } from "react-native";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
@@ -17,7 +18,8 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 const Search = ({ navigation }) => {
   return (
     <View style={MainStyle.mainBackground}>
-      <Homebar navigation={navigation} />
+      {/* <Homebar navigation={navigation} /> */}
+      <SearchBar />
       <ScrollView style={stylesCondition()}>
         <Suggestion />
         <Suggestion />

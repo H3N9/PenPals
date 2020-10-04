@@ -16,7 +16,7 @@ const CreatePost = ({ addPost }) => {
 
   const posted = () => {
     addPost(text);
-    setModalVisible(!modalVisible)
+    setModalVisible(!modalVisible);
     setText("");
   };
 
@@ -38,22 +38,34 @@ const CreatePost = ({ addPost }) => {
           </TouchableOpacity>
         </View>
       </View>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-      >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <View style={styles.modalHeader}>
-              <TouchableOpacity  style={[styles.button]} onPress={() => {setModalVisible(!modalVisible);}}>
+      <Modal animationType="slide" transparent={true} visible={modalVisible}>
+        <View style={MainStyle.centeredView}>
+          <View style={MainStyle.modalView}>
+            <View style={MainStyle.modalHeader}>
+              <TouchableOpacity
+                style={[styles.button]}
+                onPress={() => {
+                  setModalVisible(!modalVisible);
+                }}
+              >
                 <Text style={MainStyle.textWhite}>Cancel</Text>
               </TouchableOpacity>
-              <TouchableOpacity style={[styles.postButton, styles.button]} onPress={posted} disabled={text === ""}>
-                <Text style={MainStyle.textWhite} >Post</Text>
+              <TouchableOpacity
+                style={[styles.postButton, styles.button]}
+                onPress={posted}
+                disabled={text === ""}
+              >
+                <Text style={MainStyle.textWhite}>Post</Text>
               </TouchableOpacity>
             </View>
-            <TextInput multiline={true} placeholder="Type Something" placeholderTextColor="#555" style={[MainStyle.textWhite, styles.textInput]} onChangeText={text => setText(text)} value={text}/>
+            <TextInput
+              multiline={true}
+              placeholder="Type Something"
+              placeholderTextColor="#555"
+              style={[MainStyle.textWhite, styles.textInput]}
+              onChangeText={(text) => setText(text)}
+              value={text}
+            />
           </View>
         </View>
       </Modal>
@@ -91,37 +103,23 @@ const styles = StyleSheet.create({
     color: "#FFF",
     marginRight: 10,
   },
-  centeredView: {
-    justifyContent: "flex-end",
-    marginTop: 22
-  },
-  modalView: {
-    backgroundColor: "#323232",
-    borderRadius: 20,
-    padding: 10,
-    height:"100%"
-  },
   openButton: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
   },
-  modalHeader:{
-    flexDirection: "row",
-    justifyContent: "space-between"
-  },
-  button:{
+  button: {
     padding: 10,
     borderRadius: 5,
   },
-  postButton:{
-    backgroundColor: "#FF5350"
+  postButton: {
+    backgroundColor: "#FF5350",
   },
-  textInput:{
+  textInput: {
     fontSize: 26,
-    marginTop: 10
-  }
+    marginTop: 10,
+  },
 });
 
 export default CreatePost;

@@ -26,6 +26,26 @@ const mainStyle = StyleSheet.create({
   boxContent: {
     backgroundColor: "#323232",
   },
+  // ------------------ForModals------------------
+  centeredView: {
+    justifyContent: "flex-end",
+    marginTop: 22,
+  },
+  modalView: {
+    backgroundColor: "#323232",
+    borderRadius: 20,
+    padding: 10,
+    height: "100%",
+  },
+  modalHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  modalButton: {
+    backgroundColor: "#FF5350",
+    padding: 12,
+    borderRadius: 5,
+  },
 });
 
 export default mainStyle;
