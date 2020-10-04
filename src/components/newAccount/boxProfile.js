@@ -9,8 +9,7 @@ import Schema from "../../schema";
 
 const BoxProfile = ({ id }) => {
   //const user = Schema.data.user[parseInt(id)-1]
-  const userId = Schema.user;
-  const user = Schema.getProfile(userId);
+  const user = Schema.getProfile(id);
   const describe = user.describe;
   const { hobbies, favorites } = user;
 
