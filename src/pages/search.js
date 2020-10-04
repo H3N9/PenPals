@@ -21,9 +21,9 @@ const Search = ({ navigation }) => {
       {/* <Homebar navigation={navigation} /> */}
       <SearchBar />
       <ScrollView style={stylesCondition()}>
-        <Suggestion />
-        <Suggestion />
-        <Suggestion />
+        <Suggestion userId={"1"}/>
+        <Suggestion userId={"2"}/>
+        <Suggestion userId={"3"}/>
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>

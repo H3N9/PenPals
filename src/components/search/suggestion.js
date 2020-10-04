@@ -4,8 +4,15 @@ import MainStyle from "../../style/mainStyle";
 import Tag from "../global/tag";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
+import Schema from "../../schema"
 
-const Suggestion = () => {
+const Suggestion = ({ userId }) => {
+
+  const user = Schema.getProfile(userId)
+  const { id, username, nation, city, age, hobbies, favorites, describe} = user
+  const tag1 = hobbies[0].list[0]
+  const tag2 = favorites[0].list[0]
+
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
       <View>
@@ -19,17 +26,17 @@ const Suggestion = () => {
         <View style={styles.userDetail}>
           <View style={{ flex: 3 }}>
             {/* Username */}
-            <Text style={MainStyle.textBold}>UserName</Text>
+            <Text style={MainStyle.textBold}>{username}</Text>
 
             {/* location */}
             <Text style={[{ marginVertical: 2 }, MainStyle.textWhite]}>
-              Bangkok, Thailand
+              {city}, {nation}
             </Text>
 
             {/* Tag */}
             <View style={{ flexDirection: "row" }}>
-              <Tag tagName={"Name"} />
-              <Tag tagName={"JOJO"} />
+              <Tag tagName={tag1.name} />
+              <Tag tagName={tag2.name} />
             </View>
           </View>
 

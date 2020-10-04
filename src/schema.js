@@ -2,37 +2,41 @@ import React from 'react'
 const auth = "1"
 
 //back end จอมปลอม
+
+const getDataById = (arryObj, id) =>{
+    const index = arryObj.findIndex((item1) =>{
+        return item1.id === id
+    })
+    return arryObj[index]
+}
+
 const getProfile = (id) =>{
-    const typeFavTag = Array.from(new Set( initData.user[id].favorites.map((item1) =>{
-        const index = initData.favorites.findIndex((item2) =>{
-            return item2.id === item1
-        })
-        return initData.favorites[index].type
+
+    const typeFavTag = Array.from(new Set( getDataById(initData.user, id).favorites.map((item1) =>{
+        return getDataById(initData.favorites, item1).type
     })))
 
-    //ค่าใน arry typeFavTag คือ ชื่อประเภท
+    //ค่า element ใน typeFavTag คือ ชื่อประเภท (typeName)
     const favTag = typeFavTag.map((item1) =>{
         const obj = {
             name: item1,
-            list: initData.favorites.filter((item2) =>{
-                return item2.type === item1
-            })
+            list: (getDataById(initData.user, id).favorites.map((item2) =>{
+                return getDataById(initData.favorites, item2)
+            }
+            )).filter((item2) => item2.type === item1)
         }
         return obj
     })
     const hobbTag = [
         {
             name: "tag",
-            list: initData.user[id].hobbies.map((item1) =>{
-                const index = initData.hobbies.findIndex((item2) =>{
-                    return item2.id === item1
-                })
-                return initData.hobbies[index]
+            list: getDataById(initData.user, id).hobbies.map((item1) =>{
+                return getDataById(initData.hobbies, item1)
             })
         }
     ]
 
-    let userJson = {...initData.user[id]}
+    let userJson = {...getDataById(initData.user, id)}
     userJson.hobbies = hobbTag
     userJson.favorites = favTag
     
@@ -103,7 +107,7 @@ const initData = {
                 ],
                 describe:"Don't know what to say",
                 favorites:[
-                    '1'
+                    '2'
                 ]
             },
     ],
