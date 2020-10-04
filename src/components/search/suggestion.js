@@ -35,8 +35,8 @@ const Suggestion = ({ userId }) => {
 
             {/* Tag */}
             <View style={{ flexDirection: "row" }}>
-              <Tag tagName={tag1.name} />
-              <Tag tagName={tag2.name} />
+              <Tag tagName={tag1.name} id={tag1.id}/>
+              <Tag tagName={tag2.name} id={tag2.id}/>
             </View>
           </View>
 

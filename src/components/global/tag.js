@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 const Tag = ({ tagName, id }) => {
     const tag = tagName
     return (
-        <TouchableOpacity><Text style={styles.tagText}>{tag}</Text></TouchableOpacity>
+        <TouchableOpacity style={styles.tagButton} ><Text style={styles.tagText}>{tag}</Text></TouchableOpacity>
     )
 }
 
