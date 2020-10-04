@@ -5,7 +5,7 @@ import Tag from "./tag";
 
 const ListTag = ({ tag, title }) =>{
     const callTag = (value, index) => {
-        return <Tag key={index} tagName={value.name} />;
+        return <Tag key={index} tagName={value.name} id={value.id} />;
     };
     
     const callListTag = (value, index) => {

@@ -19,9 +19,9 @@ const Search = ({ navigation }) => {
     <View style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
       <ScrollView style={stylesCondition()}>
-        <Suggestion />
-        <Suggestion />
-        <Suggestion />
+        <Suggestion userId={"1"}/>
+        <Suggestion userId={"2"}/>
+        <Suggestion userId={"3"}/>
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>

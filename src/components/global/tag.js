@@ -1,7 +1,7 @@
 import React from 'react'
 import {StyleSheet, Text, TouchableOpacity} from 'react-native'
 
-const Tag = ({tagName}) => {
+const Tag = ({ tagName, id }) => {
     const tag = tagName
     return (
         <TouchableOpacity><Text style={styles.tagText}>{tag}</Text></TouchableOpacity>
