@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -11,6 +11,7 @@ import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 const Keyboard = () => {
+  const [chatText, setChatText] = useState("");
   return (
     <View style={styles.box}>
       <View style={styles.boxIcon}>
@@ -35,11 +36,17 @@ const Keyboard = () => {
       </View>
       <View style={styles.boxInput}>
         <TextInput
+          multiline
           style={styles.input}
           placeholder="Aa"
           placeholderTextColor="#898989"
+          onChangeText={(value) => setChatText(value)}
+          value={chatText}
         />
-        <TouchableOpacity style={styles.sendButton}>
+        <TouchableOpacity
+          style={styles.sendButton}
+          onPress={() => setChatText("")}
+        >
           <FontAwesome
             name="send"
             color="#ffb347"
@@ -54,7 +61,8 @@ const Keyboard = () => {
 
 const styles = StyleSheet.create({
   box: {
-    height: 50,
+    minHeight: 50,
+    maxHeight: 120,
     flexDirection: "row",
     backgroundColor: "#323232",
     alignItems: "center",
@@ -74,6 +82,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 7,
     paddingVertical: 5,
     flex: 1,
+    color: "#fff",
   },
   sendButton: {
     marginHorizontal: 15,
