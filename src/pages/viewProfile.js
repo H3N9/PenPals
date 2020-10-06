@@ -1,31 +1,22 @@
 import React from "react";
 import {
   View,
-  Text,
   ScrollView,
-  StyleSheet,
-  TouchableOpacity,
 } from "react-native";
-// import Homebar from "../components/homebar";
-import Navbar from "../components/navbar";
-import Suggestion from "../components/search/suggestion";
+import BoxProfile from "../components/newAccount/boxProfile";
 import MainStyle from "../style/mainStyle";
-import SearchBar from "../components/search/searchBar";
 import { Dimensions } from "react-native";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const Search = ({ navigation }) => {
+const ViewProfile = ({ route }) => {
+  const { id } = route.params;
   return (
     <View style={MainStyle.mainBackground}>
       {/* <Homebar navigation={navigation} /> */}
-      <SearchBar />
       <ScrollView style={stylesCondition()}>
-        <Suggestion userId={"1"} navigation={navigation}/>
-        <Suggestion userId={"2"} navigation={navigation}/>
-        <Suggestion userId={"3"} navigation={navigation}/>
+        <BoxProfile id={ id }/>
       </ScrollView>
-      <Navbar navigation={navigation} />
     </View>
   );
 };
@@ -37,4 +28,4 @@ const stylesCondition = () => {
     return { flex: 1 };
   }
 };
-export default Search;
+export default ViewProfile;

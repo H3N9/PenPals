@@ -12,20 +12,23 @@ const BoxProfile = ({ id }) => {
   const user = Schema.getProfile(id);
   const describe = user.describe;
   const { hobbies, favorites } = user;
-
-  /*
-            
-            <ListTag tag={hobAndInterTag} title={"Hobbies & interests Tag"}/>
-            <ListTag tag={favTag} title={"Favorite Tag"}/>*/
+  const isAuthUser = id === Schema.user
 
   return (
     <React.Fragment>
       <BoxInfo user={user} />
       <UserList user={user} />
-      <View style={styles.contact}>
-        <ContactButton title={"Follow"} handle={() => {}} iconName={"user"} />
-        <ContactButton title={"Message"} handle={() => {}} iconName={"chat"} />
-      </View>
+      {isAuthUser &&
+        <View style={styles.contact}>
+          <ContactButton title={"Edit Profile"} handle={() => {}} iconName={"chat"} />
+        </View>
+      }
+      {!isAuthUser &&
+        <View style={styles.contact}>
+          <ContactButton title={"Follow"} handle={() => {}} iconName={"user"} />
+          <ContactButton title={"Message"} handle={() => {}} iconName={"chat"} />
+        </View>
+      }
       <ListTag tag={hobbies} title={"Hobbies & interests Tag"} />
       <ListTag tag={favorites} title={"Favorite Tag"} />
       <AboutAcc describe={describe} />

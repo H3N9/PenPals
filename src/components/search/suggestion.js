@@ -6,7 +6,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
 import Schema from "../../schema"
 
-const Suggestion = ({ userId }) => {
+const Suggestion = ({ navigation, userId }) => {
 
   const user = Schema.getProfile(userId)
   const { id, username, nation, city, age, hobbies, favorites, describe} = user
@@ -15,19 +15,20 @@ const Suggestion = ({ userId }) => {
 
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
-      <View>
+      <TouchableOpacity onPress={() => navigation.navigate("Account", {id: id})}>
         <Image
           style={{ width: 70, height: 70, borderRadius: 50 }}
           source={require("../../../assets/man.png")}
         />
         <View style={styles.onlineStatus} />
-      </View>
+      </TouchableOpacity>
       <View style={{ flex: 1, marginLeft: 5 }}>
         <View style={styles.userDetail}>
           <View style={{ flex: 3 }}>
             {/* Username */}
-            <Text style={MainStyle.textBold}>{username}</Text>
-
+            <TouchableOpacity onPress={() => navigation.navigate("Account", {id: id})}>
+              <Text style={MainStyle.textBold}>{username}</Text>
+            </TouchableOpacity>
             {/* location */}
             <Text style={[{ marginVertical: 2 }, MainStyle.textWhite]}>
               {city}, {nation}
@@ -42,7 +43,7 @@ const Suggestion = ({ userId }) => {
 
           {/* Follower */}
           <View style={{ flex: 1 }}>
-            <Text style={MainStyle.textWhite}>30</Text>
+            <Text style={MainStyle.textWhite}>{age}</Text>
           </View>
 
           <View style={styles.menuSugges}>
@@ -56,10 +57,7 @@ const Suggestion = ({ userId }) => {
         </View>
 
         <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>
-          <Text style={MainStyle.textGray}>
-            ภารตะแฟลชพรีเมียร์เจลติงต๊อง โกลด์เลดี้มาร์เก็ตเคลื่อนย้าย
-            ลิมูซีนสตูดิโอ
-          </Text>
+          <Text style={MainStyle.textGray}>{describe}</Text>
         </View>
       </View>
     </View>
