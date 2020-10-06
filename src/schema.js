@@ -62,7 +62,7 @@ const initData = {
       friend: ["2"],
       hobbies: ["1", "2"],
       describe: "Don't know what to say",
-      favorites: ["1", "2"],
+      favorites: ["1", "2", "4"],
     },
     {
       id: "2",
@@ -104,7 +104,7 @@ const initData = {
     },
     {
       id: "2",
-      name: "Silly Fools",
+      name: "Watching",
     },
     {
       id: "3",
@@ -114,7 +114,7 @@ const initData = {
   favorites: [
     {
       id: "1",
-      name: "Watching",
+      name: "Avatar",
       type: "movie",
     },
     {
@@ -125,6 +125,11 @@ const initData = {
     {
       id: "3",
       name: "ink waruntorn",
+      type: "music",
+    },
+    {
+      id: "4",
+      name: "Silly Fools",
       type: "music",
     },
   ],
