@@ -16,8 +16,7 @@ const ContactButton = ({ title, handle, iconName }) => {
 
 const styles = StyleSheet.create({
   button: {
-    borderWidth: 2,
-    borderColor: "#FF5350",
+    backgroundColor: "#696969",
     borderRadius: 50,
     paddingVertical: 10,
     marginHorizontal: 10,

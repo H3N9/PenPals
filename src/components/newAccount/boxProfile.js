@@ -20,7 +20,7 @@ const BoxProfile = ({ id }) => {
       <UserList user={user} />
       {isAuthUser &&
         <View style={styles.contact}>
-          <ContactButton title={"Edit Profile"} handle={() => {}} iconName={"chat"} />
+          <ContactButton title={"Edit Profile"} handle={() => { }} iconName={"edit"} />
         </View>
       }
       {!isAuthUser &&
