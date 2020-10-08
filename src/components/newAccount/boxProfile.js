@@ -25,7 +25,7 @@ const BoxProfile = ({ id }) => {
       }
       {!isAuthUser &&
         <View style={styles.contact}>
-          <ContactButton title={"Follow"} handle={() => {}} iconName={"user"} />
+          <ContactButton title={"Add Friend"} handle={() => {}} iconName={"user"} />
           <ContactButton title={"Message"} handle={() => {}} iconName={"chat"} />
         </View>
       }

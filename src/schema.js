@@ -78,7 +78,7 @@ const initData = {
       friend: ["1"],
       hobbies: ["2"],
       describe: "Don't know what to say",
-      favorites: ["3"],
+      favorites: ["3", "1"],
     },
     {
       id: "3",
