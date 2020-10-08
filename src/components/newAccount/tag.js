@@ -16,9 +16,10 @@ const styles = StyleSheet.create({
   tagButton: {
     marginRight: 10,
     marginTop: 2,
-    padding: 2,
+    padding: 3,
+    paddingHorizontal: 8,
     backgroundColor: "#FF5350",
-    borderRadius: 5,
+    borderRadius: 25,
   },
 });
 export default Tag;

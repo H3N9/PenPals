@@ -34,14 +34,14 @@ const CreatePost = ({ addPost }) => {
               setModalVisible(true);
             }}
           >
-            <Text style={MainStyle.textGray}>Type To Post!</Text>
+            <Text style={MainStyle.textGray}>Press To Post</Text>
           </TouchableOpacity>
         </View>
       </View>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={MainStyle.centeredView}>
           <View style={MainStyle.modalView}>
-            <View style={MainStyle.modalHeader}>
+            <View style={[MainStyle.modalHeader, { alignItems: "center" }]}>
               <TouchableOpacity
                 style={[styles.button]}
                 onPress={() => {
@@ -50,6 +50,7 @@ const CreatePost = ({ addPost }) => {
               >
                 <Text style={MainStyle.textWhite}>Cancel</Text>
               </TouchableOpacity>
+              <Text style={[MainStyle.textBold, { fontSize: 18 }]}>Createpost</Text>
               <TouchableOpacity
                 style={[styles.postButton, styles.button]}
                 onPress={posted}

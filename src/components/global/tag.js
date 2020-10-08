@@ -2,10 +2,10 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const Tag = ({ tagName, id }) => {
-    const tag = tagName
-    return (
-        <TouchableOpacity style={styles.tagButton} ><Text style={styles.tagText}>{tag}</Text></TouchableOpacity>
-    )
+  const tag = tagName
+  return (
+    <TouchableOpacity style={styles.tagButton} ><Text style={styles.tagText}>{tag}</Text></TouchableOpacity>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -15,9 +15,10 @@ const styles = StyleSheet.create({
   tagButton: {
     marginRight: 10,
     marginTop: 2,
-    padding: 2,
+    padding: 3,
+    paddingHorizontal: 8,
     backgroundColor: "#FF5350",
-    borderRadius: 5,
+    borderRadius: 25,
   },
 });
 export default Tag;
