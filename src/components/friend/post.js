@@ -8,6 +8,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import Mainstyle from "../../style/mainStyle";
+import AntDesign from "react-native-vector-icons/AntDesign";
+
 
 const Post = ({ title, likePost, like, id }) => {
   const [likeStatus, setLikeStatus] = useState(false);
@@ -29,10 +31,13 @@ const Post = ({ title, likePost, like, id }) => {
           <Text style={{ color: "#FFF" }}>50m</Text>
         </View>
         <View>
-          <Text style={styles.postTitle}>{title}</Text>
+          <Text style={styles.postTitle}>{title}{id}</Text>
         </View>
-        <TouchableOpacity onPress={likeControl}>
-          <Text style={Mainstyle.textWhite}>Like {like}</Text>
+        <TouchableOpacity onPress={likeControl} style={styles.likeButton}>
+          <AntDesign name={likeStatus ? "heart" : "hearto"} size={19} color={likeStatus ? "#ff5350" : "#fff"} />
+          <Text style={[Mainstyle.textWhite, { marginLeft: 4 }]}>
+            {like}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -44,7 +49,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#323232",
     flexDirection: "row",
-    paddingVertical: 5,
+    paddingVertical: 10,
     paddingHorizontal: 10,
     marginBottom: 1,
   },
@@ -60,13 +65,17 @@ const styles = StyleSheet.create({
     color: "#FFF",
     fontSize: 20,
     fontWeight: "100",
-    marginVertical: 3,
+    marginVertical: 5,
   },
   postUsername: {
     fontWeight: "bold",
     color: "#FFF",
     marginRight: 10,
   },
+  likeButton: {
+    alignItems: "center",
+    flexDirection: "row"
+  }
 });
 
 export default Post;

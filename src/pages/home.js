@@ -30,7 +30,6 @@ const Home = ({ navigation }) => {
     }
     allPost.push(...likePost);
     const allPostSorted = allPost.sort((a, b) => b.id - a.id);
-    console.log(...allPostSorted);
     setPosts([...allPostSorted]);
   };
 

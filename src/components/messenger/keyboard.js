@@ -19,7 +19,7 @@ const Keyboard = () => {
           <Entypo
             name="camera"
             color="#fff"
-            size={20}
+            size={22}
             style={{ textAlign: "center" }}
           />
         </TouchableOpacity>
@@ -29,7 +29,7 @@ const Keyboard = () => {
           <Entypo
             name="image"
             color="#fff"
-            size={20}
+            size={22}
             style={{ textAlign: "center" }}
           />
         </TouchableOpacity>
@@ -50,7 +50,7 @@ const Keyboard = () => {
           <FontAwesome
             name="send"
             color="#ffb347"
-            size={20}
+            size={24}
             style={{ textAlign: "center" }}
           />
         </TouchableOpacity>

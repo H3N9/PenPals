@@ -20,13 +20,13 @@ const BoxProfile = ({ id }) => {
       <UserList user={user} />
       {isAuthUser &&
         <View style={styles.contact}>
-          <ContactButton title={"Edit Profile"} handle={() => {}} iconName={"chat"} />
+          <ContactButton title={"Edit Profile"} handle={() => { }} iconName={"edit"} />
         </View>
       }
       {!isAuthUser &&
         <View style={styles.contact}>
-          <ContactButton title={"Follow"} handle={() => {}} iconName={"user"} />
-          <ContactButton title={"Message"} handle={() => {}} iconName={"chat"} />
+          <ContactButton title={"Follow"} handle={() => { }} iconName={"user"} />
+          <ContactButton title={"Message"} handle={() => { }} iconName={"chat"} />
         </View>
       }
       <ListTag tag={hobbies} title={"Hobbies & interests Tag"} />
