@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Dimensions } from "react-native";
-import Schema from '../schema'
+import Schema from "../schema";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
@@ -46,7 +46,7 @@ const Navbar = ({ navigation }) => {
       <View style={stylesCondition(routeName, "Account")}>
         <TouchableOpacity
           style={styles.button}
-          onPress={() => navigation.navigate("Account", {id: Schema.user})}
+          onPress={() => navigation.navigate("Account", { id: Schema.user })}
         >
           <Image
             source={require("../../assets/navbar/account.png")}

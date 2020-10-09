@@ -1,17 +1,16 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
-import BoxProfile from "../components/newAccount/boxProfile";
+import MainEdit from "../components/editProfile/mainEdit";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const ViewProfile = ({ route }) => {
-  const { id } = route.params;
+const EditProfile = ({ route, navigation }) => {
   return (
     <View style={MainStyle.mainBackground}>
       <ScrollView style={stylesCondition()}>
-        <BoxProfile id={id} />
+        <MainEdit />
       </ScrollView>
     </View>
   );
@@ -24,4 +23,4 @@ const stylesCondition = () => {
     return { flex: 1 };
   }
 };
-export default ViewProfile;
+export default EditProfile;
