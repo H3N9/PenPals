@@ -5,7 +5,7 @@ import Icon from "react-native-vector-icons/Entypo";
 
 const ContactButton = ({ title, handle, iconName }) => {
   return (
-    <TouchableOpacity style={styles.button}>
+    <TouchableOpacity style={styles.button} onPress={handle}>
       <Text style={[[mainStyle.textWhite], { textAlign: "center" }]}>
         <Icon name={iconName} size={20} color="white" />
         {title}

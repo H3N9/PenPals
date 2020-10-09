@@ -10,7 +10,7 @@ const EditProfile = ({ route, navigation }) => {
   return (
     <View style={MainStyle.mainBackground}>
       <ScrollView style={stylesCondition()}>
-        <MainEdit />
+        <MainEdit navigation={navigation} />
       </ScrollView>
     </View>
   );

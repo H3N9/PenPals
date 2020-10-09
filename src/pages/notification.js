@@ -11,19 +11,18 @@ import Homebar from "../components/homebar";
 import BoxProfile from "../components/account/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
-import MainEdit from "../components/editProfile/mainEdit";
+
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Notification = ({ navigation }) => {
   const [Darkmode, setDarkmode] = useState(true);
   return (
     <View style={MainStyle.mainBackground}>
-      {/* <Homebar navigation={navigation} /> */}
+      <Homebar navigation={navigation} />
       <ScrollView style={stylesCondition()}>
-        {/* <Text style={{ textAlign: "center", fontSize: 30, color: "#fff" }}>
+        <Text style={{ textAlign: "center", fontSize: 30, color: "#fff" }}>
           Notification Page
-        </Text> */}
-        <MainEdit />
+        </Text>
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>

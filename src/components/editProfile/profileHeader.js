@@ -3,7 +3,8 @@ import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Entypo from "react-native-vector-icons/Entypo";
 import Icons from "react-native-vector-icons/SimpleLineIcons";
-const ProfileHeader = () => {
+
+const ProfileHeader = ({ navigation }) => {
   const image = require("../../../assets/man.png");
   return (
     <View style={styles.headerContainer}>
@@ -14,7 +15,7 @@ const ProfileHeader = () => {
           <Icons name="arrow-left" color="#fff" size={20} />
           <Text style={MainStyle.textWhiteBold}>Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Account")}>
           <Text style={MainStyle.textWhiteBold}>Done</Text>
         </TouchableOpacity>
       </View>

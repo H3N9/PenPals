@@ -10,7 +10,11 @@ import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TransitionPresets, TransitionSpecs } from "@react-navigation/stack";
+import {
+  TransitionPresets,
+  TransitionSpecs,
+  CardStyleInterpolators,
+} from "@react-navigation/stack";
 const Stack = createStackNavigator();
 
 const Index = () => {
@@ -28,14 +32,14 @@ const Index = () => {
           <Stack.Screen name="Account" component={Account} />
           <Stack.Screen name="Messenger" component={Messenger} />
           <Stack.Screen name="Search" component={Search} />
-          <Stack.Screen
-            name="Notification"
-            component={Notification}
-            options={{ ...TransitionPresets.ModalPresentationIOS }}
-          />
+          <Stack.Screen name="Notification" component={Notification} />
           <Stack.Screen name="ChatRoom" component={ChatRoom} />
           <Stack.Screen name="ViewProfile" component={ViewProfile} />
-          <Stack.Screen name="EditProfile" component={EditProfile} />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfile}
+            options={{ ...TransitionPresets.ModalSlideFromBottomIOS }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </View>

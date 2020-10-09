@@ -19,7 +19,7 @@ const Account = ({ route, navigation }) => {
   return (
     <View style={MainStyle.mainBackground}>
       <ScrollView style={stylesCondition()}>
-        <BoxProfile id={id} />
+        <BoxProfile id={id} navigation={navigation} />
       </ScrollView>
       <Navbar navigation={navigation} />
     </View>

@@ -7,28 +7,40 @@ import ContactButton from "./contactButton";
 import AboutAcc from "./aboutAcc";
 import Schema from "../../schema";
 
-const BoxProfile = ({ id }) => {
+const BoxProfile = ({ id, navigation }) => {
   //const user = Schema.data.user[parseInt(id)-1]
   const user = Schema.getProfile(id);
   const describe = user.describe;
   const { hobbies, favorites } = user;
-  const isAuthUser = id === Schema.user
+  const isAuthUser = id === Schema.user;
 
   return (
     <React.Fragment>
       <BoxInfo user={user} />
       <UserList user={user} />
-      {isAuthUser &&
+      {isAuthUser && (
         <View style={styles.contact}>
-          <ContactButton title={"Edit Profile"} handle={() => { }} iconName={"edit"} />
+          <ContactButton
+            title={"Edit Profile"}
+            handle={() => navigation.navigate("EditProfile")}
+            iconName={"edit"}
+          />
         </View>
-      }
-      {!isAuthUser &&
+      )}
+      {!isAuthUser && (
         <View style={styles.contact}>
-          <ContactButton title={"Add Friend"} handle={() => {}} iconName={"user"} />
-          <ContactButton title={"Message"} handle={() => {}} iconName={"chat"} />
+          <ContactButton
+            title={"Add Friend"}
+            handle={() => {}}
+            iconName={"user"}
+          />
+          <ContactButton
+            title={"Message"}
+            handle={() => {}}
+            iconName={"chat"}
+          />
         </View>
-      }
+      )}
       <ListTag tag={hobbies} title={"Hobbies & interests Tag"} />
       <ListTag tag={favorites} title={"Favorite Tag"} />
       <AboutAcc describe={describe} />
