@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
-
+import styled from "styled-components/native";
 const BoxInfo = ({ user }) => {
   const { username, gender, firstName, lastName, age, city, nation } = user;
   const image = require("../../../assets/man.png");
@@ -10,13 +10,13 @@ const BoxInfo = ({ user }) => {
       <View style={styles.userInfo}>
         <Image style={styles.imgProfile} source={image} />
         <View style={{ flex: 1, justifyContent: "flex-end", marginLeft: 20 }}>
-          <Text style={MainStyle.textBold}>{username}</Text>
-          <Text style={MainStyle.textWhite}>
+          <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
+          <TextPrimary>
             {gender} {firstName} {lastName}, {age} y.e.
-          </Text>
-          <Text style={MainStyle.textWhite}>
+          </TextPrimary>
+          <TextPrimary>
             {city} {nation}
-          </Text>
+          </TextPrimary>
         </View>
       </View>
     </View>
@@ -45,6 +45,12 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     backgroundColor: "#FF5350",
     paddingTop: 25,
+    borderBottomEndRadius: 10,
+    borderBottomStartRadius: 10,
   },
 });
+
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
 export default BoxInfo;

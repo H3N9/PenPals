@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import Schema from "../../schema";
 import MainStyle from "../../style/mainStyle";
+import styled from "styled-components/native";
 const BoxMessage = ({ texts }) => {
   const username = Schema.user;
 
@@ -33,13 +34,13 @@ const BoxMessage = ({ texts }) => {
   };
 
   return (
-    <SafeAreaView style={styles.boxMess}>
+    <Container style={styles.boxMess}>
       <FlatList
         data={messages}
         renderItem={renderMessage}
         keyExtractor={(messages) => messages.id}
       />
-    </SafeAreaView>
+    </Container>
   );
 };
 
@@ -60,9 +61,12 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   boxMess: {
-    backgroundColor: "#1a1a1a",
     flex: 10,
   },
 });
+
+const Container = styled.SafeAreaView`
+  background-color: ${(props) => props.theme.primaryBackground};
+`;
 
 export default BoxMessage;

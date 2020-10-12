@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Mainstyle from "../../style/mainStyle";
 import AntDesign from "react-native-vector-icons/AntDesign";
-
+import styled from "styled-components/native";
 
 const Post = ({ title, likePost, like, id }) => {
   const [likeStatus, setLikeStatus] = useState(false);
@@ -18,7 +18,7 @@ const Post = ({ title, likePost, like, id }) => {
     setLikeStatus(!likeStatus);
   };
   return (
-    <View style={styles.postContainer}>
+    <SecondContainer style={styles.postContainer}>
       <View>
         <Image
           source={require("../../../assets/man.png")}
@@ -27,27 +27,31 @@ const Post = ({ title, likePost, like, id }) => {
       </View>
       <View style={{ flex: 1 }}>
         <View style={{ flexDirection: "row" }}>
-          <Text style={styles.postUsername}>Username</Text>
-          <Text style={{ color: "#FFF" }}>50m</Text>
+          <TextPrimary style={styles.postUsername}>Username</TextPrimary>
+          <TextPrimary>50m</TextPrimary>
         </View>
         <View>
-          <Text style={styles.postTitle}>{title}{id}</Text>
+          <TextPrimary style={styles.postTitle}>
+            {title}
+            {id}
+          </TextPrimary>
         </View>
         <TouchableOpacity onPress={likeControl} style={styles.likeButton}>
-          <AntDesign name={likeStatus ? "heart" : "hearto"} size={19} color={likeStatus ? "#ff5350" : "#fff"} />
-          <Text style={[Mainstyle.textWhite, { marginLeft: 4 }]}>
-            {like}
-          </Text>
+          <AntDesign
+            name={likeStatus ? "heart" : "hearto"}
+            size={19}
+            color={likeStatus ? "#ff5350" : "#AAA"}
+          />
+          <TextPrimary style={{ marginLeft: 4 }}>{like}</TextPrimary>
         </TouchableOpacity>
       </View>
-    </View>
+    </SecondContainer>
   );
 };
 
 const styles = StyleSheet.create({
   postContainer: {
     flex: 1,
-    backgroundColor: "#323232",
     flexDirection: "row",
     paddingVertical: 10,
     paddingHorizontal: 10,
@@ -62,20 +66,26 @@ const styles = StyleSheet.create({
     marginRight: 10,
   },
   postTitle: {
-    color: "#FFF",
     fontSize: 20,
     fontWeight: "100",
     marginVertical: 5,
   },
   postUsername: {
     fontWeight: "bold",
-    color: "#FFF",
     marginRight: 10,
   },
   likeButton: {
     alignItems: "center",
-    flexDirection: "row"
-  }
+    flexDirection: "row",
+  },
 });
+
+const SecondContainer = styled.View`
+  background-color: ${(props) => props.theme.secondBackground};
+`;
+
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
 
 export default Post;

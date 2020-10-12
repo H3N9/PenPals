@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
+import styled from "styled-components/native";
 
 const CreatePost = ({ addPost }) => {
   const [text, setText] = useState("");
@@ -22,7 +23,7 @@ const CreatePost = ({ addPost }) => {
 
   return (
     <React.Fragment>
-      <View style={[styles.createContainer, MainStyle.boxContent]}>
+      <SecondContainer style={[styles.createContainer, MainStyle.boxContent]}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             source={require("../../../assets/man.png")}
@@ -37,10 +38,10 @@ const CreatePost = ({ addPost }) => {
             <Text style={MainStyle.textGray}>Press To Post</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </SecondContainer>
       <Modal animationType="slide" transparent={true} visible={modalVisible}>
         <View style={MainStyle.centeredView}>
-          <View style={MainStyle.modalView}>
+          <SecondContainer style={MainStyle.modalView}>
             <View style={[MainStyle.modalHeader, { alignItems: "center" }]}>
               <TouchableOpacity
                 style={[styles.button]}
@@ -48,9 +49,11 @@ const CreatePost = ({ addPost }) => {
                   setModalVisible(!modalVisible);
                 }}
               >
-                <Text style={MainStyle.textWhite}>Cancel</Text>
+                <TextPrimary>Cancel</TextPrimary>
               </TouchableOpacity>
-              <Text style={[MainStyle.textBold, { fontSize: 18 }]}>Createpost</Text>
+              <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
+                Createpost
+              </TextPrimary>
               <TouchableOpacity
                 style={[styles.postButton, styles.button]}
                 onPress={posted}
@@ -59,15 +62,15 @@ const CreatePost = ({ addPost }) => {
                 <Text style={MainStyle.textWhite}>Post</Text>
               </TouchableOpacity>
             </View>
-            <TextInput
+            <InputText
               multiline={true}
               placeholder="Type Something"
               placeholderTextColor="#555"
-              style={[MainStyle.textWhite, styles.textInput]}
+              style={styles.textInput}
               onChangeText={(text) => setText(text)}
               value={text}
             />
-          </View>
+          </SecondContainer>
         </View>
       </Modal>
     </React.Fragment>
@@ -122,5 +125,17 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
+
+const SecondContainer = styled.View`
+  background-color: ${(props) => props.theme.secondBackground};
+`;
+
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const InputText = styled.TextInput`
+  color: ${(props) => props.theme.textColor};
+`;
 
 export default CreatePost;

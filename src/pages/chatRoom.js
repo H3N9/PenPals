@@ -10,12 +10,13 @@ import BoxMessage from "../components/messenger/boxMessage";
 import BarMessage from "../components/messenger/barMessage";
 import Keyboard from "../components/messenger/keyboard";
 import MainStyle from "../style/mainStyle";
+import styled from "styled-components/native";
 
 const ChatRoom = ({ navigation, route }) => {
   const texts = route.params.texts;
   const usernameAnother = route.params.usernameAnother;
   return (
-    <SafeAreaView style={[styles.box, MainStyle.mainBackground]}>
+    <Container style={[styles.box, MainStyle.mainBackground]}>
       <View>
         <BarMessage usernameAnother={usernameAnother} navigation={navigation} />
       </View>
@@ -30,7 +31,7 @@ const ChatRoom = ({ navigation, route }) => {
           <Keyboard />
         </View>
       </KeyboardAvoidingView>
-    </SafeAreaView>
+    </Container>
   );
 };
 
@@ -45,5 +46,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
+const Container = styled.SafeAreaView`
+  background-color: ${(props) => props.theme.primaryBackground};
+`;
 
 export default ChatRoom;

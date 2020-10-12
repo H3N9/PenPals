@@ -7,29 +7,30 @@ import {
   Platform,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import Icons from "react-native-vector-icons/SimpleLineIcons";
+import SimpleLine from "react-native-vector-icons/SimpleLineIcons";
 import Entypo from "react-native-vector-icons/Entypo";
+import styled from "styled-components/native";
 
 const BarMessage = ({ navigation, usernameAnother }) => {
   const friendName = usernameAnother;
   return (
-    <View style={styles.box}>
+    <SecondContainer style={styles.box}>
       <View style={styles.btn}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Icons name="arrow-left" color="#fff" size={20} />
+          <SimpleLineIcon name="arrow-left" size={20} />
         </TouchableOpacity>
-        <Text
+        <TextPrimary
           style={[MainStyle.textBold, { fontSize: 19, marginHorizontal: 20 }]}
         >
           {friendName}
-        </Text>
+        </TextPrimary>
       </View>
       <View style={styles.boxText}>
         <TouchableOpacity>
-          <Entypo name="dots-three-horizontal" color="#fff" size={25} />
+          <EntypoIcon name="dots-three-horizontal" size={25} />
         </TouchableOpacity>
       </View>
-    </View>
+    </SecondContainer>
   );
 };
 
@@ -40,7 +41,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 10,
-    backgroundColor: "#323232",
     marginTop: Platform.OS == "ios" ? 0 : 25,
   },
   btn: {
@@ -48,5 +48,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
+
+const SecondContainer = styled.View`
+  background-color: ${(props) => props.theme.secondBackground};
+`;
+
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const SimpleLineIcon = styled(SimpleLine)`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const EntypoIcon = styled(Entypo)`
+  color: ${(props) => props.theme.textColor};
+`;
 
 export default BarMessage;

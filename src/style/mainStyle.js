@@ -12,27 +12,22 @@ const mainStyle = StyleSheet.create({
     fontWeight: "bold",
   },
   textBold: {
-    color: "#fff",
     fontWeight: "600",
   },
   textGray: {
-    color: "#AAA",
+    color: "#666",
     fontSize: 13,
   },
   mainBackground: {
     flex: 1,
-    backgroundColor: "#1a1a1a",
   },
-  boxContent: {
-    backgroundColor: "#323232",
-  },
+  boxContent: {},
   // ------------------ForModals------------------
   centeredView: {
     justifyContent: "flex-end",
     marginTop: 22,
   },
   modalView: {
-    backgroundColor: "#323232",
     borderRadius: 20,
     padding: 10,
     height: "100%",

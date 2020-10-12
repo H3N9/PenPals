@@ -14,6 +14,7 @@ import SelectData from "./selectData";
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { color } from "react-native-reanimated";
+import styled from "styled-components/native";
 
 const SearchFilter = ({ modalVisible, setModalVisible }) => {
   const [minAge, setMinAge] = useState();
@@ -35,30 +36,36 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={MainStyle.centeredView}>
-        <View style={[MainStyle.modalView, { padding: 0 }]}>
-          <View style={[MainStyle.modalHeader, { padding: 10, alignItems: "center" }]}>
+        <SecondContainer style={[MainStyle.modalView, { padding: 0 }]}>
+          <View
+            style={[
+              MainStyle.modalHeader,
+              { padding: 10, alignItems: "center" },
+            ]}
+          >
             <TouchableOpacity
-              style={[MainStyle.modalButton, { backgroundColor: "#323232" }]}
               onPress={() => {
                 setModalVisible(!modalVisible);
               }}
             >
-              <Text style={MainStyle.textWhiteBold}>Cancel</Text>
+              <TextPrimary style={{ padding: 12 }}>Cancel</TextPrimary>
             </TouchableOpacity>
-            <Text style={[MainStyle.textBold, { fontSize: 19 }]}>Filter</Text>
+            <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
+              Filter
+            </TextPrimary>
             <TouchableOpacity
               style={MainStyle.modalButton}
               onPress={() => showFilterData()}
             >
-              <Text style={MainStyle.textWhiteBold}>Done</Text>
+              <Text style={MainStyle.textWhite}>Done</Text>
             </TouchableOpacity>
           </View>
           <ScrollView>
             {/* AgeSelect */}
-            <View style={styles.dataFilterContainer}>
+            <Container style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Material name="human-male-boy" size={30} color="#fff" />
-                <Text style={MainStyle.textWhiteBold}>Age </Text>
+                <MaterialIcon name="human-male-boy" size={30} />
+                <TextPrimary style={MainStyle.textBold}>Age </TextPrimary>
               </View>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <TextInput
@@ -67,20 +74,20 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
                   value={minAge}
                   onChangeText={(value) => setMinAge(value)}
                 />
-                <Text style={MainStyle.textWhiteBold}> - </Text>
-                <TextInput
+                <TextPrimary style={MainStyle.textBold}> - </TextPrimary>
+                <InputText
                   keyboardType="numeric"
                   style={styles.textInput}
                   value={maxAge}
                   onChangeText={(value) => setMaxAge(value)}
                 />
               </View>
-            </View>
+            </Container>
             {/* GenderSelect */}
-            <View style={styles.dataFilterContainer}>
+            <Container style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <FontAwesome name="intersex" size={30} color="#fff" />
-                <Text style={MainStyle.textWhiteBold}>Gender  </Text>
+                <FontAwesomeIcon name="intersex" size={30} />
+                <TextPrimary style={MainStyle.textBold}>Gender </TextPrimary>
               </View>
               <SwitchSelector
                 options={genderData}
@@ -94,24 +101,24 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
                   setGender(value);
                 }}
               />
-            </View>
+            </Container>
             {/* CountySelect */}
-            <View style={styles.dataFilterContainer}>
+            <Container style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <FontAwesome name="flag" size={30} color="#fff" />
-                <Text style={MainStyle.textWhiteBold}> Country  </Text>
+                <FontAwesomeIcon name="flag" size={30} />
+                <TextPrimary style={MainStyle.textBold}> Country </TextPrimary>
               </View>
               <SelectData data={country} setData={setCountry} />
-            </View>
+            </Container>
             {/* TagSelect */}
-            <View style={styles.dataFilterContainer}>
+            <Container style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <FontAwesome name="tag" size={30} color="#fff" />
-                <Text style={MainStyle.textWhiteBold}> Tag  </Text>
+                <FontAwesomeIcon name="tag" size={30} />
+                <TextPrimary style={MainStyle.textBold}> Tag </TextPrimary>
               </View>
-            </View>
+            </Container>
           </ScrollView>
-        </View>
+        </SecondContainer>
       </View>
     </Modal>
   );
@@ -129,9 +136,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     marginVertical: 1,
-    backgroundColor: "#424242",
     paddingVertical: 20,
     paddingHorizontal: 15,
   },
 });
+
+const SecondContainer = styled.View`
+  background-color: ${(props) => props.theme.secondBackground};
+`;
+
+const Container = styled.View`
+  background-color: ${(props) => props.theme.primaryBackground};
+`;
+
+const InputText = styled.TextInput`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const FontAwesomeIcon = styled(FontAwesome)`
+  color: ${(props) => props.theme.textColor};
+`;
+const MaterialIcon = styled(Material)`
+  color: ${(props) => props.theme.textColor};
+`;
+
 export default SearchFilter;

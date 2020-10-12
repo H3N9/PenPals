@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import ImagPro from "./imgPro";
-
+import styled from "styled-components/native";
 const userList = ({ user }) => {
   const friendCount = user.friend.length;
   const intro = user.intro;
@@ -10,20 +10,13 @@ const userList = ({ user }) => {
   return (
     <View style={styles.infoContainer}>
       <View style={styles.infoItems}>
-        <Text
-          style={[
-            MainStyle.textWhiteBold,
-            { textAlign: "center", fontSize: 25 },
-          ]}
-        >
+        <TextPrimary style={{ textAlign: "center", fontSize: 25 }}>
           {friendCount}
-        </Text>
-        <Text style={[MainStyle.textWhite, { textAlign: "center" }]}>
-          Friend
-        </Text>
+        </TextPrimary>
+        <TextPrimary style={{ textAlign: "center" }}>Friend</TextPrimary>
       </View>
       <View style={[styles.infoItems, { flex: 2, paddingLeft: 10 }]}>
-        <Text style={MainStyle.textWhite}>{intro}</Text>
+        <TextPrimary>{intro}</TextPrimary>
       </View>
     </View>
   );
@@ -37,7 +30,6 @@ const styles = StyleSheet.create({
   infoImgProfile: {
     width: 60,
     height: 60,
-    backgroundColor: "#CCC",
     borderRadius: 100,
   },
   infoItems: {
@@ -46,4 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
 export default userList;
