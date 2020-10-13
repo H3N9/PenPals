@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, ScrollView, Text } from "react-native";
 import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
@@ -14,6 +14,12 @@ let id = 1;
 
 const Home = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
+
+  // useEffect(() =>{
+  //   fetch("http://364edd12ecf8.ngrok.io/register/student")
+  //     .then((response) => response.json())
+  //     .then((json) => console.log(json))
+  // }, [])
 
   const addPost = (title) => {
     const newPost = { id, title, like: 0 };

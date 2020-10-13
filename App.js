@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Index from "./src/index";
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
@@ -15,6 +15,7 @@ const store = createStore(
 );
 
 export default function App() {
+
   return (
     <React.Fragment>
       <Provider store={store}>
