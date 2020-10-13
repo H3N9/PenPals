@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     paddingLeft: 15,
-    paddingTop: 30,
+    paddingTop: 20,
   },
   buttonSession: {
     flexDirection: "row",

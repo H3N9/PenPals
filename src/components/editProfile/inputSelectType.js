@@ -13,17 +13,33 @@ import {
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import styled from "styled-components/native";
+import { useSelector } from "react-redux";
 
 const InputSelectType = ({ placeholder }) => {
+  const theme = useSelector((state) => state.themeReducer.theme);
   const dataSource = [
     { label: "England", value: "England" },
     { label: "France", value: "France" },
   ];
+  const pickerSelectStyles = {
+    inputIOS: {
+      paddingVertical: 8,
+      marginHorizontal: 3,
+      borderBottomWidth: 1,
+      borderColor: "#777",
+      color: theme.mode == "dark" ? "#FFF" : "#111",
+      paddingRight: 30,
+    },
+    placeholder: {
+      color: "#777",
+    },
+  };
   if (Platform.OS === "ios") {
     return (
       <View style={{ flex: 1 }}>
-        <RNPicker
+        <RNPickerSelect
           items={dataSource}
+          style={pickerSelectStyles}
           placeholder={{ label: placeholder, value: null }}
           onValueChange={() => {}}
         />
@@ -46,9 +62,6 @@ const InputSelectType = ({ placeholder }) => {
   }
 };
 
-const RNPicker = styled(RNPickerSelect)`
-  color: ${(props) => props.theme.textColor};
-`;
 const PickerSelect = styled(Picker)`
   color: ${(props) => props.theme.textColor};
 `;

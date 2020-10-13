@@ -21,6 +21,8 @@ import styled, { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
 import { switchTheme } from "../redux/themeAction";
 import { lightTheme, darkTheme } from "./style/Theme";
+
+import DynamicStatusBar from "./components/global/dynamicStatusBar";
 const Stack = createStackNavigator();
 
 const Index = () => {
@@ -28,10 +30,11 @@ const Index = () => {
   return (
     <ThemeProvider theme={theme}>
       {theme.mode == "dark" ? (
-        <StatusBar style="light" />
+        <DynamicStatusBar style="light" />
       ) : (
-        <StatusBar style="dark" />
+        <DynamicStatusBar style="dark" />
       )}
+
       <View style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator

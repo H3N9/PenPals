@@ -17,7 +17,7 @@ const searchBar = () => {
   const [searchText, setSearchText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={{ marginVertical: 15 }}>
+    <View style={{ marginVertical: 10, paddingBottom: 5 }}>
       <View style={styles.headerContainer}>
         <View style={{ flex: 1 }}>
           <TextPrimary style={{ fontSize: 27, fontWeight: "bold" }}>
@@ -74,7 +74,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     flexDirection: "row",
     justifyContent: "space-around",
-    marginTop: 15,
   },
   searchContainer: {
     marginTop: 10,

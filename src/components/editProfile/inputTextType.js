@@ -18,7 +18,7 @@ const InputTextType = ({ placeholder }) => {
       <InputText
         style={styles.textInput}
         placeholder={placeholder}
-        placeholderTextColor="#aaa"
+        placeholderTextColor="#777"
       />
     </View>
   );
@@ -35,13 +35,6 @@ const styles = StyleSheet.create({
   },
 });
 
-const Container = styled.View`
-  background-color: ${(props) => props.theme.primaryBackground};
-`;
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
 const TextPrimary = styled.Text`
   color: ${(props) => props.theme.textColor};
 `;
