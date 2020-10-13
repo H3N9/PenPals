@@ -4,7 +4,7 @@ import MainStyle from "../../style/mainStyle";
 import Tag from "./tag";
 import styled from "styled-components/native";
 import Entypo from "react-native-vector-icons/Entypo";
-const ListTag = ({ tag, title }) => {
+const ListTag = ({ tag, title, handle }) => {
   const callTag = (value, index) => {
     return <Tag key={index} tagName={value.name} id={value.id} />;
   };
@@ -24,7 +24,7 @@ const ListTag = ({ tag, title }) => {
         <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
           {title}
         </TextPrimary>
-        <TouchableOpacity style={styles.addButton}>
+        <TouchableOpacity style={styles.addButton} onPress={handle}>
           <Entypo name="plus" size={18} />
         </TouchableOpacity>
       </View>

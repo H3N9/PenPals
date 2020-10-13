@@ -8,6 +8,7 @@ import Notification from "./pages/notification";
 import ChatRoom from "./pages/chatRoom";
 import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
+import AddTag from "./pages/addTag";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -51,6 +52,7 @@ const Index = () => {
             <Stack.Screen name="Notification" component={Notification} />
             <Stack.Screen name="ChatRoom" component={ChatRoom} />
             <Stack.Screen name="ViewProfile" component={ViewProfile} />
+            <Stack.Screen name="AddTag" component={AddTag} />
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}

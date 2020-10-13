@@ -41,8 +41,16 @@ const BoxProfile = ({ id, navigation }) => {
           />
         </View>
       )}
-      <ListTag tag={hobbies} title={"Hobbies & interests Tag"} />
-      <ListTag tag={favorites} title={"Favorite Tag"} />
+      <ListTag
+        tag={hobbies}
+        title={"Hobbies & interests Tag"}
+        handle={() => navigation.navigate("AddTag")}
+      />
+      <ListTag
+        tag={favorites}
+        title={"Favorite Tag"}
+        handle={() => navigation.navigate("AddTag")}
+      />
       <AboutAcc describe={describe} />
     </React.Fragment>
   );
