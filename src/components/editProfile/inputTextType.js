@@ -7,14 +7,15 @@ import {
   TextInput,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
+import styled from "styled-components/native";
 
 const InputTextType = ({ placeholder }) => {
   return (
     <View style={{ flex: 1 }}>
-      <Text style={[MainStyle.textWhiteBold, { fontSize: 20 }]}>
+      <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
         {placeholder}
-      </Text>
-      <TextInput
+      </TextPrimary>
+      <InputText
         style={styles.textInput}
         placeholder={placeholder}
         placeholderTextColor="#aaa"
@@ -27,7 +28,6 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     borderRadius: 5,
-    color: "#fff",
     padding: 5,
     borderBottomWidth: 1,
     borderColor: "#777",
@@ -35,4 +35,18 @@ const styles = StyleSheet.create({
   },
 });
 
+const Container = styled.View`
+  background-color: ${(props) => props.theme.primaryBackground};
+`;
+
+const SecondContainer = styled.View`
+  background-color: ${(props) => props.theme.secondBackground};
+`;
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const InputText = styled.TextInput`
+  color: ${(props) => props.theme.textColor};
+`;
 export default InputTextType;

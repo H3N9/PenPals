@@ -12,6 +12,7 @@ import {
   Picker,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
+import styled from "styled-components/native";
 
 const InputSelectType = ({ placeholder }) => {
   const dataSource = [
@@ -21,7 +22,7 @@ const InputSelectType = ({ placeholder }) => {
   if (Platform.OS === "ios") {
     return (
       <View style={{ flex: 1 }}>
-        <RNPickerSelect
+        <RNPicker
           style={pickerStyle}
           items={dataSource}
           placeholder={{ label: placeholder, value: null }}
@@ -32,10 +33,7 @@ const InputSelectType = ({ placeholder }) => {
   } else {
     return (
       <View style={{ flex: 1 }}>
-        <Picker
-          style={{ height: 50, width: 150, color: "#fff" }}
-          onValueChange={() => {}}
-        >
+        <PickerSelect style={{ height: 50, flex: 1 }} onValueChange={() => {}}>
           {dataSource.map((data) => (
             <Picker.Item
               label={data.label}
@@ -43,14 +41,13 @@ const InputSelectType = ({ placeholder }) => {
               key={data.value}
             />
           ))}
-        </Picker>
+        </PickerSelect>
       </View>
     );
   }
 };
 const pickerStyle = {
   inputIOS: {
-    color: "white",
     paddingTop: 10,
     paddingHorizontal: 10,
     paddingBottom: 10,
@@ -58,25 +55,13 @@ const pickerStyle = {
     borderBottomWidth: 1,
     borderRadius: 5,
   },
-  inputAndroid: {
-    color: "white",
-  },
-  placeholderColor: "white",
-  underline: { borderTopWidth: 0 },
-  icon: {
-    position: "absolute",
-    backgroundColor: "transparent",
-    borderTopWidth: 5,
-    borderTopColor: "#00000099",
-    borderRightWidth: 5,
-    borderRightColor: "transparent",
-    borderLeftWidth: 5,
-    borderLeftColor: "transparent",
-    width: 0,
-    height: 0,
-    top: 20,
-    right: 15,
-  },
 };
+
+const RNPicker = styled(RNPickerSelect)`
+  color: ${(props) => props.theme.textColor};
+`;
+const PickerSelect = styled(Picker)`
+  color: ${(props) => props.theme.textColor};
+`;
 
 export default InputSelectType;

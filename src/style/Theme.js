@@ -7,7 +7,7 @@ export const darkTheme = {
 
 export const lightTheme = {
   mode: "light",
-  primaryBackground: "#AAAA",
+  primaryBackground: "#D7D7D7",
   secondBackground: "#FFF",
   textColor: "#1a1a1a",
 };
