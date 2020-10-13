@@ -2,22 +2,38 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Tag from "../global/tag";
-import Icon from "react-native-vector-icons/FontAwesome";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Entypo from "react-native-vector-icons/Entypo";
-import Schema from "../../schema"
+import Schema from "../../schema";
+import styled from "styled-components/native";
 
 const Suggestion = ({ navigation, userId }) => {
-
-  const user = Schema.getProfile(userId)
-  const { id, username, nation, city, age, hobbies, favorites, describe } = user
-  const tag1 = hobbies[0].list[0]
-  const tag2 = favorites[0].list[0]
+  const user = Schema.getProfile(userId);
+  const {
+    id,
+    username,
+    nation,
+    city,
+    age,
+    hobbies,
+    favorites,
+    describe,
+  } = user;
+  const tag1 = hobbies[0].list[0];
+  const tag2 = favorites[0].list[0];
 
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
-      <TouchableOpacity onPress={() => navigation.navigate("Account", { id: id })}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Account", { id: id })}
+      >
         <Image
-          style={{ width: 70, height: 70, borderRadius: 50, backgroundColor: "#555" }}
+          style={{
+            width: 70,
+            height: 70,
+            borderRadius: 50,
+            backgroundColor: "#555",
+          }}
           source={require("../../../assets/man.png")}
         />
         <View style={styles.onlineStatus} />
@@ -26,25 +42,27 @@ const Suggestion = ({ navigation, userId }) => {
         <View style={[styles.userDetail]}>
           <View style={{ flex: 3 }}>
             {/* Username */}
-            <TouchableOpacity onPress={() => navigation.navigate("Account", { id: id })}>
-              <Text style={MainStyle.textBold}>{username}</Text>
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Account", { id: id })}
+            >
+              <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
             </TouchableOpacity>
             {/* location */}
-            <Text style={[{ marginVertical: 1 }, MainStyle.textWhite]}>
+            <TextPrimary style={{ marginVertical: 1 }}>
               {city}, {nation}
-            </Text>
+            </TextPrimary>
           </View>
           {/* Follower */}
           <View style={{ flex: 1 }}>
-            <Text style={MainStyle.textWhite}>{age}</Text>
+            <TextPrimary>{age}</TextPrimary>
           </View>
 
           <View style={styles.menuSugges}>
             <TouchableOpacity>
-              <Entypo name="chat" size={22} color="white" />
+              <EntypoIcon name="chat" size={22} color="white" />
             </TouchableOpacity>
             <TouchableOpacity>
-              <Icon name="bookmark" size={22} color="white" />
+              <FontAwesomeIcon name="bookmark" size={22} color="white" />
             </TouchableOpacity>
           </View>
         </View>
@@ -59,7 +77,7 @@ const Suggestion = ({ navigation, userId }) => {
           <Text style={MainStyle.textGray}>{describe}</Text>
         </View>
       </View>
-    </View >
+    </View>
   );
 };
 
@@ -98,5 +116,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 });
+
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const FontAwesomeIcon = styled(FontAwesome)`
+  color: ${(props) => props.theme.textColor};
+`;
+const EntypoIcon = styled(Entypo)`
+  color: ${(props) => props.theme.textColor};
+`;
 
 export default Suggestion;

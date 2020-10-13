@@ -10,6 +10,7 @@ import RNPickerSelect from "react-native-picker-select";
 import MainStyle from "../../style/mainStyle";
 import InputTextType from "./inputTextType";
 import InputSelectType from "./inputSelectType";
+import styled from "styled-components/native";
 const InputProfile = () => {
   return (
     <View style={{ padding: 20 }}>
@@ -24,9 +25,11 @@ const InputProfile = () => {
       </View>
 
       {/* BirthDay Input */}
-      <Text style={[MainStyle.textWhiteBold, { fontSize: 20, marginTop: 10 }]}>
+      <TextPrimary
+        style={[MainStyle.textBold, { fontSize: 20, marginTop: 10 }]}
+      >
         BirthDate
-      </Text>
+      </TextPrimary>
       <View style={[styles.inputChildContainer, { marginTop: 0 }]}>
         <InputSelectType placeholder="Day" />
         <InputSelectType placeholder="Month" />
@@ -35,9 +38,9 @@ const InputProfile = () => {
       {/* Gender Input */}
       <View style={styles.inputChildContainer}>
         <View style={{ flex: 0.5 }}>
-          <Text style={[MainStyle.textWhiteBold, { fontSize: 20 }]}>
+          <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             Gender
-          </Text>
+          </TextPrimary>
           <InputSelectType placeholder="Gender" />
         </View>
       </View>
@@ -45,13 +48,15 @@ const InputProfile = () => {
       {/* Nation & City Input */}
       <View style={styles.inputChildContainer}>
         <View style={{ flex: 1 }}>
-          <Text style={[MainStyle.textWhiteBold, { fontSize: 20 }]}>
+          <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             Nation
-          </Text>
+          </TextPrimary>
           <InputSelectType placeholder="Nation" />
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={[MainStyle.textWhiteBold, { fontSize: 20 }]}>City</Text>
+          <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
+            City
+          </TextPrimary>
           <InputSelectType placeholder="City" />
         </View>
       </View>
@@ -73,5 +78,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
 });
+const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
 
 export default InputProfile;

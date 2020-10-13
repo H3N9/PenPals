@@ -32,7 +32,7 @@ const BoxProfile = ({ id, navigation }) => {
           <ContactButton
             title={"Add Friend"}
             handle={() => {}}
-            iconName={"user"}
+            iconName={"add-user"}
           />
           <ContactButton
             title={"Message"}

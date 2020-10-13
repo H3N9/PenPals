@@ -3,13 +3,13 @@ import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import Schema from "../schema";
-
+import styled from "styled-components/native";
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Navbar = ({ navigation }) => {
   const routeName = useRoute().name;
   return (
-    <View style={navbarCondition()}>
+    <SecondContainer style={navbarCondition()}>
       <View style={stylesCondition(routeName, "Home")}>
         <TouchableOpacity
           style={styles.button}
@@ -54,18 +54,16 @@ const Navbar = ({ navigation }) => {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </SecondContainer>
   );
 };
 
 const styles = StyleSheet.create({
   navbar: {
-    backgroundColor: "#323232",
     flexDirection: "row",
     height: 55,
   },
   boxContent: {
-    backgroundColor: "#323232",
     flex: 1,
   },
   button: {
@@ -85,31 +83,32 @@ const stylesCondition = (routeName, name) => {
     return {
       borderTopWidth: 3,
       borderColor: "#FF5350",
-      backgroundColor: "#323232",
       flex: 1,
     };
   }
   return {
-    borderTopWidth: 3,
-    borderColor: "#323232",
-    backgroundColor: "#323232",
+    borderTopWidth: 0,
     flex: 1,
   };
 };
+
 const navbarCondition = () => {
   if (screenWidth >= 768) {
     return {
-      backgroundColor: "#323232",
       flexDirection: "row",
       paddingHorizontal: "20%",
       height: 55,
     };
   } else {
     return {
-      backgroundColor: "#323232",
       flexDirection: "row",
       height: 55,
     };
   }
 };
+
+const SecondContainer = styled.View`
+  background-color: ${(props) => props.theme.secondBackground};
+`;
+
 export default Navbar;
