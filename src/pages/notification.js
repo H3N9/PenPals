@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -15,23 +15,24 @@ import { Dimensions } from "react-native";
 
 import styled from "styled-components/native";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { switchTheme } from "../../redux/themeAction";
 import { lightTheme, darkTheme } from "../style/Theme";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Notification = ({ navigation }) => {
-  const [darkMode, setDarkMode] = useState(true);
+  const theme = useSelector((state) => state.themeReducer.theme);
   const dispatch = useDispatch();
+
   const darkModeHandle = () => {
-    if (darkMode) {
+    if (theme.mode == "light") {
       dispatch(switchTheme(darkTheme));
-      setDarkMode(!darkMode);
     } else {
       dispatch(switchTheme(lightTheme));
-      setDarkMode(!darkMode);
     }
   };
+
   return (
     <Container style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
@@ -46,10 +47,10 @@ const Notification = ({ navigation }) => {
           <TextPrimary style={{ fontWeight: "bold" }}>Darkmode</TextPrimary>
           <Switch
             trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={darkMode ? "#f4f3f4" : "#f4f3f4"}
+            thumbColor={theme.mode == "light" ? "#f4f3f4" : "#f4f3f4"}
             ios_backgroundColor="#3e3e3e"
             onValueChange={() => darkModeHandle()}
-            value={darkMode}
+            value={theme.mode == "light" ? false : true}
           />
         </View>
       </ScrollView>

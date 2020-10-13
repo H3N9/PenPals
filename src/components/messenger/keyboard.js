@@ -36,7 +36,7 @@ const Keyboard = () => {
         </TouchableOpacity>
       </View>
       <View style={styles.boxInput}>
-        <TextInput
+        <InputText
           multiline
           style={styles.input}
           placeholder="Aa"
@@ -83,7 +83,6 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     marginVertical: 5,
     flex: 1,
-    color: "#fff",
   },
   sendButton: {
     marginHorizontal: 15,
@@ -95,6 +94,10 @@ const SecondContainer = styled.View`
 `;
 
 const Icon = styled(Entypo)`
+  color: ${(props) => props.theme.textColor};
+`;
+
+const InputText = styled(TextInput)`
   color: ${(props) => props.theme.textColor};
 `;
 export default Keyboard;

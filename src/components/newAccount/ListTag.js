@@ -1,8 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Tag from "./tag";
 import styled from "styled-components/native";
+import Entypo from "react-native-vector-icons/Entypo";
 const ListTag = ({ tag, title }) => {
   const callTag = (value, index) => {
     return <Tag key={index} tagName={value.name} id={value.id} />;
@@ -19,9 +20,14 @@ const ListTag = ({ tag, title }) => {
 
   return (
     <SecondContainer style={[styles.tagTitle, MainStyle.boxContent]}>
-      <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
-        {title}
-      </TextPrimary>
+      <View style={styles.headerContainer}>
+        <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
+          {title}
+        </TextPrimary>
+        <TouchableOpacity style={styles.addButton}>
+          <Entypo name="plus" size={18} />
+        </TouchableOpacity>
+      </View>
       {tag.map(callListTag)}
     </SecondContainer>
   );
@@ -51,6 +57,17 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     padding: 10,
     borderRadius: 10,
+  },
+  headerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  addButton: {
+    backgroundColor: "#90DD70",
+    padding: 2,
+    paddingHorizontal: 3,
+    borderRadius: 50,
+    marginLeft: 5,
   },
 });
 const TextPrimary = styled.Text`

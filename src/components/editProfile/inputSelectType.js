@@ -23,7 +23,6 @@ const InputSelectType = ({ placeholder }) => {
     return (
       <View style={{ flex: 1 }}>
         <RNPicker
-          style={pickerStyle}
           items={dataSource}
           placeholder={{ label: placeholder, value: null }}
           onValueChange={() => {}}
@@ -45,16 +44,6 @@ const InputSelectType = ({ placeholder }) => {
       </View>
     );
   }
-};
-const pickerStyle = {
-  inputIOS: {
-    paddingTop: 10,
-    paddingHorizontal: 10,
-    paddingBottom: 10,
-    borderColor: "#777",
-    borderBottomWidth: 1,
-    borderRadius: 5,
-  },
 };
 
 const RNPicker = styled(RNPickerSelect)`
