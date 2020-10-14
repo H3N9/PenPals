@@ -25,6 +25,7 @@ const ChatRoom = ({ navigation, route }) => {
       </View>
       <KeyboardAvoidingView
         behavior={Platform.OS == "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 0}
         style={styles.container}
       >
         <View style={styles.keyboard}>

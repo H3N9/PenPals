@@ -10,7 +10,10 @@ const DynamicStatusBar = ({ style }) => {
         { backgroundColor: style == "light" ? "#1a1a1a" : "#d7d7d7" },
       ]}
     >
-      <StatusBar style={style}></StatusBar>
+      <StatusBar
+        style={style}
+        backgroundColor={style == "light" ? "#1a1a1a" : "#d7d7d7"}
+      ></StatusBar>
     </View>
   );
 };
@@ -20,7 +23,7 @@ const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBar.currentHeight;
 const styles = StyleSheet.create({
   statusBar: {
     height: STATUSBAR_HEIGHT,
-    marginBottom: Platform.OS === "ios" ? 0 : 20
+    marginBottom: Platform.OS === "ios" ? 0 : 20,
   },
 });
 
