@@ -6,6 +6,7 @@ import ListTag from "./ListTag";
 import ContactButton from "./contactButton";
 import AboutAcc from "./aboutAcc";
 import Schema from "../../schema";
+import styled from 'styled-components/native'
 
 const BoxProfile = ({ id, navigation }) => {
   //const user = Schema.data.user[parseInt(id)-1]
@@ -15,8 +16,8 @@ const BoxProfile = ({ id, navigation }) => {
   const isAuthUser = id === Schema.user;
 
   return (
-    <React.Fragment>
-      <BoxInfo user={user} />
+    <Container>
+      <BoxInfo user={user} navigation={navigation}/>
       <UserList user={user} />
       {isAuthUser && (
         <View style={styles.contact}>
@@ -52,7 +53,7 @@ const BoxProfile = ({ id, navigation }) => {
         handle={() => navigation.navigate("AddTag")}
       />
       <AboutAcc describe={describe} />
-    </React.Fragment>
+    </Container>
   );
 };
 
@@ -63,5 +64,9 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
 });
+
+const Container = styled.View`
+  background-color: ${(props) => props.theme.primaryBackground};
+`
 
 export default BoxProfile;

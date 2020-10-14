@@ -25,7 +25,7 @@ const Suggestion = ({ navigation, userId }) => {
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("Account", { id: id })}
+        onPress={() => navigation.navigate("ViewProfile", { id: id })}
       >
         <Image
           style={{

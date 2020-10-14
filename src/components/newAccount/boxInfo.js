@@ -2,11 +2,16 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import styled from "styled-components/native";
+import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+
 const BoxInfo = ({ user }) => {
-  const { username, gender, firstName, lastName, age, city, nation } = user;
+  const { id, username, gender, firstName, lastName, age, city, nation } = user;
   const image = require("../../../assets/man.png");
   return (
     <View style={styles.main}>
+      <TouchableOpacity style={{ marginRight: 15, paddingLeft: 10 }}>
+        <SimpleLine name="arrow-left" size={20} />
+      </TouchableOpacity>
       <View style={styles.userInfo}>
         <Image style={styles.imgProfile} source={image} />
         <View style={{ flex: 1, justifyContent: "flex-end", marginLeft: 20 }}>
@@ -44,13 +49,16 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#FF5350",
-    paddingTop: 25,
+    paddingTop: 15,
     borderBottomEndRadius: 10,
     borderBottomStartRadius: 10,
   },
 });
 
 const TextPrimary = styled.Text`
+  color: ${(props) => props.theme.textColor};
+`;
+const SimpleLine = styled(SimpleLineIcons)`
   color: ${(props) => props.theme.textColor};
 `;
 export default BoxInfo;

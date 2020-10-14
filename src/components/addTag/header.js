@@ -27,8 +27,10 @@ const Header = () => {
 const InputText = styled.TextInput`
   color: ${(props) => props.theme.textColor};
   flex: 1;
-  font-size: 18px;
-  padding: 5px;
+  font-size: 16px;
+  padding: 5px 5px 5px 5px;
+  background: ${(props) => props.theme.mode == "dark" ? "#555" : "#DDD"};
+  border-radius: 5px;
 `;
 
 const MainContainer = styled.View`

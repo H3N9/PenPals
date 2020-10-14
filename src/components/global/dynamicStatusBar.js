@@ -20,6 +20,7 @@ const STATUSBAR_HEIGHT = Platform.OS === "ios" ? 20 : StatusBar.currentHeight;
 const styles = StyleSheet.create({
   statusBar: {
     height: STATUSBAR_HEIGHT,
+    marginBottom: Platform.OS === "ios" ? 0 : 20
   },
 });
 
