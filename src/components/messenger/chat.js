@@ -2,7 +2,8 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Schema from "../../schema";
-import styled from "styled-components/native";
+import { SecondContainer, TextPrimary } from "../../style/themeComponent";
+
 const Chat = ({ navigation, message_id, id_another }) => {
   const messages = Schema.data.text.filter(
     (value) => value.message === message_id
@@ -68,13 +69,5 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
 });
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
-
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default Chat;

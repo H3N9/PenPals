@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import MainStyle from "../../style/mainStyle";
-import Entypo from "react-native-vector-icons/Entypo";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import styled from "styled-components/native";
+import {
+  SecondContainer,
+  InputText,
+  EntypoIcon,
+} from "../../style/themeComponent";
 
 const Keyboard = () => {
   const [chatText, setChatText] = useState("");
@@ -17,7 +19,7 @@ const Keyboard = () => {
     <SecondContainer style={styles.box}>
       <View style={styles.boxIcon}>
         <TouchableOpacity>
-          <Icon
+          <EntypoIcon
             name="camera"
             color="#fff"
             size={22}
@@ -27,7 +29,7 @@ const Keyboard = () => {
       </View>
       <View style={styles.boxIcon}>
         <TouchableOpacity>
-          <Icon
+          <EntypoIcon
             name="image"
             color="#fff"
             size={22}
@@ -89,15 +91,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
-
-const Icon = styled(Entypo)`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const InputText = styled(TextInput)`
-  color: ${(props) => props.theme.textColor};
-`;
 export default Keyboard;

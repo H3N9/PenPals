@@ -1,8 +1,8 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
-import MainStyle from "../../style/mainStyle";
 import ImagPro from "./imgPro";
-import styled from "styled-components/native";
+import { TextPrimary } from "../../style/themeComponent";
+
 const userList = ({ user }) => {
   const friendCount = user.friend.length;
   const intro = user.intro;
@@ -38,7 +38,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
 export default userList;

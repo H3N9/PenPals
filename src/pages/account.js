@@ -11,18 +11,19 @@ import Homebar from "../components/homebar";
 import BoxProfile from "../components/newAccount/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
-import styled from "styled-components/native";
+import { PrimaryContainer } from "../style/themeComponent";
+
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Account = ({ route, navigation }) => {
   const { id } = route.params;
   return (
-    <Container style={MainStyle.mainBackground}>
+    <PrimaryContainer style={MainStyle.mainBackground}>
       <ScrollView style={stylesCondition()}>
         <BoxProfile id={id} navigation={navigation} />
       </ScrollView>
       <Navbar navigation={navigation} />
-    </Container>
+    </PrimaryContainer>
   );
 };
 
@@ -34,7 +35,4 @@ const stylesCondition = () => {
   }
 };
 
-const Container = styled.View`
-  background-color: ${(props) => props.theme.primaryBackground};
-`;
 export default Account;

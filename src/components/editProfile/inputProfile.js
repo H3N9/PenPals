@@ -1,16 +1,11 @@
 import React, { useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  TextInput,
-} from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import MainStyle from "../../style/mainStyle";
 import InputTextType from "./inputTextType";
 import InputSelectType from "./inputSelectType";
-import styled from "styled-components/native";
+import { TextPrimary } from "../../style/themeComponent";
+
 const InputProfile = () => {
   return (
     <View style={{ padding: 20 }}>
@@ -78,8 +73,5 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
 });
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default InputProfile;

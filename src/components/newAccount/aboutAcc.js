@@ -1,7 +1,7 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import styled from "styled-components/native";
+import { TextPrimary } from "../../style/themeComponent";
 const AboutAcc = ({ describe }) => {
   return (
     <View style={styles.aboutMe}>
@@ -20,7 +20,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
 export default AboutAcc;

@@ -1,8 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import styled from "styled-components/native";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import { TextPrimary, SimpleLineIcon } from "../../style/themeComponent";
 
 const BoxInfo = ({ user }) => {
   const { id, username, gender, firstName, lastName, age, city, nation } = user;
@@ -10,7 +9,7 @@ const BoxInfo = ({ user }) => {
   return (
     <View style={styles.main}>
       <TouchableOpacity style={{ marginRight: 15, paddingLeft: 10 }}>
-        <SimpleLine name="arrow-left" size={20} />
+        <SimpleLineIcon name="arrow-left" size={20} />
       </TouchableOpacity>
       <View style={styles.userInfo}>
         <Image style={styles.imgProfile} source={image} />
@@ -55,10 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-const SimpleLine = styled(SimpleLineIcons)`
-  color: ${(props) => props.theme.textColor};
-`;
 export default BoxInfo;

@@ -3,19 +3,20 @@ import { View, ScrollView } from "react-native";
 import BoxProfile from "../components/newAccount/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
-import Navbar from "../components/navbar"
-import styled from 'styled-components/native'
+import Navbar from "../components/navbar";
+import { PrimaryContainer } from "../style/themeComponent";
+
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const ViewProfile = ({ route, navigation }) => {
   const { id } = route.params;
   return (
-    <Container style={MainStyle.mainBackground}>
+    <PrimaryContainer style={MainStyle.mainBackground}>
       <ScrollView style={stylesCondition()}>
         <BoxProfile id={id} />
       </ScrollView>
       <Navbar navigation={navigation} />
-    </Container>
+    </PrimaryContainer>
   );
 };
 
@@ -26,9 +27,5 @@ const stylesCondition = () => {
     return { flex: 1 };
   }
 };
-
-const Container = styled.View`
-  background-color: ${(props) => props.theme.primaryBackground};
-`
 
 export default ViewProfile;

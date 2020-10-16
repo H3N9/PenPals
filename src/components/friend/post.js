@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import Mainstyle from "../../style/mainStyle";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import styled from "styled-components/native";
+import { TextPrimary, SecondContainer } from "../../style/themeComponent";
 
 const Post = ({ title, likePost, like, id }) => {
   const [likeStatus, setLikeStatus] = useState(false);
@@ -79,13 +79,5 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
 });
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
-
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default Post;

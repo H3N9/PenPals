@@ -10,6 +10,12 @@ import MainStyle from "../../style/mainStyle";
 import SimpleLine from "react-native-vector-icons/SimpleLineIcons";
 import Entypo from "react-native-vector-icons/Entypo";
 import styled from "styled-components/native";
+import {
+  TextPrimary,
+  SecondContainer,
+  SimpleLineIcon,
+  EntypoIcon,
+} from "../../style/themeComponent";
 
 const BarMessage = ({ navigation, usernameAnother }) => {
   const friendName = usernameAnother;
@@ -48,21 +54,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
-
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const SimpleLineIcon = styled(SimpleLine)`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const EntypoIcon = styled(Entypo)`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default BarMessage;

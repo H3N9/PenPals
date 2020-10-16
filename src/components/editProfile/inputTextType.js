@@ -1,13 +1,7 @@
-import React, { useEffect } from "react";
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-  TextInput,
-} from "react-native";
+import React from "react";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import styled from "styled-components/native";
+import { TextPrimary, InputText } from "../../style/themeComponent";
 
 const InputTextType = ({ placeholder }) => {
   return (
@@ -35,11 +29,4 @@ const styles = StyleSheet.create({
   },
 });
 
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const InputText = styled.TextInput`
-  color: ${(props) => props.theme.textColor};
-`;
 export default InputTextType;

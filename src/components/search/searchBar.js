@@ -4,14 +4,15 @@ import {
   View,
   Text,
   TouchableOpacity,
-  TextInput,
-  Modal,
   Keyboard,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import SearchFilter from "./searchFilter";
-import styled from "styled-components/native";
+import {
+  TextPrimary,
+  InputTextBg,
+  AntDesignIcon,
+} from "../../style/themeComponent";
 
 const searchBar = () => {
   const [searchText, setSearchText] = useState("");
@@ -36,7 +37,7 @@ const searchBar = () => {
       </View>
       <View style={styles.searchContainer}>
         <View style={{ flex: 1 }}>
-          <InputText
+          <InputTextBg
             style={styles.textInput}
             placeholder="Type to Search"
             placeholderTextColor="#AAA"
@@ -92,16 +93,5 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
 });
-
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-const InputText = styled.TextInput`
-  background-color: ${(props) => props.theme.secondBackground};
-  color: ${(props) => props.theme.textColor};
-`;
-const AntDesignIcon = styled(AntDesign)`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default searchBar;

@@ -2,10 +2,12 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Tag from "../global/tag";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Entypo from "react-native-vector-icons/Entypo";
 import Schema from "../../schema";
-import styled from "styled-components/native";
+import {
+  TextPrimary,
+  FontAwesomeIcon,
+  EntypoIcon,
+} from "../../style/themeComponent";
 
 const Suggestion = ({ navigation, userId }) => {
   const user = Schema.getProfile(userId);
@@ -116,16 +118,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
 });
-
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const FontAwesomeIcon = styled(FontAwesome)`
-  color: ${(props) => props.theme.textColor};
-`;
-const EntypoIcon = styled(Entypo)`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default Suggestion;

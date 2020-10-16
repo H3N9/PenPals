@@ -9,7 +9,8 @@ import {
   TouchableOpacity,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import styled from "styled-components/native";
+import PostModal from "./postModal";
+import { SecondContainer } from "../../style/themeComponent";
 
 const CreatePost = ({ addPost }) => {
   const [text, setText] = useState("");
@@ -39,40 +40,13 @@ const CreatePost = ({ addPost }) => {
           </TouchableOpacity>
         </View>
       </SecondContainer>
-      <Modal animationType="slide" transparent={true} visible={modalVisible}>
-        <View style={MainStyle.centeredView}>
-          <SecondContainer style={MainStyle.modalView}>
-            <View style={[MainStyle.modalHeader, { alignItems: "center" }]}>
-              <TouchableOpacity
-                style={[styles.button]}
-                onPress={() => {
-                  setModalVisible(!modalVisible);
-                }}
-              >
-                <TextPrimary>Cancel</TextPrimary>
-              </TouchableOpacity>
-              <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
-                Createpost
-              </TextPrimary>
-              <TouchableOpacity
-                style={[styles.postButton, styles.button]}
-                onPress={posted}
-                disabled={text === ""}
-              >
-                <Text style={MainStyle.textWhite}>Post</Text>
-              </TouchableOpacity>
-            </View>
-            <InputText
-              multiline={true}
-              placeholder="Type Something"
-              placeholderTextColor="#555"
-              style={styles.textInput}
-              onChangeText={(text) => setText(text)}
-              value={text}
-            />
-          </SecondContainer>
-        </View>
-      </Modal>
+      <PostModal
+        text={text}
+        setText={setText}
+        setModalVisible={setModalVisible}
+        modalVisible={modalVisible}
+        posted={posted}
+      />
     </React.Fragment>
   );
 };
@@ -102,40 +76,6 @@ const styles = StyleSheet.create({
     padding: 10,
     color: "#fff",
   },
-  postUsername: {
-    fontWeight: "bold",
-    color: "#FFF",
-    marginRight: 10,
-  },
-  openButton: {
-    backgroundColor: "#F194FF",
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  button: {
-    padding: 10,
-    borderRadius: 5,
-  },
-  postButton: {
-    backgroundColor: "#FF5350",
-  },
-  textInput: {
-    fontSize: 26,
-    marginTop: 10,
-  },
 });
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
-
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const InputText = styled.TextInput`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default CreatePost;

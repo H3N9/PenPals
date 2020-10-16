@@ -2,8 +2,9 @@ import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Tag from "./tag";
-import styled from "styled-components/native";
 import Entypo from "react-native-vector-icons/Entypo";
+import { TextPrimary, SecondContainer } from "../../style/themeComponent";
+
 const ListTag = ({ tag, title, handle }) => {
   const callTag = (value, index) => {
     return <Tag key={index} tagName={value.name} id={value.id} />;
@@ -70,10 +71,5 @@ const styles = StyleSheet.create({
     marginLeft: 5,
   },
 });
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
+
 export default ListTag;

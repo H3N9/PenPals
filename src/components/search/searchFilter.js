@@ -11,10 +11,15 @@ import {
 import MainStyle from "../../style/mainStyle";
 import SwitchSelector from "react-native-switch-selector";
 import SelectData from "./selectData";
-import Material from "react-native-vector-icons/MaterialCommunityIcons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { color } from "react-native-reanimated";
-import styled from "styled-components/native";
+import {
+  SecondContainer,
+  PrimaryContainer,
+  InputText,
+  TextPrimary,
+  FontAwesomeIcon,
+  MaterialIcon,
+} from "../../style/themeComponent";
 
 const SearchFilter = ({ modalVisible, setModalVisible }) => {
   const [minAge, setMinAge] = useState();
@@ -62,7 +67,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
           </View>
           <ScrollView>
             {/* AgeSelect */}
-            <Container style={styles.dataFilterContainer}>
+            <PrimaryContainer style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <MaterialIcon name="human-male-boy" size={30} />
                 <TextPrimary style={MainStyle.textBold}>Age </TextPrimary>
@@ -82,9 +87,10 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
                   onChangeText={(value) => setMaxAge(value)}
                 />
               </View>
-            </Container>
+            </PrimaryContainer>
+
             {/* GenderSelect */}
-            <Container style={styles.dataFilterContainer}>
+            <PrimaryContainer style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <FontAwesomeIcon name="intersex" size={30} />
                 <TextPrimary style={MainStyle.textBold}>Gender </TextPrimary>
@@ -101,22 +107,24 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
                   setGender(value);
                 }}
               />
-            </Container>
+            </PrimaryContainer>
+
             {/* CountySelect */}
-            <Container style={styles.dataFilterContainer}>
+            <PrimaryContainer style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <FontAwesomeIcon name="flag" size={30} />
                 <TextPrimary style={MainStyle.textBold}> Country </TextPrimary>
               </View>
               <SelectData data={country} setData={setCountry} />
-            </Container>
+            </PrimaryContainer>
+
             {/* TagSelect */}
-            <Container style={styles.dataFilterContainer}>
+            <PrimaryContainer style={styles.dataFilterContainer}>
               <View style={{ flexDirection: "row", alignItems: "center" }}>
                 <FontAwesomeIcon name="tag" size={30} />
                 <TextPrimary style={MainStyle.textBold}> Tag </TextPrimary>
               </View>
-            </Container>
+            </PrimaryContainer>
           </ScrollView>
         </SecondContainer>
       </View>
@@ -140,28 +148,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
 });
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
-
-const Container = styled.View`
-  background-color: ${(props) => props.theme.primaryBackground};
-`;
-
-const InputText = styled.TextInput`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
-
-const FontAwesomeIcon = styled(FontAwesome)`
-  color: ${(props) => props.theme.textColor};
-`;
-const MaterialIcon = styled(Material)`
-  color: ${(props) => props.theme.textColor};
-`;
 
 export default SearchFilter;

@@ -11,7 +11,7 @@ import Navbar from "../components/navbar";
 import Chat from "../components/messenger/chat";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
-import styled from "styled-components/native";
+import { PrimaryContainer } from "../style/themeComponent";
 import Schema from "../schema";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
@@ -34,7 +34,7 @@ const Messenger = ({ navigation }) => {
   };
 
   return (
-    <Container style={MainStyle.mainBackground}>
+    <PrimaryContainer style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
       <SafeAreaView style={stylesCondition()}>
         <FlatList
@@ -44,7 +44,7 @@ const Messenger = ({ navigation }) => {
         />
       </SafeAreaView>
       <Navbar navigation={navigation} />
-    </Container>
+    </PrimaryContainer>
   );
 };
 
@@ -56,7 +56,4 @@ const stylesCondition = () => {
   }
 };
 
-const Container = styled.View`
-  background-color: ${(props) => props.theme.primaryBackground};
-`;
 export default Messenger;

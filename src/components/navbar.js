@@ -3,7 +3,8 @@ import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import Schema from "../schema";
-import styled from "styled-components/native";
+import { SecondContainer } from "../style/themeComponent";
+
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Navbar = ({ navigation }) => {
@@ -106,9 +107,5 @@ const navbarCondition = () => {
     };
   }
 };
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
 
 export default Navbar;
