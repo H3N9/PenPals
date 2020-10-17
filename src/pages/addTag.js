@@ -15,7 +15,7 @@ const AddTag = ({ navigation }) => {
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
       <View style={stylesCondition()}>
-        <Header />
+        <Header navigation={navigation} />
         <SelectedTag />
         <TagResult />
       </View>

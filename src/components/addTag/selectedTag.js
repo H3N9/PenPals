@@ -1,18 +1,12 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
 
 const SelectedTag = () => {
   return (
     <MainContainer>
       <View>
-        <TextPrimary>SelectedTag :</TextPrimary>
+        <TextPrimary style={{ marginLeft: 5 }}>SelectedTag :</TextPrimary>
       </View>
     </MainContainer>
   );

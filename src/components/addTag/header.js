@@ -8,11 +8,14 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-const Header = () => {
+const Header = ({ navigation }) => {
   return (
     <View>
       <MainContainer>
-        <TouchableOpacity style={{ marginRight: 15 }}>
+        <TouchableOpacity
+          style={{ marginRight: 15 }}
+          onPress={() => navigation.goBack()}
+        >
           <SimpleLine name="arrow-left" size={20} />
         </TouchableOpacity>
         <InputText placeholder="Search Tag" placeholderTextColor="#999" />
@@ -28,8 +31,8 @@ const InputText = styled.TextInput`
   color: ${(props) => props.theme.textColor};
   flex: 1;
   font-size: 16px;
-  padding: 5px 5px 5px 5px;
-  background: ${(props) => props.theme.mode == "dark" ? "#555" : "#DDD"};
+  padding: 7px 7px 7px 7px;
+  background: ${(props) => (props.theme.mode == "dark" ? "#555" : "#DDD")};
   border-radius: 5px;
 `;
 

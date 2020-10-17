@@ -7,12 +7,12 @@ const DynamicStatusBar = ({ style }) => {
     <View
       style={[
         styles.statusBar,
-        { backgroundColor: style == "light" ? "#1a1a1a" : "#d7d7d7" },
+        { backgroundColor: style == "light" ? "#1a1a1a" : "#DFDFDF" },
       ]}
     >
       <StatusBar
         style={style}
-        backgroundColor={style == "light" ? "#1a1a1a" : "#d7d7d7"}
+        backgroundColor={style == "light" ? "#1a1a1a" : "#DFDFDF"}
       ></StatusBar>
     </View>
   );

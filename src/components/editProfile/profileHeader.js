@@ -11,6 +11,7 @@ const ProfileHeader = ({ navigation }) => {
       <View style={styles.buttonSession}>
         <TouchableOpacity
           style={{ flexDirection: "row", alignItems: "center" }}
+          onPress={() => navigation.goBack()}
         >
           <Icons name="arrow-left" color="#fff" size={20} />
           <Text style={MainStyle.textWhiteBold}>Back</Text>
