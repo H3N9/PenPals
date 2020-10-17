@@ -3,12 +3,15 @@ import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import { TextPrimary, SimpleLineIcon } from "../../style/themeComponent";
 
-const BoxInfo = ({ user }) => {
+const BoxInfo = ({ user, navigation }) => {
   const { id, username, gender, firstName, lastName, age, city, nation } = user;
   const image = require("../../../assets/man.png");
   return (
     <View style={styles.main}>
-      <TouchableOpacity style={{ marginRight: 15, paddingLeft: 10 }}>
+      <TouchableOpacity
+        style={{ marginRight: 15, paddingLeft: 10 }}
+        onPress={() => navigation.goBack()}
+      >
         <SimpleLineIcon name="arrow-left" size={20} />
       </TouchableOpacity>
       <View style={styles.userInfo}>

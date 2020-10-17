@@ -53,7 +53,6 @@ const CreatePost = ({ addPost }) => {
 
 const styles = StyleSheet.create({
   createContainer: {
-    flex: 1,
     flexDirection: "column",
     paddingVertical: 20,
     paddingHorizontal: 10,

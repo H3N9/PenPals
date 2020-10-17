@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Text } from "react-native";
+import { StyleSheet, View, ScrollView, Text, FlatList } from "react-native";
 import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
 import CreatePost from "../components/friend/createPost";
@@ -40,21 +40,27 @@ const Home = ({ navigation }) => {
     setPosts([...allPostSorted]);
   };
 
+  const renderPostItem = ({ item }) => {
+    return (
+      <Post
+        key={item.id}
+        id={item.id}
+        title={item.title}
+        like={item.like}
+        likePost={likePost}
+      />
+    );
+  };
+
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
-      <ScrollView style={stylesCondition()}>
-        <CreatePost addPost={addPost} />
-        {posts.map((post) => (
-          <Post
-            key={post.id}
-            id={post.id}
-            title={post.title}
-            like={post.like}
-            likePost={likePost}
-          />
-        ))}
-      </ScrollView>
+      <CreatePost addPost={addPost} />
+      <FlatList
+        data={posts}
+        renderItem={renderPostItem}
+        keyExtractor={(item) => item.id.toString()}
+      />
       <Navbar navigation={navigation} />
     </PrimaryContainer>
   );
