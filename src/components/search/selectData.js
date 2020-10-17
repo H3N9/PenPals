@@ -1,5 +1,5 @@
 import RNPickerSelect from "react-native-picker-select";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -17,11 +17,22 @@ import { useSelector } from "react-redux";
 
 const selectData = ({ setData, filterData }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
+  const [countryData, setCountryData] = useState([]);
 
-  const dataSource = [
-    { label: "England", value: "England" },
-    { label: "France", value: "France" },
-  ];
+  const fetchData = async () => {
+    const data = await fetch("https://restcountries.eu/rest/v2/all");
+    const jsonData = await data.json();
+    const allCountry = jsonData.map((value) => value.name);
+    setCountryData(() =>
+      allCountry.map((itemValue) => {
+        return { label: itemValue, value: itemValue };
+      })
+    );
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   const updateFilterData = (value) => {
     filterData.country = value;
     setData(filterData);
@@ -45,7 +56,7 @@ const selectData = ({ setData, filterData }) => {
       <RNPickerSelect
         onValueChange={(value) => updateFilterData(value)}
         style={pickerSelectStyles}
-        items={dataSource}
+        items={countryData}
       />
     );
   } else {
@@ -55,8 +66,8 @@ const selectData = ({ setData, filterData }) => {
         style={{ height: 50, width: 150 }}
         onValueChange={(itemValue) => updateFilterData(itemValue)}
       >
-        {dataSource.map((data) => (
-          <Picker.Item label={data.label} value={data.value} key={data.value} />
+        {countryData.map((data) => (
+          <Picker.Item label={data.value} value={data.value} key={data.value} />
         ))}
       </PickerSelect>
     );
