@@ -1,7 +1,6 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ScrollView } from "react-native";
 import Navbar from "../components/navbar";
-import BoxProfile from "../components/newAccount/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
@@ -17,7 +16,30 @@ const AddTag = ({ navigation }) => {
       <View style={stylesCondition()}>
         <Header navigation={navigation} />
         <SelectedTag />
-        <TagResult />
+        <ScrollView>
+          <View style={styles.tagResultContainer}>
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+            <TagResult />
+          </View>
+        </ScrollView>
       </View>
       <Navbar navigation={navigation} />
     </PrimaryContainer>
@@ -32,4 +54,10 @@ const stylesCondition = () => {
   }
 };
 
+const styles = StyleSheet.create({
+  tagResultContainer: {
+    justifyContent: "center",
+    margin: 5,
+  },
+});
 export default AddTag;

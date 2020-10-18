@@ -11,7 +11,7 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 const ViewProfile = ({ route, navigation }) => {
   const { id } = route.params;
   return (
-    <PrimaryContainer style={MainStyle.mainBackground}>
+    <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <ScrollView style={stylesCondition()}>
         <BoxProfile id={id} navigation={navigation} />
       </ScrollView>

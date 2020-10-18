@@ -20,6 +20,7 @@ const mainStyle = StyleSheet.create({
   },
   mainBackground: {
     flex: 1,
+    paddingTop: 20,
   },
   boxContent: {},
   // ------------------ForModals------------------

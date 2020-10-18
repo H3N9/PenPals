@@ -9,10 +9,23 @@ const BoxInfo = ({ user, navigation }) => {
   return (
     <View style={styles.main}>
       <TouchableOpacity
-        style={{ marginRight: 15, paddingLeft: 10 }}
+        style={{
+          marginLeft: 15,
+          width: "15%",
+          backgroundColor: "rgba(0, 0, 0, 0.4);",
+          borderRadius: 500,
+        }}
         onPress={() => navigation.goBack()}
       >
-        <SimpleLineIcon name="arrow-left" size={20} />
+        <SimpleLineIcon
+          name="arrow-left"
+          size={20}
+          style={{
+            paddingVertical: 3,
+            textAlign: "center",
+            color: "#fff",
+          }}
+        />
       </TouchableOpacity>
       <View style={styles.userInfo}>
         <Image style={styles.imgProfile} source={image} />
@@ -51,9 +64,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     backgroundColor: "#FF5350",
-    paddingTop: 15,
     borderBottomEndRadius: 10,
     borderBottomStartRadius: 10,
+    paddingTop: 25,
   },
 });
 

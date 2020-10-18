@@ -42,7 +42,7 @@ const Index = () => {
             initialRouteName="Home"
             screenOptions={{
               headerShown: false,
-              ...TransitionPresets.FadeFromBottomAndroid,
+              animationEnabled: false,
             }}
           >
             <Stack.Screen name="Home" component={Home} />
@@ -50,13 +50,37 @@ const Index = () => {
             <Stack.Screen name="Messenger" component={Messenger} />
             <Stack.Screen name="Search" component={Search} />
             <Stack.Screen name="Notification" component={Notification} />
-            <Stack.Screen name="ChatRoom" component={ChatRoom} />
-            <Stack.Screen name="ViewProfile" component={ViewProfile} />
-            <Stack.Screen name="AddTag" component={AddTag} />
+            <Stack.Screen
+              name="ChatRoom"
+              component={ChatRoom}
+              options={{
+                ...TransitionPresets.ModalSlideFromBottomIOS,
+                animationEnabled: true,
+              }}
+            />
+            <Stack.Screen
+              name="ViewProfile"
+              component={ViewProfile}
+              options={{
+                ...TransitionPresets.ModalSlideFromBottomIOS,
+                animationEnabled: true,
+              }}
+            />
+            <Stack.Screen
+              name="AddTag"
+              component={AddTag}
+              options={{
+                ...TransitionPresets.ModalSlideFromBottomIOS,
+                animationEnabled: true,
+              }}
+            />
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}
-              options={{ ...TransitionPresets.ModalSlideFromBottomIOS }}
+              options={{
+                ...TransitionPresets.ModalSlideFromBottomIOS,
+                animationEnabled: true,
+              }}
             />
           </Stack.Navigator>
         </NavigationContainer>

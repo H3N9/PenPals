@@ -10,7 +10,7 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 
 const EditProfile = ({ route, navigation }) => {
   return (
-    <PrimaryContainer style={MainStyle.mainBackground}>
+    <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <ScrollView style={stylesCondition()}>
         <MainEdit navigation={navigation} />
       </ScrollView>
