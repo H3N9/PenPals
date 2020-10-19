@@ -17,9 +17,9 @@
 $ yarn start
 
 ### test api path
-GET localhost/search/user
+GET localhost:3000/search/user
 
-POST localhost/login
+POST localhost:3000/login
 - body
   ```json
   {
