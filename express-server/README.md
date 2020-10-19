@@ -14,7 +14,7 @@
   ```
 
 ### start
-$ npm start
+$ yarn start
 
 ### test api path
 GET localhost/search/user
