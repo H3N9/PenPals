@@ -9,11 +9,11 @@ import { PrimaryContainer } from "../style/themeComponent";
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const ViewProfile = ({ route, navigation }) => {
-  const { id } = route.params;
+  const { id, user } = route.params;
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <ScrollView style={stylesCondition()}>
-        <BoxProfile id={id} navigation={navigation} />
+        <BoxProfile id={id} user={user} navigation={navigation} />
       </ScrollView>
       <Navbar navigation={navigation} />
     </PrimaryContainer>

@@ -9,8 +9,8 @@ import {
   EntypoIcon,
 } from "../../style/themeComponent";
 
-const Suggestion = ({ navigation, userId }) => {
-  const user = Schema.getProfile(userId);
+const Suggestion = ({ navigation, user }) => {
+  //const user = Schema.getProfile(userId);
   const {
     id,
     username,
@@ -27,7 +27,7 @@ const Suggestion = ({ navigation, userId }) => {
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("ViewProfile", { id: id })}
+        onPress={() => navigation.navigate("ViewProfile", { id: id, user: user })}
       >
         <Image
           style={{

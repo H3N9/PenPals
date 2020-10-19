@@ -8,9 +8,9 @@ import AboutAcc from "./aboutAcc";
 import Schema from "../../schema";
 import { PrimaryContainer } from "../../style/themeComponent";
 
-const BoxProfile = ({ id, navigation }) => {
+const BoxProfile = ({ id, navigation, user }) => {
   //const user = Schema.data.user[parseInt(id)-1]
-  const user = Schema.getProfile(id);
+  //const user = Schema.getProfile(id);
   const describe = user.describe;
   const { hobbies, favorites } = user;
   const isAuthUser = id === Schema.user;
