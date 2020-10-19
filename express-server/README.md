@@ -17,14 +17,13 @@
 $ npm start
 
 ### test api path
-GET localhost/moji
+GET localhost/search/user
 
-POST localhost/moji
+POST localhost/login
 - body
   ```json
   {
-    "test": "String",
-    "store": "String",
-    "price": 123
+    "username": "admin1",
+    "password": "1234",
   }
   ```
