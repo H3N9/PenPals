@@ -89,7 +89,8 @@ const styles = StyleSheet.create({
   likeButton: {
     alignItems: "center",
     flexDirection: "row",
-    paddingLeft: 5
+    paddingLeft: 5,
+    paddingTop: 5,
   },
   image:{
     height: Dimensions.get('window').width-50,

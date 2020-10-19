@@ -7,6 +7,7 @@ import ContactButton from "./contactButton";
 import AboutAcc from "./aboutAcc";
 import Schema from "../../schema";
 import { PrimaryContainer } from "../../style/themeComponent";
+import PhotoUser from './photoUser'
 
 const BoxProfile = ({ id, navigation }) => {
   //const user = Schema.data.user[parseInt(id)-1]
@@ -14,6 +15,7 @@ const BoxProfile = ({ id, navigation }) => {
   const describe = user.describe;
   const { hobbies, favorites } = user;
   const isAuthUser = id === Schema.user;
+  const images = [require('../../../assets/5.png'), require('../../../assets/5.png'), require('../../../assets/5.png'), require('../../../assets/5.png')]
 
   return (
     <PrimaryContainer>
@@ -53,6 +55,7 @@ const BoxProfile = ({ id, navigation }) => {
         handle={() => navigation.navigate("AddTag")}
       />
       <AboutAcc describe={describe} />
+      <PhotoUser images={images}/>
     </PrimaryContainer>
   );
 };
