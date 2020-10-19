@@ -1,0 +1,11 @@
+{
+    "name": "PenPalsBackEnd",
+    "dependencies": {
+        "apollo-server": "^2.18.2",
+        "graphql": "^15.3.0"
+    },
+
+    "scripts": {
+        "start": "node ./src/server.js"
+    }
+}
