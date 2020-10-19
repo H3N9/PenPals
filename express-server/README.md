@@ -1,9 +1,17 @@
 # penpals-server (Express js)
 ### library ต้องลง
-- $ npm install express
-- $ npm install --save-dev nodemon
-- $ npm install --save sequelize sqlite3
-- $ npm npm install --save-dev sequlize-cli
+  ```
+  "bcrypt": "^5.0.0",
+  "body-parser": "^1.19.0",
+  "express": "^4.17.1",
+  "jsonwebtoken": "^8.5.1",
+  "passport": "^0.4.1",
+  "passport-jwt": "^4.0.0",
+  "passport-local": "^1.0.0",
+  "sequelize": "^6.3.5",
+  "sequelize-auto-migrations": "github:scimonster/sequelize-auto-migrations#a063aa6535a3f580623581bf866cef2d609531ba",
+  "sqlite3": "^5.0.0",
+  ```
 
 ### start
 $ npm start
