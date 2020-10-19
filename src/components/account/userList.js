@@ -1,47 +1,40 @@
 import React from "react";
 import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
-import MainStyle from "../../style/mainStyle"
-import ImagPro from './imgPro'
+import ImagPro from "./imgPro";
+import { TextPrimary } from "../../style/themeComponent";
 
-const userList = ({listName}) => {
-
-  const people = ["1", "2", "3"]
-
-  const callPeople = (value) =>{
-    return <ImagPro key={people.indexOf(value)} />
-  }
+const userList = ({ user }) => {
+  const friendCount = user.friend.length;
+  const intro = user.intro;
 
   return (
-      <View style={[styles.infoContainer, MainStyle.boxContent]}>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: 5,
-          }}
-        >
-          <Text style={MainStyle.textBold}>{listName} :</Text>
-          <TouchableOpacity>
-            <Text style={{ color: "#FF5350" }}>ViewMore</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-          {people.map(callPeople)}
-        </View>
+    <View style={styles.infoContainer}>
+      <View style={styles.infoItems}>
+        <TextPrimary style={{ textAlign: "center", fontSize: 25 }}>
+          {friendCount}
+        </TextPrimary>
+        <TextPrimary style={{ textAlign: "center" }}>Friend</TextPrimary>
       </View>
+      <View style={[styles.infoItems, { flex: 2, paddingLeft: 10 }]}>
+        <TextPrimary>{intro}</TextPrimary>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   infoContainer: {
-    padding: 10,
-    marginVertical: 10,
+    marginVertical: 25,
+    flexDirection: "row",
   },
   infoImgProfile: {
     width: 60,
     height: 60,
-    backgroundColor: "#CCC",
     borderRadius: 100,
+  },
+  infoItems: {
+    marginHorizontal: 5,
+    flex: 1,
   },
 });
 

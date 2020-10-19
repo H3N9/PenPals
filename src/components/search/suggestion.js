@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import Tag from "../global/tag";
+import Tag from "../account/tag";
 import Schema from "../../schema";
 import {
   TextPrimary,

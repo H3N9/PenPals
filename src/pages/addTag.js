@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView } from "react-native";
 import Navbar from "../components/navbar";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";

@@ -3,9 +3,7 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   Image,
-  Modal,
   TouchableOpacity,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
@@ -73,7 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 50,
     padding: 10,
-    color: "#fff",
   },
 });
 

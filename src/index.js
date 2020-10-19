@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import React from "react";
+import { View } from "react-native";
 import Account from "./pages/account";
 import Home from "./pages/home";
 import Messenger from "./pages/messenger";
@@ -9,19 +9,12 @@ import ChatRoom from "./pages/chatRoom";
 import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import {
-  TransitionPresets,
-  TransitionSpecs,
-  CardStyleInterpolators,
-} from "@react-navigation/stack";
+import {TransitionPresets} from "@react-navigation/stack";
 
-import styled, { ThemeProvider } from "styled-components/native";
+import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
-import { switchTheme } from "../redux/themeAction";
-import { lightTheme, darkTheme } from "./style/Theme";
 
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
 const Stack = createStackNavigator();

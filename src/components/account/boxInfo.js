@@ -1,43 +1,43 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import Tag from "./tag";
+import { TextPrimary, SimpleLineIcon } from "../../style/themeComponent";
 
-const BoxInfo = () => {
-  const username = "Username";
-  const address = "Antaya, Turky";
-  const intro =
-    "I love prime minister TU Lorem Ipsum is simply dummy text of the printing";
-  const desc = "Lorem Ipsum is simply dummy text of the printing";
-  const image = require("../../../assets/5.png");
-  const tag = ["You", "And", "I"];
-
-  const callTag = (value) => {
-    return <Tag key={tag.indexOf(value)} tagName={value} />;
-  };
-
+const BoxInfo = ({ user, navigation, auth }) => {
+  const { id, username, gender, firstName, lastName, age, city, nation } = user;
+  const image = require("../../../assets/man.png");
   return (
     <View style={styles.main}>
+      {!auth &&<TouchableOpacity
+        style={{
+          marginLeft: 15,
+          width: "15%",
+          backgroundColor: "rgba(0, 0, 0, 0.4);",
+          borderRadius: 500,
+        }}
+        onPress={() => navigation.goBack()}
+      >
+        <SimpleLineIcon
+          name="arrow-left"
+          size={20}
+          style={{
+            paddingVertical: 3,
+            textAlign: "center",
+            color: "#fff",
+          }}
+        />
+      </TouchableOpacity>}
       <View style={styles.userInfo}>
         <Image style={styles.imgProfile} source={image} />
-        <View style={{ flex: 1 }}>
-          <Text style={MainStyle.textBold}>{username}</Text>
-          <Text style={MainStyle.textWhite}>{address}</Text>
-          <Text style={MainStyle.textGray}>{desc}</Text>
-          <TouchableOpacity style={styles.editProfile}>
-            <Text style={{ color: "#fff", textAlign: "center" }}>
-              Edit Profile
-            </Text>
-          </TouchableOpacity>
+        <View style={{ flex: 1, justifyContent: "flex-end", marginLeft: 20 }}>
+          <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
+          <TextPrimary>
+            {gender} {firstName} {lastName}, {age} y.e.
+          </TextPrimary>
+          <TextPrimary>
+            {city} {nation}
+          </TextPrimary>
         </View>
-      </View>
-
-      <View style={styles.boxIntro}>
-        <Text style={MainStyle.textGray}>{intro}</Text>
-      </View>
-      <View style={styles.boxTag}>
-        <Text style={styles.tagText}>Tag:</Text>
-        {tag.map(callTag)}
       </View>
     </View>
   );
@@ -50,34 +50,24 @@ const styles = StyleSheet.create({
     backgroundColor: "#CCC",
     borderRadius: 100,
     marginRight: 10,
+    bottom: -25,
+    borderColor: "#1a1a1a",
+    borderWidth: 2,
   },
   userInfo: {
     flexDirection: "row",
     paddingHorizontal: 10,
     flex: 3,
-  },
-  editProfile: {
-    backgroundColor: "#FF8850",
-    marginVertical: 10,
-    padding: 4,
-    borderRadius: 3,
+    paddingBottom: 10,
   },
   main: {
     flex: 1,
     flexDirection: "column",
-  },
-  boxTag: {
-    flex: 1,
-    flexDirection: "row",
-  },
-  boxIntro: {
-    flex: 1,
-    paddingHorizontal: 10,
-    padding: 5,
-  },
-  tagText: {
-    color: "#fff",
-    marginHorizontal: 10,
+    backgroundColor: "#FF5350",
+    borderBottomEndRadius: 10,
+    borderBottomStartRadius: 10,
+    paddingTop: 25,
   },
 });
+
 export default BoxInfo;

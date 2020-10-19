@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Text, FlatList } from "react-native";
+import React, { useState } from "react";
+import { FlatList } from "react-native";
 import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
 import CreatePost from "../components/friend/createPost";
