@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   TextInput,
   TouchableOpacity,
+  Keyboard,
 } from "react-native";
 import styled from "styled-components/native";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-const Header = ({ navigation }) => {
+const Header = ({ navigation, tagData, setSearchTag, searchTag }) => {
+  const [text, setText] = useState("");
+
+  const inputHandle = (value) => {
+    if (value == "") {
+      setText("");
+      return setSearchTag([]);
+    }
+    setText(value);
+    const valueUpper = value.toUpperCase();
+    const filteredData = tagData.filter(
+      (itemValue) => itemValue.title.toUpperCase().indexOf(valueUpper) > -1
+    );
+    setSearchTag(filteredData);
+  };
   return (
     <View>
       <MainContainer>
@@ -18,9 +33,14 @@ const Header = ({ navigation }) => {
         >
           <SimpleLine name="arrow-left" size={20} />
         </TouchableOpacity>
-        <InputText placeholder="Search Tag" placeholderTextColor="#999" />
-        <TouchableOpacity style={{ marginLeft: 15 }}>
-          <TextPrimary>Search</TextPrimary>
+        <InputText
+          placeholder="Search Tag"
+          placeholderTextColor="#999"
+          value={text}
+          onChangeText={(value) => inputHandle(value)}
+        />
+        <TouchableOpacity style={{ marginLeft: 15 }} onPress={() => {}}>
+          <TextPrimary>Cancel</TextPrimary>
         </TouchableOpacity>
       </MainContainer>
     </View>

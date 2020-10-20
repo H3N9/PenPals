@@ -1,10 +1,15 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
-const TagResult = () => {
+const TagResult = ({ tagData, tagSelected, setTagSelected }) => {
   return (
-    <TouchableOpacity style={styles.container}>
-      <Text style={styles.textTitle}>Title</Text>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => {
+        setTagSelected([...tagSelected, tagData]);
+      }}
+    >
+      <Text style={styles.textTitle}>{tagData.title}</Text>
     </TouchableOpacity>
   );
 };
