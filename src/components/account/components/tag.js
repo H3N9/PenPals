@@ -2,10 +2,9 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
 const Tag = ({ tagName }) => {
-  const tag = tagName;
   return (
     <TouchableOpacity style={styles.tagButton}>
-      <Text style={styles.tagText}>{tag}</Text>
+      <Text style={styles.tagText}>{tagName}</Text>
     </TouchableOpacity>
   );
 };

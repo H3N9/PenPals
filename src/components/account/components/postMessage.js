@@ -1,6 +1,6 @@
 import React from 'react'
 import {View, FlatList} from 'react-native'
-import Post from '../friend/post'
+import Post from '../../post/post'
 
 const PostMessage = ({text}) =>{
     const renderText = (value, id) => {

@@ -1,11 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import MainStyle from "../../style/mainStyle";
-import { TextPrimary, SimpleLineIcon } from "../../style/themeComponent";
+import MainStyle from "../../../style/mainStyle";
+import { TextPrimary, SimpleLineIcon } from "../../../style/themeComponent";
 
-const BoxInfo = ({ user, navigation, auth }) => {
-  const { id, username, gender, firstName, lastName, age, city, nation } = user;
-  const image = require("../../../assets/man.png");
+const BoxInfo = ({ userDetail, navigation, auth }) => {
+  const { username, gender, firstName, lastName, age, city, nation } = userDetail;
+  const image = require("../../../../assets/man.png");
   return (
     <View style={styles.main}>
       {!auth &&<TouchableOpacity

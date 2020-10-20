@@ -1,9 +1,9 @@
 import React from 'react'
 import {Image, FlatList, View, StyleSheet, Dimensions} from 'react-native'
-import {TextPrimary} from "../../style/themeComponent"
-import MainStyle from "../../style/mainStyle";
+import {TextPrimary} from "../../../style/themeComponent"
+import MainStyle from "../../../style/mainStyle";
 
-const PhotoUser = ({images}) =>{
+const PostImage = ({images}) =>{
     
     const seprateImage = (value, id) =>{
         return {id:id.toString(), value:value}
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default PhotoUser
+export default PostImage
