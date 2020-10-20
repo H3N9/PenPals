@@ -10,41 +10,39 @@ import { PrimaryContainer } from "../style/themeComponent";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-
 const Home = ({ navigation }) => {
-  
   const initData = [
     {
-      id:"1",
-      user:"Username",
-      type:{
-        image:"image",
-        text:""
+      id: "1",
+      user: "Username",
+      type: {
+        image: "image",
+        text: "",
       },
       date: "50m",
-      like:true
+      like: true,
     },
     {
-      id:"2",
-      user:"Username",
-      type:{
-        image:"image",
-        text:"I here too"
+      id: "2",
+      user: "Username",
+      type: {
+        image: "image",
+        text: "I here too",
       },
       date: "50m",
-      like:true
+      like: true,
     },
     {
-      id:"3",
-      user:"Username",
-      type:{
-        image:"",
-        text:"Text"
+      id: "3",
+      user: "Username",
+      type: {
+        image: "",
+        text: "Text",
       },
       date: "50m",
-      like:false
+      like: false,
     },
-  ]
+  ];
 
   // useEffect(() =>{
   //   fetch("http://364edd12ecf8.ngrok.io/register/student")
@@ -72,22 +70,37 @@ const Home = ({ navigation }) => {
   // };
 
   const renderPostItem = ({ item }) => {
-    return (
-      <Post
-        key={item.id}
-        id={item.id}
-        type={item.type}
-        like={item.like}
-        date={item.date}
-        user={item.user}
-      />
-    );
+    if (item.id == "1") {
+      return (
+        <React.Fragment>
+          <CreatePost />
+          <Post
+            key={item.id}
+            id={item.id}
+            type={item.type}
+            like={item.like}
+            date={item.date}
+            user={item.user}
+          />
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <Post
+          key={item.id}
+          id={item.id}
+          type={item.type}
+          like={item.like}
+          date={item.date}
+          user={item.user}
+        />
+      );
+    }
   };
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
-      <CreatePost />
       <FlatList
         data={initData}
         renderItem={renderPostItem}

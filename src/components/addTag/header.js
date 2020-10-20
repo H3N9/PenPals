@@ -39,7 +39,12 @@ const Header = ({ navigation, tagData, setSearchTag, searchTag }) => {
           value={text}
           onChangeText={(value) => inputHandle(value)}
         />
-        <TouchableOpacity style={{ marginLeft: 15 }} onPress={() => {}}>
+        <TouchableOpacity
+          style={{ marginLeft: 15 }}
+          onPress={() => {
+            Keyboard.dismiss();
+          }}
+        >
           <TextPrimary>Cancel</TextPrimary>
         </TouchableOpacity>
       </MainContainer>

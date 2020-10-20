@@ -46,13 +46,6 @@ const AddTag = ({ navigation }) => {
               />
             ))}
           </View>
-          {/* <TouchableOpacity
-            onPress={() => {
-              tagSelected.map((itemValue) => console.log(itemValue));
-            }}
-          >
-            <Text>Press</Text>
-          </TouchableOpacity> */}
         </ScrollView>
       </View>
       <Navbar navigation={navigation} />
