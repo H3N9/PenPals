@@ -1,12 +1,37 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { color, Value } from "react-native-reanimated";
 import styled from "styled-components/native";
 
-const SelectedTag = ({ tagSelected, setTagSelected }) => {
+const SelectedTag = ({
+  tagSelected,
+  setTagSelected,
+  searchTag,
+  setSearchTag,
+}) => {
   const delTag = (itemValue) => {
     const tagDeleted = tagSelected.filter((value) => value.id !== itemValue.id);
+    const enableButton = searchTag.map((value) => {
+      if (itemValue.title == value.title) {
+        value.isSelected = false;
+      }
+      return value;
+    });
+    setSearchTag(enableButton);
     setTagSelected(tagDeleted);
+  };
+  const renderItem = (tagItem) => {
+    return (
+      <Tag onPress={() => delTag(tagItem.item)}>
+        <Text>{tagItem.item.title}</Text>
+      </Tag>
+    );
   };
   return (
     <MainContainer>
@@ -14,11 +39,12 @@ const SelectedTag = ({ tagSelected, setTagSelected }) => {
         <TextPrimary style={{ marginLeft: 5, marginVertical: 2 }}>
           SelectedTag :
         </TextPrimary>
-        {tagSelected.map((itemValue) => (
-          <Tag key={itemValue.id} onPress={() => delTag(itemValue)}>
-            <Text>{itemValue.title}</Text>
-          </Tag>
-        ))}
+        <FlatList
+          data={tagSelected}
+          renderItem={renderItem}
+          horizontal={true}
+          style={{ width: "100%" }}
+        />
       </View>
     </MainContainer>
   );
@@ -38,10 +64,9 @@ const TextPrimary = styled.Text`
 const Tag = styled.TouchableOpacity`
   font-weight: bold;
   border-radius: 50px;
-  padding: 3px;
+  padding: 3px 7px;
+  margin: 0 2px;
   background: #ff5350;
-  text-align: center;
-  margin: 2px 5px;
 `;
 
 export default SelectedTag;

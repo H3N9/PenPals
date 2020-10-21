@@ -20,10 +20,10 @@ const AddTag = ({ navigation }) => {
   const [searchTag, setSearchTag] = useState([]); //Tag จากผลการค้นหา
   const [tagSelected, setTagSelected] = useState([]); //Tag ที่ถูกเลือก
   const tagData = [
-    { title: "name1", id: "1" },
-    { title: "name2", id: "2" },
-    { title: "name3", id: "3" },
-    { title: "name4", id: "4" },
+    { title: "name1", isSelected: false, id: "1" },
+    { title: "name2", isSelected: false, id: "2" },
+    { title: "name3", isSelected: false, id: "3" },
+    { title: "name4", isSelected: false, id: "4" },
   ];
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
@@ -32,11 +32,13 @@ const AddTag = ({ navigation }) => {
           navigation={navigation}
           setSearchTag={setSearchTag}
           tagData={tagData}
-          tagSelected={tagSelected}
+          searchTag={searchTag}
         />
         <SelectedTag
           tagSelected={tagSelected}
           setTagSelected={setTagSelected}
+          searchTag={searchTag}
+          setSearchTag={setSearchTag}
         />
         <ScrollView>
           <View style={styles.tagResultContainer}>

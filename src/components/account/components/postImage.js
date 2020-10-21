@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   image: {
     width: Dimensions.get("window").width / 3,
     height: Dimensions.get("window").width / 3,
-    margin: 2,
+    margin: 1,
     flex: 0.335,
     resizeMode: "cover",
   },
