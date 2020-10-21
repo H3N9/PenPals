@@ -1,38 +1,29 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { TextPrimary, SecondContainer } from "../../style/themeComponent";
-import TextPost from './components/textPost'
-import ImagePost from './components/imagePost'
+import TextPost from "./components/textPost";
+import ImagePost from "./components/imagePost";
 
 const Post = ({ type, date, like, id, user }) => {
-  const image = type.image||undefined
-  const text = type.text||undefined
-  const likeControl = () =>{
+  const image = type.image || undefined;
+  const text = type.text || undefined;
+  const likeControl = () => {};
 
-  }
-
-  const postControl = (image, text) =>{
-    if(image&&text){
+  const postControl = (image, text) => {
+    if (image && text) {
       return (
         <View>
-            <TextPost text={text} />
-            <ImagePost />
+          <TextPost text={text} />
+          <ImagePost />
         </View>
-      )
+      );
+    } else if (image) {
+      return <ImagePost />;
+    } else if (text) {
+      return <TextPost text={text} />;
     }
-    else if(image){
-      return <ImagePost />
-    }
-    else if(text){
-      return <TextPost text={text} />
-    }
-  }
+  };
 
   return (
     <SecondContainer style={styles.postContainer}>
@@ -43,14 +34,14 @@ const Post = ({ type, date, like, id, user }) => {
             style={styles.postImgProfile}
           />
         </View>
-        <View style={{justifyContent:'center'}}>
+        <View style={{ justifyContent: "center" }}>
           <View style={{ flexDirection: "row" }}>
             <TextPrimary style={styles.postUsername}>{user}</TextPrimary>
             <TextPrimary>{date}</TextPrimary>
           </View>
         </View>
       </View>
-      
+
       <View style={{ flex: 1 }}>
         {postControl(image, text)}
         <TouchableOpacity style={styles.likeButton}>
@@ -71,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     paddingVertical: 10,
-    marginBottom: 2,
+    marginBottom: 40,
   },
   postImgProfile: {
     resizeMode: "cover",
@@ -91,10 +82,10 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
     paddingTop: 5,
   },
-  boxIdentity:{
-    flexDirection:"row",
+  boxIdentity: {
+    flexDirection: "row",
     paddingLeft: 5,
-  }
+  },
 });
 
 export default Post;

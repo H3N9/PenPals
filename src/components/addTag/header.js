@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-const Header = ({ navigation, tagData, setSearchTag, searchTag }) => {
+const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
   const [text, setText] = useState("");
 
   const inputHandle = (value) => {
@@ -17,7 +17,6 @@ const Header = ({ navigation, tagData, setSearchTag, searchTag }) => {
       setText("");
       return setSearchTag([]);
     }
-    setText(value);
     const valueUpper = value.toUpperCase();
     const filteredData = tagData.filter(
       (itemValue) => itemValue.title.toUpperCase().indexOf(valueUpper) > -1
@@ -37,15 +36,21 @@ const Header = ({ navigation, tagData, setSearchTag, searchTag }) => {
           placeholder="Search Tag"
           placeholderTextColor="#999"
           value={text}
-          onChangeText={(value) => inputHandle(value)}
+          onChangeText={(value) => setText(value)}
+          returnKeyType="search"
+          onSubmitEditing={() => {
+            inputHandle(text);
+            Keyboard.dismiss();
+          }}
         />
         <TouchableOpacity
           style={{ marginLeft: 15 }}
           onPress={() => {
-            Keyboard.dismiss();
+            console.log(tagSelected);
+            navigation.goBack();
           }}
         >
-          <TextPrimary>Cancel</TextPrimary>
+          <TextPrimary>Done</TextPrimary>
         </TouchableOpacity>
       </MainContainer>
     </View>

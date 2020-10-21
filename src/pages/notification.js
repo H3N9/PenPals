@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  View,
-  ScrollView,
-  Switch,
-} from "react-native";
+import { View, ScrollView, Switch } from "react-native";
 import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
 import MainStyle from "../style/mainStyle";

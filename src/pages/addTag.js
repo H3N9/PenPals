@@ -32,9 +32,12 @@ const AddTag = ({ navigation }) => {
           navigation={navigation}
           setSearchTag={setSearchTag}
           tagData={tagData}
-          searchTag={searchTag}
+          tagSelected={tagSelected}
         />
-        <SelectedTag tagSelected={tagSelected} />
+        <SelectedTag
+          tagSelected={tagSelected}
+          setTagSelected={setTagSelected}
+        />
         <ScrollView>
           <View style={styles.tagResultContainer}>
             {searchTag.map((itemValue) => (

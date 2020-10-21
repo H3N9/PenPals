@@ -1,15 +1,13 @@
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  FlatList,
-} from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { color, Value } from "react-native-reanimated";
 import styled from "styled-components/native";
 
-const SelectedTag = ({ tagSelected }) => {
+const SelectedTag = ({ tagSelected, setTagSelected }) => {
+  const delTag = (itemValue) => {
+    const tagDeleted = tagSelected.filter((value) => value.id !== itemValue.id);
+    setTagSelected(tagDeleted);
+  };
   return (
     <MainContainer>
       <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
@@ -17,7 +15,7 @@ const SelectedTag = ({ tagSelected }) => {
           SelectedTag :
         </TextPrimary>
         {tagSelected.map((itemValue) => (
-          <Tag key={itemValue.id}>
+          <Tag key={itemValue.id} onPress={() => delTag(itemValue)}>
             <Text>{itemValue.title}</Text>
           </Tag>
         ))}
