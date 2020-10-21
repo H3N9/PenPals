@@ -8,7 +8,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize())
 app.use(passport.session())
 
-app.use('/search', require('./server/routes/search'))
+app.use('/search', passport.authenticate('jwt', {session: false}),require('./server/routes/search'))
 app.use('/account', passport.authenticate('jwt', {session: false}), require('./server/routes/account'))
 app.use('/auth', require('./server/routes/auth'))
 app.use('/set-data', require('./server/routes/setData'))
