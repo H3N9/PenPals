@@ -11,13 +11,9 @@ import PostImage from './components/postImage'
 import {useSelector} from 'react-redux'
 
 const BoxProfile = ({ id, navigation }) => {
-
+    console.log(id, "box")
     const [user, setUser] = useState()
-
-    //All variable will be here
-    //const user = Schema.data.user[parseInt(id)-1]
-    //const user = Schema.getProfile(id);
-    const token = useSelector((state) => state.Authorize.token)
+    const token = useSelector((state) => state.Authorize.authorize.token)
     const url = `http://localhost:3000/search/user/${id}`
     useEffect(() => {
         fetch(url,{
@@ -38,7 +34,7 @@ const BoxProfile = ({ id, navigation }) => {
                 }
             }
         )
-        .catch(err => "Mute error")
+        .catch(err => "Mute")
     }, [])
 
     if(user){

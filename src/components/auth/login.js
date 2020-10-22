@@ -35,8 +35,8 @@ const Login = ({navigation}) => {
         }).catch(err => "Mute error")
         if(response.status === 200){
             const data = await response.json()
-            dispatch(actionAuthorize(data.token))
-            navigation.navigate("Home")
+            dispatch(actionAuthorize(data))
+            navigation.navigate("HomeTab")
         }
         else if(response.status == 422){
             setStatus(!status)

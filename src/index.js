@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
 import Account from "./pages/account";
 import Home from "./pages/home";
@@ -11,7 +11,7 @@ import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { TransitionPresets } from "@react-navigation/stack";
+import Login from '../src/components/auth/login'
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
@@ -23,8 +23,13 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
+
+
+
 const HomeTab = () => {
+  const authorize = useSelector((state) => state.Authorize.authorize)
   const theme = useSelector((state) => state.themeReducer.theme);
+  console.log(authorize.id,"index")
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -32,6 +37,7 @@ const HomeTab = () => {
         showLabel: false,
         style: { backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF" },
       }}
+      initialRouteName={"Home"}
     >
       <Tab.Screen
         name="Home"
@@ -83,6 +89,7 @@ const HomeTab = () => {
             return <AntDesign name="user" size={26} color={tabInfo.color} />;
           },
         }}
+        initialParams={{id:authorize.id}}
       />
     </Tab.Navigator>
   );
@@ -92,7 +99,7 @@ const StackNavigation = () => {
   return(
     <View style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="HomeTab">
             <Stack.Screen
               name="HomeTab"
               component={HomeTab}
@@ -118,25 +125,19 @@ const StackNavigation = () => {
               component={AddTag}
               options={{ headerShown: false }}
             />
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>
   )
 }
 
-const TabNavigation = () =>{
-  return(
-    <View style={{ flex: 1 }}>
-        <NavigationContainer>
-            <Tab.Screen />
-        </NavigationContainer>
-    </View>
-  )
-}
-
 const Index = () => {
   const theme = useSelector((state) => state.themeReducer.theme);
-
   const statusDynamic = (mode) =>{
     return mode === "dark"?  <DynamicStatusBar style="light" />:<DynamicStatusBar style="dark" />
   }

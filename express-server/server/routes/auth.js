@@ -18,7 +18,7 @@ router.post('/login', (req, res, next) =>{
       }
       if(user) {
           const token = jwt.sign(user.dataValues, 'your_jwt_secret')
-          return res.json({token})
+          return res.json({id:user.id, token})
       } else {
           return res.status(422).send("fail")
        }
