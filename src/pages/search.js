@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
-// import Homebar from "../components/homebar";
-import Navbar from "../components/navbar";
+import { ScrollView } from "react-native";
 import Suggestion from "../components/search/suggestion";
 import MainStyle from "../style/mainStyle";
 import SearchBar from "../components/search/searchBar";
@@ -25,7 +17,6 @@ const Search = ({ navigation }) => {
         <Suggestion userId={"2"} navigation={navigation} />
         <Suggestion userId={"3"} navigation={navigation} />
       </ScrollView>
-      <Navbar navigation={navigation} />
     </PrimaryContainer>
   );
 };

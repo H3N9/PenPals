@@ -3,7 +3,6 @@ import { View, ScrollView } from "react-native";
 import MainEdit from "../components/editProfile/mainEdit";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
-import styled from "styled-components/native";
 import { PrimaryContainer } from "../style/themeComponent";
 
 const screenWidth = Math.round(Dimensions.get("window").width);

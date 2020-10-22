@@ -43,14 +43,13 @@ const Post = ({ type, date, like, id, user }) => {
             style={styles.postImgProfile}
           />
         </View>
-        <View style={{justifyContent:'center'}}>
+        <View style={{ justifyContent: "center" }}>
           <View style={{ flexDirection: "row" }}>
             <TextPrimary style={styles.postUsername}>{user}</TextPrimary>
             <TextPrimary>{date}</TextPrimary>
           </View>
         </View>
       </View>
-      
       <View style={{ flex: 1 }}>
         {postControl(image, text)}
         <TouchableOpacity style={styles.likeButton}>
@@ -71,7 +70,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     paddingVertical: 10,
-    marginBottom: 2,
+    marginBottom: 40,
   },
   postImgProfile: {
     resizeMode: "cover",

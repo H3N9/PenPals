@@ -1,6 +1,5 @@
 import React, {useEffect} from "react";
 import { FlatList } from "react-native";
-import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
 import CreatePost from "../components/post/createPost";
 import Post from "../components/post/post";
@@ -75,28 +74,43 @@ const Home = ({ navigation }) => {
   // };
 
   const renderPostItem = ({ item }) => {
-    return (
-      <Post
-        key={item.id}
-        id={item.id}
-        type={item.type}
-        like={item.like}
-        date={item.date}
-        user={item.user}
-      />
-    );
+    if (item.id == "1") {
+      return (
+        <React.Fragment>
+          <CreatePost />
+          <Post
+            key={item.id}
+            id={item.id}
+            type={item.type}
+            like={item.like}
+            date={item.date}
+            user={item.user}
+          />
+        </React.Fragment>
+      );
+    } else {
+      return (
+        <Post
+          key={item.id}
+          id={item.id}
+          type={item.type}
+          like={item.like}
+          date={item.date}
+          user={item.user}
+        />
+      );
+    }
   };
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
       <Homebar navigation={navigation} />
-      <CreatePost />
       <FlatList
         data={initData}
         renderItem={renderPostItem}
         keyExtractor={(item) => item.id.toString()}
       />
-      <Navbar navigation={navigation} />
+      {/* <Navbar navigation={navigation} /> */}
     </PrimaryContainer>
   );
 };

@@ -1,12 +1,50 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
+import { color, Value } from "react-native-reanimated";
 import styled from "styled-components/native";
 
-const SelectedTag = () => {
+const SelectedTag = ({
+  tagSelected,
+  setTagSelected,
+  searchTag,
+  setSearchTag,
+}) => {
+  const delTag = (itemValue) => {
+    const tagDeleted = tagSelected.filter((value) => value.id !== itemValue.id);
+    const enableButton = searchTag.map((value) => {
+      if (itemValue.title == value.title) {
+        value.isSelected = false;
+      }
+      return value;
+    });
+    setSearchTag(enableButton);
+    setTagSelected(tagDeleted);
+  };
+  const renderItem = (tagItem) => {
+    return (
+      <Tag onPress={() => delTag(tagItem.item)}>
+        <Text>{tagItem.item.title}</Text>
+      </Tag>
+    );
+  };
   return (
     <MainContainer>
-      <View>
-        <TextPrimary style={{ marginLeft: 5 }}>SelectedTag :</TextPrimary>
+      <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
+        <TextPrimary style={{ marginLeft: 5, marginVertical: 2 }}>
+          SelectedTag :
+        </TextPrimary>
+        <FlatList
+          data={tagSelected}
+          renderItem={renderItem}
+          horizontal={true}
+          style={{ width: "100%" }}
+        />
       </View>
     </MainContainer>
   );
@@ -21,6 +59,14 @@ const MainContainer = styled.View`
 const TextPrimary = styled.Text`
   color: ${(props) => props.theme.textColor};
   font-weight: bold;
+`;
+
+const Tag = styled.TouchableOpacity`
+  font-weight: bold;
+  border-radius: 50px;
+  padding: 3px 7px;
+  margin: 0 2px;
+  background: #ff5350;
 `;
 
 export default SelectedTag;
