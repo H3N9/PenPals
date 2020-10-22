@@ -1,5 +1,5 @@
 const db = require('../../models')
-const { User, Profile, Tag, Category, FavTag } = db
+const { User, Profile, Tag, Category, FavTag, Relationship } = db
 const { Op } = require('sequelize')
 
 module.exports = async (profileQuery, tagQuery) =>{
@@ -10,7 +10,8 @@ module.exports = async (profileQuery, tagQuery) =>{
         {model: Tag, as: "tag", attributes:["id", "name", "type"], through: { attributes: [] }, include: [
             {model: FavTag, as: "favTag", include: ["category"]}
         ]},
-        {model: User, as: "user", attributes:["username"]}
+        {model: User, as: "user", attributes:["username"]},
+        {model: Profile, as: "friend"}
     ],
     })
 
@@ -56,7 +57,7 @@ module.exports = async (profileQuery, tagQuery) =>{
         })
         return item2
         })
-        item1['friend'] = ["2"]
+        //item1['friend'] = ["2"]
         item1['describe'] = item1.aboutMe
         delete item1["tag"]
     })

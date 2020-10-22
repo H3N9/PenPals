@@ -89,6 +89,28 @@
                     "field": "id",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "tagId": {
+                    "field": "tagId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Tags",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "categoryId": {
+                    "field": "categoryId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -98,28 +120,6 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
-                },
-                "tagId": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Tags",
-                        "key": "id"
-                    },
-                    "onDelete": "SET NULL",
-                    "onUpdate": "CASCADE",
-                    "field": "tagId",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "categoryId": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Categories",
-                        "key": "id"
-                    },
-                    "onDelete": "SET NULL",
-                    "onUpdate": "CASCADE",
-                    "field": "categoryId",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -218,6 +218,46 @@
                     "onUpdate": "CASCADE",
                     "field": "userId",
                     "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Relationships": {
+            "tableName": "Relationships",
+            "schema": {
+                "profileId": {
+                    "field": "profileId",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Profiles",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "friendId": {
+                    "field": "friendId",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Profiles",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
                 }
             },
             "indexes": []
@@ -331,5 +371,5 @@
             "indexes": []
         }
     },
-    "revision": 18
+    "revision": 19
 }

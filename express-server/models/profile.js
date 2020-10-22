@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) =>{
     Profile.associate = (models) =>{
         Profile.belongsToMany(models.Tag, {through: 'UserTag', foreignKey: 'userId', as: 'tag'})
         Profile.belongsTo(models.User, {foreignKey: 'userId', as: 'user'})
+        Profile.belongsToMany(models.Profile, {through: 'Relationship',foreignKey: 'profileId', as: "friend"})
     }
 
     return Profile
