@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  StyleSheet,
-  View,
-  ScrollView,
-  FlatList,
-  SafeAreaView,
-} from "react-native";
+import { FlatList, SafeAreaView } from "react-native";
 import Homebar from "../components/homebar";
-import Navbar from "../components/navbar";
 import Chat from "../components/messenger/chat";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
@@ -43,7 +36,6 @@ const Messenger = ({ navigation }) => {
           keyExtractor={(messages) => messages.id}
         />
       </SafeAreaView>
-      <Navbar navigation={navigation} />
     </PrimaryContainer>
   );
 };

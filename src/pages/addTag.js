@@ -1,12 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  StyleSheet,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-} from "react-native";
-import Navbar from "../components/navbar";
+import { View, StyleSheet, ScrollView } from "react-native";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
@@ -53,7 +46,6 @@ const AddTag = ({ navigation }) => {
           </View>
         </ScrollView>
       </View>
-      <Navbar navigation={navigation} />
     </PrimaryContainer>
   );
 };

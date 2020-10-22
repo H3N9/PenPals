@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FlatList } from "react-native";
-import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
 import CreatePost from "../components/post/createPost";
 import Post from "../components/post/post";
@@ -106,7 +105,7 @@ const Home = ({ navigation }) => {
         renderItem={renderPostItem}
         keyExtractor={(item) => item.id.toString()}
       />
-      <Navbar navigation={navigation} />
+      {/* <Navbar navigation={navigation} /> */}
     </PrimaryContainer>
   );
 };

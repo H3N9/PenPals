@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  SafeAreaView,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import BoxMessage from "../components/messenger/boxMessage";
 import BarMessage from "../components/messenger/barMessage";
 import Keyboard from "../components/messenger/keyboard";
@@ -13,8 +7,7 @@ import MainStyle from "../style/mainStyle";
 import { PrimaryContainer } from "../style/themeComponent";
 
 const ChatRoom = ({ navigation, route }) => {
-  const texts = route.params.texts;
-  const usernameAnother = route.params.usernameAnother;
+  const { texts, usernameAnother } = route.params;
   return (
     <PrimaryContainer style={[styles.box, MainStyle.mainBackground]}>
       <View>

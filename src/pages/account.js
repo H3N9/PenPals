@@ -1,28 +1,20 @@
 import React from "react";
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { View, Text, ScrollView, StyleSheet } from "react-native";
 import Navbar from "../components/navbar";
-import Homebar from "../components/homebar";
 import BoxProfile from "../components/account/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
+import Schema from "../../src/schema";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Account = ({ route, navigation }) => {
-  const { id } = route.params;
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <ScrollView style={stylesCondition()}>
-        <BoxProfile id={id} navigation={navigation} />
+        <BoxProfile id={Schema.user} navigation={navigation} />
       </ScrollView>
-      <Navbar navigation={navigation} />
     </PrimaryContainer>
   );
 };
