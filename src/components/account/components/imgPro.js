@@ -3,7 +3,7 @@ import {StyleSheet, Image, TouchableOpacity} from 'react-native'
 
 
 const ImgPro = () => {
-    const image = require('../../../assets/man.png')
+    const image = require('../../../../assets/man.png')
     return (
         <TouchableOpacity>
             <Image style={styles.infoImgProfile} source={image}/>

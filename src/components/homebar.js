@@ -1,10 +1,8 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
-import { useRoute } from "@react-navigation/native";
 import { useSelector } from "react-redux";
 
 const Homebar = ({ navigation }) => {
-  const routeName = useRoute().name;
   const theme = useSelector((state) => state.themeReducer.theme);
   return (
     <View style={styles.homebar}>

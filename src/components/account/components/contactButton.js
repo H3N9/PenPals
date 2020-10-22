@@ -1,6 +1,6 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import mainStyle from "../../style/mainStyle";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import mainStyle from "../../../style/mainStyle";
 import Icon from "react-native-vector-icons/Entypo";
 
 const ContactButton = ({ title, handle, iconName }) => {

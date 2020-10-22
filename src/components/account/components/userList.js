@@ -1,11 +1,8 @@
 import React from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
-import ImagPro from "./imgPro";
-import { TextPrimary } from "../../style/themeComponent";
+import { View, StyleSheet } from "react-native";
+import { TextPrimary } from "../../../style/themeComponent";
 
-const userList = ({ user }) => {
-  const friendCount = user.friend.length;
-  const intro = user.intro;
+const userList = ({ friendCount, intro }) => {
 
   return (
     <View style={styles.infoContainer}>

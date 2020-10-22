@@ -1,16 +1,14 @@
-import React, {useEffect} from "react";
+import React from "react";
 import Index from "./src/index";
-import { LinearGradient } from "expo-linear-gradient";
-import { StatusBar } from "expo-status-bar";
-import Chat from "./src/pages/chatRoom";
 
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import themeReducer from "./redux/themeReducer";
+import {Authorize} from './redux/authorize'
 
 const store = createStore(
-  combineReducers({ themeReducer }),
+  combineReducers({ themeReducer, Authorize }),
   applyMiddleware(thunk)
 );
 

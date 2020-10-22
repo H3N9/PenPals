@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import Tag from "../global/tag";
+import Tag from "../account/components/tag";
 import Schema from "../../schema";
 import {
   TextPrimary,
@@ -9,8 +9,8 @@ import {
   EntypoIcon,
 } from "../../style/themeComponent";
 
-const Suggestion = ({ navigation, user }) => {
-  //const user = Schema.getProfile(userId);
+const Suggestion = ({ navigation, userId }) => {
+  const user = Schema.getProfile(userId);
   const {
     id,
     username,
@@ -27,7 +27,7 @@ const Suggestion = ({ navigation, user }) => {
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("ViewProfile", { id: id, user: user })}
+        onPress={() => navigation.navigate("ViewProfile", { id: id })}
       >
         <Image
           style={{

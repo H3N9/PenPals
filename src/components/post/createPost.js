@@ -3,23 +3,19 @@ import {
   StyleSheet,
   View,
   Text,
-  TextInput,
   Image,
-  Modal,
   TouchableOpacity,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import PostModal from "./postModal";
 import { SecondContainer } from "../../style/themeComponent";
 
-const CreatePost = ({ addPost }) => {
+const CreatePost = () => {
   const [text, setText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
   const posted = () => {
-    addPost(text);
     setModalVisible(!modalVisible);
-    setText("");
   };
 
   return (
@@ -73,7 +69,6 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 50,
     padding: 10,
-    color: "#fff",
   },
 });
 

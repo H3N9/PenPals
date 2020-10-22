@@ -4,7 +4,7 @@ export const switchTheme = (theme) => {
   return (dispatch) => {
     dispatch({
       type: switch_theme,
-      theme: theme,
+      theme,
     });
   };
 };

@@ -13,10 +13,12 @@ router.get('/', passport.authenticate('jwt', {session: false}), (req, res) =>{
 
 router.post('/login', (req, res, next) =>{
     passport.authenticate('local', {session: false}, (err, user, info) => {
-      if (err) return next(err)
+      if (err) {
+        return next(err)
+      }
       if(user) {
           const token = jwt.sign(user.dataValues, 'your_jwt_secret')
-          return res.json({username: user.username , token})
+          return res.json({token})
       } else {
           return res.status(422).send("fail")
        }
