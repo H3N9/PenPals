@@ -1,14 +1,14 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import MainStyle from "../../style/mainStyle";
-import { TextPrimary, SimpleLineIcon } from "../../style/themeComponent";
+import MainStyle from "../../../style/mainStyle";
+import { TextPrimary, SimpleLineIcon } from "../../../style/themeComponent";
 
-const BoxInfo = ({ user, navigation }) => {
-  const { id, username, gender, firstName, lastName, age, city, nation } = user;
-  const image = require("../../../assets/man.png");
+const BoxInfo = ({ userDetail, navigation, auth }) => {
+  const { username, gender, firstName, lastName, age, city, nation } = userDetail;
+  const image = require("../../../../assets/man.png");
   return (
     <View style={styles.main}>
-      <TouchableOpacity
+      {!auth &&<TouchableOpacity
         style={{
           marginLeft: 15,
           width: "15%",
@@ -26,7 +26,7 @@ const BoxInfo = ({ user, navigation }) => {
             color: "#fff",
           }}
         />
-      </TouchableOpacity>
+      </TouchableOpacity>}
       <View style={styles.userInfo}>
         <Image style={styles.imgProfile} source={image} />
         <View style={{ flex: 1, justifyContent: "flex-end", marginLeft: 20 }}>

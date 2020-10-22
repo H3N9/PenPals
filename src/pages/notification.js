@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   View,
-  Text,
   ScrollView,
-  StyleSheet,
-  TouchableOpacity,
   Switch,
 } from "react-native";
 import Navbar from "../components/navbar";
 import Homebar from "../components/homebar";
-import BoxProfile from "../components/account/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 
@@ -26,7 +22,7 @@ const Notification = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const darkModeHandle = () => {
-    if (theme.mode == "light") {
+    if (theme.mode === "light") {
       dispatch(switchTheme(darkTheme));
     } else {
       dispatch(switchTheme(lightTheme));

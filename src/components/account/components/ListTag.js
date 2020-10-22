@@ -1,9 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import MainStyle from "../../style/mainStyle";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
+import MainStyle from "../../../style/mainStyle";
 import Tag from "./tag";
 import Entypo from "react-native-vector-icons/Entypo";
-import { TextPrimary, SecondContainer } from "../../style/themeComponent";
+import { TextPrimary, SecondContainer } from "../../../style/themeComponent";
 
 const ListTag = ({ tag, title, handle }) => {
   const callTag = (value, index) => {

@@ -1,14 +1,44 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import { Dimensions } from "react-native";
 import Schema from "../schema";
 import { SecondContainer } from "../style/themeComponent";
+import {useSelector} from 'react-redux'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Navbar = ({ navigation }) => {
   const routeName = useRoute().name;
+  const token = useSelector((state) => state.Authorize.token)
+  const url = "http://localhost:3000/account/my-profile"
+  const [userId, setUserId] = useState()
+
+  useEffect(() => {
+    fetch(url,{
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            Authorization: token,
+          },
+    })
+    .then( async (res) => {
+            if(res.status === 200){
+                const data = await res.json()
+                setUser(...data)
+            }
+            else if(res.status === 401){
+                navigation.navigate("Login")
+            }
+        }
+    )
+    .catch(err => "Mute error")
+}, [])
+
+
+
+  
   return (
     <SecondContainer style={navbarCondition()}>
       <View style={stylesCondition(routeName, "Home")}>

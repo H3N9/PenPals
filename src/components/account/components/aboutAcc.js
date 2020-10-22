@@ -1,7 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text } from "react-native";
-import MainStyle from "../../style/mainStyle";
-import { TextPrimary } from "../../style/themeComponent";
+import { View, StyleSheet } from "react-native";
+import MainStyle from "../../../style/mainStyle";
+import { TextPrimary } from "../../../style/themeComponent";
 const AboutAcc = ({ describe }) => {
   return (
     <View style={styles.aboutMe}>
