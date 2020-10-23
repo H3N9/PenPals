@@ -186,10 +186,6 @@
                     "field": "gender",
                     "seqType": "Sequelize.ENUM('male', 'female', 'other')"
                 },
-                "age": {
-                    "field": "age",
-                    "seqType": "Sequelize.INTEGER"
-                },
                 "image": {
                     "field": "image",
                     "seqType": "Sequelize.STRING"
@@ -197,6 +193,10 @@
                 "aboutMe": {
                     "field": "aboutMe",
                     "seqType": "Sequelize.STRING"
+                },
+                "birthdate": {
+                    "field": "birthdate",
+                    "seqType": "Sequelize.DATEONLY"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -371,5 +371,5 @@
             "indexes": []
         }
     },
-    "revision": 19
+    "revision": 21
 }

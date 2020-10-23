@@ -57,6 +57,14 @@ module.exports = async (profileQuery, tagQuery) =>{
         })
         return item2
         })
+        const today = new Date()
+        const birthdate = new Date(item1.birthdate)
+        let age = today.getFullYear() - birthdate.getFullYear()
+        const m = today.getMonth() - birthdate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+            age--;
+        }
+        item1['age'] = age
         //item1['friend'] = ["2"]
         item1['describe'] = item1.aboutMe
         delete item1["tag"]
