@@ -1,6 +1,5 @@
 import React from "react";
 import { View, ScrollView } from "react-native";
-import MainEdit from "../components/editProfile/mainEdit";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
