@@ -9,6 +9,7 @@ import ChatRoom from "./pages/chatRoom";
 import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
+import FriendList from "./pages/friendList";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
@@ -19,6 +20,7 @@ import { useSelector } from "react-redux";
 
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { FlatList } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,7 +32,9 @@ const HomeTab = () => {
       tabBarOptions={{
         activeTintColor: "#ff5350",
         showLabel: false,
-        style: { backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF" },
+        style: {
+          backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF",
+        },
       }}
     >
       <Tab.Screen
@@ -124,6 +128,11 @@ const Index = () => {
             <Stack.Screen
               name="AddTag"
               component={AddTag}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="FriendList"
+              component={FriendList}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

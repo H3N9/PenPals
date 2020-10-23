@@ -7,80 +7,85 @@ import ContactButton from "./components/contactButton";
 import AboutAcc from "./components/aboutAcc";
 import Schema from "../../schema";
 import { PrimaryContainer } from "../../style/themeComponent";
-import PostImage from './components/postImage'
+import PostImage from "./components/postImage";
 
 const BoxProfile = ({ id, navigation }) => {
+  //All variable will be here
+  //const user = Schema.data.user[parseInt(id)-1]
+  const user = Schema.getProfile(id);
 
-    //All variable will be here
-    //const user = Schema.data.user[parseInt(id)-1]
-    const user = Schema.getProfile(id);
-    
-    //listTag variable
-    const { hobbies, favorites } = user;
+  //listTag variable
+  const { hobbies, favorites } = user;
 
-    //authen
-    const isAuthUser = id === Schema.user;
+  //authen
+  const isAuthUser = id === Schema.user;
 
-    //userList variable
-    const friendCount = user.friend.length
-    const intro = user.intro
+  //userList variable
+  const friendCount = user.friend.length;
+  const intro = user.intro;
 
-    //aboutAcc variable
-    const describe = user.describe;
+  //aboutAcc variable
+  const describe = user.describe;
 
+  const images = [
+    require("../../../assets/5.png"),
+    require("../../../assets/5.png"),
+    require("../../../assets/5.png"),
+    require("../../../assets/5.png"),
+  ];
 
-    const images = [require('../../../assets/5.png'), require('../../../assets/5.png'), require('../../../assets/5.png'), require('../../../assets/5.png')]
-
-
-    const controlViewProfile = (auth) =>{
-        if(auth){
-            return(
-                <View style={styles.contact}>
-                    <ContactButton
-                        title={"Edit Profile"}
-                        handle={() => navigation.navigate("EditProfile")}
-                        iconName={"edit"}
-                    />
-                </View>
-            )
-        }
-        else{
-            return(
-                <View style={styles.contact}>
-                    <ContactButton
-                        title={"Add Friend"}
-                        handle={() => {}}
-                        iconName={"add-user"}
-                    />
-                    <ContactButton
-                        title={"Message"}
-                        handle={() => {}}
-                        iconName={"chat"}
-                    />
-                </View>
-            )
-        }
+  const controlViewProfile = (auth) => {
+    if (auth) {
+      return (
+        <View style={styles.contact}>
+          <ContactButton
+            title={"Edit Profile"}
+            handle={() => navigation.navigate("EditProfile")}
+            iconName={"edit"}
+          />
+        </View>
+      );
+    } else {
+      return (
+        <View style={styles.contact}>
+          <ContactButton
+            title={"Add Friend"}
+            handle={() => {}}
+            iconName={"add-user"}
+          />
+          <ContactButton
+            title={"Message"}
+            handle={() => {}}
+            iconName={"chat"}
+          />
+        </View>
+      );
     }
-    
-    return (
-        <PrimaryContainer>
-            <BoxInfo userDetail={user} auth={isAuthUser} navigation={navigation} />
-            <UserList friendCount={friendCount} intro={intro} />
-            {controlViewProfile(isAuthUser)}
-            <ListTag
-                tag={hobbies}
-                title={"Hobbies & interests Tag"}
-                handle={() => navigation.navigate("AddTag")}
-            />
-            <ListTag
-                tag={favorites}
-                title={"Favorite Tag"}
-                handle={() => navigation.navigate("AddTag")}
-            />
-            <AboutAcc describe={describe} />
-            <PostImage images={images}/>
-        </PrimaryContainer>
-    );
+  };
+
+  return (
+    <PrimaryContainer>
+      <BoxInfo userDetail={user} auth={isAuthUser} navigation={navigation} />
+      <UserList
+        friendCount={friendCount}
+        intro={intro}
+        navigation={navigation}
+      />
+      {controlViewProfile(isAuthUser)}
+      <ListTag
+        tag={hobbies}
+        title={"Hobbies & interests Tag"}
+        handle={() => navigation.navigate("AddTag")}
+      />
+      <ListTag
+        tag={favorites}
+        title={"Favorite Tag"}
+        handle={() => navigation.navigate("AddTag")}
+      />
+      <AboutAcc describe={describe} />
+      <PostImage images={images} />
+    </PrimaryContainer>
+  );
 };
 
 const styles = StyleSheet.create({
