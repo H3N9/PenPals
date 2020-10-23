@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 const TagResult = ({ tagData, tagSelected, setTagSelected }) => {
-  // const [isSelect, setIsSelect] = useState(false);
-
   const styles = StyleSheet.create({
     container: {
       backgroundColor: tagData.isSelected ? "gray" : "#FF5350",

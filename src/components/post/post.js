@@ -13,7 +13,7 @@ const Post = ({ type, date, like, id, user }) => {
   const postControl = (image, text) => {
     if (image && text) {
       return (
-        <View>
+        <View style={{ paddingVertical: 5 }}>
           <TextPost text={text} />
           <ImagePost />
         </View>
@@ -42,7 +42,7 @@ const Post = ({ type, date, like, id, user }) => {
         </View>
       </View>
 
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, paddingVertical: 5 }}>
         {postControl(image, text)}
         <TouchableOpacity style={styles.likeButton}>
           <AntDesign
@@ -61,8 +61,8 @@ const styles = StyleSheet.create({
   postContainer: {
     flex: 1,
     flexDirection: "column",
-    paddingVertical: 10,
-    marginBottom: 40,
+    paddingVertical: 5,
+    marginBottom: 20,
   },
   postImgProfile: {
     resizeMode: "cover",
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
   },
   boxIdentity: {
     flexDirection: "row",
-    paddingLeft: 5,
+    padding: 5,
   },
 });
 
