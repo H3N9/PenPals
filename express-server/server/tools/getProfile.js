@@ -1,7 +1,8 @@
 const db = require('../../models')
-const { User, Profile, Tag, Category, FavTag } = db
+const { User, Profile, Tag, Category, FavTag, Relationship } = db
+const { Op } = require('sequelize')
 
-module.exports = async ({ profileQuery, tagQuery }) =>{
+module.exports = async (profileQuery, tagQuery) =>{
     const dataProfile = await Profile.findAll({
     where: profileQuery,
     attributes: {exclude: ["createdAt", "updatedAt"]},
@@ -9,9 +10,12 @@ module.exports = async ({ profileQuery, tagQuery }) =>{
         {model: Tag, as: "tag", attributes:["id", "name", "type"], through: { attributes: [] }, include: [
             {model: FavTag, as: "favTag", include: ["category"]}
         ]},
-        {model: User, as: "user", attributes:["username"]}
+        {model: User, as: "user", attributes:["username"]},
+        {model: Profile, as: "friend"}
     ],
     })
+
+    //console.log(dataProfile[0].tag.dataValues)
 
     const profile = dataProfile.map((item) =>{
         item.dataValues["username"] = item.user.username
@@ -53,7 +57,15 @@ module.exports = async ({ profileQuery, tagQuery }) =>{
         })
         return item2
         })
-        item1['friend'] = ["2"]
+        const today = new Date()
+        const birthdate = new Date(item1.birthdate)
+        let age = today.getFullYear() - birthdate.getFullYear()
+        const m = today.getMonth() - birthdate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthdate.getDate())) {
+            age--;
+        }
+        item1['age'] = age
+        //item1['friend'] = ["2"]
         item1['describe'] = item1.aboutMe
         delete item1["tag"]
     })

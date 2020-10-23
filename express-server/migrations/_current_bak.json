@@ -1,5 +1,34 @@
 {
     "tables": {
+        "Categories": {
+            "tableName": "Categories",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "name": {
+                    "allowNull": false,
+                    "unique": true,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Comments": {
             "tableName": "Comments",
             "schema": {
@@ -46,6 +75,51 @@
                     "onUpdate": "CASCADE",
                     "field": "PostId",
                     "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "FavTags": {
+            "tableName": "FavTags",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "tagId": {
+                    "field": "tagId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Tags",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "categoryId": {
+                    "field": "categoryId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Categories",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
                 }
             },
             "indexes": []
@@ -112,10 +186,6 @@
                     "field": "gender",
                     "seqType": "Sequelize.ENUM('male', 'female', 'other')"
                 },
-                "age": {
-                    "field": "age",
-                    "seqType": "Sequelize.INTEGER"
-                },
                 "image": {
                     "field": "image",
                     "seqType": "Sequelize.STRING"
@@ -148,6 +218,46 @@
             },
             "indexes": []
         },
+        "Relationships": {
+            "tableName": "Relationships",
+            "schema": {
+                "profileId": {
+                    "field": "profileId",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Profiles",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "friendId": {
+                    "field": "friendId",
+                    "primaryKey": true,
+                    "references": {
+                        "model": "Profiles",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "allowNull": true,
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Tags": {
             "tableName": "Tags",
             "schema": {
@@ -163,6 +273,10 @@
                     "unique": true,
                     "field": "name",
                     "seqType": "Sequelize.STRING"
+                },
+                "type": {
+                    "field": "type",
+                    "seqType": "Sequelize.ENUM('hobbies', 'favorites')"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -222,6 +336,7 @@
                     },
                     "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
+                    "unique": "UserTags_tagId_userId_unique",
                     "allowNull": true,
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -234,6 +349,7 @@
                     },
                     "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
+                    "unique": "UserTags_tagId_userId_unique",
                     "allowNull": true,
                     "seqType": "Sequelize.INTEGER"
                 },
@@ -246,21 +362,10 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
-                },
-                "UserId": {
-                    "primaryKey": true,
-                    "references": {
-                        "model": "Users",
-                        "key": "id"
-                    },
-                    "onDelete": "CASCADE",
-                    "onUpdate": "CASCADE",
-                    "field": "UserId",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
         }
     },
-    "revision": 17
+    "revision": 20
 }

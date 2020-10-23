@@ -8,17 +8,25 @@ router.get('/', (req, res) =>{
     res.send("Hello")
 })
 
-router.put('/user-addtag/:id', (req, res) =>{
-    const id = req.params.id
+router.put('/add-tag', (req, res) =>{
     const data = req.body
   
-    Profile.findByPk(id).then((profile) =>{
+    Profile.findOne({ where: {userId: req.user.id}}).then((profile) =>{
       profile.setTag(data.tag).then((profile) =>{
-        Profile.findByPk(id, {include: ["tag"]}).then((profile) =>{
+        Profile.findOne({where: {userId: req.user.id}, include: ["tag"]}).then((profile) =>{
           res.json(profile)
         })
       })
     })
+})
+
+router.put('/add-friend', async (req, res) =>{
+  const data = req.body
+  let profile = await Profile.findOne({ where: {userId: req.user.id}})
+  await profile.setFriend(data.friend)
+  profile = await Profile.findOne({ where: {userId: req.user.id}, include: ["friend"]})
+
+  res.json(profile)
 })
 
 router.post('/add-profile', async (req, res) =>{
