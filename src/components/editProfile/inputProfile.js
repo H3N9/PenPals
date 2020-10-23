@@ -1,22 +1,22 @@
-import React, { useEffect } from "react";
-import { View, StyleSheet, Text } from "react-native";
-import RNPickerSelect from "react-native-picker-select";
+import React from "react";
+import { View, StyleSheet } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import InputTextType from "./inputTextType";
 import InputSelectType from "./inputSelectType";
 import { TextPrimary } from "../../style/themeComponent";
 
-const InputProfile = () => {
+const InputProfile = ({navigation, user}) => {
+  const {username, gender, firstName, lastName, age, city, nation, intro, describe} = user
   return (
     <View style={{ padding: 20 }}>
       {/* UsernameInput */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Username" />
+        <InputTextType placeholder="Username" value={username} />
       </View>
       {/* Name & Lastname Input */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Name" />
-        <InputTextType placeholder="Lastname" />
+        <InputTextType placeholder="Name" value={firstName} />
+        <InputTextType placeholder="Lastname" value={lastName} />
       </View>
 
       {/* BirthDay Input */}
@@ -36,7 +36,7 @@ const InputProfile = () => {
           <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             Gender
           </TextPrimary>
-          <InputSelectType placeholder="Gender" />
+          <InputSelectType placeholder="Gender" value={gender} />
         </View>
       </View>
 
@@ -46,22 +46,22 @@ const InputProfile = () => {
           <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             Nation
           </TextPrimary>
-          <InputSelectType placeholder="Nation" />
+          <InputSelectType placeholder="Nation" value={nation} />
         </View>
         <View style={{ flex: 1 }}>
           <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             City
           </TextPrimary>
-          <InputSelectType placeholder="City" />
+          <InputSelectType placeholder="City" value={city} />
         </View>
       </View>
       {/* introInput */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Introquotes" />
+        <InputTextType placeholder="Introquotes" value={intro} />
       </View>
       {/* AboutInput */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="AboutMe" />
+        <InputTextType placeholder="AboutMe" value={describe} />
       </View>
     </View>
   );

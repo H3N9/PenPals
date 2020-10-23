@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import React from "react";
 import ProfileHeader from "./profileHeader";
 import InputProfile from "./inputProfile";
 
-const MainEdit = ({ navigation }) => {
+const MainEdit = ({ navigation, user }) => {
   return (
     <React.Fragment>
       <ProfileHeader navigation={navigation} />
-      <InputProfile />
+      <InputProfile user={user} navigation={navigation} />
     </React.Fragment>
   );
 };

@@ -65,13 +65,13 @@ const Success = ({user, userId, navigation}) => {
     const images = [require('../../../assets/5.png'), require('../../../assets/5.png'), require('../../../assets/5.png'), require('../../../assets/5.png')]
 
 
-    const controlViewProfile = (auth) =>{
+    const controlViewProfile = (auth, user) =>{
         if(auth){
             return(
                 <View style={styles.contact}>
                     <ContactButton
                         title={"Edit Profile"}
-                        handle={() => navigation.navigate("EditProfile")}
+                        handle={() => navigation.navigate("EditProfile", {user:user})}
                         iconName={"edit"}
                     />
                 </View>
@@ -99,7 +99,7 @@ const Success = ({user, userId, navigation}) => {
         <PrimaryContainer>
             <BoxInfo userDetail={user} auth={isAuthUser} navigation={navigation} />
             <UserList friendCount={friendCount} intro={intro} />
-            {controlViewProfile(isAuthUser)}
+            {controlViewProfile(isAuthUser, user)}
             <ListTag
                 tag={hobbies}
                 title={"Hobbies & interests Tag"}
