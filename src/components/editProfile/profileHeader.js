@@ -16,7 +16,7 @@ const ProfileHeader = ({ navigation }) => {
           <Icons name="arrow-left" color="#fff" size={20} />
           <Text style={MainStyle.textWhiteBold}>Back</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.navigate("Account")}>
+        <TouchableOpacity onPress={() => navigation.navigate("MyAccount")}>
           <Text style={MainStyle.textWhiteBold}>Done</Text>
         </TouchableOpacity>
       </View>

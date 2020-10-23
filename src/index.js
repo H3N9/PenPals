@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
-import Account from "./pages/account";
+import MyAccount from "./pages/myAccount";
 import Home from "./pages/home";
 import Messenger from "./pages/messenger";
 import Search from "./pages/search";
@@ -27,9 +27,7 @@ const Tab = createBottomTabNavigator();
 
 
 const HomeTab = () => {
-  const authorize = useSelector((state) => state.Authorize.authorize)
   const theme = useSelector((state) => state.themeReducer.theme);
-  console.log(authorize.id,"index")
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -82,14 +80,13 @@ const HomeTab = () => {
         }}
       />
       <Tab.Screen
-        name="Account"
-        component={Account}
+        name="MyAccount"
+        component={MyAccount}
         options={{
           tabBarIcon: (tabInfo) => {
             return <AntDesign name="user" size={26} color={tabInfo.color} />;
           },
         }}
-        initialParams={{id:authorize.id}}
       />
     </Tab.Navigator>
   );

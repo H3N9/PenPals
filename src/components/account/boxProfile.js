@@ -11,9 +11,9 @@ import PostImage from './components/postImage'
 import {useSelector} from 'react-redux'
 
 const BoxProfile = ({ id, navigation }) => {
-    console.log(id, "box")
     const [user, setUser] = useState()
-    const token = useSelector((state) => state.Authorize.authorize.token)
+    const authorize = useSelector((state) => state.Authorize.authorize)
+    const {userId, token} = authorize
     const url = `http://localhost:3000/search/user/${id}`
     useEffect(() => {
         fetch(url,{
@@ -35,10 +35,10 @@ const BoxProfile = ({ id, navigation }) => {
             }
         )
         .catch(err => "Mute")
-    }, [])
+    }, [id])
 
     if(user){
-        return <Success user={user} id={id} navigation={navigation} />
+        return <Success user={user} userId={userId} navigation={navigation} />
     }
     else{
         return <ActivityIndicator />
@@ -47,12 +47,12 @@ const BoxProfile = ({ id, navigation }) => {
     
 };
 
-const Success = ({user, id, navigation}) => {
+const Success = ({user, userId, navigation}) => {
     //listTag variable
     const { hobbies, favorites } = user;
 
-    //authen
-    const isAuthUser = id === Schema.user;
+    //auth
+    const isAuthUser = user.userId === userId;
 
     //userList variable
     const friendCount = user.friend.length

@@ -25,8 +25,8 @@ const Login = ({navigation}) => {
         const response = await fetch(url, {
             method: 'POST',
             headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json'
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 username: username,
@@ -38,7 +38,7 @@ const Login = ({navigation}) => {
             dispatch(actionAuthorize(data))
             navigation.navigate("HomeTab")
         }
-        else if(response.status == 422){
+        else if(response.status === 422){
             setStatus(!status)
         }
 

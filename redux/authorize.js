@@ -2,7 +2,7 @@ const todo = "Change token"
 
 const initial = {
     authorize:{
-        id:"",
+        userId:"",
         token:""
     }
 }
@@ -10,7 +10,7 @@ const initial = {
 export const Authorize = (state = initial, action) => {
     switch(action.type){
         case todo:
-            return {authorize:{id:action.id, token:`Bearer ${action.token}`}}
+            return {authorize:{userId:action.id, token:`Bearer ${action.token}`}}
         default:
             return state
     }
