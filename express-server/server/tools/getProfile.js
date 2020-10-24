@@ -2,7 +2,7 @@ const db = require('../../models')
 const { User, Profile, Tag, Category, FavTag, Relationship } = db
 const { Op } = require('sequelize')
 
-module.exports = async (profileQuery, tagQuery) =>{
+module.exports = async ({ profileQuery, otherQuery }) =>{
     const dataProfile = await Profile.findAll({
     where: profileQuery,
     attributes: {exclude: ["createdAt", "updatedAt"]},
@@ -17,7 +17,7 @@ module.exports = async (profileQuery, tagQuery) =>{
 
     //console.log(dataProfile[0].tag.dataValues)
 
-    const profile = dataProfile.map((item) =>{
+    let profile = dataProfile.map((item) =>{
         item.dataValues["username"] = item.user.username
         delete item.dataValues["user"]
         return item.dataValues
@@ -69,5 +69,11 @@ module.exports = async (profileQuery, tagQuery) =>{
         item1['describe'] = item1.aboutMe
         delete item1["tag"]
     })
+    if (otherQuery["age"] !== undefined && otherQuery["age"].length === 2){
+        const ageRange = otherQuery["age"]
+        profile = profile.filter((item1) =>{
+            return item1.age >= ageRange[0] && item1.age <=  ageRange[1]
+        })
+    }
     return profile
 }
