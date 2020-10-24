@@ -6,6 +6,7 @@ import {
   Modal,
   Text,
   FlatList,
+  Keyboard,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
 
@@ -18,20 +19,20 @@ import {
 const modalSelect = ({
   modalVisible,
   setModalVisible,
-  title,
   data,
   filterData,
   setFilterData,
+  specialData,
 }) => {
   const [text, setText] = useState("");
-  const [filterTag, setFilterTag] = useState(data);
+  const [searchData, setSearchData] = useState(data);
 
   const renderItem = ({ item }) => {
     return (
       <View style={styles.tag}>
         <TouchableOpacity
           onPress={() => {
-            filterData.tag = item.title;
+            filterData[specialData] = item.title;
             setFilterData(filterData);
             setModalVisible(!modalVisible);
           }}
@@ -42,15 +43,12 @@ const modalSelect = ({
     );
   };
   const inputHandle = (value) => {
-    setText(value);
-    if (value == "") {
-      return setFilterTag(data);
-    }
     const valueUpper = value.toUpperCase();
-    const filteredData = filterTag.filter(
+    const filteredData = data.filter(
       (itemValue) => itemValue.title.toUpperCase().indexOf(valueUpper) > -1
     );
-    return setFilterTag(filteredData);
+    console.log(filteredData);
+    return setSearchData(filteredData);
   };
 
   return (
@@ -76,11 +74,16 @@ const modalSelect = ({
             placeholderTextColor="#AAA"
             style={styles.textInput}
             value={text}
-            onChangeText={(value) => inputHandle(value)}
+            onChangeText={(value) => setText(value)}
             clearButtonMode="always"
+            returnKeyType="search"
+            onSubmitEditing={() => {
+              inputHandle(text);
+              Keyboard.dismiss();
+            }}
           />
           <FlatList
-            data={filterTag}
+            data={searchData}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
           />

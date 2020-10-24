@@ -7,8 +7,10 @@ import {
   TextPrimary,
   FontAwesomeIcon,
 } from "../../style/themeComponent";
+import { useSelector } from "react-redux";
 
 const TagSelect = ({ filterData, setFilterData }) => {
+  const theme = useSelector((state) => state.themeReducer.theme);
   const [modalVisible, setModalVisible] = useState(false);
   const tagData = [
     { title: "name1", id: "1" },
@@ -32,7 +34,7 @@ const TagSelect = ({ filterData, setFilterData }) => {
         >
           <TextPrimary
             style={{
-              color: filterData.tag == undefined ? "#666" : null,
+              color: filterData.tag == undefined ? "#666" : theme.textColor,
             }}
           >
             {filterData.tag == undefined ? "Select Tag..." : filterData.tag}
@@ -42,8 +44,8 @@ const TagSelect = ({ filterData, setFilterData }) => {
       <ModalSelect
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
-        title="SelectTag"
         data={tagData}
+        specialData={"tag"}
         filterData={filterData}
         setFilterData={setFilterData}
       />

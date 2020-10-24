@@ -1,16 +1,6 @@
 import RNPickerSelect from "react-native-picker-select";
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  Modal,
-  TextInput,
-  ScrollView,
-  Platform,
-  Picker,
-} from "react-native";
+import { Platform, Picker } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
@@ -65,6 +55,7 @@ const selectData = ({ setData, filterData }) => {
         selectedValue={filterData.country}
         style={{ height: 50, width: 150 }}
         onValueChange={(itemValue) => updateFilterData(itemValue)}
+        value={filterData.country}
       >
         {countryData.map((data) => (
           <Picker.Item label={data.value} value={data.value} key={data.value} />
