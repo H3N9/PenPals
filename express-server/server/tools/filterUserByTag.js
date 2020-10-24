@@ -23,5 +23,5 @@ module.exports = async (listTag) =>{
     }, [])]
     }, [])))
 
-    return {id:{ [Op.in]: result}}
+    return {[Op.in]: result}
 }
