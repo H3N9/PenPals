@@ -20,23 +20,17 @@ import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
 
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { FlatList } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const HomeTab = () => {
   const theme = useSelector((state) => state.themeReducer.theme);
   return (
     <Tab.Navigator
-      tabBarOptions={{
-        activeTintColor: "#ff5350",
-        showLabel: false,
-        style: {
-          backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF",
-        },
-      }}
+      barStyle={{ backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF" }}
     >
       <Tab.Screen
         name="Home"
@@ -52,7 +46,13 @@ const HomeTab = () => {
         component={Messenger}
         options={{
           tabBarIcon: (tabInfo) => {
-            return <Entypo name="chat" size={26} color={tabInfo.color} />;
+            return (
+              <Ionicons
+                name="ios-chatbubbles"
+                size={26}
+                color={tabInfo.color}
+              />
+            );
           },
         }}
       />
