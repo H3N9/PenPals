@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -22,17 +22,32 @@ const modalSelect = ({
   data,
   filterData,
   setFilterData,
-  specialData,
+  focusData,
+  fetchUrl,
 }) => {
   const [text, setText] = useState("");
   const [searchData, setSearchData] = useState(data);
+
+  // const fetchData = async () => {
+  //   const data = await fetch(fetchUrl);
+  //   const jsonData = await data.json();
+  //   const allCountry = jsonData.map((value) => value.name);
+  //   const allCountryObj = allCountry.map((itemValue) => {
+  //     return { title: itemValue, id: itemValue };
+  //   });
+  //   console.log(allCountryObj);
+  //   setSearchData(allCountryObj);
+  // };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   const renderItem = ({ item }) => {
     return (
       <View style={styles.tag}>
         <TouchableOpacity
           onPress={() => {
-            filterData[specialData] = item.title;
+            filterData[focusData] = item.title;
             setFilterData(filterData);
             setModalVisible(!modalVisible);
           }}

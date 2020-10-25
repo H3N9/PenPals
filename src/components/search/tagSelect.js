@@ -45,7 +45,7 @@ const TagSelect = ({ filterData, setFilterData }) => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         data={tagData}
-        specialData={"tag"}
+        focusData={"tag"}
         filterData={filterData}
         setFilterData={setFilterData}
       />

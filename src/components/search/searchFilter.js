@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { View, Text, TouchableOpacity, Modal, ScrollView } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import { color } from "react-native-reanimated";
 import AgeSelect from "./ageSelect";
 import GenderSelect from "./genderSelect";
 import CountrySelect from "./countrySelect";
 import TagSelect from "./tagSelect";
-import {
-  SecondContainer,
-  PrimaryContainer,
-  InputText,
-  TextPrimary,
-  FontAwesomeIcon,
-} from "../../style/themeComponent";
+import { SecondContainer, TextPrimary } from "../../style/themeComponent";
 
 const SearchFilter = ({ modalVisible, setModalVisible }) => {
   const [filterData, setFilterData] = useState({

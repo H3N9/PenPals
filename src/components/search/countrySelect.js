@@ -46,9 +46,10 @@ const CountrySelect = ({ filterData, setFilterData }) => {
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         data={countryData}
-        specialData={"country"}
+        focusData={"country"}
         filterData={filterData}
         setFilterData={setFilterData}
+        fetchUrl={"https://restcountries.eu/rest/v2/all"}
       />
     </PrimaryContainer>
   );
