@@ -10,6 +10,7 @@ import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
 import FriendList from "./pages/friendList";
+import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
@@ -133,6 +134,11 @@ const Index = () => {
             <Stack.Screen
               name="FriendList"
               component={FriendList}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Setting"
+              component={Setting}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
