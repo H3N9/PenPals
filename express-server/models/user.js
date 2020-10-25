@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     //     }
     // }
     )
-    // User.associate = (models) =>{
-    //     User.belongsToMany(models.Tag, {through: 'UserTag', foreignKey: 'userId', as: 'tag'})
-    // }
+    User.associate = (models) =>{
+        User.hasOne(models.Profile, {foreignKey: 'userId', as: 'profile'})
+    }
 
     User.getAll = () =>{
        return User.findAll({attributes: ["id", "username", "firstName", "lastName"], include:["tag"]})

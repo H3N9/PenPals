@@ -29,6 +29,17 @@ router.put('/add-friend', async (req, res) =>{
   res.json(profile)
 })
 
+//ทำไว้ mock ข้อมูล อย่าลืมลบออก
+router.put('/add-friend/:id', async (req, res) =>{
+  const id = req.params.id
+  const data = req.body
+  let profile = await Profile.findOne({ where: { id }})
+  await profile.setFriend(data.friend)
+  profile = await Profile.findOne({ where: { id }, include: ["friend"]})
+
+  res.json(profile)
+})
+
 router.post('/add-profile', async (req, res) =>{
     const data = req.body
     const userProfile = await db.sequelize.transaction((t) =>{

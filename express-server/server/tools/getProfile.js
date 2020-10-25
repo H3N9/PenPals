@@ -1,8 +1,11 @@
 const db = require('../../models')
 const { User, Profile, Tag, Category, FavTag, Relationship } = db
 const { Op } = require('sequelize')
+const Sequelize = require('sequelize');
 
 module.exports = async ({ profileQuery, otherQuery }) =>{
+    const myProfile = await Profile.findOne({attributes:["id"], where: {userId: otherQuery.user.id}})
+    console.log(myProfile)
     const dataProfile = await Profile.findAll({
     where: profileQuery,
     attributes: {exclude: ["createdAt", "updatedAt"]},
@@ -11,7 +14,6 @@ module.exports = async ({ profileQuery, otherQuery }) =>{
             {model: FavTag, as: "favTag", include: ["category"]}
         ]},
         {model: User, as: "user", attributes:["username"]},
-        {model: Profile, as: "friend"}
     ],
     })
 
@@ -22,8 +24,8 @@ module.exports = async ({ profileQuery, otherQuery }) =>{
         delete item.dataValues["user"]
         return item.dataValues
     })
-
-    profile.forEach((item1, index) =>{
+    let index = 0
+    for (const item1 of profile) {
         item1["hobbies"] = [{name: "tag", list: dataProfile[index].tag.filter((item2) =>{
         return item2.type === 'hobbies'
         })}]
@@ -68,7 +70,21 @@ module.exports = async ({ profileQuery, otherQuery }) =>{
         //item1['friend'] = ["2"]
         item1['describe'] = item1.aboutMe
         delete item1["tag"]
-    })
+        const relationship = await Relationship.findAll({ 
+            where: {[Op.or]: [
+                {profileId: myProfile.id, friendId: item1.id}, {profileId:  item1.id, friendId: myProfile.id}
+            ]} 
+        })
+        if (relationship.length === 2)
+            item1["relationshipState"] = "friend"
+        else if (relationship.length === 1 && relationship[0].dataValues.profileId === myProfile.id)
+            item1["relationshipState"] = "request sent"
+        else if (relationship.length === 1 && relationship[0].dataValues.profileId === item1.id)
+            item1["relationshipState"] = "friend request"
+        else
+            item1["relationshipState"] = "not friend"
+        index++
+    }
     if (otherQuery["age"] !== undefined && otherQuery["age"].length === 2){
         const ageRange = otherQuery["age"]
         profile = profile.filter((item1) =>{

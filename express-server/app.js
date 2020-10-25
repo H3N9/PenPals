@@ -12,6 +12,7 @@ app.use(cors())
 
 app.use('/search', passport.authenticate('jwt', {session: false}), require('./server/routes/search'))
 app.use('/account', passport.authenticate('jwt', {session: false}), require('./server/routes/account'))
+app.use('/friend',  passport.authenticate('jwt', {session: false}), require('./server/routes/friend'))
 app.use('/auth', require('./server/routes/auth'))
 app.use('/set-data', passport.authenticate('jwt', {session: false}), require('./server/routes/setData'))
 

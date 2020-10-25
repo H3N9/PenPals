@@ -11,7 +11,7 @@ const { Tag, Profile } = db
 router.get('/user', async (req, res) =>{
   // const tagIdList = req.body.tag
   //let queryInId = await filterUserByTag(req.body.tag)
-  let query = await createQueryProfile(req.body)
+  let query = await createQueryProfile(req)
   const profile = await getProfile(query)
   res.json(profile)
 })
