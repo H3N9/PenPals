@@ -12,6 +12,7 @@ import {
   TextPrimary,
   InputTextBg,
 } from "../../style/themeComponent";
+import MainStyle from "../../style/mainStyle";
 
 const FriendListContent = ({ navigation }) => {
   const DATA = [
@@ -71,7 +72,7 @@ const FriendListContent = ({ navigation }) => {
   const renderItem = ({ item }) => {
     return (
       <View style={styles.friendContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity style={MainStyle.shadow}>
           <Image source={{ uri: item.imgUrl }} style={styles.imgProfile} />
         </TouchableOpacity>
         <TextPrimary style={styles.username}>{item.name}</TextPrimary>

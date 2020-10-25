@@ -4,6 +4,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import { TextPrimary, SecondContainer } from "../../style/themeComponent";
 import TextPost from "./components/textPost";
 import ImagePost from "./components/imagePost";
+import MainStyle from "../../style/mainStyle";
 
 const Post = ({ type, date, like, id, user }) => {
   const image = type.image || undefined;
@@ -26,7 +27,7 @@ const Post = ({ type, date, like, id, user }) => {
   };
 
   return (
-    <SecondContainer style={styles.postContainer}>
+    <SecondContainer style={[styles.postContainer, MainStyle.shadow]}>
       <View style={styles.boxIdentity}>
         <View>
           <Image
@@ -42,8 +43,9 @@ const Post = ({ type, date, like, id, user }) => {
         </View>
       </View>
 
-      <View style={{ flex: 1, paddingVertical: 5 }}>
+      <View style={{ flex: 1, paddingVertical: 0 }}>
         {postControl(image, text)}
+
         <TouchableOpacity style={styles.likeButton}>
           <AntDesign
             name={like ? "heart" : "hearto"}
@@ -63,11 +65,13 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     paddingVertical: 5,
     marginBottom: 20,
+    marginHorizontal: 8,
+    borderRadius: 10,
   },
   postImgProfile: {
     resizeMode: "cover",
-    height: 50,
-    width: 50,
+    height: 47,
+    width: 47,
     borderRadius: 50,
     backgroundColor: "#FF5350",
     marginRight: 10,
@@ -79,12 +83,11 @@ const styles = StyleSheet.create({
   likeButton: {
     alignItems: "center",
     flexDirection: "row",
-    paddingLeft: 5,
-    paddingTop: 5,
+    padding: 8,
   },
   boxIdentity: {
     flexDirection: "row",
-    padding: 5,
+    paddingHorizontal: 5,
   },
 });
 

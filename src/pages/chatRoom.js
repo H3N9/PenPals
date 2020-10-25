@@ -9,7 +9,7 @@ import { PrimaryContainer } from "../style/themeComponent";
 const ChatRoom = ({ navigation, route }) => {
   const { texts, usernameAnother } = route.params;
   return (
-    <PrimaryContainer style={[styles.box, MainStyle.mainBackground]}>
+    <PrimaryContainer style={MainStyle.mainBackground}>
       <View>
         <BarMessage usernameAnother={usernameAnother} navigation={navigation} />
       </View>

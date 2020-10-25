@@ -20,13 +20,32 @@ const mainStyle = StyleSheet.create({
   },
   mainBackground: {
     flex: 1,
-    paddingTop: 20,
+    paddingTop: 0,
   },
-  boxContent: {},
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0.5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 1.5,
+
+    elevation: 3,
+  },
   // ------------------ForModals------------------
   centeredView: {
     justifyContent: "flex-end",
     marginTop: 22,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 0.5,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+
+    elevation: 1,
   },
   modalView: {
     borderRadius: 20,

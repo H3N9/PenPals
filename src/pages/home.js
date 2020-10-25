@@ -72,6 +72,7 @@ const Home = ({ navigation }) => {
     if (item.id == "1") {
       return (
         <React.Fragment>
+          <Homebar navigation={navigation} />
           <CreatePost />
           <Post
             key={item.id}
@@ -99,13 +100,11 @@ const Home = ({ navigation }) => {
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
-      <Homebar navigation={navigation} />
       <FlatList
         data={initData}
         renderItem={renderPostItem}
         keyExtractor={(item) => item.id.toString()}
       />
-      {/* <Navbar navigation={navigation} /> */}
     </PrimaryContainer>
   );
 };

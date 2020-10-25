@@ -36,12 +36,10 @@ const Homebar = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   homebar: {
-    margin: 0,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 5,
-    paddingVertical: 10,
-    marginHorizontal: 20,
+    padding: 15,
+    paddingHorizontal: 20,
   },
   boxContent: {
     backgroundColor: "transparent",

@@ -20,7 +20,9 @@ const ListTag = ({ tag, title, handle }) => {
   };
 
   return (
-    <SecondContainer style={[styles.tagTitle, MainStyle.boxContent]}>
+    <SecondContainer
+      style={[styles.tagTitle, MainStyle.boxContent, MainStyle.shadow]}
+    >
       <View style={styles.headerContainer}>
         <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
           {title}

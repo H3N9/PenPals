@@ -4,31 +4,45 @@ import MainStyle from "../../../style/mainStyle";
 import { TextPrimary, SimpleLineIcon } from "../../../style/themeComponent";
 
 const BoxInfo = ({ userDetail, navigation, auth }) => {
-  const { username, gender, firstName, lastName, age, city, nation } = userDetail;
+  const {
+    username,
+    gender,
+    firstName,
+    lastName,
+    age,
+    city,
+    nation,
+  } = userDetail;
   const image = require("../../../../assets/man.png");
   return (
     <View style={styles.main}>
-      {!auth &&<TouchableOpacity
-        style={{
-          marginLeft: 15,
-          width: "15%",
-          backgroundColor: "rgba(0, 0, 0, 0.4);",
-          borderRadius: 500,
-        }}
-        onPress={() => navigation.goBack()}
-      >
-        <SimpleLineIcon
-          name="arrow-left"
-          size={20}
+      {!auth && (
+        <TouchableOpacity
           style={{
-            paddingVertical: 3,
-            textAlign: "center",
-            color: "#fff",
+            marginLeft: 15,
+            width: 35,
+            height: 35,
+            justifyContent: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.4);",
+            borderRadius: 500,
           }}
-        />
-      </TouchableOpacity>}
+          onPress={() => navigation.goBack()}
+        >
+          <SimpleLineIcon
+            name="arrow-left"
+            size={20}
+            style={{
+              paddingVertical: 3,
+              textAlign: "center",
+              color: "#fff",
+            }}
+          />
+        </TouchableOpacity>
+      )}
       <View style={styles.userInfo}>
-        <Image style={styles.imgProfile} source={image} />
+        <View style={MainStyle.shadow}>
+          <Image style={styles.imgProfile} source={image} />
+        </View>
         <View style={{ flex: 1, justifyContent: "flex-end", marginLeft: 20 }}>
           <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
           <TextPrimary>
@@ -51,8 +65,6 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     marginRight: 10,
     bottom: -25,
-    borderColor: "#1a1a1a",
-    borderWidth: 2,
   },
   userInfo: {
     flexDirection: "row",

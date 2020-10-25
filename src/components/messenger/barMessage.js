@@ -24,7 +24,7 @@ const BarMessage = ({ navigation, usernameAnother }) => {
       <View style={styles.btn}>
         <TouchableOpacity
           onPress={() => navigation.goBack()}
-          style={{ padding: 7 }}
+          style={{ padding: 9 }}
         >
           <SimpleLineIcon name="arrow-left" size={20} />
         </TouchableOpacity>
@@ -46,11 +46,10 @@ const BarMessage = ({ navigation, usernameAnother }) => {
 const styles = StyleSheet.create({
   box: {
     flexDirection: "row",
-    height: 55,
+    padding: 10,
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 10,
-    marginTop: Platform.OS == "ios" ? 0 : 25,
   },
   btn: {
     flexDirection: "row",

@@ -14,7 +14,9 @@ const CreatePost = () => {
 
   return (
     <React.Fragment>
-      <SecondContainer style={[styles.createContainer, MainStyle.boxContent]}>
+      <SecondContainer
+        style={[styles.createContainer, MainStyle.boxContent, MainStyle.shadow]}
+      >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             source={require("../../../assets/man.png")}
@@ -48,6 +50,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 10,
     marginBottom: 20,
+    marginHorizontal: 8,
+    borderRadius: 10,
   },
   createImgProfile: {
     resizeMode: "cover",
