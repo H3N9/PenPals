@@ -194,6 +194,10 @@
                     "field": "aboutMe",
                     "seqType": "Sequelize.STRING"
                 },
+                "birthdate": {
+                    "field": "birthdate",
+                    "seqType": "Sequelize.DATEONLY"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -367,5 +371,5 @@
             "indexes": []
         }
     },
-    "revision": 20
+    "revision": 21
 }

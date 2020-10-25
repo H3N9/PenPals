@@ -22,11 +22,4 @@ router.get('/user/:id', async (req, res) =>{
   res.json(profile)
 })
 
-// router.get('/tag-profile', async (req, res) =>{
-
-//   console.log(result)
-
-//   res.json(tagProfile)
-// })
-
 module.exports = router;

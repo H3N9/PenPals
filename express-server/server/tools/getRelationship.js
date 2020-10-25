@@ -3,29 +3,27 @@ const { Op } = require('sequelize')
 const getProfile = require('./getProfile')
 
 const { Relationship, Profile } = db
-module.exports = async ({ profile, type }) =>{
-    const myProfile = profile.dataValues
-    // let friends = await Profile.findOne({attributes: ["id"], where: {id: myProfile.id},include: [
-    //     {model: Profile, as: "friend", attributes: ["id"], through: {attributes: []}}
-    // ]})
+module.exports = async ({ id, type}) =>{
+    const profileId = id
+    console.log(profileId)
     const involved = await Relationship.findAll({attributes: ["profileId", "friendId"], where: {[Op.or]: [
-        {profileId: myProfile.id},
-        {friendId: myProfile.id}
+        {profileId: profileId},
+        {friendId: profileId}
     ]}})
 
     let friends = Array.from(new Set(involved.map((item1) =>{
         const newitem1 = item1.dataValues
-        if (newitem1.profileId === myProfile.id)
+        if (newitem1.profileId === profileId)
             return newitem1.friendId
-        if (newitem1.friendId === myProfile.id)
+        if (newitem1.friendId === profileId)
             return newitem1.profileId
     })))
 
     friends = friends.map((item1) =>{
         const relationship = involved.filter((item2) =>{
-            if(item2.profileId === myProfile.id && item2.friendId === item1)
+            if(item2.profileId === profileId && item2.friendId === item1)
                 return true
-            else if(item2.profileId === item1 && item2.friendId === myProfile.id)
+            else if(item2.profileId === item1 && item2.friendId === profileId)
                 return true
             else
                 return false
@@ -34,7 +32,7 @@ module.exports = async ({ profile, type }) =>{
 
         if (relationship.length === 2)
             result["relationshipState"] = "friend"
-        else if (relationship.length === 1 && relationship[0].dataValues.profileId === myProfile.id)
+        else if (relationship.length === 1 && relationship[0].dataValues.profileId === profileId)
             result["relationshipState"] = "request sent"
         else if (relationship.length === 1 && relationship[0].dataValues.profileId === item1)
             result["relationshipState"] = "friend request"
