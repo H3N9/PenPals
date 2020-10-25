@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     paddingVertical: 5,
     marginBottom: 20,
-    marginHorizontal: 8,
+    marginHorizontal: 7,
     borderRadius: 10,
   },
   postImgProfile: {

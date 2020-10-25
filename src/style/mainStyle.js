@@ -20,7 +20,6 @@ const mainStyle = StyleSheet.create({
   },
   mainBackground: {
     flex: 1,
-    paddingTop: 0,
   },
   shadow: {
     shadowColor: "#000",
