@@ -5,7 +5,6 @@ const Sequelize = require('sequelize');
 
 module.exports = async ({ profileQuery, otherQuery }) =>{
     const myProfile = await Profile.findOne({attributes:["id"], where: {userId: otherQuery.user.id}})
-    console.log(myProfile)
     const dataProfile = await Profile.findAll({
     where: profileQuery,
     attributes: {exclude: ["createdAt", "updatedAt"]},
@@ -16,8 +15,6 @@ module.exports = async ({ profileQuery, otherQuery }) =>{
         {model: User, as: "user", attributes:["username"]},
     ],
     })
-
-    //console.log(dataProfile[0].tag.dataValues)
 
     let profile = dataProfile.map((item) =>{
         item.dataValues["username"] = item.user.username

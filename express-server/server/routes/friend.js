@@ -2,14 +2,13 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../models')
 const { Op } = require('sequelize')
+const getProfile = require('../tools/getProfile')
+const getRelationship = require('../tools/getRelationship')
 
 const { Relationship, Profile } = db
 
 router.get('/', async (req, res) =>{
-    const myProfile = req.user.dataValues.profile.dataValues
-    let friends = await Profile.findAll({attributes: ["id"], where: {id: myProfile.id},include: [
-        {model: Profile, as: "friend", attributes: ["id"]}
-    ]}) 
+    const friends = await getRelationship({ profile: req.user.dataValues.profile, type: "friend" })
 
     res.json(friends)
 })
