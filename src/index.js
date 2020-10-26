@@ -20,21 +20,29 @@ import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
 
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
-import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
 const Stack = createStackNavigator();
-const Tab = createMaterialBottomTabNavigator();
+const Tab = createMaterialTopTabNavigator();
 
 const HomeTab = () => {
   const theme = useSelector((state) => state.themeReducer.theme);
   return (
     <Tab.Navigator
-      barStyle={{ backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF" }}
+      tabBarPosition="bottom"
+      tabBarOptions={{
+        activeTintColor: theme.textColor,
+        showIcon: true,
+        showLabel: false,
+        indicatorStyle: { backgroundColor: theme.textColor },
+        style: { backgroundColor: theme.secondBackground },
+      }}
     >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
+          showIcon: true,
           tabBarIcon: (tabInfo) => {
             return <AntDesign name="home" size={26} color={tabInfo.color} />;
           },
