@@ -5,7 +5,7 @@ import Tag from "./tag";
 import Entypo from "react-native-vector-icons/Entypo";
 import { TextPrimary, SecondContainer } from "../../../style/themeComponent";
 
-const ListTag = ({ tag, title, handle }) => {
+const ListTag = ({ tag, title, handle, isAuthUser }) => {
   const callTag = (value, index) => {
     return <Tag key={index} tagName={value.name} id={value.id} />;
   };
@@ -27,9 +27,11 @@ const ListTag = ({ tag, title, handle }) => {
         <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
           {title}
         </TextPrimary>
-        <TouchableOpacity style={styles.addButton} onPress={handle}>
-          <Entypo name="plus" size={18} />
-        </TouchableOpacity>
+        {isAuthUser ? (
+          <TouchableOpacity style={styles.addButton} onPress={handle}>
+            <Entypo name="plus" size={18} />
+          </TouchableOpacity>
+        ) : null}
       </View>
       {tag.map(callListTag)}
     </SecondContainer>

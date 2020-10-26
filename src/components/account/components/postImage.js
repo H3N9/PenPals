@@ -1,7 +1,5 @@
 import React from "react";
 import { Image, FlatList, View, StyleSheet, Dimensions } from "react-native";
-import { TextPrimary, SecondContainer } from "../../../style/themeComponent";
-import MainStyle from "../../../style/mainStyle";
 
 const PostImage = ({ images }) => {
   const seprateImage = (value, id) => {
@@ -15,12 +13,6 @@ const PostImage = ({ images }) => {
   };
   return (
     <View>
-      <View style={{ paddingVertical: 10 }}>
-        <TextPrimary style={[MainStyle.textBold, styles.text]}>
-          Photo
-        </TextPrimary>
-      </View>
-
       <FlatList
         data={imageData}
         renderItem={rederImage}

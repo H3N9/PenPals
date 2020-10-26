@@ -9,7 +9,9 @@ const userList = ({ friendCount, intro, navigation }) => {
         style={styles.infoItems}
         onPress={() => navigation.navigate("FriendList")}
       >
-        <TextPrimary style={{ textAlign: "center", fontSize: 25 }}>
+        <TextPrimary
+          style={{ textAlign: "center", fontSize: 25, fontWeight: "700" }}
+        >
           {friendCount}
         </TextPrimary>
         <TextPrimary style={{ textAlign: "center" }}>Friend</TextPrimary>

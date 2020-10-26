@@ -23,7 +23,8 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-        "softwareKeyboardLayoutMode": "resize"
-      }
+      "softwareKeyboardLayoutMode": "resize"
+    },
+    "description": ""
   }
 }

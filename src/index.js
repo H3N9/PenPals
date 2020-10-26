@@ -14,14 +14,13 @@ import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
-import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
 
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { FlatList } from "react-native-gesture-handler";
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();

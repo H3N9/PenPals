@@ -51,7 +51,7 @@ const initData = {
     {
       id: "1",
       username: "Nicklas Bendtner",
-      firstName: "",
+      firstName: "Nicklas",
       lastName: "Bendtner",
       nation: "Thailand",
       city: "Bangkok",
