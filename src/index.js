@@ -14,35 +14,32 @@ import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
-import { AntDesign, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
 
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
-import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 const Stack = createStackNavigator();
-const Tab = createMaterialTopTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 const HomeTab = () => {
   const theme = useSelector((state) => state.themeReducer.theme);
   return (
     <Tab.Navigator
-      tabBarPosition="bottom"
+      barStyle={{ backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF" }}
+      labeled={false}
+      inactiveColor={"#999"}
       tabBarOptions={{
-        activeTintColor: theme.textColor,
-        showIcon: true,
-        showLabel: false,
-        indicatorStyle: { backgroundColor: theme.textColor },
-        style: { backgroundColor: theme.secondBackground },
+        swipeEnabled: true,
       }}
     >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          showIcon: true,
           tabBarIcon: (tabInfo) => {
             return <AntDesign name="home" size={26} color={tabInfo.color} />;
           },
