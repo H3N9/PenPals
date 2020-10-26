@@ -41,7 +41,7 @@ const BoxProfile = ({ id, navigation }) => {
         "https://i.pinimg.com/originals/47/74/40/477440f00ca76309345efe789515dc8f.jpg",
     },
     {
-      uri: "http://itmajor.tripod.com/gallary/mv/images/cv4.jpg",
+      uri: "http://linkinpedia.com/images/f/f2/Lithograph_HT20_Mike.jpg",
     },
     {
       uri:
