@@ -2,6 +2,7 @@ const db = require('../../models')
 const { User, Profile, Tag, Category, FavTag, Relationship } = db
 const { Op } = require('sequelize')
 const Sequelize = require('sequelize');
+const getRelationship = require('./getRelationship')
 
 module.exports = async ({ profileQuery, otherQuery }) =>{
     const myProfile = await Profile.findOne({attributes:["id"], where: {userId: otherQuery.user.id}})
@@ -72,6 +73,8 @@ module.exports = async ({ profileQuery, otherQuery }) =>{
                 {profileId: myProfile.id, friendId: item1.id}, {profileId:  item1.id, friendId: myProfile.id}
             ]} 
         })
+        const { count } = await getRelationship({id: item1.id, type: "friend"})
+        item1["friendCount"] = count
         if (relationship.length === 2)
             item1["relationshipState"] = "friend"
         else if (relationship.length === 1 && relationship[0].dataValues.profileId === myProfile.id)

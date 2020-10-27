@@ -14,14 +14,14 @@ router.get('/', async (req, res) =>{
 })
 
 router.get('/:id', async (req, res) =>{
-    const id = Number(req.params.id)
+    const id = req.params.id
     const friends = await getRelationship({ id: id, type: "friend" })
 
     res.json(friends)
 })
 
 router.get('/count/:id', async (req, res) =>{
-    const id = Number(req.params.id)
+    const id = req.params.id
 
     const { count } = await getRelationship({ id: id , type: "friend" })
 
