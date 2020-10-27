@@ -26,6 +26,7 @@ const AddTag = ({ navigation }) => {
           setSearchTag={setSearchTag}
           tagData={tagData}
           searchTag={searchTag}
+          tagSelected={tagSelected}
         />
         <SelectedTag
           tagSelected={tagSelected}

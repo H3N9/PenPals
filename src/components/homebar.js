@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { useSelector } from "react-redux";
-
+import { AntDesignIcon } from "../style/themeComponent";
 const Homebar = ({ navigation }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   return (
@@ -20,14 +20,8 @@ const Homebar = ({ navigation }) => {
         )}
       </View>
       <View style={styles.boxContent}>
-        <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
-          <Image
-            source={require("../../assets/navbar/notification.png")}
-            style={{ resizeMode: "cover", height: 30, width: 30 }}
-          />
-          <View style={styles.badge}>
-            <Text style={{ textAlign: "center", color: "#FFF" }}>!</Text>
-          </View>
+        <TouchableOpacity onPress={() => navigation.navigate("Setting")}>
+          <AntDesignIcon name="setting" size={26} color={"red"} />
         </TouchableOpacity>
       </View>
     </View>
@@ -36,12 +30,10 @@ const Homebar = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   homebar: {
-    margin: 0,
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 5,
-    paddingVertical: 10,
-    marginHorizontal: 20,
+    padding: 15,
+    paddingHorizontal: 20,
   },
   boxContent: {
     backgroundColor: "transparent",

@@ -7,6 +7,7 @@ import {
   TextPrimary,
   FontAwesomeIcon,
   EntypoIcon,
+  PrimaryContainer,
 } from "../../style/themeComponent";
 
 const Suggestion = ({ navigation, userId }) => {
@@ -28,14 +29,10 @@ const Suggestion = ({ navigation, userId }) => {
     <View style={[styles.boxContent, MainStyle.boxContent]}>
       <TouchableOpacity
         onPress={() => navigation.navigate("ViewProfile", { id: id })}
+        style={MainStyle.shadow}
       >
         <Image
-          style={{
-            width: 70,
-            height: 70,
-            borderRadius: 50,
-            backgroundColor: "#555",
-          }}
+          style={[styles.imgProfile]}
           source={require("../../../assets/man.png")}
         />
         <View style={styles.onlineStatus} />
@@ -89,6 +86,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: "row",
     marginBottom: 1,
+    shadowColor: "#000",
   },
   profile: {
     width: 60,
@@ -116,6 +114,13 @@ const styles = StyleSheet.create({
     flex: 1.5,
     flexDirection: "row",
     justifyContent: "space-between",
+  },
+  imgProfile: {
+    width: 70,
+    height: 70,
+    borderRadius: 50,
+    backgroundColor: "#555",
+    shadowColor: "#111",
   },
 });
 

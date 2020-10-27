@@ -1,7 +1,5 @@
 import React from "react";
 import { Image, FlatList, View, StyleSheet, Dimensions } from "react-native";
-import { TextPrimary } from "../../../style/themeComponent";
-import MainStyle from "../../../style/mainStyle";
 
 const PostImage = ({ images }) => {
   const seprateImage = (value, id) => {
@@ -15,12 +13,11 @@ const PostImage = ({ images }) => {
   };
   return (
     <View>
-      <TextPrimary style={[MainStyle.textBold, styles.text]}>Photo</TextPrimary>
       <FlatList
         data={imageData}
         renderItem={rederImage}
         keyExtractor={(item) => item.id}
-        numColumns={3}
+        numColumns={2}
       />
     </View>
   );
@@ -28,11 +25,12 @@ const PostImage = ({ images }) => {
 
 const styles = StyleSheet.create({
   image: {
-    width: Dimensions.get("window").width / 3,
-    height: Dimensions.get("window").width / 3,
+    width: Dimensions.get("window").width,
+    height: Dimensions.get("window").width / 2,
     margin: 1,
-    flex: 0.335,
+    flex: 1,
     resizeMode: "cover",
+    borderRadius: 3,
   },
   text: {
     fontSize: 20,

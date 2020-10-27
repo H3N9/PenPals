@@ -26,8 +26,8 @@ const Notification = ({ navigation }) => {
 
   return (
     <Container style={MainStyle.mainBackground}>
-      <Homebar navigation={navigation} />
       <ScrollView style={stylesCondition()}>
+        <Homebar navigation={navigation} />
         <View
           style={{
             alignItems: "center",

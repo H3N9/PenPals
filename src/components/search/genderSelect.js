@@ -4,9 +4,7 @@ import MainStyle from "../../style/mainStyle";
 import SwitchSelector from "react-native-switch-selector";
 import {
   PrimaryContainer,
-  InputText,
   TextPrimary,
-  MaterialIcon,
   FontAwesomeIcon,
 } from "../../style/themeComponent";
 

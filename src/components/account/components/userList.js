@@ -1,17 +1,21 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { TextPrimary } from "../../../style/themeComponent";
 
-const userList = ({ friendCount, intro }) => {
-
+const userList = ({ friendCount, intro, navigation }) => {
   return (
     <View style={styles.infoContainer}>
-      <View style={styles.infoItems}>
-        <TextPrimary style={{ textAlign: "center", fontSize: 25 }}>
+      <TouchableOpacity
+        style={styles.infoItems}
+        onPress={() => navigation.navigate("FriendList")}
+      >
+        <TextPrimary
+          style={{ textAlign: "center", fontSize: 25, fontWeight: "700" }}
+        >
           {friendCount}
         </TextPrimary>
         <TextPrimary style={{ textAlign: "center" }}>Friend</TextPrimary>
-      </View>
+      </TouchableOpacity>
       <View style={[styles.infoItems, { flex: 2, paddingLeft: 10 }]}>
         <TextPrimary>{intro}</TextPrimary>
       </View>

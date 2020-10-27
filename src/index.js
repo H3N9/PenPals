@@ -9,6 +9,8 @@ import ChatRoom from "./pages/chatRoom";
 import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
+import FriendList from "./pages/friendList";
+import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Login from '../src/components/auth/login'
@@ -18,10 +20,10 @@ import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
 
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+const Tab = createMaterialBottomTabNavigator();
 
 
 
@@ -30,10 +32,11 @@ const HomeTab = () => {
   const theme = useSelector((state) => state.themeReducer.theme);
   return (
     <Tab.Navigator
+      barStyle={{ backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF" }}
+      labeled={false}
+      inactiveColor={"#999"}
       tabBarOptions={{
-        activeTintColor: "#ff5350",
-        showLabel: false,
-        style: { backgroundColor: theme.mode == "dark" ? "#323232" : "#FFF" },
+        swipeEnabled: true,
       }}
       initialRouteName={"Home"}
     >
@@ -51,7 +54,13 @@ const HomeTab = () => {
         component={Messenger}
         options={{
           tabBarIcon: (tabInfo) => {
-            return <Entypo name="chat" size={26} color={tabInfo.color} />;
+            return (
+              <Ionicons
+                name="ios-chatbubbles"
+                size={26}
+                color={tabInfo.color}
+              />
+            );
           },
         }}
       />
@@ -123,6 +132,16 @@ const StackNavigation = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
+              name="FriendList"
+              component={FriendList}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="Setting"
+              component={Setting}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
               name="Login"
               component={Login}
               options={{ headerShown: false }}

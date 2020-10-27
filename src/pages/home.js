@@ -27,21 +27,22 @@ const Home = ({ navigation }) => {
       like:true
     },
     {
-      id:"2",
-      user:"Username",
-      type:{
-        image:"image",
-        text:"I here too"
+      id: "2",
+      user: "Username",
+      type: {
+        image: "image",
+        text:
+          "ครอบครัวของผมคือมาจาก กาบอง แต่ผมยังมีรากเหง้าใน กาน่า ด้วยที่ซึ่ง โธมัส มาจากที่นั่น ดังนั้นเราก็เป็นครอบครัวเดียวกันด้วย! มันเป็นเรื่องดีสำหรับนักเตะอายุน้อยบางคนของเรา ที่ได้มีนักเตะแบบเขาอยู่ในทีม, ความสามารถในการฝึกฝน, พวกเขาจะได้เรียนรู้มากมายจากเขา.ปิแอร์-เอเมอริค โอบาเมย็องกล่าวถึง โธมัส ปาร์เตย์.",
       },
       date: "50m",
       like:true
     },
     {
-      id:"3",
-      user:"Username",
-      type:{
-        image:"",
-        text:"Text"
+      id: "3",
+      user: "Username",
+      type: {
+        image: "",
+        text: '"ควย" \n ดาวิด ลุยซ์ กล่าวถึง กาเบรียล มากาลเญส',
       },
       date: "50m",
       like:false
@@ -77,6 +78,7 @@ const Home = ({ navigation }) => {
     if (item.id == "1") {
       return (
         <React.Fragment>
+          <Homebar navigation={navigation} />
           <CreatePost />
           <Post
             key={item.id}
@@ -104,13 +106,11 @@ const Home = ({ navigation }) => {
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
-      <Homebar navigation={navigation} />
       <FlatList
         data={initData}
         renderItem={renderPostItem}
         keyExtractor={(item) => item.id.toString()}
       />
-      {/* <Navbar navigation={navigation} /> */}
     </PrimaryContainer>
   );
 };

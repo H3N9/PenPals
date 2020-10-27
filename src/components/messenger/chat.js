@@ -28,21 +28,30 @@ const Chat = ({ navigation, message_id, id_another }) => {
     >
       <View style={styles.chatContainer}>
         <View>
-          <Image
-            style={{ width: 70, height: 70, borderRadius: 50 }}
-            source={require("../../../assets/man.png")}
-          />
-          <View
-            style={{
-              width: 20,
-              height: 20,
-              backgroundColor: "green",
-              position: "absolute",
-              bottom: 0,
-              right: -3,
-              borderRadius: 50,
-            }}
-          />
+          <View style={MainStyle.shadow}>
+            <Image
+              style={[
+                {
+                  width: 70,
+                  height: 70,
+                  borderRadius: 50,
+                  backgroundColor: "#323223",
+                },
+              ]}
+              source={require("../../../assets/man.png")}
+            />
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                backgroundColor: "green",
+                position: "absolute",
+                bottom: 0,
+                right: -3,
+                borderRadius: 50,
+              }}
+            />
+          </View>
         </View>
         <View style={{ flex: 1, marginHorizontal: 10 }}>
           <View

@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-} from "react-native";
+import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import PostModal from "./postModal";
 import { SecondContainer } from "../../style/themeComponent";
@@ -20,7 +14,9 @@ const CreatePost = () => {
 
   return (
     <React.Fragment>
-      <SecondContainer style={[styles.createContainer, MainStyle.boxContent]}>
+      <SecondContainer
+        style={[styles.createContainer, MainStyle.boxContent, MainStyle.shadow]}
+      >
         <View style={{ flexDirection: "row", alignItems: "center" }}>
           <Image
             source={require("../../../assets/man.png")}
@@ -54,6 +50,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 10,
     marginBottom: 20,
+    marginHorizontal: 7,
+    borderRadius: 10,
   },
   createImgProfile: {
     resizeMode: "cover",
