@@ -4,8 +4,7 @@ const getProfile = require('./getProfile')
 
 const { Relationship, Profile } = db
 module.exports = async ({ id, type}) =>{
-    const profileId = id
-    console.log(profileId)
+    const profileId = Number(id)
     const involved = await Relationship.findAll({attributes: ["profileId", "friendId"], where: {[Op.or]: [
         {profileId: profileId},
         {friendId: profileId}
