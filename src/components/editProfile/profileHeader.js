@@ -25,7 +25,6 @@ const ProfileHeader = ({ navigation }) => {
           <Image style={styles.infoImgProfile} source={image} />
           <TouchableOpacity
             style={styles.changeProfileIcon}
-            onPress={() => console.log("asd")}
           >
             <Entypo name="camera" size={22} />
           </TouchableOpacity>

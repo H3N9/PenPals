@@ -7,11 +7,11 @@ import { PrimaryContainer } from "../style/themeComponent";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const Account = ({ id, navigation }) => {
+const Account = ({ user, navigation }) => {
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <ScrollView style={stylesCondition()}>
-        <BoxProfile id={id} navigation={navigation} />
+        <BoxProfile user={user} navigation={navigation} />
       </ScrollView>
     </PrimaryContainer>
   );

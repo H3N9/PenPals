@@ -47,7 +47,6 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
               style={MainStyle.modalButton}
               onPress={() => {
                 setModalVisible(!modalVisible);
-                console.log(filterData);
               }}
             >
               <Text style={MainStyle.textWhite}>Done</Text>

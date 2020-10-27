@@ -5,57 +5,42 @@ import UserList from "./components/userList";
 import ListTag from "./components/ListTag";
 import ContactButton from "./components/contactButton";
 import AboutAcc from "./components/aboutAcc";
-import Schema from "../../schema";
 import { PrimaryContainer } from "../../style/themeComponent";
 import PostImage from './components/postImage'
 import {useSelector} from 'react-redux'
 
-const BoxProfile = ({ id, navigation }) => {
-    const [user, setUser] = useState()
+const BoxProfile = ({ user, navigation }) => {
     const authorize = useSelector((state) => state.Authorize.authorize)
-    const {userId, token} = authorize
-    const url = `http://localhost:3000/search/user/${id}`
-    useEffect(() => {
-        fetch(url,{
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: token,
-              },
-        })
-        .then( async (res) => {
-                if(res.status === 200){
-                    const data = await res.json()
-                    setUser(...data)
-                }
-                else if(res.status === 401){
-                    navigation.navigate("Login")
-                }
-            }
-        )
-        .catch(err => "Mute")
-    }, [id])
-
-    if(user){
-        return <Success user={user} userId={userId} navigation={navigation} />
-    }
-    else{
-        return <ActivityIndicator />
-    }
-    
-    
-};
-
-const Success = ({user, userId, navigation}) => {
-    //listTag variable
+    const {userId} = authorize
+    // const url = `http://localhost:3000/search/user/${id}`
+    // useEffect(() => {
+    //     fetch(url,{
+    //         method: 'GET',
+    //         headers: {
+    //             Accept: 'application/json',
+    //             'Content-Type': 'application/json',
+    //             Authorization: token,
+    //           },
+    //     })
+    //     .then( async (res) => {
+    //             if(res.status === 200){
+    //                 const data = await res.json()
+    //                 setUser(...data)
+    //             }
+    //             else if(res.status === 401){
+    //                 navigation.navigate("Login")
+    //             }
+    //         }
+    //     )
+    //     .catch(err => "Mute")
+    // }, [id])
     const { hobbies, favorites } = user;
 
     //auth
     const isAuthUser = user.userId === userId;
 
     //userList variable
-    const friendCount = user.friend.length
+    const friendCount = ""
     const intro = user.intro
 
     //aboutAcc variable
@@ -114,7 +99,8 @@ const Success = ({user, userId, navigation}) => {
             <PostImage images={images}/>
         </PrimaryContainer>
     );
-}
+    
+};
 
 const styles = StyleSheet.create({
   contact: {

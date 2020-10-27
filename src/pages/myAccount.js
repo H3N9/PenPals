@@ -6,7 +6,7 @@ import {View} from 'react-native'
 const MyAccount = ({navigation}) => {
     const authorize = useSelector((state) => state.Authorize.authorize)
     const {token} = authorize
-    const [id, setId] = useState(false)
+    const [myAccount, setMyAccount] = useState(false)
     const url = 'http://localhost:3000/account/my-profile'
 
 
@@ -23,7 +23,7 @@ const MyAccount = ({navigation}) => {
         .then( async (res) => {
                 if(res.status === 200){
                     const data = await res.json()
-                    setId(data)
+                    setMyAccount(...data)
                 }
                 else if(res.status === 401){
                     navigation.navigate("Login")
@@ -32,9 +32,9 @@ const MyAccount = ({navigation}) => {
         )   
     }, [authorize])
 
-    if(id){
+    if(myAccount){
         return(
-            <Account navigation={navigation} id={id} />
+            <Account navigation={navigation} user={myAccount} />
         ) 
     }
     else{
