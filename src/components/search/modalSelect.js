@@ -62,7 +62,6 @@ const modalSelect = ({
     const filteredData = data.filter(
       (itemValue) => itemValue.title.toUpperCase().indexOf(valueUpper) > -1
     );
-    console.log(filteredData);
     return setSearchData(filteredData);
   };
 
