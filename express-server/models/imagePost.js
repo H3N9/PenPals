@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) =>{
     })
 
     ImagePost.associate = (models) =>{
-        ImagePost.belongsTo(models.Post, {foreignKey: 'postId'})
+        ImagePost.belongsTo(models.Post, {foreignKey: 'postId', as: "post"})
     }
 
     return ImagePost

@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) =>{
     })
 
     PostSeen.associate = (models) =>{
-        PostSeen.belongsTo(models.Post, {foreignKey: 'postId'})
-        PostSeen.belongsTo(models.User, {foreignKey: 'userId'})
+        PostSeen.belongsTo(models.Post, {foreignKey: 'postId', as: "post"})
+        PostSeen.belongsTo(models.User, {foreignKey: 'userId', as: "user"})
     }
 
     return PostSeen

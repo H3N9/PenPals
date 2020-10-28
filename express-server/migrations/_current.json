@@ -275,6 +275,17 @@
                     "field": "title",
                     "seqType": "Sequelize.STRING"
                 },
+                "userId": {
+                    "field": "userId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -552,5 +563,5 @@
             "indexes": []
         }
     },
-    "revision": 23
+    "revision": 24
 }

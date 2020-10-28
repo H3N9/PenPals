@@ -3,10 +3,12 @@ module.exports = (sequelize, DataTypes) =>{
         title: {
             type: DataTypes.STRING,
             allowNull: false
-        }
+        },
+        userId: DataTypes.INTEGER
     })
     Post.associate = (models) => {
-         Post.hasMany(models.Comment, {as: 'comments'})
+        Post.belongsTo(models.User, {foreignKey: 'userId', as: 'user'})
+        Post.hasMany(models.Comment, {as: 'comments'})
     };
 
     return Post
