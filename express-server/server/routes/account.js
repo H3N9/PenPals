@@ -34,4 +34,16 @@ router.put('/update', async (req, res) =>{
     res.json(profile)
 })
 
+router.put('/add-tag', (req, res) =>{
+    const data = req.body
+  
+    Profile.findOne({ where: {userId: req.user.id}}).then((profile) =>{
+      profile.setTag(data.tag).then((profile) =>{
+        Profile.findOne({where: {userId: req.user.id}, include: ["tag"]}).then((profile) =>{
+          res.json(profile)
+        })
+      })
+    })
+})
+
 module.exports = router
