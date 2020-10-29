@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { View } from "react-native";
 import MyAccount from "./pages/myAccount";
+import Account from './pages/account'
 import Home from "./pages/home";
 import Messenger from "./pages/messenger";
 import Search from "./pages/search";
@@ -101,6 +102,22 @@ const HomeTab = () => {
   );
 };
 
+const StackInTab = () =>{
+  return(
+    <View style={{ flex: 1 }}>
+        <NavigationContainer>
+          	<Stack.Navigator initialRouteName="HomeTab">
+				<Stack.Screen 
+				name="Account"
+				component={Account}
+				options={{ headerShown: false }}
+				/>
+			</Stack.Navigator>
+        </NavigationContainer>
+    </View>
+  )
+}
+
 const StackNavigation = () => {
   return(
     <View style={{ flex: 1 }}>
@@ -146,6 +163,7 @@ const StackNavigation = () => {
               component={Login}
               options={{ headerShown: false }}
             />
+            
           </Stack.Navigator>
         </NavigationContainer>
       </View>

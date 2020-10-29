@@ -7,7 +7,8 @@ import { PrimaryContainer } from "../style/themeComponent";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const Account = ({ user, navigation }) => {
+const Account = ({ route, navigation }) => {
+  const user = route.params.user
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <ScrollView style={stylesCondition()}>

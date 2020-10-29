@@ -1,28 +1,63 @@
-import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, Text, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Schema from "../../schema";
 import { SecondContainer, TextPrimary } from "../../style/themeComponent";
 
-const Chat = ({ navigation, message_id, id_another }) => {
-  const messages = Schema.data.text.filter(
-    (value) => value.message === message_id
-  );
-  const lastMessage = messages.reduce((value_1, value_2) =>
-    value_1.id > value_2.id ? value_1 : value_2
-  );
-  const minute = lastMessage.date.getMinutes();
-  const hour = lastMessage.date.getHours();
-  const day = lastMessage.date.getDate();
-  const month = lastMessage.date.getMonth();
-  const usernameAnother = Schema.data.user[id_another - 1].username;
+const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize }) => {
+
+	const [interlocutor, setInterlocutor] = useState()
+	const url = `http://localhost:3000/search/user/${id_interlocutor}`
+	useEffect(() => {
+		fetch(url, {
+		method: 'GET',
+		headers:{
+			Accept: 'application/json',
+			'Content-Type': 'application/json',
+			Authorization: authorize.token,
+		}
+		}).then( async (response) =>{
+			if(response.status === 200){
+				const data = await response.json()
+				setInterlocutor(...data)
+			}
+			else if(response.status === 401){
+				navigation.navigate("Login")
+			}
+		})
+	}, [authorize])
+
+	if(interlocutor){
+		return(
+			<Successed  navigation={navigation}
+				texts={texts}
+				lastMessage={lastMessage}
+				interlocutor={interlocutor}/>
+		)
+	}
+	else{
+		return(
+			<ActivityIndicator  />
+		)
+	}
+
+  
+};
+
+const Successed = ({ navigation, lastMessage, interlocutor, texts }) => {
+
+  const minute = "";
+  const hour = "";
+  const day = "";
+  const month = "";
+  const usernameAnother = interlocutor.username;
 
   return (
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("ChatRoom", {
-          texts: messages,
-          usernameAnother: usernameAnother,
+          texts: texts,
+          interlocutor: interlocutor,
         })
       }
     >
@@ -64,12 +99,12 @@ const Chat = ({ navigation, message_id, id_another }) => {
               {day}/{month} {hour}:{minute}
             </TextPrimary>
           </View>
-          <Text style={MainStyle.textGray}>{lastMessage.text}</Text>
+          <Text style={MainStyle.textGray}>{lastMessage.reply||""}</Text>
         </View>
       </View>
     </TouchableOpacity>
   );
-};
+}
 
 const styles = StyleSheet.create({
   chatContainer: {

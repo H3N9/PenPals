@@ -197,6 +197,17 @@
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
                 },
+                "ChatId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Chats",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "ChatId",
+                    "seqType": "Sequelize.INTEGER"
+                },
                 "userId": {
                     "allowNull": true,
                     "references": {
@@ -469,5 +480,5 @@
             "indexes": []
         }
     },
-    "revision": 22
+    "revision": 23
 }

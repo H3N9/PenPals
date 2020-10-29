@@ -3,6 +3,13 @@ const bodyParser = require('body-parser')
 const passport = require('./server/tools/passport')
 const cors = require('cors')
 const app = express()
+const http = require('http').createServer(app)
+// const io = require('socket.io')(http,{
+//     pingInterval: 10000,
+//     pingTimeout: 5000,
+//     cookie: false
+// })
+const connected = require('./server/routes/socket').listen(http)
 
 app.use(express.json())
 app.use(bodyParser.json());
@@ -15,7 +22,10 @@ app.use('/account', passport.authenticate('jwt', {session: false}), require('./s
 app.use('/friend',  passport.authenticate('jwt', {session: false}), require('./server/routes/friend'))
 app.use('/auth', require('./server/routes/auth'))
 app.use('/set-data', passport.authenticate('jwt', {session: false}), require('./server/routes/setData'))
+app.use('/message', passport.authenticate('jwt', {session:false}), require('./server/routes/chat'))
 
-app.listen(3000, () => {
+//io.listen(http,connected(io))
+
+http.listen(3000, () => {
     console.log('Start server at port 3000.')
 })

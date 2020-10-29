@@ -16,6 +16,7 @@
     "passport-local": "^1.0.0",
     "sequelize": "^6.3.5",
     "sequelize-auto-migrations": "github:scimonster/sequelize-auto-migrations#a063aa6535a3f580623581bf866cef2d609531ba",
+    "socket.io": "^2.3.0",
     "sqlite3": "^5.0.0",
     "touch": "^3.1.0"
   },

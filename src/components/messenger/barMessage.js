@@ -17,8 +17,8 @@ import {
   EntypoIcon,
 } from "../../style/themeComponent";
 
-const BarMessage = ({ navigation, usernameAnother }) => {
-  const friendName = usernameAnother;
+const BarMessage = ({ navigation, interlocutor }) => {
+  const friendName = interlocutor.username;
   return (
     <SecondContainer style={styles.box}>
       <View style={styles.btn}>
@@ -28,11 +28,11 @@ const BarMessage = ({ navigation, usernameAnother }) => {
         >
           <SimpleLineIcon name="arrow-left" size={20} />
         </TouchableOpacity>
-        <TextPrimary
-          style={[MainStyle.textBold, { fontSize: 19, marginHorizontal: 20 }]}
-        >
-          {friendName}
-        </TextPrimary>
+        <TouchableOpacity onPress={() => navigation.navigate("Account", {user:interlocutor})}>
+          <TextPrimary style={[MainStyle.textBold, { fontSize: 19, marginHorizontal: 20 }]}>
+            {friendName}
+          </TextPrimary>
+        </TouchableOpacity>
       </View>
       <View style={styles.boxText}>
         <TouchableOpacity>

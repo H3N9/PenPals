@@ -36,7 +36,7 @@ const BoxProfile = ({ user, navigation }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   const [postSegment, setPostSegment] = useState("photo");
   const authorize = useSelector((state) => state.Authorize.authorize)
-   const {userId} = authorize
+  const {userId} = authorize
   //All variable will be here
 
   //listTag variable
@@ -46,7 +46,7 @@ const BoxProfile = ({ user, navigation }) => {
   const isAuthUser = user.userId === userId;
 
   //userList variable
-  const friendCount = "";
+  const friendCount = user.friendCount;
   const intro = user.intro;
 
   //aboutAcc variable
@@ -78,7 +78,7 @@ const BoxProfile = ({ user, navigation }) => {
         <View style={styles.contact}>
           <ContactButton
             title={"Edit Profile"}
-            handle={() => navigation.navigate("EditProfile")}
+            handle={() => navigation.navigate("EditProfile", {user:user})}
             iconName={"pencil-square-o"}
           />
         </View>
