@@ -26,8 +26,8 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
   };
   const image = require("../../../../assets/man.png");
 
-  // const textInfo = `${firstName} ${lastName}\n${gender} ${age} y.e.\n${city} ${nation}`;
-  const textInfo = `${gender} ${age} y.e.\n${city} ${nation}`;
+   const textInfo = `${firstName} ${lastName}\n${gender} ${age} y.e.\n${city} ${nation}`;
+ // const textInfo = `${gender} ${age} y.e.\n${city} ${nation}`;
 
   const styles = StyleSheet.create({
     imgProfile: {

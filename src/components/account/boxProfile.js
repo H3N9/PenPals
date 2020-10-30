@@ -22,21 +22,22 @@ import PostImage from "./components/postImage";
 import PostMessage from "./components/postMessage";
 import { useSelector } from "react-redux";
 
-const BoxProfile = ({ id, navigation }) => {
+const BoxProfile = ({ id, navigation, user }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   const [postSegment, setPostSegment] = useState("photo");
   //All variable will be here
   //const user = Schema.data.user[parseInt(id)-1]
-  const user = Schema.getProfile(id);
+  //const user = Schema.getProfile(id);
 
   //listTag variable
   const { hobbies, favorites } = user;
 
   //authen
-  const isAuthUser = id === Schema.user;
+  //const isAuthUser = id === Schema.user;
+  const isAuthUser = true
 
   //userList variable
-  const friendCount = user.friend.length;
+  const friendCount = user.friendCount;
   const intro = user.intro;
 
   //aboutAcc variable

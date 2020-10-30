@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
+import MyAccount from "./pages/myAccount";
 import Account from "./pages/account";
 import Home from "./pages/home";
 import Messenger from "./pages/messenger";
@@ -14,6 +15,7 @@ import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
+import Login from '../src/components/auth/login'
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
@@ -85,6 +87,15 @@ const HomeTab = () => {
         }}
       />
       <Tab.Screen
+        name="MyAccount"
+        component={MyAccount}
+        options={{
+          tabBarIcon: (tabInfo) => {
+            return <AntDesign name="user" size={26} color={tabInfo.color} />;
+          },
+        }}
+      />
+      {/* <Tab.Screen
         name="Account"
         component={Account}
         options={{
@@ -92,7 +103,7 @@ const HomeTab = () => {
             return <AntDesign name="user" size={26} color={tabInfo.color} />;
           },
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };
