@@ -102,21 +102,6 @@ const HomeTab = () => {
   );
 };
 
-const StackInTab = () =>{
-  return(
-    <View style={{ flex: 1 }}>
-        <NavigationContainer>
-          	<Stack.Navigator initialRouteName="HomeTab">
-				<Stack.Screen 
-				name="Account"
-				component={Account}
-				options={{ headerShown: false }}
-				/>
-			</Stack.Navigator>
-        </NavigationContainer>
-    </View>
-  )
-}
 
 const StackNavigation = () => {
   return(
@@ -163,7 +148,11 @@ const StackNavigation = () => {
               component={Login}
               options={{ headerShown: false }}
             />
-            
+            <Stack.Screen 
+              name="Account"
+              component={Account}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </View>

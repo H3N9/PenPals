@@ -5,20 +5,15 @@ import Chat from "../components/messenger/chat";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
-import Schema from "../schema";
 import {useSelector} from 'react-redux'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Messenger = ({ navigation }) => {
-	// const user_id = Schema.user;
-	// const messages = Schema.data.message.filter((value) =>
-	// 	value.user.includes(user_id)
-	// );
 		
 	const [messages, setMessages] = useState("")
 	const authorize = useSelector((state) => state.Authorize.authorize)
-	const {token, userId} = authorize
+	const {token} = authorize
 	const url = 'http://localhost:3000/message'
 	useEffect(() => {
 			fetch(url, {
@@ -62,6 +57,7 @@ const Successed = ({navigation, messages, authorize}) => {
 			lastMessage={item.lastMessage}
 			id_interlocutor={item.interlocutor}
 			authorize={authorize}
+			room={item.id}
 		/>
 		);
 	};

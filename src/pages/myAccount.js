@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Account from './account'
+import React, { useEffect, useState } from "react";
+import BoxProfile from '../components/account/boxProfile'
 import {useSelector} from 'react-redux'
 import {View, ActivityIndicator} from 'react-native'
 
@@ -7,6 +7,7 @@ const MyAccount = ({navigation}) => {
     const authorize = useSelector((state) => state.Authorize.authorize)
     const {token} = authorize
     const url = 'http://localhost:3000/account/my-profile'
+    const [user, setUser] = useState("")
 
 
     useEffect(() =>{
@@ -22,7 +23,7 @@ const MyAccount = ({navigation}) => {
         .then( async (res) => {
                 if(res.status === 200){
                     const data = await res.json()
-                    navigation.navigate("Account", {user:data[0]})
+                    setUser(...data)
                 }
                 else if(res.status === 401){
                     navigation.navigate("Login")
@@ -31,9 +32,17 @@ const MyAccount = ({navigation}) => {
         )   
     }, [authorize])
 
-    return(
-        <ActivityIndicator />
-    )
+    if(user){
+        return(
+            <BoxProfile user={user} navigation={navigation} />
+        )
+    }
+    else{
+        return(
+            <ActivityIndicator />
+        )
+    }
+    
     
 
 }

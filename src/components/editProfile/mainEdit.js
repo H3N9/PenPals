@@ -2,8 +2,7 @@ import React from "react";
 import ProfileHeader from "./profileHeader";
 import InputProfile from "./inputProfile";
 
-const MainEdit = ({ navigation, route }) => {
-  const user = route.params.user
+const MainEdit = ({ navigation, user }) => {
   return (
     <React.Fragment>
       <ProfileHeader navigation={navigation} />

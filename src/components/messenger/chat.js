@@ -4,7 +4,7 @@ import MainStyle from "../../style/mainStyle";
 import Schema from "../../schema";
 import { SecondContainer, TextPrimary } from "../../style/themeComponent";
 
-const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize }) => {
+const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize, room }) => {
 
 	const [interlocutor, setInterlocutor] = useState()
 	const url = `http://localhost:3000/search/user/${id_interlocutor}`
@@ -32,7 +32,9 @@ const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize }) =>
 			<Successed  navigation={navigation}
 				texts={texts}
 				lastMessage={lastMessage}
-				interlocutor={interlocutor}/>
+				interlocutor={interlocutor}
+        room={room}
+        userId={authorize.userId}/>
 		)
 	}
 	else{
@@ -44,7 +46,7 @@ const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize }) =>
   
 };
 
-const Successed = ({ navigation, lastMessage, interlocutor, texts }) => {
+const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId }) => {
 
   const minute = "";
   const hour = "";
@@ -56,8 +58,10 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts }) => {
     <TouchableOpacity
       onPress={() =>
         navigation.navigate("ChatRoom", {
-          texts: texts,
+          initialTexts: texts,
           interlocutor: interlocutor,
+          room:room,
+          userId:userId
         })
       }
     >
