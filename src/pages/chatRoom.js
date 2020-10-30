@@ -10,37 +10,51 @@ import io from 'socket.io-client'
 
 
 const ChatRoom = ({ navigation, route }) => {
-  const { texts, interlocutor } = route.params;
+  
+  const { initialTexts, interlocutor, room, userId } = route.params;
 
   const urlSocket = "http://localhost:3000/"
   const socket = io(urlSocket)
+  socket.on('connected', msg => {
+    console.log('You connected')
+  })
 
-  const [myText, setText] = useState("")
+  socket.emit("roomChat", {userId, room})
+
+  const [texts, setTexts] = useState(initialTexts)
 
   const handleMyMessage = (text) =>{
-    setText(value)
-    socket.emit('message', value)
-    socket.on('send message', (msg) =>{
-      console.log(msg)
-    })
+
+    socket.emit('userSend', text)
+
   }
 
+  socket.on('serverSend', (msg) =>{
+    console.log(msg)
+  })
+
+
+
+  const handleBack = () => {
+    socket.disconnect()
+    navigation.goBack()
+  }
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
-      <View>
-        <BarMessage interlocutor={interlocutor} navigation={navigation} />
-      </View>
-      <View style={styles.boxMess}>
-        <BoxMessage texts={texts} />
-      </View>
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS == "ios" ? 20 : 0}
-      >
-        <View style={styles.keyboard}>
-          <Keyboard onTextChange={handleMyMessage} />
+        <View>
+            <BarMessage interlocutor={interlocutor} navigation={handleBack} />
         </View>
-      </KeyboardAvoidingView>
+        <View style={styles.boxMess}>
+            <BoxMessage texts={texts} />
+        </View>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+          keyboardVerticalOffset={Platform.OS == "ios" ? 20 : 0}
+        >
+          <View style={styles.keyboard}>
+              <Keyboard onTextChange={handleMyMessage} />
+          </View>
+        </KeyboardAvoidingView>
     </PrimaryContainer>
   );
 };

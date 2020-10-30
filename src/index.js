@@ -151,6 +151,16 @@ const Index = () => {
               component={Setting}
               options={{ headerShown: false }}
             />
+            <Stack.Screen 
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="Account"
+              component={Account}
+              options={{ headerShown: false }}
+            />
           </Stack.Navigator>
         </NavigationContainer>
       </PrimaryContainer>

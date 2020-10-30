@@ -38,7 +38,7 @@ const BoxMessage = ({ texts }) => {
       <FlatList
         data={messages}
         renderItem={renderMessage}
-        keyExtractor={(messages) => messages.id}
+        keyExtractor={(messages) => messages.id.toString()}
       />
     </PrimaryContainer>
   );
