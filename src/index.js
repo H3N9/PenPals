@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { View } from "react-native";
-import MyAccount from "./pages/myAccount";
-import Account from './pages/account'
+import Account from "./pages/account";
 import Home from "./pages/home";
 import Messenger from "./pages/messenger";
 import Search from "./pages/search";
@@ -14,20 +13,17 @@ import FriendList from "./pages/friendList";
 import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Login from '../src/components/auth/login'
+import { TransitionPresets } from "@react-navigation/stack";
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
-
+import { PrimaryContainer } from "../src/style/themeComponent";
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
-
-
-
 
 const HomeTab = () => {
   const theme = useSelector((state) => state.themeReducer.theme);
@@ -39,7 +35,6 @@ const HomeTab = () => {
       tabBarOptions={{
         swipeEnabled: true,
       }}
-      initialRouteName={"Home"}
     >
       <Tab.Screen
         name="Home"
@@ -90,8 +85,8 @@ const HomeTab = () => {
         }}
       />
       <Tab.Screen
-        name="MyAccount"
-        component={MyAccount}
+        name="Account"
+        component={Account}
         options={{
           tabBarIcon: (tabInfo) => {
             return <AntDesign name="user" size={26} color={tabInfo.color} />;
@@ -102,27 +97,19 @@ const HomeTab = () => {
   );
 };
 
-const StackInTab = () =>{
-  return(
-    <View style={{ flex: 1 }}>
-        <NavigationContainer>
-          	<Stack.Navigator initialRouteName="HomeTab">
-				<Stack.Screen 
-				name="Account"
-				component={Account}
-				options={{ headerShown: false }}
-				/>
-			</Stack.Navigator>
-        </NavigationContainer>
-    </View>
-  )
-}
+const Index = () => {
+  const theme = useSelector((state) => state.themeReducer.theme);
+  return (
+    <ThemeProvider theme={theme}>
+      {theme.mode == "dark" ? (
+        <DynamicStatusBar style="light" />
+      ) : (
+        <DynamicStatusBar style="dark" />
+      )}
 
-const StackNavigation = () => {
-  return(
-    <View style={{ flex: 1 }}>
+      <PrimaryContainer style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="HomeTab">
+          <Stack.Navigator>
             <Stack.Screen
               name="HomeTab"
               component={HomeTab}
@@ -141,12 +128,18 @@ const StackNavigation = () => {
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.ModalPresentationIOS,
+              }}
             />
             <Stack.Screen
               name="AddTag"
               component={AddTag}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.SlideFromRightIOS,
+              }}
             />
             <Stack.Screen
               name="FriendList"
@@ -158,27 +151,9 @@ const StackNavigation = () => {
               component={Setting}
               options={{ headerShown: false }}
             />
-            <Stack.Screen 
-              name="Login"
-              component={Login}
-              options={{ headerShown: false }}
-            />
-            
           </Stack.Navigator>
         </NavigationContainer>
-      </View>
-  )
-}
-
-const Index = () => {
-  const theme = useSelector((state) => state.themeReducer.theme);
-  const statusDynamic = (mode) =>{
-    return mode === "dark"?  <DynamicStatusBar style="light" />:<DynamicStatusBar style="dark" />
-  }
-  return (
-    <ThemeProvider theme={theme}>
-      {statusDynamic(theme.mode)}
-      <StackNavigation />
+      </PrimaryContainer>
     </ThemeProvider>
   );
 };

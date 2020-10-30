@@ -6,8 +6,11 @@ import FontAwesome from "react-native-vector-icons/FontAwesome";
 const ContactButton = ({ title, handle, iconName }) => {
   const styles = StyleSheet.create({
     button: {
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
       backgroundColor: "#696969",
-      borderRadius: 20,
+      borderRadius: 10,
       paddingVertical: 10,
       marginHorizontal: iconName === "pencil-square-o" ? 10 : 20,
       flex: 1,
@@ -15,13 +18,14 @@ const ContactButton = ({ title, handle, iconName }) => {
   });
   return (
     <TouchableOpacity style={styles.button} onPress={handle}>
-      <Text style={[[mainStyle.textWhite], { textAlign: "center" }]}>
-        {iconName === "pencil-square-o" ? (
-          <FontAwesome name={iconName} size={22} color="white" />
-        ) : (
-          <Icon name={iconName} size={22} color="white"></Icon>
-        )}
-        {iconName === "pencil-square-o" ? title : null}
+      {iconName === "pencil-square-o" ? (
+        <FontAwesome name={iconName} size={22} color="white" />
+      ) : (
+        <Icon name={iconName} size={22} color="white"></Icon>
+      )}
+
+      <Text style={[[mainStyle.textWhiteBold], { textAlign: "center" }]}>
+        {iconName === "pencil-square-o" ? " " + title : null}
       </Text>
     </TouchableOpacity>
   );
