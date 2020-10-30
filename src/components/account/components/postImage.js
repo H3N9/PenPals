@@ -1,7 +1,14 @@
 import React from "react";
-import { Image, FlatList, View, StyleSheet, Dimensions } from "react-native";
+import {
+  Image,
+  FlatList,
+  View,
+  StyleSheet,
+  Dimensions,
+  SafeAreaView,
+} from "react-native";
 
-const PostImage = ({ images }) => {
+const PostImage = ({ images, AccountDetailSection }) => {
   const seprateImage = (value, id) => {
     return { id: id.toString(), value: value };
   };
@@ -12,14 +19,15 @@ const PostImage = ({ images }) => {
     return <Image key={item.id} source={item.value} style={styles.image} />;
   };
   return (
-    <View>
+    <SafeAreaView style={{ flex: 1 }}>
       <FlatList
+        ListHeaderComponent={AccountDetailSection}
         data={imageData}
         renderItem={rederImage}
         keyExtractor={(item) => item.id}
         numColumns={2}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 

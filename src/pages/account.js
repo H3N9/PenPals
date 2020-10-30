@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet } from "react-native";
+import { View, Text, ScrollView, StyleSheet, SafeAreaView } from "react-native";
 import Navbar from "../components/navbar";
 import BoxProfile from "../components/account/boxProfile";
 import MainStyle from "../style/mainStyle";
@@ -12,16 +12,16 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 const Account = ({ route, navigation }) => {
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
-      <ScrollView style={stylesCondition()}>
+      <SafeAreaView style={{ flex: 1 }}>
         <BoxProfile id={Schema.user} navigation={navigation} />
-      </ScrollView>
+      </SafeAreaView>
     </PrimaryContainer>
   );
 };
 
 const stylesCondition = () => {
   if (screenWidth >= 768) {
-    return { flex: 1, marginHorizontal: "20%" };
+    return { flex: 1 };
   } else {
     return { flex: 1 };
   }

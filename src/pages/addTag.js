@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, Text } from "react-native";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
-import { PrimaryContainer } from "../style/themeComponent";
+import { PrimaryContainer, TextPrimary } from "../style/themeComponent";
 import Header from "../components/addTag/header";
 import TagResult from "../components/addTag/tagResult";
 import SelectedTag from "../components/addTag/selectedTag";
@@ -36,14 +36,18 @@ const AddTag = ({ navigation }) => {
         />
         <ScrollView>
           <View style={styles.tagResultContainer}>
-            {searchTag.map((itemValue) => (
-              <TagResult
-                tagData={itemValue}
-                key={itemValue.id}
-                tagSelected={tagSelected}
-                setTagSelected={setTagSelected}
-              />
-            ))}
+            {searchTag.length === 0 ? (
+              <TextPrimary style={styles.noResult}>No Result</TextPrimary>
+            ) : (
+              searchTag.map((itemValue) => (
+                <TagResult
+                  tagData={itemValue}
+                  key={itemValue.id}
+                  tagSelected={tagSelected}
+                  setTagSelected={setTagSelected}
+                />
+              ))
+            )}
           </View>
         </ScrollView>
       </View>
@@ -63,6 +67,12 @@ const styles = StyleSheet.create({
   tagResultContainer: {
     justifyContent: "center",
     margin: 5,
+  },
+  noResult: {
+    fontSize: 25,
+    textAlign: "center",
+    marginTop: 50,
+    opacity: 0.4,
   },
 });
 export default AddTag;

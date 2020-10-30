@@ -18,7 +18,7 @@ import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
-
+import { PrimaryContainer } from "../src/style/themeComponent";
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 
@@ -107,7 +107,7 @@ const Index = () => {
         <DynamicStatusBar style="dark" />
       )}
 
-      <View style={{ flex: 1 }}>
+      <PrimaryContainer style={{ flex: 1 }}>
         <NavigationContainer>
           <Stack.Navigator>
             <Stack.Screen
@@ -128,12 +128,18 @@ const Index = () => {
             <Stack.Screen
               name="EditProfile"
               component={EditProfile}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.ModalPresentationIOS,
+              }}
             />
             <Stack.Screen
               name="AddTag"
               component={AddTag}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.SlideFromRightIOS,
+              }}
             />
             <Stack.Screen
               name="FriendList"
@@ -147,7 +153,7 @@ const Index = () => {
             />
           </Stack.Navigator>
         </NavigationContainer>
-      </View>
+      </PrimaryContainer>
     </ThemeProvider>
   );
 };

@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import BoxInfo from "./components/boxInfo";
 import UserList from "./components/userList";
 import ListTag from "./components/ListTag";
@@ -13,6 +19,7 @@ import {
   EntypoIcon,
 } from "../../style/themeComponent";
 import PostImage from "./components/postImage";
+import PostMessage from "./components/postMessage";
 import { useSelector } from "react-redux";
 
 const BoxProfile = ({ id, navigation }) => {
@@ -84,55 +91,72 @@ const BoxProfile = ({ id, navigation }) => {
     }
   };
 
+  const AccountDetailSection = () => {
+    return (
+      <React.Fragment>
+        <BoxInfo userDetail={user} auth={isAuthUser} navigation={navigation} />
+        <UserList
+          friendCount={friendCount}
+          intro={intro}
+          navigation={navigation}
+        />
+        {controlViewProfile(isAuthUser)}
+        <ListTag
+          tag={hobbies}
+          title={"Hobbies & interests Tag"}
+          handle={() => navigation.navigate("AddTag")}
+          isAuthUser={isAuthUser}
+        />
+        <ListTag
+          tag={favorites}
+          title={"Favorite Tag"}
+          handle={() => navigation.navigate("AddTag")}
+          isAuthUser={isAuthUser}
+        />
+        <AboutAcc describe={describe} />
+        <SecondContainer style={styles.segmentContainer}>
+          <TouchableOpacity
+            style={[
+              styles.segmentItem,
+              postSegment == "photo" ? segmentBorder : null,
+            ]}
+            onPress={() => {
+              setPostSegment("photo");
+            }}
+          >
+            <FontistoIcon
+              name={"photograph"}
+              size={24}
+              style={styles.segmentText}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.segmentItem,
+              postSegment == "text" ? segmentBorder : null,
+            ]}
+            onPress={() => setPostSegment("text")}
+          >
+            <EntypoIcon name={"text"} size={24} style={styles.segmentText} />
+          </TouchableOpacity>
+        </SecondContainer>
+      </React.Fragment>
+    );
+  };
+
   return (
-    <PrimaryContainer>
-      <BoxInfo userDetail={user} auth={isAuthUser} navigation={navigation} />
-      <UserList
-        friendCount={friendCount}
-        intro={intro}
-        navigation={navigation}
-      />
-      {controlViewProfile(isAuthUser)}
-      <ListTag
-        tag={hobbies}
-        title={"Hobbies & interests Tag"}
-        handle={() => navigation.navigate("AddTag")}
-        isAuthUser={isAuthUser}
-      />
-      <ListTag
-        tag={favorites}
-        title={"Favorite Tag"}
-        handle={() => navigation.navigate("AddTag")}
-        isAuthUser={isAuthUser}
-      />
-      <AboutAcc describe={describe} />
-      <SecondContainer style={styles.segmentContainer}>
-        <TouchableOpacity
-          style={[
-            styles.segmentItem,
-            postSegment == "photo" ? segmentBorder : null,
-          ]}
-          onPress={() => {
-            setPostSegment("photo");
-          }}
-        >
-          <FontistoIcon
-            name={"photograph"}
-            size={24}
-            style={styles.segmentText}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.segmentItem,
-            postSegment == "text" ? segmentBorder : null,
-          ]}
-          onPress={() => setPostSegment("text")}
-        >
-          <EntypoIcon name={"text"} size={24} style={styles.segmentText} />
-        </TouchableOpacity>
-      </SecondContainer>
-      {postSegment == "photo" ? <PostImage images={images} /> : null}
+    <PrimaryContainer style={{ flex: 1 }}>
+      {postSegment == "photo" ? (
+        <PostImage
+          images={images}
+          AccountDetailSection={AccountDetailSection}
+        />
+      ) : (
+        <PostImage
+          images={images}
+          AccountDetailSection={AccountDetailSection}
+        />
+      )}
     </PrimaryContainer>
   );
 };

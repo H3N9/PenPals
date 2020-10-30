@@ -26,7 +26,7 @@ const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
     <View>
       <MainContainer>
         <TouchableOpacity
-          style={{ marginRight: 15 }}
+          style={{ marginRight: 15, padding: 5 }}
           onPress={() => navigation.goBack()}
         >
           <SimpleLine name="arrow-left" size={20} />
