@@ -91,7 +91,7 @@ const modalSelect = ({
       transparent={true}
       isVisible={modalVisible}
       animationIn={"zoomIn"}
-      animationOut={"zoomOut"}
+      animationOut={"fadeOut"}
     >
       <View style={[MainStyle.centeredView, styles.extraModal]}>
         <SecondContainer style={[MainStyle.modalView, { padding: 0 }]}>
