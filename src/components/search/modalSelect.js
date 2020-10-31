@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
   TouchableOpacity,
-  Modal,
   Text,
   FlatList,
   Keyboard,
@@ -16,7 +15,7 @@ import {
   InputTextBg,
 } from "../../style/themeComponent";
 import { useSelector } from "react-redux";
-
+import Modal from "react-native-modal";
 const modalSelect = ({
   modalVisible,
   setModalVisible,
@@ -28,21 +27,23 @@ const modalSelect = ({
 }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   const [text, setText] = useState("");
-  const [searchData, setSearchData] = useState(data);
+  const [searchData, setSearchData] = useState([]); //เก็บข้อมูลผลการค้นหา
+  const [info, setInfo] = useState([]); //เก็บข้อมูลที่ fetch มาทั้งหมด
 
-  // const fetchData = async () => {
-  //   const data = await fetch(fetchUrl);
-  //   const jsonData = await data.json();
-  //   const allCountry = jsonData.map((value) => value.name);
-  //   const allCountryObj = allCountry.map((itemValue) => {
-  //     return { title: itemValue, id: itemValue };
-  //   });
-  //   console.log(allCountryObj);
-  //   setSearchData(allCountryObj);
-  // };
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
+  const fetchData = async () => {
+    const data = await fetch(fetchUrl);
+    const jsonData = await data.json();
+    const allCountry = jsonData.map((value, index) => {
+      return { title: value.name, id: index.toString(), flag: value.flag };
+    });
+    setSearchData([...allCountry]);
+    setInfo([...allCountry]);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  // เช็คว่า item นี้ถูกกดเลือกแล้วหรือยัง
   const isHave = (title) => {
     const index = filterData[focusData].findIndex((value) => value === title);
     if (index === -1) {
@@ -73,9 +74,12 @@ const modalSelect = ({
       </LinearGradient>
     );
   };
+
+  // function แสดงผลการค้นหา
   const inputHandle = (value) => {
     const valueUpper = value.toUpperCase();
-    const filteredData = data.filter(
+    console.log(info);
+    const filteredData = info.filter(
       (itemValue) => itemValue.title.toUpperCase().indexOf(valueUpper) > -1
     );
     console.log(filteredData);
@@ -83,7 +87,12 @@ const modalSelect = ({
   };
 
   return (
-    <Modal animationType="slide" transparent={true} visible={modalVisible}>
+    <Modal
+      transparent={true}
+      isVisible={modalVisible}
+      animationIn={"zoomIn"}
+      animationOut={"zoomOut"}
+    >
       <View style={[MainStyle.centeredView, styles.extraModal]}>
         <SecondContainer style={[MainStyle.modalView, { padding: 0 }]}>
           <View
@@ -120,6 +129,7 @@ const modalSelect = ({
             data={searchData}
             renderItem={renderItem}
             keyExtractor={(item) => item.id}
+            extraData={data}
           />
         </SecondContainer>
       </View>
@@ -151,6 +161,11 @@ const styles = StyleSheet.create({
     shadowColor: "#111",
     shadowOpacity: 0.2,
     shadowRadius: 3,
+  },
+  flag: {
+    width: 50,
+    height: 50,
+    resizeMode: "stretch",
   },
 });
 

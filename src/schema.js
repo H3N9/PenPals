@@ -56,7 +56,7 @@ const initData = {
       nation: "Thailand",
       city: "Bangkok",
       intro: "Hello World",
-      gender: "male",
+      gender: "Male",
       age: 20,
       image: "5.png",
       friend: ["2"],

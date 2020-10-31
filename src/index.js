@@ -129,6 +129,7 @@ const Index = () => {
               name="EditProfile"
               component={EditProfile}
               options={{
+                cardOverlayEnabled: true,
                 headerShown: false,
                 ...TransitionPresets.ModalPresentationIOS,
               }}
