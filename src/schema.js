@@ -175,6 +175,6 @@ const initData = {
   ],
 };
 
-const database = { user: auth, data: initData, getProfile: getProfile, url:"http://d7f9b7f8b621.ngrok.io" };
+const database = { user: auth, data: initData, getProfile: getProfile, url:"http://a9a9183df216.ngrok.io" };
 
 export default database;

@@ -2,7 +2,9 @@ const todo = "Change token"
 
 const initial = {
     authorize:{
-        userId:"",
+        //userId: "",
+        //token: ""
+        userId:"4",
         token:"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJhZG1pbjEiLCJwYXNzd29yZCI6IiQyYiQxMCRRalBsUlF4MHl5VFVaMnNIQzkxSDkuMkQ4ZmZ0VGZML3dVS2NCb0x3cVNBLkNodDFJcjd1UyIsImNyZWF0ZWRBdCI6IjIwMjAtMTAtMTRUMTY6NDg6MTIuNDIxWiIsInVwZGF0ZWRBdCI6IjIwMjAtMTAtMTRUMTY6NDg6MTIuNDIxWiIsImlhdCI6MTYwMzEyNjYyNn0.T5xqwByR9tw7Dn2TujOORDdDNS_K_xSqUy_rAsLjY5g"
     }
 }

@@ -42,7 +42,7 @@ const Suggestion = ({ navigation, userId, user }) => {
           <View style={{ flex: 3 }}>
             {/* Username */}
             <TouchableOpacity
-              onPress={() => navigation.navigate("Account", { user: user })}
+              onPress={() => navigation.navigate("ViewProfile", { user: user })}
             >
               <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
             </TouchableOpacity>

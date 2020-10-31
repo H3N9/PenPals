@@ -4,6 +4,7 @@ import Suggestion from "../components/search/suggestion";
 import MainStyle from "../style/mainStyle";
 import SearchBar from "../components/search/searchBar";
 import { Dimensions, ActivityIndicator, FlatList, View } from "react-native";
+import { useIsFocused } from "@react-navigation/native"
 import { PrimaryContainer } from "../style/themeComponent";
 import {useSelector} from 'react-redux'
 import schema from "../schema"
@@ -16,6 +17,7 @@ const Search = ({ navigation }) => {
   const [isLoading, setLoading] = useState(true);
   const [users, setUsers] = useState([])
   const url = schema.url
+  const isFocused = useIsFocused()
 
   useEffect(() =>{
     fetch(url+"/search/user",{
@@ -31,7 +33,7 @@ const Search = ({ navigation }) => {
       setUsers(json)
       setLoading(false)
     })
-  }, [])
+  }, [isFocused])
 
   const renderSuggestion = ({ item, index }) =>{
     return (<Suggestion user={item} key={index} navigation={navigation} />)

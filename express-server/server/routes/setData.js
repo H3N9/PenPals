@@ -13,7 +13,7 @@ router.put('/add-tag', (req, res) =>{
   
     Profile.findOne({ where: {userId: req.user.id}}).then((profile) =>{
       profile.setTag(data.tag).then((profile) =>{
-        Profile.findOne({where: {userId: req.user.id}, include: ["tag"]}).then((profile) =>{
+        Profile.findOne({where: {userId: 8}, include: ["tag"]}).then((profile) =>{
           res.json(profile)
         })
       })

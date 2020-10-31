@@ -72,7 +72,7 @@ const BoxProfile = ({ id, navigation, user }) => {
         <View style={styles.contact}>
           <ContactButton
             title={"Edit Profile"}
-            handle={() => navigation.navigate("EditProfile")}
+            handle={() => navigation.navigate("EditProfile", {user: user})}
             iconName={"pencil-square-o"}
           />
         </View>
