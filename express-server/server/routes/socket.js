@@ -1,22 +1,38 @@
 const socketIo = require('socket.io')
 const {currentUser, userJoin, userLeave} = require('../tools/room')
+const db = require('../../models')
+
+const {Message} = db
 
 const connected = (app) =>{
     io = socketIo.listen(app)
 
 
     io.on('connect', (socket)=>{
-
+        console.log('connect')
         socket.on('roomChat', ({userId, room}) => {
-
-            const user = userJoin(socket.id, userId, room)
-
-            socket.join(user.room) 
+            const current = currentUser(socket.id)
+            if(!current){
+                const user = userJoin(socket.id, userId, room)
+                socket.join(user.room) 
+            }
         })
 
-        socket.on('userSend', msg => {
+        socket.on('userSend', async (sendingText) => {
             const user = currentUser(socket.id)
-            io.to(user.room).emit('serverSend', msg)
+            // const text = await db.sequelize.transaction((t) => {
+            //     return Message.create(sendingText, {transaction:t})
+            // })
+            // const {id, reply, userId, chatId, createdAt} = text.dataValues
+            // const json = {
+            //     id,
+            //     reply,
+            //     userId,
+            //     chatId,
+            //     createdAt
+            // }
+            io.to(user.room).emit('serverSend', "Good")
+            
         })
 
         socket.on('disconnect', () => {
@@ -26,19 +42,8 @@ const connected = (app) =>{
                 io.to(user[0].room).emit('serverSend', "Your friend left")
             }
         })
-
-        
-        //socket
-
-        console.log('connect')
-        // socket.on('message', (msg)=>{
-        //     io.emit('send message', msg)
-        // })
     })
     
 }
 
 module.exports.listen = connected
-
-
-// const express = require('express')

@@ -3,6 +3,7 @@ import {View, TextInput, TouchableOpacity, StyleSheet, Text} from 'react-native'
 import { PrimaryContainer, TextPrimary } from "../../style/themeComponent";
 import { useDispatch } from 'react-redux'
 import { actionAuthorize } from '../../../redux/authorize'
+import path from '../../path'
 
 
 const Login = ({navigation}) => {
@@ -11,7 +12,7 @@ const Login = ({navigation}) => {
     const [status, setStatus] = useState(false)
     const dispatch = useDispatch()
 
-    const url = 'http://localhost:3000/auth/login'
+    const url = path.urlLogin
 
     const handleUsername = (value) =>{
         setUsername(value)

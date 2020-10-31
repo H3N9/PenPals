@@ -6,15 +6,14 @@ import {
   StyleSheet,
   Text,
 } from "react-native";
-import Schema from "../../schema";
 import MainStyle from "../../style/mainStyle";
 import { PrimaryContainer } from "../../style/themeComponent";
-const BoxMessage = ({ texts }) => {
-  const username = Schema.user;
 
+
+const BoxMessage = ({ texts, userId }) => {
   const [messages, setMessage] = useState(texts);
-  const EachMessage = ({ text, user }) => {
-    if (user === username) {
+  const EachMessage = ({ text, sender }) => {
+    if (sender === userId) {
       return (
         <TouchableOpacity style={styles.myMess}>
           <Text style={MainStyle.textWhite}>{text}</Text>
@@ -30,7 +29,7 @@ const BoxMessage = ({ texts }) => {
   };
 
   const renderMessage = ({ item }) => {
-    return <EachMessage text={item.text} user={item.user} />;
+    return <EachMessage text={item.reply} sender={item.userId} />;
   };
 
   return (

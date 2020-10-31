@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import BoxProfile from '../components/account/boxProfile'
 import {useSelector} from 'react-redux'
 import {View, ActivityIndicator} from 'react-native'
+import path from '../path'
 
 const MyAccount = ({navigation}) => {
     const authorize = useSelector((state) => state.Authorize.authorize)
     const {token} = authorize
-    const url = 'http://localhost:3000/account/my-profile'
+    const url = path.urlMyprofile
     const [user, setUser] = useState("")
 
 

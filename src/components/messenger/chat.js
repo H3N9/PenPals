@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image, ActivityIndicator } from "react-native";
 import MainStyle from "../../style/mainStyle";
-import Schema from "../../schema";
+import path from '../../path'
 import { SecondContainer, TextPrimary } from "../../style/themeComponent";
 
 const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize, room }) => {
 
 	const [interlocutor, setInterlocutor] = useState()
-	const url = `http://localhost:3000/search/user/${id_interlocutor}`
+	const url = path.urlSearchUser+id_interlocutor
 	useEffect(() => {
 		fetch(url, {
 		method: 'GET',
@@ -48,10 +48,11 @@ const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize, room
 
 const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId }) => {
 
-  const minute = "";
-  const hour = "";
-  const day = "";
-  const month = "";
+  const date = new Date(lastMessage.createdAt)
+  const minute = date.getMinutes();
+  const hour = date.getHours();
+  const day = date.getDate();
+  const month = date.getMonth();
   const usernameAnother = interlocutor.username;
 
   return (

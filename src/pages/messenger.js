@@ -6,6 +6,7 @@ import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
 import {useSelector} from 'react-redux'
+import path from '../path'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
@@ -14,7 +15,7 @@ const Messenger = ({ navigation }) => {
 	const [messages, setMessages] = useState("")
 	const authorize = useSelector((state) => state.Authorize.authorize)
 	const {token} = authorize
-	const url = 'http://localhost:3000/message'
+	const url = path.urlMessage
 	useEffect(() => {
 			fetch(url, {
 				method: 'GET',
