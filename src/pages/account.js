@@ -12,9 +12,7 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 const Account = ({ route, navigation }) => {
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <BoxProfile id={Schema.user} navigation={navigation} />
-      </SafeAreaView>
+      <BoxProfile id={Schema.user} navigation={navigation} />
     </PrimaryContainer>
   );
 };

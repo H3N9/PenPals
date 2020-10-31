@@ -11,9 +11,7 @@ const ViewProfile = ({ route, navigation }) => {
   const { id } = route.params;
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <BoxProfile id={id} navigation={navigation} />
-      </SafeAreaView>
+      <BoxProfile id={id} navigation={navigation} />
     </PrimaryContainer>
   );
 };

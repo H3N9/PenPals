@@ -15,7 +15,7 @@ const mainStyle = StyleSheet.create({
     fontWeight: "600",
   },
   textGray: {
-    color: "#666",
+    color: "#999",
     fontSize: 13,
   },
   mainBackground: {

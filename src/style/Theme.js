@@ -1,6 +1,6 @@
 export const darkTheme = {
   mode: "dark",
-  primaryBackground: "#1a1a1a",
+  primaryBackground: "#212121",
   secondBackground: "#323232",
   textColor: "#fff",
 };

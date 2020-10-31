@@ -78,11 +78,9 @@ const modalSelect = ({
   // function แสดงผลการค้นหา
   const inputHandle = (value) => {
     const valueUpper = value.toUpperCase();
-    console.log(info);
     const filteredData = info.filter(
       (itemValue) => itemValue.title.toUpperCase().indexOf(valueUpper) > -1
     );
-    console.log(filteredData);
     return setSearchData(filteredData);
   };
 

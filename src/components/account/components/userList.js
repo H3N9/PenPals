@@ -25,7 +25,7 @@ const userList = ({ friendCount, intro, navigation }) => {
 
 const styles = StyleSheet.create({
   infoContainer: {
-    marginVertical: 25,
+    marginBottom: 25,
     flexDirection: "row",
   },
   infoImgProfile: {
