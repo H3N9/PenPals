@@ -10,8 +10,8 @@ import {
   PrimaryContainer,
 } from "../../style/themeComponent";
 
-const Suggestion = ({ navigation, userId }) => {
-  const user = Schema.getProfile(userId);
+const Suggestion = ({ navigation, userId, user }) => {
+  //const user = Schema.getProfile(userId);
   const {
     id,
     username,
@@ -28,7 +28,7 @@ const Suggestion = ({ navigation, userId }) => {
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("ViewProfile", { id: id })}
+        onPress={() => navigation.navigate("ViewProfile", { user: user })}
         style={MainStyle.shadow}
       >
         <Image
@@ -42,7 +42,7 @@ const Suggestion = ({ navigation, userId }) => {
           <View style={{ flex: 3 }}>
             {/* Username */}
             <TouchableOpacity
-              onPress={() => navigation.navigate("Account", { id: id })}
+              onPress={() => navigation.navigate("Account", { user: user })}
             >
               <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
             </TouchableOpacity>

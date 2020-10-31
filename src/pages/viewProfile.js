@@ -7,13 +7,15 @@ import { PrimaryContainer } from "../style/themeComponent";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const ViewProfile = ({ route, navigation }) => {
-  const { id } = route.params;
+const ViewProfile = ({ route, navigation}) => {
+  const { id, user } = route.params;
+  console.log(user)
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
-      <ScrollView style={stylesCondition()}>
-        <BoxProfile id={id} navigation={navigation} />
-      </ScrollView>
+      <BoxProfile user={user} navigation={navigation} />
+      {/* <ScrollView style={stylesCondition()}>
+        <BoxProfile user={user} navigation={navigation} />
+      </ScrollView> */}
     </PrimaryContainer>
   );
 };

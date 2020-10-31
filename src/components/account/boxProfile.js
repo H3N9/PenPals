@@ -23,6 +23,8 @@ import PostMessage from "./components/postMessage";
 import { useSelector } from "react-redux";
 
 const BoxProfile = ({ id, navigation, user }) => {
+  const authorize = useSelector((state) => state.Authorize.authorize)
+  const { userId } = authorize
   const theme = useSelector((state) => state.themeReducer.theme);
   const [postSegment, setPostSegment] = useState("photo");
   //All variable will be here
@@ -34,7 +36,8 @@ const BoxProfile = ({ id, navigation, user }) => {
 
   //authen
   //const isAuthUser = id === Schema.user;
-  const isAuthUser = true
+  console.log(userId, user.userId)
+  const isAuthUser = userId == user.userId
 
   //userList variable
   const friendCount = user.friendCount;

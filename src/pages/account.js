@@ -9,11 +9,11 @@ import Schema from "../../src/schema";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const Account = ({ route, navigation }) => {
+const Account = ({ route, navigation, user }) => {
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <SafeAreaView style={{ flex: 1 }}>
-        <BoxProfile id={Schema.user} navigation={navigation} />
+        <BoxProfile user={user} navigation={navigation} />
       </SafeAreaView>
     </PrimaryContainer>
   );
