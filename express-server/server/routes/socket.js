@@ -20,18 +20,18 @@ const connected = (app) =>{
 
         socket.on('userSend', async (sendingText) => {
             const user = currentUser(socket.id)
-            // const text = await db.sequelize.transaction((t) => {
-            //     return Message.create(sendingText, {transaction:t})
-            // })
-            // const {id, reply, userId, chatId, createdAt} = text.dataValues
-            // const json = {
-            //     id,
-            //     reply,
-            //     userId,
-            //     chatId,
-            //     createdAt
-            // }
-            io.to(user.room).emit('serverSend', "Good")
+            const text = await db.sequelize.transaction((t) => {
+                return Message.create(sendingText, {transaction:t})
+            })
+            const {id, reply, userId, chatId, createdAt} = text.dataValues
+            const json = {
+                id,
+                reply,
+                userId,
+                chatId,
+                createdAt
+            }
+            io.to(user.room).emit('serverSend', json)
             
         })
 
@@ -39,7 +39,7 @@ const connected = (app) =>{
             const user = userLeave(socket.id)
             console.log('disconnect')
             if(user){
-                io.to(user[0].room).emit('serverSend', "Your friend left")
+                io.to(user[0].room).emit('offline', "Your friend left")
             }
         })
     })

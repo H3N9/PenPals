@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  SafeAreaView,
   TouchableOpacity,
   FlatList,
   StyleSheet,
@@ -11,7 +10,7 @@ import { PrimaryContainer } from "../../style/themeComponent";
 
 
 const BoxMessage = ({ texts, userId }) => {
-  const [messages, setMessage] = useState(texts);
+
   const EachMessage = ({ text, sender }) => {
     if (sender === userId) {
       return (
@@ -35,9 +34,10 @@ const BoxMessage = ({ texts, userId }) => {
   return (
     <PrimaryContainer style={styles.boxMess}>
       <FlatList
-        data={messages}
+        data={texts}
         renderItem={renderMessage}
-        keyExtractor={(messages) => messages.id.toString()}
+        inverted={-1}
+        keyExtractor={(texts) => texts.id.toString()}
       />
     </PrimaryContainer>
   );

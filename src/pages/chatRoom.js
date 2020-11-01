@@ -8,53 +8,50 @@ import { PrimaryContainer } from "../style/themeComponent";
 import io from 'socket.io-client'
 import path from '../path'
 
-const urlSocket = path.urlSocket
-const socket = io(urlSocket)
 
+
+let socket
 
 const ChatRoom = ({ navigation, route }) => {
 	const { initialTexts, interlocutor, room, userId } = route.params;
+	
 	const [texts, setTexts] = useState(initialTexts)
-
 	
 	
 	useEffect(() => {
+		const urlSocket = path.urlSocket
+		socket = io(urlSocket)
 		socket.emit("roomChat", {userId, room})
-	}, [])
-	
-	useEffect(() => {
-		socket.on('serverSend', (receiveText) =>{
-			setTexts([...texts, receiveText])
-			console.log(texts)
+		socket.on("offline", (msg) => {
+			console.log(msg)
 		})
+		return () =>{
+			socket.disconnect()
+			socket.off()
+		}
 	}, [socket])
-
 	
+	useEffect(() => { // Stack useState n**2 carefully
+		socket.on('serverSend', (receiveText) =>{
+			setTexts([receiveText, ...texts])
+		})
+	}, [texts])
 
 	const handleMyMessage = (text) =>{
 		const sendingText = {
-		"reply":text,
-		"type":"text",
-		"userId":userId,
-		"chatId":room
+			"reply":text,
+			"type":"text",
+			"userId":userId,
+			"chatId":room
 		}
-		
 		socket.emit('userSend', (sendingText))
-
 	}
 
-	
 
-
-
-	const handleBack = () => {
-		socket.disconnect()
-		navigation.goBack()
-	}
 	return (
 		<PrimaryContainer style={MainStyle.mainBackground}>
 			<View>
-				<BarMessage interlocutor={interlocutor} navigation={handleBack} />
+				<BarMessage interlocutor={interlocutor} navigation={navigation} />
 			</View>
 			<View style={styles.boxMess}>
 				<BoxMessage texts={texts} userId={userId} />

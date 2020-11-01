@@ -23,7 +23,7 @@ const BarMessage = ({ navigation, interlocutor }) => {
     <SecondContainer style={styles.box}>
       <View style={styles.btn}>
         <TouchableOpacity
-          onPress={() => navigation()}
+          onPress={() => navigation.goBack()}
           style={{ padding: 9 }}
         >
           <SimpleLineIcon name="arrow-left" size={20} />
