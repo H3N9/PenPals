@@ -12,7 +12,7 @@ const MyAccount = ({navigation}) => {
     const [user, setUser] = useState({})
 
     useEffect(() => {
-        fetch(url+"/account/my-profile", {
+        fetch(url, {
             method: 'GET',
             headers:{
                 Accept: 'application/json',

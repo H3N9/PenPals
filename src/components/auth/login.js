@@ -21,7 +21,7 @@ const Login = ({navigation}) => {
     }
 
     const reDirect = async () =>{
-        const response = await fetch(url+"/auth/login", {
+        const response = await fetch(url, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
