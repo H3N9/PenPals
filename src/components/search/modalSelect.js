@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -9,12 +9,13 @@ import {
   Keyboard,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
-
+import { LinearGradient } from "expo-linear-gradient";
 import {
   SecondContainer,
   TextPrimary,
   InputTextBg,
 } from "../../style/themeComponent";
+import { useSelector } from "react-redux";
 
 const modalSelect = ({
   modalVisible,
@@ -25,6 +26,7 @@ const modalSelect = ({
   focusData,
   fetchUrl,
 }) => {
+  const theme = useSelector((state) => state.themeReducer.theme);
   const [text, setText] = useState("");
   const [searchData, setSearchData] = useState(data);
 
@@ -41,20 +43,34 @@ const modalSelect = ({
   // useEffect(() => {
   //   fetchData();
   // }, []);
+  const isHave = (title) => {
+    const index = filterData[focusData].findIndex((value) => value === title);
+    if (index === -1) {
+      return false;
+    } else {
+      return true;
+    }
+  };
 
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.tag}>
+      <LinearGradient
+        colors={["#385362", theme.mode === "dark" ? "#314799" : "#333"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.9, y: 0.5 }}
+        style={[styles.tag, { opacity: isHave(item.title) ? 0.3 : 1 }]}
+      >
         <TouchableOpacity
           onPress={() => {
-            filterData[focusData] = item.title;
+            filterData[focusData].push(item.title);
             setFilterData(filterData);
             setModalVisible(!modalVisible);
           }}
+          disabled={isHave(item.title) ? true : false}
         >
           <Text style={styles.tagText}>{item.title}</Text>
         </TouchableOpacity>
-      </View>
+      </LinearGradient>
     );
   };
   const inputHandle = (value) => {
@@ -86,7 +102,10 @@ const modalSelect = ({
           <InputTextBg
             placeholder="Type to Search"
             placeholderTextColor="#AAA"
-            style={styles.textInput}
+            style={[
+              styles.textInput,
+              { backgroundColor: theme.primaryBackground },
+            ]}
             value={text}
             onChangeText={(value) => setText(value)}
             clearButtonMode="always"
@@ -108,30 +127,23 @@ const modalSelect = ({
 };
 
 const styles = StyleSheet.create({
-  dataFilterContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-    marginVertical: 1,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-  },
   tag: {
-    padding: 15,
-    backgroundColor: "#FF5350",
+    padding: 12,
     margin: 10,
     borderRadius: 5,
+    backgroundColor: "#777",
   },
   tagText: {
     fontSize: 18,
     fontWeight: "bold",
+    textAlign: "center",
+    color: "#FFF",
   },
   textInput: {
     padding: 10,
     marginHorizontal: 10,
     borderRadius: 5,
     marginBottom: 5,
-    backgroundColor: "#DDD",
   },
   extraModal: {
     marginTop: "50%",

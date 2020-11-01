@@ -5,6 +5,7 @@ import {
   Switch,
   StyleSheet,
   TouchableOpacity,
+  Text,
 } from "react-native";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
@@ -66,6 +67,17 @@ const Setting = ({ navigation }) => {
             value={theme.mode == "light" ? false : true}
           />
         </View>
+        <View
+          style={[
+            styles.settingSection,
+            { justifyContent: "center", borderBottomWidth: 0 },
+          ]}
+        >
+          <TouchableOpacity style={styles.logOutButton}>
+            <MaterialIcon name={"logout"} style={{ color: "#fff" }} size={19} />
+            <Text style={{ color: "#FFF", fontWeight: "bold" }}>SignOut</Text>
+          </TouchableOpacity>
+        </View>
       </ScrollView>
     </PrimaryContainer>
   );
@@ -95,6 +107,14 @@ const styles = StyleSheet.create({
     padding: 15,
     borderBottomColor: "#aaa",
     borderBottomWidth: 0.3,
+  },
+  logOutButton: {
+    backgroundColor: "#ec4b5b",
+    padding: 15,
+    paddingHorizontal: 50,
+    borderRadius: 50,
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
 export default Setting;

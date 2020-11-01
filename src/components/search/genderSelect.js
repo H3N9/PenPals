@@ -26,11 +26,19 @@ const GenderSelect = ({ filterData, setFilterData }) => {
       </View>
       <SwitchSelector
         options={genderData}
-        style={{ width: 170 }}
+        style={{
+          width: 165,
+          borderWidth: 1,
+          padding: 2,
+          borderColor: "rgba(255,83,80, 0.7)",
+          borderRadius: 50,
+        }}
         buttonColor="#FF5350"
-        textColor="#DDD"
+        textColor="#AAA"
+        backgroundColor="#FFF"
+        height={35}
         selectedTextStyle={{ color: "#FFF" }}
-        backgroundColor="#747474"
+        backgroundColor="transparent"
         initial={0}
         onPress={(value) => updateFilterData(value)}
       />

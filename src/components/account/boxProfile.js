@@ -1,49 +1,43 @@
-import React, { useState} from "react";
-import { View, StyleSheet, Text, ActivityIndicator, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import BoxInfo from "./components/boxInfo";
 import UserList from "./components/userList";
 import ListTag from "./components/ListTag";
 import ContactButton from "./components/contactButton";
 import AboutAcc from "./components/aboutAcc";
-import { PrimaryContainer, SecondContainer, FontistoIcon, EntypoIcon,} from "../../style/themeComponent";
-import PostImage from './components/postImage'
-import {useSelector} from 'react-redux'
+import Schema from "../../schema";
+import {
+  PrimaryContainer,
+  SecondContainer,
+  FontistoIcon,
+  EntypoIcon,
+} from "../../style/themeComponent";
+import PostImage from "./components/postImage";
+import PostMessage from "./components/postMessage";
+import { useSelector } from "react-redux";
 
-    // const url = `http://localhost:3000/search/user/${id}`
-    // useEffect(() => {
-    //     fetch(url,{
-    //         method: 'GET',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //             Authorization: token,
-    //           },
-    //     })
-    //     .then( async (res) => {
-    //             if(res.status === 200){
-    //                 const data = await res.json()
-    //                 setUser(...data)
-    //             }
-    //             else if(res.status === 401){
-    //                 navigation.navigate("Login")
-    //             }
-    //         }
-    //     )
-    //     .catch(err => "Mute")
-    // }, [id])
-
-const BoxProfile = ({ user, navigation }) => {
+const BoxProfile = ({ id, navigation, user }) => {
+  const authorize = useSelector((state) => state.Authorize.authorize)
+  const { userId } = authorize
   const theme = useSelector((state) => state.themeReducer.theme);
   const [postSegment, setPostSegment] = useState("photo");
-  const authorize = useSelector((state) => state.Authorize.authorize)
-  const {userId} = authorize
   //All variable will be here
+  //const user = Schema.data.user[parseInt(id)-1]
+  //const user = Schema.getProfile(id);
 
   //listTag variable
   const { hobbies, favorites } = user;
 
   //authen
-  const isAuthUser = user.userId === userId;
+  //const isAuthUser = id === Schema.user;
+  console.log(userId, user.userId)
+  const isAuthUser = userId == user.userId
 
   //userList variable
   const friendCount = user.friendCount;
@@ -78,7 +72,7 @@ const BoxProfile = ({ user, navigation }) => {
         <View style={styles.contact}>
           <ContactButton
             title={"Edit Profile"}
-            handle={() => navigation.navigate("EditProfile", {user:user})}
+            handle={() => navigation.navigate("EditProfile", {user: user})}
             iconName={"pencil-square-o"}
           />
         </View>
@@ -101,58 +95,74 @@ const BoxProfile = ({ user, navigation }) => {
     }
   };
 
+  const AccountDetailSection = () => {
+    return (
+      <React.Fragment>
+        <BoxInfo userDetail={user} auth={isAuthUser} navigation={navigation} />
+        <UserList
+          friendCount={friendCount}
+          intro={intro}
+          navigation={navigation}
+        />
+        {controlViewProfile(isAuthUser)}
+        <ListTag
+          tag={hobbies}
+          title={"Hobbies & interests Tag"}
+          handle={() => navigation.navigate("AddTag")}
+          isAuthUser={isAuthUser}
+        />
+        <ListTag
+          tag={favorites}
+          title={"Favorite Tag"}
+          handle={() => navigation.navigate("AddTag")}
+          isAuthUser={isAuthUser}
+        />
+        <AboutAcc describe={describe} />
+        <SecondContainer style={styles.segmentContainer}>
+          <TouchableOpacity
+            style={[
+              styles.segmentItem,
+              postSegment == "photo" ? segmentBorder : null,
+            ]}
+            onPress={() => {
+              setPostSegment("photo");
+            }}
+          >
+            <FontistoIcon
+              name={"photograph"}
+              size={24}
+              style={styles.segmentText}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={[
+              styles.segmentItem,
+              postSegment == "text" ? segmentBorder : null,
+            ]}
+            onPress={() => setPostSegment("text")}
+          >
+            <EntypoIcon name={"text"} size={24} style={styles.segmentText} />
+          </TouchableOpacity>
+        </SecondContainer>
+      </React.Fragment>
+    );
+  };
+
   return (
-    <PrimaryContainer>
-      <BoxInfo userDetail={user} auth={isAuthUser} navigation={navigation} />
-      <UserList
-        friendCount={friendCount}
-        intro={intro}
-        navigation={navigation}
-      />
-      {controlViewProfile(isAuthUser)}
-      <ListTag
-        tag={hobbies}
-        title={"Hobbies & interests Tag"}
-        handle={() => navigation.navigate("AddTag")}
-        isAuthUser={isAuthUser}
-      />
-      <ListTag
-        tag={favorites}
-        title={"Favorite Tag"}
-        handle={() => navigation.navigate("AddTag")}
-        isAuthUser={isAuthUser}
-      />
-      <AboutAcc describe={describe} />
-      <SecondContainer style={styles.segmentContainer}>
-        <TouchableOpacity
-          style={[
-            styles.segmentItem,
-            postSegment == "photo" ? segmentBorder : null,
-          ]}
-          onPress={() => {
-            setPostSegment("photo");
-          }}
-        >
-          <FontistoIcon
-            name={"photograph"}
-            size={24}
-            style={styles.segmentText}
-          />
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[
-            styles.segmentItem,
-            postSegment == "text" ? segmentBorder : null,
-          ]}
-          onPress={() => setPostSegment("text")}
-        >
-          <EntypoIcon name={"text"} size={24} style={styles.segmentText} />
-        </TouchableOpacity>
-      </SecondContainer>
-      {postSegment == "photo" ? <PostImage images={images} /> : null}
+    <PrimaryContainer style={{ flex: 1 }}>
+      {postSegment == "photo" ? (
+        <PostImage
+          images={images}
+          AccountDetailSection={AccountDetailSection}
+        />
+      ) : (
+        <PostImage
+          images={images}
+          AccountDetailSection={AccountDetailSection}
+        />
+      )}
     </PrimaryContainer>
   );
-
 };
 
 const styles = StyleSheet.create({

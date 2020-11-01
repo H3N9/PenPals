@@ -11,9 +11,7 @@ const Login = ({navigation}) => {
     const [password, setPassword] = useState("")
     const [status, setStatus] = useState(false)
     const dispatch = useDispatch()
-
     const url = path.urlLogin
-
     const handleUsername = (value) =>{
         setUsername(value)
     }
@@ -23,7 +21,7 @@ const Login = ({navigation}) => {
     }
 
     const reDirect = async () =>{
-        const response = await fetch(url, {
+        const response = await fetch(url+"/auth/login", {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -34,6 +32,7 @@ const Login = ({navigation}) => {
                 password: password
               })
         }).catch(err => "Mute error")
+        console.log(response)
         if(response.status === 200){
             const data = await response.json()
             dispatch(actionAuthorize(data))

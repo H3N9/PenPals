@@ -26,8 +26,8 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
   };
   const image = require("../../../../assets/man.png");
 
-  // const textInfo = `${firstName} ${lastName}\n${gender} ${age} y.e.\n${city} ${nation}`;
-  const textInfo = `${gender} ${age} y.e.\n${city} ${nation}`;
+   const textInfo = `${firstName} ${lastName}\n${gender} ${age} y.e.\n${city} ${nation}`;
+ // const textInfo = `${gender} ${age} y.e.\n${city} ${nation}`;
 
   const styles = StyleSheet.create({
     imgProfile: {
@@ -56,8 +56,8 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
     <ImageBackground style={styles.main} source={imageBackground}>
       <LinearGradient
         colors={["transparent", "rgba(0,0,0,1)"]}
-        start={{ x: 0, y: -0.0 }}
-        end={{ x: 0, y: 1 }}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0, y: 0.98 }}
       >
         {!auth && (
           <TouchableOpacity
