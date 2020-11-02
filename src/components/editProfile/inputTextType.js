@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TextInput } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import { TextPrimary, InputText } from "../../style/themeComponent";
 
-const InputTextType = ({ placeholder }) => {
+const InputTextType = ({ placeholder, newDetail, data }) => {
   return (
     <View style={{ flex: 1 }}>
       <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
@@ -13,6 +13,8 @@ const InputTextType = ({ placeholder }) => {
         style={styles.textInput}
         placeholder={placeholder}
         placeholderTextColor="#777"
+        value={newDetail[data]}
+        onChangeText={(value) => (newDetail[data] = value)}
       />
     </View>
   );

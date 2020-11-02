@@ -59,7 +59,7 @@ const BoxProfile = ({ id, navigation }) => {
 
   const segmentBorder = {
     borderBottomColor: theme.textColor,
-    borderBottomWidth: 5,
+    borderBottomWidth: 3,
   };
 
   const controlViewProfile = (auth) => {

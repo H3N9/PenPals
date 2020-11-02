@@ -123,7 +123,12 @@ const Index = () => {
             <Stack.Screen
               name="ViewProfile"
               component={ViewProfile}
-              options={{ headerShown: false }}
+              options={{
+                headerShown: false,
+                ...TransitionPresets.ModalPresentationIOS,
+                cardOverlayEnabled: true,
+                gestureEnabled: true,
+              }}
             />
             <Stack.Screen
               name="EditProfile"

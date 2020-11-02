@@ -6,10 +6,11 @@ import ModalSelect from "./modalSelect";
 import {
   PrimaryContainer,
   TextPrimary,
-  FontAwesomeIcon,
+  FontAwesome5Icon,
   EntypoIcon,
 } from "../../style/themeComponent";
 import { FlatList } from "react-native-gesture-handler";
+import styled from "styled-components";
 
 const CountrySelect = ({
   filterData,
@@ -48,7 +49,10 @@ const CountrySelect = ({
     <React.Fragment>
       <PrimaryContainer style={styles.dataFilterContainer}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <FontAwesomeIcon name={title === "Tag" ? "tag" : "flag"} size={30} />
+          <FontAwesome5Icon
+            name={focusData === "country" ? "flag-usa" : focusData}
+            size={30}
+          />
           <TextPrimary style={[MainStyle.textBold, { flex: 1 }]}>
             {"  " + title}
           </TextPrimary>
@@ -69,9 +73,7 @@ const CountrySelect = ({
           fetchUrl={fetchUrl}
         />
       </PrimaryContainer>
-      <PrimaryContainer
-        style={{ padding: 10, flexDirection: "row", alignItems: "center" }}
-      >
+      <PrimaryContainer style={styles.selectMany}>
         <TextPrimary>Selected : </TextPrimary>
         <FlatList
           data={filterData[focusData]}
@@ -107,6 +109,12 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: "row",
     alignItems: "center",
+  },
+  selectMany: {
+    padding: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 1,
   },
 });
 

@@ -4,8 +4,14 @@ import MainStyle from "../../style/mainStyle";
 import Entypo from "react-native-vector-icons/Entypo";
 import Icons from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
-const ProfileHeader = ({ navigation }) => {
+const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
   const image = require("../../../assets/man.png");
+
+  const saveEdit = () => {
+    setNewDetail(newDetail);
+    navigation.navigate("Account");
+    console.log(newDetail);
+  };
   return (
     <View style={styles.headerContainer}>
       <View style={styles.buttonSession}>
@@ -15,10 +21,7 @@ const ProfileHeader = ({ navigation }) => {
         >
           <Icons name="chevron-left" color="#fff" size={21} />
         </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("Account")}
-          style={styles.backButton}
-        >
+        <TouchableOpacity onPress={() => saveEdit()} style={styles.backButton}>
           <AntDesign name="save" color="#fff" size={21} />
         </TouchableOpacity>
       </View>

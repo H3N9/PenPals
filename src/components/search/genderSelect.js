@@ -30,14 +30,15 @@ const GenderSelect = ({ filterData, setFilterData }) => {
           width: 165,
           borderWidth: 1,
           padding: 2,
-          borderColor: "rgba(255,83,80, 0.7)",
+          borderColor: "rgba(52, 138, 217, 0.8)",
           borderRadius: 50,
         }}
-        buttonColor="#FF5350"
+        buttonColor="rgba(52, 138, 217, 0.8)"
         textColor="#AAA"
         backgroundColor="#FFF"
         height={35}
-        selectedTextStyle={{ color: "#FFF" }}
+        textStyle={{ fontWeight: "600" }}
+        selectedTextStyle={{ color: "#FFF", fontWeight: "600" }}
         backgroundColor="transparent"
         initial={0}
         onPress={(value) => updateFilterData(value)}
