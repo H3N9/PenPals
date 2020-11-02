@@ -11,6 +11,7 @@ const http = require('http').createServer(app)
 // })
 const connected = require('./server/routes/socket').listen(http)
 
+//app.use(express.urlencoded())
 app.use(express.json())
 app.use(bodyParser.json());
 app.use(passport.initialize())
@@ -24,6 +25,7 @@ app.use('/post',  passport.authenticate('jwt', {session: false}), require('./ser
 app.use('/auth', require('./server/routes/auth'))
 app.use('/set-data', passport.authenticate('jwt', {session: false}), require('./server/routes/setData'))
 app.use('/message', passport.authenticate('jwt', {session:false}), require('./server/routes/chat'))
+app.use('/image', require('./server/routes/image'))
 
 //io.listen(http,connected(io))
 
