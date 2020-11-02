@@ -15,6 +15,7 @@ const Suggestion = ({ navigation, userId, user }) => {
   const {
     id,
     username,
+    image,
     nation,
     city,
     age,
@@ -33,7 +34,8 @@ const Suggestion = ({ navigation, userId, user }) => {
       >
         <Image
           style={[styles.imgProfile]}
-          source={require("../../../assets/man.png")}
+          //source={require("../../../assets/man.png")}
+          source={{ uri: Schema.url+"/image/"+image }}
         />
         <View style={styles.onlineStatus} />
       </TouchableOpacity>
