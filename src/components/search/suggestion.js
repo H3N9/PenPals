@@ -32,91 +32,32 @@ const Suggestion = ({ navigation, userId }) => {
   const tag2 = favorites[0].list[0];
 
   return (
-    <PrimaryContainer style={[styles.boxContent, MainStyle.shadow]}>
-      <View>
-        <TouchableOpacity
-          onPress={() => navigation.navigate("ViewProfile", { id: id })}
-          style={MainStyle.shadow}
-        >
-          <Image
-            style={[styles.imgProfile]}
-            source={require("../../../assets/man.png")}
-          />
-          <View style={styles.onlineStatus} />
-        </TouchableOpacity>
-        <View
-          style={{
-            paddingVertical: 5,
-          }}
-        >
-          <TextPrimary style={{ fontSize: 18, fontWeight: "700" }}>
-            {username}
-          </TextPrimary>
-          <TextPrimary style={{ marginVertical: 2 }}>
-            {city}, {nation}
-          </TextPrimary>
-          <TextPrimary style={{ marginVertical: 2 }}>
-            {age} {gender}
-          </TextPrimary>
-          <View style={{ overflow: "hidden", paddingVertical: 10 }}>
-            <Text style={MainStyle.textGray}>{describe}</Text>
-          </View>
-          <View style={{ flexDirection: "row", marginVertical: 2 }}>
-            <Tag tagName={tag1.name} id={tag1.id} />
-            <Tag tagName={tag2.name} id={tag2.id} />
-          </View>
-        </View>
-        <View style={styles.menuSugges}>
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#777",
-              width: 40,
-              height: 40,
-              marginHorizontal: 10,
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 20,
-            }}
-          >
-            <Ionicons
-              name="ios-chatbubbles"
-              size={22}
-              color="white"
-              style={{ color: "#FFF" }}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={{
-              backgroundColor: "#777",
-              width: 40,
-              height: 40,
-              marginHorizontal: 10,
-              alignItems: "center",
-              justifyContent: "center",
-              borderRadius: 20,
-            }}
-          >
-            <FontAwesomeIcon
-              name="bookmark"
-              size={22}
-              style={{ color: "#FFF" }}
-            />
-          </TouchableOpacity>
-        </View>
-      </View>
-
-      {/* 
+    <View style={[styles.boxContent, MainStyle.boxContent]}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("ViewProfile", { id: id })}
+        style={MainStyle.shadow}
+      >
+        <Image
+          style={[styles.imgProfile]}
+          source={require("../../../assets/man.png")}
+        />
+        <View style={styles.onlineStatus} />
+      </TouchableOpacity>
       <View style={{ flex: 1, marginLeft: 7 }}>
         <View style={[styles.userDetail]}>
           <View style={{ flex: 3 }}>
-
-            <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
-
+            {/* Username */}
+            <TouchableOpacity
+              onPress={() => navigation.navigate("ViewProfile", { id: id })}
+            >
+              <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
+            </TouchableOpacity>
+            {/* location */}
             <TextPrimary style={{ marginVertical: 1 }}>
               {city}, {nation}
             </TextPrimary>
           </View>
-
+          {/* Follower */}
           <View style={{ flex: 1 }}>
             <TextPrimary>{age}</TextPrimary>
           </View>
@@ -131,7 +72,7 @@ const Suggestion = ({ navigation, userId }) => {
           </View>
         </View>
 
-
+        {/* Tag */}
         <View style={{ flexDirection: "row" }}>
           <Tag tagName={tag1.name} id={tag1.id} />
           <Tag tagName={tag2.name} id={tag2.id} />
@@ -140,22 +81,18 @@ const Suggestion = ({ navigation, userId }) => {
         <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>
           <Text style={MainStyle.textGray}>{describe}</Text>
         </View>
-      </View> */}
-    </PrimaryContainer>
+      </View>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   boxContent: {
-    paddingHorizontal: 30,
-    paddingVertical: 40,
-    flexDirection: "column",
+    minHeight: 130,
+    padding: 10,
+    flexDirection: "row",
     marginBottom: 1,
-    margin: 10,
-    borderRadius: 10,
-    height: "80%",
-    width: screenWidth / 1.3,
-    marginTop: 20,
+    shadowColor: "#000",
   },
   profile: {
     width: 60,
@@ -176,13 +113,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "green",
     position: "absolute",
-    left: 50,
-    bottom: 0,
+    right: 0,
+    bottom: 40,
   },
   menuSugges: {
+    flex: 1.5,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 10,
   },
   imgProfile: {
     width: 70,

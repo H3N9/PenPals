@@ -12,13 +12,7 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 const Search = ({ navigation }) => {
   const id = ["1", "2", "3"];
   const renderItem = ({ item }) => {
-    return (
-      <React.Fragment>
-        {item == id.length - 2 ? <View style={{ width: 10 }} /> : null}
-        <Suggestion userId={item} navigation={navigation} />
-        {item == id.length ? <View style={{ width: 10 }} /> : null}
-      </React.Fragment>
-    );
+    return <Suggestion userId={item} navigation={navigation} />;
   };
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
@@ -28,10 +22,6 @@ const Search = ({ navigation }) => {
           data={id}
           renderItem={renderItem}
           keyExtractor={(item) => item}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          snapToInterval={screenWidth * 0.68 + 17 * 2}
-          decelerationRate="fast"
         />
       </SecondContainer>
     </PrimaryContainer>
