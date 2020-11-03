@@ -8,7 +8,7 @@ const getAllMessage = async (userId) => {
         attributes: {exclude: ['createdAt', 'updatedAt']},
         include: [{model: Message, as: "message", attributes:{exclude: ['updatedAt']}}]
     })
-    chats.map(async (chat) => {
+    chats.map((chat) => {
         const interlocutor = chat.dataValues.userOne === userId? chat.dataValues.userTwo:chat.dataValues.userOne
         chat.dataValues['interlocutor'] = interlocutor
         chat.dataValues['userId'] = userId
