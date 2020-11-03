@@ -29,7 +29,7 @@ const ListTag = ({ tag, title, handle, isAuthUser }) => {
         </TextPrimary>
         {isAuthUser ? (
           <TouchableOpacity style={styles.addButton} onPress={handle}>
-            <Entypo name="plus" size={18} />
+            <Entypo name="plus" size={18} color="#FFF" />
           </TouchableOpacity>
         ) : null}
       </View>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
     flex: 3,
     flexDirection: "row",
     flexWrap: "wrap",
+    alignItems: "center",
   },
   boxIntro: {
     flex: 1,
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   addButton: {
-    backgroundColor: "#90DD70",
+    backgroundColor: "#33AA70",
     padding: 2,
     paddingHorizontal: 3,
     borderRadius: 50,

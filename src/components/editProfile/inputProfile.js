@@ -1,22 +1,30 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import InputTextType from "./inputTextType";
 import InputSelectType from "./inputSelectType";
 import { TextPrimary } from "../../style/themeComponent";
+import DatePicker from "./datePicker";
 
-const InputProfile = ({navigation, user}) => {
-  const {username, gender, firstName, lastName, age, city, nation, intro, describe} = user
+const InputProfile = ({ newDetail, setNewDetail }) => {
   return (
     <View style={{ padding: 20 }}>
       {/* UsernameInput */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Username" value={username} />
+        <InputTextType
+          placeholder="Username"
+          newDetail={newDetail}
+          data="username"
+        />
       </View>
       {/* Name & Lastname Input */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Name" value={firstName} />
-        <InputTextType placeholder="Lastname" value={lastName} />
+        <InputTextType placeholder="Name" newDetail={newDetail} data="name" />
+        <InputTextType
+          placeholder="Lastname"
+          newDetail={newDetail}
+          data="lastName"
+        />
       </View>
 
       {/* BirthDay Input */}
@@ -26,9 +34,11 @@ const InputProfile = ({navigation, user}) => {
         BirthDate
       </TextPrimary>
       <View style={[styles.inputChildContainer, { marginTop: 0 }]}>
-        <InputSelectType placeholder="Day" />
-        <InputSelectType placeholder="Month" />
-        <InputSelectType placeholder="Year" />
+        <DatePicker
+          setNewDetail={setNewDetail}
+          newDetail={newDetail}
+          data="birthDate"
+        />
       </View>
       {/* Gender Input */}
       <View style={styles.inputChildContainer}>
@@ -36,7 +46,11 @@ const InputProfile = ({navigation, user}) => {
           <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             Gender
           </TextPrimary>
-          <InputSelectType placeholder="Gender" value={gender} />
+          <InputSelectType
+            placeholder="Gender"
+            newDetail={newDetail}
+            data="gender"
+          />
         </View>
       </View>
 
@@ -46,22 +60,38 @@ const InputProfile = ({navigation, user}) => {
           <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             Nation
           </TextPrimary>
-          <InputSelectType placeholder="Nation" value={nation} />
+          <InputSelectType
+            placeholder="Nation"
+            newDetail={newDetail}
+            data="nation"
+          />
         </View>
         <View style={{ flex: 1 }}>
           <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
             City
           </TextPrimary>
-          <InputSelectType placeholder="City" value={city} />
+          <InputSelectType
+            placeholder="City"
+            newDetail={newDetail}
+            data="city"
+          />
         </View>
       </View>
       {/* introInput */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Introquotes" value={intro} />
+        <InputTextType
+          placeholder="Introquotes"
+          newDetail={newDetail}
+          data="introQuotes"
+        />
       </View>
       {/* AboutInput */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="AboutMe" value={describe} />
+        <InputTextType
+          placeholder="AboutMe"
+          newDetail={newDetail}
+          data="aboutMe"
+        />
       </View>
     </View>
   );

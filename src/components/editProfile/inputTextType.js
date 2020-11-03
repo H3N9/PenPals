@@ -1,9 +1,9 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text, TextInput } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import { TextPrimary, InputText } from "../../style/themeComponent";
 
-const InputTextType = ({ placeholder, value }) => {
+const InputTextType = ({ placeholder, newDetail, data }) => {
   return (
     <View style={{ flex: 1 }}>
       <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
@@ -11,8 +11,10 @@ const InputTextType = ({ placeholder, value }) => {
       </TextPrimary>
       <InputText
         style={styles.textInput}
+        placeholder={placeholder}
         placeholderTextColor="#777"
-        value={value}
+        value={newDetail[data]}
+        onChangeText={(value) => (newDetail[data] = value)}
       />
     </View>
   );

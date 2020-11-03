@@ -1,5 +1,5 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { SafeAreaView } from "react-native";
 import BoxProfile from "../components/account/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
@@ -13,9 +13,6 @@ const ViewProfile = ({ route, navigation}) => {
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <BoxProfile user={user} navigation={navigation} />
-      {/* <ScrollView style={stylesCondition()}>
-        <BoxProfile user={user} navigation={navigation} />
-      </ScrollView> */}
     </PrimaryContainer>
   );
 };

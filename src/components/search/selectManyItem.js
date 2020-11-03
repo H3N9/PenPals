@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, View, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import { useSelector } from "react-redux";
@@ -6,21 +6,22 @@ import ModalSelect from "./modalSelect";
 import {
   PrimaryContainer,
   TextPrimary,
-  FontAwesomeIcon,
+  FontAwesome5Icon,
   EntypoIcon,
 } from "../../style/themeComponent";
 import { FlatList } from "react-native-gesture-handler";
+import styled from "styled-components";
 
-const CountrySelect = ({ filterData, setFilterData, focusData, title }) => {
+const CountrySelect = ({
+  filterData,
+  setFilterData,
+  focusData,
+  title,
+  fetchUrl,
+}) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   const [modalVisible, setModalVisible] = useState(false);
   const [delPress, setDelPress] = useState(false); // ใช้สำหรับเมื่อ state ตัวนี้มีการเปลี่ยนแปลงจะ render Flatlist ใหม่
-  const countryData = [
-    { title: "England", id: "1" },
-    { title: "France", id: "2" },
-    { title: "Thailand", id: "3" },
-    { title: "Brazil", id: "4" },
-  ];
 
   const renderItem = ({ item }) => {
     return (
@@ -48,7 +49,10 @@ const CountrySelect = ({ filterData, setFilterData, focusData, title }) => {
     <React.Fragment>
       <PrimaryContainer style={styles.dataFilterContainer}>
         <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <FontAwesomeIcon name={title === "Tag" ? "tag" : "flag"} size={30} />
+          <FontAwesome5Icon
+            name={focusData === "country" ? "flag-usa" : focusData}
+            size={30}
+          />
           <TextPrimary style={[MainStyle.textBold, { flex: 1 }]}>
             {"  " + title}
           </TextPrimary>
@@ -63,16 +67,13 @@ const CountrySelect = ({ filterData, setFilterData, focusData, title }) => {
         <ModalSelect
           modalVisible={modalVisible}
           setModalVisible={setModalVisible}
-          data={countryData}
           focusData={focusData}
           filterData={filterData}
           setFilterData={setFilterData}
-          fetchUrl={"https://restcountries.eu/rest/v2/all"}
+          fetchUrl={fetchUrl}
         />
       </PrimaryContainer>
-      <PrimaryContainer
-        style={{ padding: 10, flexDirection: "row", alignItems: "center" }}
-      >
+      <PrimaryContainer style={styles.selectMany}>
         <TextPrimary>Selected : </TextPrimary>
         <FlatList
           data={filterData[focusData]}
@@ -108,6 +109,12 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: "row",
     alignItems: "center",
+  },
+  selectMany: {
+    padding: 15,
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 1,
   },
 });
 

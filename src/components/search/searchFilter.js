@@ -25,7 +25,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={MainStyle.centeredView}>
+        <View style={[MainStyle.centeredView]}>
           <SecondContainer style={[MainStyle.modalView, { padding: 0 }]}>
             <View
               style={[
@@ -64,12 +64,14 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
               setFilterData={setFilterData}
               focusData="country"
               title="Country"
+              fetchUrl="https://restcountries.eu/rest/v2/all?fields=name;flag"
             />
             <SelectManyItem
               filterData={filterData}
               setFilterData={setFilterData}
               focusData="tag"
               title="Tag"
+              fetchUrl="https://restcountries.eu/rest/v2/all?fields=name"
             />
           </SecondContainer>
         </View>

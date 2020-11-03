@@ -37,7 +37,7 @@ const SelectedTag = ({
     <MainContainer>
       <View style={{ flexDirection: "row", flexWrap: "wrap" }}>
         <TextPrimary style={{ marginLeft: 5, marginVertical: 2 }}>
-          SelectedTag :
+          Selected :
         </TextPrimary>
         <FlatList
           data={tagSelected}
