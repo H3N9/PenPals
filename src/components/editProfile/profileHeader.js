@@ -10,7 +10,8 @@ import Schema from "../../schema"
 
 const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
   //const image = require("../../../assets/man.png");
-  const [ image, setImage ] = useState(require("../../../assets/man.png"))
+  console.log(newDetail)
+  const [ image, setImage ] = useState({ uri: Schema.url+"/image/"+newDetail.image })
   const [ upload, setUpload ] = useState(0)
   const [ response, setResponse ] = useState('No')
 

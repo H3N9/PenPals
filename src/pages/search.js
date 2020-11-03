@@ -33,7 +33,7 @@ const Search = ({ navigation }) => {
       setUsers(json)
       setLoading(false)
     })
-  }, [isFocused])
+  }, [])
 
   const renderSuggestion = ({ item, index }) =>{
     return (<Suggestion user={item} key={index} navigation={navigation} />)
@@ -47,7 +47,7 @@ const Search = ({ navigation }) => {
   }
 
   const renderItem = ({ item }) => {
-    return <Suggestion userId={item} navigation={navigation} />;
+    return <Suggestion user={item} navigation={navigation} />;
   };
 
   return (
@@ -64,7 +64,7 @@ const Search = ({ navigation }) => {
       <SearchBar />
       <SecondContainer style={{ flex: 1 }}>
         <FlatList
-          data={user}
+          data={users}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />

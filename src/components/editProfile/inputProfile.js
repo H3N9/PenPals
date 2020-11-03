@@ -19,7 +19,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
       </View>
       {/* Name & Lastname Input */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Name" newDetail={newDetail} data="name" />
+        <InputTextType placeholder="Name" newDetail={newDetail} data="firstName" />
         <InputTextType
           placeholder="Lastname"
           newDetail={newDetail}

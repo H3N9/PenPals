@@ -17,7 +17,6 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Suggestion = ({ navigation, userId, user }) => {
   //const user = Schema.getProfile(userId);
-  console.log(user)
   const {
     id,
     username,
