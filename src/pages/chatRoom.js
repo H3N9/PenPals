@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
 import BoxMessage from "../components/messenger/boxMessage";
 import BarMessage from "../components/messenger/barMessage";
@@ -6,56 +6,66 @@ import Keyboard from "../components/messenger/keyboard";
 import MainStyle from "../style/mainStyle";
 import { PrimaryContainer } from "../style/themeComponent";
 import io from 'socket.io-client'
+import path from '../path'
 
 
+
+let socket
 
 const ChatRoom = ({ navigation, route }) => {
-  
-  const { initialTexts, interlocutor, room, userId } = route.params;
+	const { initialTexts, interlocutor, room, userId } = route.params;
+	
+	const [texts, setTexts] = useState()
+	
+	
+	useEffect(() => {
+		const urlSocket = path.urlSocket
+		socket = io(urlSocket)
+		socket.emit("roomChat", {userId, room})
+		socket.on("offline", (msg) => {
+			console.log(msg)
+		})
+		setTexts(initialTexts)
+		return () =>{
+			socket.disconnect()
+			socket.off()
+		}
+	}, [socket])
+	
+	useEffect(() => { // Stack useState n**2 carefully
+		socket.on('serverSend', (receiveText) =>{
+			setTexts([receiveText, ...texts])
+		})
+	}, [texts])
 
-  const urlSocket = "http://localhost:3000/"
-  const socket = io(urlSocket)
-  socket.on('connected', msg => {
-    console.log('You connected')
-  })
-
-  socket.emit("roomChat", {userId, room})
-
-  const [texts, setTexts] = useState(initialTexts)
-
-  const handleMyMessage = (text) =>{
-
-    socket.emit('userSend', text)
-
-  }
-
-  socket.on('serverSend', (msg) =>{
-    console.log(msg)
-  })
+	const handleMyMessage = (text) =>{
+		const sendingText = {
+			"reply":text,
+			"type":"text",
+			"userId":userId,
+			"chatId":room
+		}
+		socket.emit('userSend', (sendingText))
+	}
 
 
-
-  const handleBack = () => {
-    socket.disconnect()
-    navigation.goBack()
-  }
-  return (
-    <PrimaryContainer style={MainStyle.mainBackground}>
-        <View>
-            <BarMessage interlocutor={interlocutor} navigation={handleBack} />
-        </View>
-        <View style={styles.boxMess}>
-            <BoxMessage texts={texts} />
-        </View>
-        <KeyboardAvoidingView
-          behavior={Platform.OS == "ios" ? "padding" : "height"}
-          keyboardVerticalOffset={Platform.OS == "ios" ? 20 : 0}
-        >
-          <View style={styles.keyboard}>
-              <Keyboard onTextChange={handleMyMessage} />
-          </View>
-        </KeyboardAvoidingView>
-    </PrimaryContainer>
+	return (
+		<PrimaryContainer style={MainStyle.mainBackground}>
+			<View>
+				<BarMessage interlocutor={interlocutor} navigation={navigation} />
+			</View>
+			<View style={styles.boxMess}>
+				<BoxMessage texts={texts} userId={userId} />
+			</View>
+			<KeyboardAvoidingView
+			behavior={Platform.OS == "ios" ? "padding" : "height"}
+			keyboardVerticalOffset={Platform.OS == "ios" ? 20 : 0}
+			>
+			<View style={styles.keyboard}>
+				<Keyboard onTextChange={handleMyMessage} />
+			</View>
+			</KeyboardAvoidingView>
+		</PrimaryContainer>
   );
 };
 

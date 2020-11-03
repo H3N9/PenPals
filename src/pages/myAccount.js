@@ -1,78 +1,31 @@
 import React, { useEffect, useState } from "react";
 import BoxProfile from '../components/account/boxProfile'
 import {useSelector} from 'react-redux'
-import {View, ActivityIndicator} from 'react-native'
-import schema from "../schema"
+import {ActivityIndicator} from 'react-native'
+import path from '../path'
+import { getLoad } from '../fetch'
+import { useIsFocused } from '@react-navigation/native';
 
 const MyAccount = ({navigation}) => {
     const authorize = useSelector((state) => state.Authorize.authorize)
     const {token} = authorize
-    //const url = 'http://localhost:3000'
-    const url = schema.url
-    const [isLoading, setLoading] = useState(true);
-    const [user, setUser] = useState({})
+    const url = path.urlMyprofile
+    const [user, setUser] = useState()
+    const isFocused = useIsFocused()
+
+    // const controller = new AbortController
+    // const signal = controller.signal
 
     useEffect(() => {
-        fetch(url+"/account/my-profile", {
-            method: 'GET',
-            headers:{
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: token,
-            }     
-        })
-          .then((response) => {
-              return response.json()
-            })
-          .then((json) => {
-              setUser(json[0])
-              setLoading(false)
-            })
-          .catch((error) => {
-              navigation.navigate("Login")
-            })
-      }, [authorize]);
+        getLoad(navigation, token, url, setUser)
+      }, [isFocused])
+
 
     return (
         <React.Fragment>
-            {isLoading ? <ActivityIndicator/>:(
-                <BoxProfile user={user} navigation={navigation} />
-            )}
+            {user? <BoxProfile user={user} navigation={navigation} />:<ActivityIndicator/>}
         </React.Fragment>
     )
-
-    // useEffect(() =>{
-    //     fetch(url,{
-    //         method: 'GET',
-    //         headers:{
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //             Authorization: token,
-    //         }
-            
-    //     })
-    //     .then( async (res) => {
-    //         if(res.status === 200){
-    //             const data = await res.json()
-    //             setUser(data)
-    //         }
-    //         else if(res.status === 401){
-    //             navigation.navigate("Login")
-    //         }
-    //     }
-    //     )   
-    // }, [authorize])
-
-    // if(user){
-    //     return(
-    //         <BoxProfile user={user} navigation={navigation} />
-    //     )
-    // }
-    // else{
-    //     return(
-    //         <ActivityIndicator />
-    //     )
-    // }
     
     
 

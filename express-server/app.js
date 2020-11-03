@@ -9,7 +9,7 @@ const http = require('http').createServer(app)
 //     pingTimeout: 5000,
 //     cookie: false
 // })
-const connected = require('./server/routes/socket').listen(http)
+require('./server/routes/socket').listen(http)
 
 //app.use(express.urlencoded())
 app.use(express.json())

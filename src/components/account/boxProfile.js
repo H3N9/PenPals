@@ -2,16 +2,13 @@ import React, { useState } from "react";
 import {
   View,
   StyleSheet,
-  Text,
   TouchableOpacity,
-  ScrollView,
 } from "react-native";
 import BoxInfo from "./components/boxInfo";
 import UserList from "./components/userList";
 import ListTag from "./components/ListTag";
 import ContactButton from "./components/contactButton";
 import AboutAcc from "./components/aboutAcc";
-import Schema from "../../schema";
 import {
   PrimaryContainer,
   SecondContainer,
@@ -19,12 +16,13 @@ import {
   EntypoIcon,
 } from "../../style/themeComponent";
 import PostImage from "./components/postImage";
-import PostMessage from "./components/postMessage";
 import { useSelector } from "react-redux";
+import path from '../../path'
+import {postLoad} from '../../fetch'
 
 const BoxProfile = ({ id, navigation, user }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
-  const { userId } = authorize
+  const { userId, token } = authorize
   const theme = useSelector((state) => state.themeReducer.theme);
   const [postSegment, setPostSegment] = useState("photo");
   //All variable will be here
@@ -65,34 +63,50 @@ const BoxProfile = ({ id, navigation, user }) => {
     borderBottomColor: theme.textColor,
     borderBottomWidth: 3,
   };
+  const chatRoom = () =>{
+		const urlCreateChat = path.urlCreateChat
+		const data = {userTwo: user.userId}
+    postLoad(navigation, token, urlCreateChat, data, redirectChat)
+  }
 
-  const controlViewProfile = (auth) => {
-    if (auth) {
-      return (
-        <View style={styles.contact}>
-          <ContactButton
-            title={"Edit Profile"}
-            handle={() => navigation.navigate("EditProfile", {user: user})}
-            iconName={"pencil-square-o"}
-          />
-        </View>
-      );
-    } else {
-      return (
-        <View style={styles.contact}>
-          <ContactButton
-            title={"Add Friend"}
-            handle={() => {}}
-            iconName={"md-person-add"}
-          />
-          <ContactButton
-            title={"Message"}
-            handle={() => {}}
-            iconName={"ios-chatbubbles"}
-          />
-        </View>
-      );
-    }
+  const redirectChat = (data) => {
+		const room = data.id
+		const texts = data.message
+		navigation.navigate("ChatRoom", {
+			initialTexts: texts,
+			interlocutor: user,
+			room:room,
+			userId:userId
+		})
+	}
+
+	const controlViewProfile = (auth) => {
+		if (auth) {
+		return (
+			<View style={styles.contact}>
+			<ContactButton
+				title={"Edit Profile"}
+				handle={() => navigation.navigate("EditProfile", {user: user})}
+				iconName={"pencil-square-o"}
+			/>
+			</View>
+		);
+		} else {
+		return (
+			<View style={styles.contact}>
+			<ContactButton
+				title={"Add Friend"}
+				handle={() => {}}
+				iconName={"md-person-add"}
+			/>
+			<ContactButton
+				title={"Message"}
+				handle={() => chatRoom()}
+				iconName={"ios-chatbubbles"}
+			/>
+			</View>
+		);
+		}
   };
 
   const AccountDetailSection = () => {

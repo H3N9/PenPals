@@ -3,7 +3,14 @@ const users = []
 
 const userJoin = (id, user, room) =>{
     const dataPack = {id, user, room}
-    users.push(dataPack)
+    const index = users.findIndex(val => val.user === dataPack.user)
+    if(index === -1){
+        users.push(dataPack)
+    }
+    else{
+        users[index] = dataPack
+    }
+    
     return dataPack
 }
 

@@ -5,13 +5,14 @@ import { Dimensions } from "react-native";
 import Schema from "../schema";
 import { SecondContainer } from "../style/themeComponent";
 import {useSelector} from 'react-redux'
+import path from '../path'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Navbar = ({ navigation }) => {
   const routeName = useRoute().name;
   const token = useSelector((state) => state.Authorize.token)
-  const url = "http://localhost:3000/account/my-profile"
+  const url = path.urlMyprofile
   const [userId, setUserId] = useState()
 
   useEffect(() => {
