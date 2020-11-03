@@ -1,5 +1,5 @@
 //const main = 'http://localhost:3000/'
-const main = "https://67ce3541f628.ngrok.io/"
+const main = "http://d325496008dd.ngrok.io/"
 
 const urls = {
     urlSocket: main,
@@ -8,6 +8,7 @@ const urls = {
     urlMyprofile: main + 'account/my-profile/',
     urlSearchUser: main + 'search/user/',
     urlCreateChat: main + 'message/chat/',
+    urlImage: main+'image/',
 }
 
 export default urls

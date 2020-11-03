@@ -6,7 +6,7 @@ import { Dimensions, ActivityIndicator, FlatList, View, Text } from "react-nativ
 import { PrimaryContainer, SecondContainer } from "../style/themeComponent";
 import { Value } from "react-native-reanimated";
 import {useSelector} from 'react-redux'
-// import { useIsFocused } from "@react-navigation/native"
+import { useIsFocused } from "@react-navigation/native"
 // import schema from "../schema"
 import path from '../path'
 
@@ -39,7 +39,7 @@ const Search = ({ navigation }) => {
         navigation.navigate("Login")
       }
     })
-  }, [])
+  }, [isFocused])
 
   const renderSuggestion = ({ item, index }) =>{
     return (<Suggestion user={item} key={index} navigation={navigation} />)

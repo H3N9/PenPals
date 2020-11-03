@@ -16,6 +16,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components/native";
 import { Value } from "react-native-reanimated"
 import Schema from "../../../schema"
+import path from "../../../path"
 
 const BoxInfo = ({ userDetail, navigation, auth }) => {
   const {
@@ -91,7 +92,7 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
           )}
           <View style={styles.userInfo}>
             <View style={[MainStyle.shadow]}>
-              <Image style={styles.imgProfile} source={{uri: (Schema.url+"/image/"+image)}} />
+              <Image style={styles.imgProfile} source={{uri: (path.urlImage+image)}} />
             </View>
             <View
               style={{ flex: 1, justifyContent: "flex-end", marginLeft: 10 }}

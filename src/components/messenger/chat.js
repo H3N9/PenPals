@@ -38,12 +38,15 @@ const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize, room
 
 const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId }) => {
 
+	console.log(interlocutor)
+
 	const date = new Date(lastMessage.createdAt)
 	const minute = date.getMinutes();
 	const hour = date.getHours();
 	const day = date.getDate();
 	const month = date.getMonth();
 	const usernameAnother = interlocutor.username;
+	const { image } = interlocutor
 
 	return (
 		<TouchableOpacity
@@ -68,7 +71,7 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId 
 					backgroundColor: "#323223",
 					},
 				]}
-				source={require("../../../assets/man.png")}
+				source={{uri: path.urlImage+image}}
 				/>
 				<View
 				style={{

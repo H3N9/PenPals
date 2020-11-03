@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Tag from "../account/components/tag";
-import Schema from "../../schema";
+
 import {
   TextPrimary,
   FontAwesomeIcon,
@@ -12,6 +12,7 @@ import {
 } from "../../style/themeComponent";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { Dimensions } from "react-native";
+import path from '../../path'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
@@ -28,8 +29,13 @@ const Suggestion = ({ navigation, user }) => {
     describe,
     gender,
   } = user;
-  //const tag1 = hobbies[0].list[0];
-  //const tag2 = favorites[0].list[0];
+  let tag1
+  let tag2
+
+  if (hobbies[0].list.length > 0)
+    tag1 = hobbies[0].list[0];
+  if (favorites.length > 0)
+    tag2 = favorites[0].list[0];
 
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
@@ -40,7 +46,7 @@ const Suggestion = ({ navigation, user }) => {
         <Image
           style={[styles.imgProfile]}
           //source={require("../../../assets/man.png")}
-          source={{ uri: Schema.url+"/image/"+image }}
+          source={{ uri: path.urlImage+image }}
         />
         <View style={styles.onlineStatus} />
       </TouchableOpacity>
@@ -75,8 +81,8 @@ const Suggestion = ({ navigation, user }) => {
 
         {/* Tag */}
         <View style={{ flexDirection: "row" }}>
-          {/*<Tag tagName={tag1.name} id={tag1.id} />
-          <Tag tagName={tag2.name} id={tag2.id} />*/}
+          {(hobbies[0].list.length > 0) && <Tag tagName={tag1.name} id={tag1.id} />}
+          {(favorites.length > 0) && <Tag tagName={tag2.name} id={tag2.id} />}
         </View>
 
         <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>

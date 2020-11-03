@@ -5,13 +5,13 @@ import Entypo from "react-native-vector-icons/Entypo";
 import Icons from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import * as ImagePicker from 'expo-image-picker';
-import Schema from "../../schema"
+import path from "../../path"
 //import RNFetchBlob from "react-native-fetch-blob";
 
 const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
   //const image = require("../../../assets/man.png");
   console.log(newDetail)
-  const [ image, setImage ] = useState({ uri: Schema.url+"/image/"+newDetail.image })
+  const [ image, setImage ] = useState({ uri: path.urlImage+newDetail.image })
   const [ upload, setUpload ] = useState(0)
   const [ response, setResponse ] = useState('No')
 
@@ -79,7 +79,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
       setResponse(xhr.response)
     })
     console.log(formData)
-    const url = Schema.url+"/image"
+    const url = path.urlImage
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE){
         newDetail.image = xhr.response.filename
