@@ -136,8 +136,6 @@ const Index = () => {
               component={ViewProfile}
               options={{
                 headerShown: false,
-                ...TransitionPresets.ModalPresentationIOS,
-                cardOverlayEnabled: true,
                 gestureEnabled: true,
               }}
             />

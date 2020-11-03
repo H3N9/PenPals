@@ -91,15 +91,11 @@ const Suggestion = ({ navigation, userId, user }) => {
 
 const styles = StyleSheet.create({
   boxContent: {
-    paddingHorizontal: 30,
-    paddingVertical: 40,
-    flexDirection: "column",
+    minHeight: 130,
+    padding: 10,
+    flexDirection: "row",
     marginBottom: 1,
-    margin: 10,
-    borderRadius: 10,
-    height: "80%",
-    width: screenWidth / 1.3,
-    marginTop: 20,
+    shadowColor: "#000",
   },
   profile: {
     width: 60,
@@ -120,13 +116,13 @@ const styles = StyleSheet.create({
     borderRadius: 100,
     backgroundColor: "green",
     position: "absolute",
-    left: 50,
-    bottom: 0,
+    right: 0,
+    bottom: 40,
   },
   menuSugges: {
+    flex: 1.5,
     flexDirection: "row",
     justifyContent: "space-between",
-    paddingVertical: 10,
   },
   imgProfile: {
     width: 70,

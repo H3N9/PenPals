@@ -46,15 +46,29 @@ const Search = ({ navigation }) => {
     // );
   }
 
+  const renderItem = ({ item }) => {
+    return <Suggestion userId={item} navigation={navigation} />;
+  };
+
   return (
+    // <PrimaryContainer style={MainStyle.mainBackground}>
+    //   <SearchBar />
+    //   {isLoading ? (<ActivityIndicator/>) : (
+    //   <FlatList style={stylesCondition()}
+    //     data={users}
+    //     renderItem={renderSuggestion}
+    //     keyExtractor={item => item.id.toString()}
+    //   />)}
+  //const id = ["1", "2", "3"];
     <PrimaryContainer style={MainStyle.mainBackground}>
       <SearchBar />
-      {isLoading ? (<ActivityIndicator/>) : (
-      <FlatList style={stylesCondition()}
-        data={users}
-        renderItem={renderSuggestion}
-        keyExtractor={item => item.id.toString()}
-      />)}
+      <SecondContainer style={{ flex: 1 }}>
+        <FlatList
+          data={user}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </SecondContainer>
     </PrimaryContainer>
 
     // <PrimaryContainer style={MainStyle.mainBackground}>
