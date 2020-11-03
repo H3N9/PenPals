@@ -8,7 +8,7 @@ const { Profile, Relationship } = db
 
 router.get('/my-profile', async (req, res) =>{
     const profile = await getProfile({profileQuery: {userId: req.user.id}, otherQuery: {user: req.user}})
-    res.json(profile)
+    res.json(...profile)
 })
 
 router.get('/profile/:id', async (req, res) =>{

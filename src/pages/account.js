@@ -5,11 +5,11 @@ import BoxProfile from "../components/account/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
-import Schema from "../../src/schema";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const Account = ({ route, navigation, user }) => {
+const Account = ({ route, navigation }) => {
+  const user = route.params.user
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <SafeAreaView style={{ flex: 1 }}>

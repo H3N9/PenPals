@@ -10,6 +10,7 @@ const connected = (app) =>{
 
     io.on('connect', (socket)=>{
         console.log('connect')
+
         socket.on('roomChat', ({userId, room}) => {
             const current = currentUser(socket.id)
             if(!current){
@@ -31,6 +32,7 @@ const connected = (app) =>{
                 chatId,
                 createdAt
             }
+            //{id:0, reply:"good", userId: 8, chatId: 1}
             io.to(user.room).emit('serverSend', json)
             
         })

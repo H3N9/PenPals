@@ -32,7 +32,6 @@ const Login = ({navigation}) => {
                 password: password
               })
         }).catch(err => "Mute error")
-        console.log(response)
         if(response.status === 200){
             const data = await response.json()
             dispatch(actionAuthorize(data))

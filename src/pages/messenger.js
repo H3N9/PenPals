@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { FlatList, SafeAreaView, ActivityIndicator } from "react-native";
+import { FlatList, SafeAreaView } from "react-native";
 import Homebar from "../components/homebar";
 import Chat from "../components/messenger/chat";
 import MainStyle from "../style/mainStyle";
@@ -7,6 +7,8 @@ import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
 import {useSelector} from 'react-redux'
 import path from '../path'
+import {getLoad} from '../fetch'
+import { useIsFocused } from '@react-navigation/native';
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
@@ -16,40 +18,13 @@ const Messenger = ({ navigation }) => {
 	const authorize = useSelector((state) => state.Authorize.authorize)
 	const {token} = authorize
 	const url = path.urlMessage
+	const isFocused = useIsFocused();
+
 	useEffect(() => {
-			fetch(url, {
-				method: 'GET',
-				headers:{
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-					Authorization: token,
-				}
-			}).then( async (response) =>{
-				if(response.status === 200){
-					const data = await response.json()
-					setMessages(data)
-				}
-				else if(response.status === 401){
-					navigation.navigate("Login")
-				}
-			})
-	}, [authorize])
-
-	if(messages){
-		return(
-			<Successed messages={messages} navigation={navigation} authorize={authorize}/>
-		)
-	}
-	else{
-		return(
-			<ActivityIndicator />
-		)
-	}
+		getLoad(navigation, token, url, setMessages)
+	}, [isFocused])
 
 
-};
-
-const Successed = ({navigation, messages, authorize}) => {
 	const renderItem = ({ item }) => {
 		return (
 		<Chat
@@ -62,7 +37,6 @@ const Successed = ({navigation, messages, authorize}) => {
 		/>
 		);
 	};
-
 	return (
 		<PrimaryContainer style={MainStyle.mainBackground}>
 		<Homebar navigation={navigation} />
@@ -74,7 +48,7 @@ const Successed = ({navigation, messages, authorize}) => {
 			/>
 		</SafeAreaView>
 		</PrimaryContainer>
-	);
+	)
 }
 
 const stylesCondition = () => {

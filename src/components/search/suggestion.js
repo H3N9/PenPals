@@ -10,10 +10,9 @@ import {
   PrimaryContainer,
 } from "../../style/themeComponent";
 
-const Suggestion = ({ navigation, userId, user }) => {
+const Suggestion = ({ navigation, user }) => {
   //const user = Schema.getProfile(userId);
   const {
-    id,
     username,
     nation,
     city,
@@ -22,13 +21,13 @@ const Suggestion = ({ navigation, userId, user }) => {
     favorites,
     describe,
   } = user;
-  const tag1 = hobbies[0].list[0];
-  const tag2 = favorites[0].list[0];
+  //const tag1 = hobbies[0].list[0];
+  //const tag2 = favorites[0].list[0];
 
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>
       <TouchableOpacity
-        onPress={() => navigation.navigate("ViewProfile", { user: user })}
+        onPress={() => navigation.navigate("Account", { user: user })}
         style={MainStyle.shadow}
       >
         <Image
@@ -42,7 +41,7 @@ const Suggestion = ({ navigation, userId, user }) => {
           <View style={{ flex: 3 }}>
             {/* Username */}
             <TouchableOpacity
-              onPress={() => navigation.navigate("ViewProfile", { user: user })}
+              onPress={() => navigation.navigate("Account", { user: user })}
             >
               <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
             </TouchableOpacity>
@@ -68,8 +67,8 @@ const Suggestion = ({ navigation, userId, user }) => {
 
         {/* Tag */}
         <View style={{ flexDirection: "row" }}>
-          <Tag tagName={tag1.name} id={tag1.id} />
-          <Tag tagName={tag2.name} id={tag2.id} />
+          {/*<Tag tagName={tag1.name} id={tag1.id} />
+          <Tag tagName={tag2.name} id={tag2.id} />*/}
         </View>
 
         <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>

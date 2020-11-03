@@ -52,11 +52,6 @@ const Search = ({ navigation }) => {
         renderItem={renderSuggestion}
         keyExtractor={item => item.id.toString()}
       />)}
-      {/* <ScrollView style={stylesCondition()}>
-        <Suggestion userId={"1"} navigation={navigation} />
-        <Suggestion userId={"2"} navigation={navigation} />
-        <Suggestion userId={"3"} navigation={navigation} />
-      </ScrollView> */}
     </PrimaryContainer>
   );
 };

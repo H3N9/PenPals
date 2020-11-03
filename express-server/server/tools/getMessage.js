@@ -1,9 +1,8 @@
 const db = require('../../models')
 const {Chat, Message} = db
 const { Op } = require('sequelize')
-const getProfile = require('./getProfile')
 
-module.exports = async (userId) => {
+const getAllMessage = async (userId) => {
     const chats = await Chat.findAll({
         where: {[Op.or]:[{userOne:userId},{userTwo:userId}]},
         attributes: {exclude: ['createdAt', 'updatedAt']},
@@ -20,4 +19,17 @@ module.exports = async (userId) => {
         delete chat.dataValues.userTwo
     })
     return chats
+}
+
+const getOneMessage = async (userId, friendId) => {
+    const messagesData = await getAllMessage(userId)
+    const messages = messagesData.map(message => message.dataValues)
+    const message = messages.filter((message) => message.userId === userId && message.interlocutor === friendId)
+    return message
+}
+
+
+module.exports = {
+    getAllMessage,
+    getOneMessage
 }

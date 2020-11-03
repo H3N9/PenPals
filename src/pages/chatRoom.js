@@ -15,7 +15,7 @@ let socket
 const ChatRoom = ({ navigation, route }) => {
 	const { initialTexts, interlocutor, room, userId } = route.params;
 	
-	const [texts, setTexts] = useState(initialTexts)
+	const [texts, setTexts] = useState()
 	
 	
 	useEffect(() => {
@@ -25,6 +25,7 @@ const ChatRoom = ({ navigation, route }) => {
 		socket.on("offline", (msg) => {
 			console.log(msg)
 		})
+		setTexts(initialTexts)
 		return () =>{
 			socket.disconnect()
 			socket.off()

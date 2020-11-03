@@ -7,7 +7,6 @@ import Messenger from "./pages/messenger";
 import Search from "./pages/search";
 import Notification from "./pages/notification";
 import ChatRoom from "./pages/chatRoom";
-import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
 import FriendList from "./pages/friendList";
@@ -129,11 +128,6 @@ const Index = () => {
             <Stack.Screen
               name="ChatRoom"
               component={ChatRoom}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="ViewProfile"
-              component={ViewProfile}
               options={{ headerShown: false }}
             />
             <Stack.Screen
