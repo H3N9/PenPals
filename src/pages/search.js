@@ -36,39 +36,41 @@ const Search = ({ navigation }) => {
   }, [isFocused])
 
   const renderSuggestion = ({ item, index }) =>{
-    //return (<Suggestion user={item} key={index} navigation={navigation} />)
-    return (
-      <React.Fragment>
-        {item == id.length - 2 ? <View style={{ width: 10 }} /> : null}
-        <Suggestion user={item} navigation={navigation} />
-        {item == id.length ? <View style={{ width: 10 }} /> : null}
-      </React.Fragment>
-    );
+    return (<Suggestion user={item} key={index} navigation={navigation} />)
+    // return (
+    //   <React.Fragment>
+    //     {item == id.length - 2 ? <View style={{ width: 10 }} /> : null}
+    //     <Suggestion user={item} navigation={navigation} />
+    //     {item == id.length ? <View style={{ width: 10 }} /> : null}
+    //   </React.Fragment>
+    // );
   }
 
   return (
-    // <PrimaryContainer style={MainStyle.mainBackground}>
-    //   <SearchBar />
-    //   {isLoading ? (<ActivityIndicator/>) : (
-    //   <FlatList style={stylesCondition()}
-    //     data={users}
-    //     renderItem={renderSuggestion}
-    //     keyExtractor={item => item.id.toString()}
-    //   />)}
     <PrimaryContainer style={MainStyle.mainBackground}>
       <SearchBar />
-      <SecondContainer style={{ flex: 1 }}>
-        <FlatList
-          data={id}
-          renderItem={renderItem}
-          keyExtractor={(item) => item}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          snapToInterval={screenWidth * 0.68 + 17 * 2}
-          decelerationRate="fast"
-        />
-      </SecondContainer>
+      {isLoading ? (<ActivityIndicator/>) : (
+      <FlatList style={stylesCondition()}
+        data={users}
+        renderItem={renderSuggestion}
+        keyExtractor={item => item.id.toString()}
+      />)}
     </PrimaryContainer>
+
+    // <PrimaryContainer style={MainStyle.mainBackground}>
+    //   <SearchBar />
+    //   <SecondContainer style={{ flex: 1 }}>
+    //     <FlatList
+    //       data={users}
+    //       renderItem={renderSuggestion}
+    //       keyExtractor={item => item.id.toString()}
+    //       horizontal={true}
+    //       showsHorizontalScrollIndicator={false}
+    //       snapToInterval={screenWidth * 0.68 + 17 * 2}
+    //       decelerationRate="fast"
+    //     />
+    //   </SecondContainer>
+    // </PrimaryContainer>
       /* <ScrollView style={stylesCondition()}>
         <Suggestion userId={"1"} navigation={navigation} />
         <Suggestion userId={"2"} navigation={navigation} />
