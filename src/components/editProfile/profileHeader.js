@@ -7,9 +7,11 @@ import * as ImagePicker from 'expo-image-picker';
 import Schema from "../../schema"
 //import RNFetchBlob from "react-native-fetch-blob";
 
-const ProfileHeader = ({ navigation }) => {
+const ProfileHeader = ({ navigation, user }) => {
   //const image = require("../../../assets/man.png");
   const [ image, setImage ] = useState(require("../../../assets/man.png"))
+  const [ upload, setUpload ] = useState(0)
+  const [ response, setResponse ] = useState('No')
 
   useEffect(() => {
     (async () => {
@@ -52,26 +54,45 @@ const ProfileHeader = ({ navigation }) => {
     // });
   
     return data;
-  };
+  }
+
+  const handleProgress = (event) =>{
+    setUpload(Math.round((event.loaded+100)/event.total))
+  }
 
   const save = () =>{
+    const xhr = new XMLHttpRequest()
     let formData = new FormData()
-    formData.append("image", {uri: image, name: 'image124.jpg', type: 'image/jpeg'})
+    formData.append("image", {uri: image.uri, name: 'image.jpg', type: 'image/jpeg'})
     //formData.append("product[images_attributes[0][file]]", {uri: image, name: 'image.jpg', type: 'image/jpeg'})
+    xhr.upload.addEventListener('progress', handleProgress)
+    xhr.addEventListener('load', () =>{
+      setUpload(100)
+      setResponse(xhr.response)
+    })
     console.log(formData)
     const url = Schema.url+"/image"
-    fetch(url, {
-      method: 'post',
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      body: createFormData(image)
-    })
-    .then(response => {
-    console.log("image uploaded")
-    }).catch(err => {
-      console.log(err)
-    })  
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState == XMLHttpRequest.DONE){
+        user.image = xhr.response.filename
+        console.log(user);
+      }
+    }
+    xhr.open('POST', url)
+    xhr.responseType = 'json'
+    xhr.send(formData)
+    // fetch(url, {
+    //   method: 'post',
+    //   headers: {
+    //     'Content-Type': 'multipart/form-data',
+    //   },
+    //   body: createFormData(image)
+    // })
+    // .then(response => {
+    // console.log("image uploaded")
+    // }).catch(err => {
+    //   console.log(err)
+    // })  
   }
 
   return (
