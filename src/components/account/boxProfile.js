@@ -20,86 +20,56 @@ import { useSelector } from "react-redux";
 import path from '../../path'
 import {postLoad} from '../../fetch'
 
-const BoxProfile = ({ navigation, user }) => {
-	const authorize = useSelector((state) => state.Authorize.authorize)
-	const { userId, token } = authorize
-	const theme = useSelector((state) => state.themeReducer.theme);
-	const [postSegment, setPostSegment] = useState("photo");
-	//All variable will be here
-	//const user = Schema.data.user[parseInt(id)-1]
-	//const user = Schema.getProfile(id);
+const BoxProfile = ({ id, navigation, user }) => {
+  const authorize = useSelector((state) => state.Authorize.authorize)
+  const { userId, token } = authorize
+  const theme = useSelector((state) => state.themeReducer.theme);
+  const [postSegment, setPostSegment] = useState("photo");
+  //All variable will be here
+  //const user = Schema.data.user[parseInt(id)-1]
+  //const user = Schema.getProfile(id);
 
-	//listTag variable
-	const { hobbies, favorites } = user;
+  //listTag variable
+  const { hobbies, favorites } = user;
 
-	//authen
-	//const isAuthUser = id === Schema.user;
-	const isAuthUser = userId == user.userId
+  //authen
+  //const isAuthUser = id === Schema.user;
+  console.log(userId, user.userId)
+  const isAuthUser = userId == user.userId
 
-	//userList variable
-	const friendCount = user.friendCount;
-	const intro = user.intro;
+  //userList variable
+  const friendCount = user.friendCount;
+  const intro = user.intro;
 
-	//aboutAcc variable
-	const describe = user.describe;
+  //aboutAcc variable
+  const describe = user.describe;
 
-	const images = [
-		{
-		uri:
-			"https://i.pinimg.com/originals/47/74/40/477440f00ca76309345efe789515dc8f.jpg",
-		},
-		{
-		uri: "http://linkinpedia.com/images/f/f2/Lithograph_HT20_Mike.jpg",
-		},
-		{
-		uri:
-			"https://storage.thaipost.net/main/uploads/photos/big/20200429/image_big_5ea90d5a96322.jpg",
-		},
-		require("../../../assets/5.png"),
-	];
+  const images = [
+    {
+      uri:
+        "https://i.pinimg.com/originals/47/74/40/477440f00ca76309345efe789515dc8f.jpg",
+    },
+    {
+      uri: "http://linkinpedia.com/images/f/f2/Lithograph_HT20_Mike.jpg",
+    },
+    {
+      uri:
+        "https://storage.thaipost.net/main/uploads/photos/big/20200429/image_big_5ea90d5a96322.jpg",
+    },
+    require("../../../assets/5.png"),
+  ];
 
-	const segmentBorder = {
-		borderBottomColor: theme.textColor,
-		borderBottomWidth: 5,
-	};
-
-	const chatRoom = () =>{
+  const segmentBorder = {
+    borderBottomColor: theme.textColor,
+    borderBottomWidth: 3,
+  };
+  const chatRoom = () =>{
 		const urlCreateChat = path.urlCreateChat
 		const data = {userTwo: user.userId}
-		postLoad(navigation, token, urlCreateChat, data, redirectChat)
+    postLoad(navigation, token, urlCreateChat, data, redirectChat)
+  }
 
-		// const urlChat = path.urlMessage+user.userId
-		// const getMessage = await fetch(urlChat, {
-		// 	method: 'GET',
-		// 	headers: {
-		// 		Accept: 'application/json',
-        //         'Content-Type': 'application/json',
-        //         Authorization: token,
-		// 	},
-		// })
-		// if(getMessage.status === 200){
-		// 	const json = await getMessage.json()
-		// 	if(json){
-		// 		const room = json.id
-		// 		const texts = json.message
-		// 		console.log(texts)
-		// 		navigation.navigate("ChatRoom", {
-		// 			initialTexts: texts,
-		// 			interlocutor: user,
-		// 			room:room,
-		// 			userId:userId
-		// 		})
-		// 	}
-		// 	else{
-		// 		createChatRoom()
-		// 	}
-		// }
-		// else if(createChat.status === 401){
-		// 	navigation.navigate("Login")
-		// }
-	}
-
-	const redirectChat = (data) => {
+  const redirectChat = (data) => {
 		const room = data.id
 		const texts = data.message
 		navigation.navigate("ChatRoom", {
@@ -109,34 +79,6 @@ const BoxProfile = ({ navigation, user }) => {
 			userId:userId
 		})
 	}
-
-	// const createChatRoom = async () => {
-	// 	const urlCreateChat = path.urlCreateChat
-	// 	const data = {userTwo: user.userId}
-	// 	const createChat = await fetch(urlCreateChat, {
-	// 		method: 'POST',
-	// 		headers: {
-	// 			Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //             Authorization: token,
-	// 		},
-	// 		body: JSON.stringify(data)
-	// 	})
-	// 	if(createChat.status === 200){
-	// 		const json = await createChat.json()
-	// 		const room = json.id
-	// 		const texts = []
-	// 		navigation.navigate("ChatRoom", {
-	// 			initialTexts: texts,
-	// 			interlocutor: user,
-	// 			room:room,
-	// 			userId:userId
-	// 		})
-	// 	}
-	// 	else if(createChat.status === 401){
-	// 		navigation.navigate("Login")
-	// 	}
-	// }
 
 	const controlViewProfile = (auth) => {
 		if (auth) {

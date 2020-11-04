@@ -37,7 +37,6 @@ const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize, room
 };
 
 const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId }) => {
-
 	
 
 	const setFormatDate = (dateString) =>{
@@ -57,6 +56,7 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId 
 
 	const date = setFormatDate(lastMessage.createdAt)
 	const usernameAnother = interlocutor.username;
+	const { image } = interlocutor
 
 	return (
 		<TouchableOpacity
@@ -81,7 +81,7 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId 
 					backgroundColor: "#323223",
 					},
 				]}
-				source={require("../../../assets/man.png")}
+				source={{uri: path.urlImage+image}}
 				/>
 				<View
 				style={{

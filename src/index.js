@@ -131,9 +131,18 @@ const Index = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
+            //   name="ViewProfile"
+            //   component={ViewProfile}
+            //   options={{
+            //     headerShown: false,
+            //     gestureEnabled: true,
+            //   }}
+            // />
+            // <Stack.Screen
               name="EditProfile"
               component={EditProfile}
               options={{
+                cardOverlayEnabled: true,
                 headerShown: false,
                 ...TransitionPresets.ModalPresentationIOS,
               }}

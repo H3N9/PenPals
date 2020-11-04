@@ -5,6 +5,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
+import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 export const TextPrimary = styled.Text`
   color: ${(props) => props.theme.textColor};
@@ -48,5 +49,9 @@ export const MaterialIcon = styled(Material)`
 `;
 
 export const FontistoIcon = styled(Fontisto)`
+  color: ${(props) => props.theme.textColor};
+`;
+
+export const FontAwesome5Icon = styled(FontAwesome5)`
   color: ${(props) => props.theme.textColor};
 `;

@@ -11,9 +11,6 @@ const ViewProfile = ({ route, navigation}) => {
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
       <BoxProfile user={user} navigation={navigation} />
-      {/* <ScrollView style={stylesCondition()}>
-        <BoxProfile user={user} navigation={navigation} />
-      </ScrollView> */}
     </PrimaryContainer>
   );
 };

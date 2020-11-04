@@ -56,7 +56,7 @@ const initData = {
       nation: "Thailand",
       city: "Bangkok",
       intro: "Hello World",
-      gender: "male",
+      gender: "Male",
       age: 20,
       image: "5.png",
       friend: ["2"],
@@ -175,6 +175,6 @@ const initData = {
   ],
 };
 
-const database = { user: auth, data: initData, getProfile: getProfile, url:"http://a9a9183df216.ngrok.io" };
+const database = { user: auth, data: initData, getProfile: getProfile, url:"http://93068ac661ab.ngrok.io" };
 
 export default database;

@@ -15,7 +15,7 @@ const mainStyle = StyleSheet.create({
     fontWeight: "600",
   },
   textGray: {
-    color: "#666",
+    color: "#999",
     fontSize: 13,
   },
   mainBackground: {
@@ -56,7 +56,7 @@ const mainStyle = StyleSheet.create({
     justifyContent: "space-between",
   },
   modalButton: {
-    backgroundColor: "#FF5350",
+    backgroundColor: "rgba(52, 138, 217, 0.8)",
     padding: 12,
     borderRadius: 5,
   },
