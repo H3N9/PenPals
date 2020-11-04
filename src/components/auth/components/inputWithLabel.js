@@ -4,7 +4,7 @@ import { TextPrimary } from "../../../style/themeComponent";
 import MainStyle from '../../../style/mainStyle'
 
 
-const InputWithLabel = ({title, state, secure, valid}) => {
+const InputWithLabel = ({value, title, state, secure, valid}) => {
     const conditionStyle = () =>{
         return valid? {backgroundColor: "#FF5350"}:{backgroundColor: 'gray'}
     }
@@ -14,7 +14,7 @@ const InputWithLabel = ({title, state, secure, valid}) => {
                 <TextPrimary style={[MainStyle.textWhiteBold, {fontSize: 20}]}>{title}</TextPrimary>
             </View>
             <View>
-                <TextInput secureTextEntry={secure} style={styles.boxInput} onChangeText={(value) => state(value)}></TextInput>
+                <TextInput value={value} secureTextEntry={secure} style={styles.boxInput} onChangeText={(value) => state(value)}></TextInput>
             </View>
         </View>
     )

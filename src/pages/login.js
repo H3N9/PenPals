@@ -38,6 +38,9 @@ const Login = ({navigation}) => {
         if(response.status === 200){
             const data = await response.json()
             dispatch(actionAuthorize(data))
+            setValid({text:"", error:false})
+            setUsername("")
+            setPassword("")
             navigation.navigate("HomeTab")
         }
         else if(response.status === 422){

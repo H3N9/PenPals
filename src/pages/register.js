@@ -54,6 +54,9 @@ const Register = ({navigation}) => {
             })
         })
         if(response.status === 200){
+            setUsername("")
+            setPassword("")
+            setRePassword("")
             navigation.navigate("Login")
         }
         else if(response.status === 400){
