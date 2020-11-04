@@ -14,7 +14,7 @@ import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
-import Login from '../src/components/auth/login'
+import Login from '../src/pages/login'
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
@@ -22,6 +22,9 @@ import { useSelector } from "react-redux";
 import { PrimaryContainer } from "../src/style/themeComponent";
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import Register from './pages/register'
+
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -119,7 +122,7 @@ const Index = () => {
 
       <PrimaryContainer style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="Login">
             <Stack.Screen
               name="HomeTab"
               component={HomeTab}
@@ -173,6 +176,11 @@ const Index = () => {
             <Stack.Screen 
               name="Account"
               component={Account}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="Register"
+              component={Register}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

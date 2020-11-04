@@ -34,7 +34,6 @@ const BoxProfile = ({ id, navigation, user }) => {
 
   //authen
   //const isAuthUser = id === Schema.user;
-  console.log(userId, user.userId)
   const isAuthUser = userId == user.userId
 
   //userList variable

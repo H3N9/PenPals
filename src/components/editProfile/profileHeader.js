@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text, Image } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, Image, Platform } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Entypo from "react-native-vector-icons/Entypo";
 import Icons from "react-native-vector-icons/FontAwesome";
