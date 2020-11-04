@@ -10,7 +10,8 @@ const urls = {
     urlSearchUser: main + 'search/user/',
     urlCreateChat: main + 'message/chat/',
     urlImage: main+'image/',
-    urlRegister: main + 'auth/register/'
+    urlRegister: main + 'auth/register/',
+    urlFriend: main + 'friend/'
 }
 
 export default urls

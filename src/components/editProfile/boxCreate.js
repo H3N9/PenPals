@@ -1,6 +1,8 @@
 import React from 'react'
 import {} from 'react-native'
 
-const CreateProfile = () => {
+const BoxCreate = () => {
     
 }
+
+export default BoxCreate

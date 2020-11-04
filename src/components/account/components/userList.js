@@ -7,7 +7,7 @@ const userList = ({ friendCount, intro, navigation }) => {
     <View style={styles.infoContainer}>
       <TouchableOpacity
         style={styles.infoItems}
-        onPress={() => navigation.navigate("FriendList")}
+        onPress={() => navigation()}
       >
         <TextPrimary
           style={{ textAlign: "center", fontSize: 25, fontWeight: "700" }}
