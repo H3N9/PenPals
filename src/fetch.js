@@ -47,3 +47,26 @@ export const postLoad = (navigation, token, url, body, state) => {
         console.log("Mute")
     })
 }
+
+export const putLoad = (token, url, body, cb) =>{
+
+    console.log(token, url, body)
+    fetch(url, {
+      method: 'PUT',
+      headers:{
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: token,
+      },
+      body: JSON.stringify(body)
+    })
+    .then( async (response) =>{
+      if(response.status === 200){
+        const json = await response.json()
+        cb(response.status, json)
+      }
+      else{
+        cb(response.status, {})
+      }
+    })
+  }

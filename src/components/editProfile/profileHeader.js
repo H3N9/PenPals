@@ -6,18 +6,19 @@ import Icons from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import * as ImagePicker from 'expo-image-picker';
 import path from "../../path"
+import {useSelector} from 'react-redux'
+import { putLoad } from '../../fetch'
 //import RNFetchBlob from "react-native-fetch-blob";
 
 const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
   //const image = require("../../../assets/man.png");
-  console.log(newDetail)
+  const [isChangeImage, setIsChangeImage] = useState(false)
+  const authorize = useSelector((state) => state.Authorize.authorize)
   const [ image, setImage ] = useState({ uri: path.urlImage+newDetail.image })
   const [ upload, setUpload ] = useState(0)
   const [ response, setResponse ] = useState('No')
 
   const saveEdit = () => {
-    setNewDetail(newDetail);
-    navigation.navigate("Account");
     console.log(newDetail);
   };
 
@@ -43,6 +44,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
     console.log(result);
 
     if (!result.cancelled) {
+      setIsChangeImage(true)
       setImage(result);
     }
   };
@@ -68,6 +70,30 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
     setUpload(Math.round((event.loaded+100)/event.total))
   }
 
+  const putUpdate = (token, url, body) =>{
+    fetch(url, {
+      method: 'PUT',
+      headers:{
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: token,
+      },
+      body: JSON.stringify(body)
+    })
+    .then( async (response) =>{
+      if(response.status === 200){
+        const json = await response.json()
+        navigation.navigate("MyAccount")
+      }
+    })
+  }
+
+  const redirectAccount = (status, data) =>{
+    if (status === 200){
+      navigation.navigate("MyAccount")
+    }
+  }
+
   const save = () =>{
     const xhr = new XMLHttpRequest()
     let formData = new FormData()
@@ -83,7 +109,8 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE){
         newDetail.image = xhr.response.filename
-        console.log(newDetail);
+        putLoad(authorize.token, path.urlUpdateProfile, {...newDetail}, redirectAccount)
+        //putUpdate(authorize.token, path.urlUpdateProfile, newDetail)
       }
     }
     xhr.open('POST', url)
@@ -113,7 +140,13 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
           //saveEdit()
-          save()
+          if (isChangeImage){
+            save()
+          }
+          else{
+            //putUpdate(authorize.token, path.urlUpdateProfile, newDetail)
+            putLoad(authorize.token, path.urlUpdateProfile, newDetail, redirectAccount)
+          }
           //navigation.navigate("MyAccount")
           }} style={styles.backButton}>
           <AntDesign name="save" color="#fff" size={21} />
