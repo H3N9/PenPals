@@ -39,13 +39,16 @@ const ChatRoom = ({ navigation, route }) => {
 	}, [texts])
 
 	const handleMyMessage = (text) =>{
-		const sendingText = {
-			"reply":text,
-			"type":"text",
-			"userId":userId,
-			"chatId":room
+		if(text.length > 0){
+			const sendingText = {
+				"reply":text,
+				"type":"text",
+				"userId":userId,
+				"chatId":room
+			}
+			socket.emit('userSend', (sendingText))
 		}
-		socket.emit('userSend', (sendingText))
+		
 	}
 
 

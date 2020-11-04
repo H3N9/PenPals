@@ -20,7 +20,7 @@ export const getLoad = (navigation, token, url, state) => {
         }
     })
     .catch((error) => {
-        console.log("Mute")
+        console.log(error)
     })
 }
 
@@ -44,6 +44,6 @@ export const postLoad = (navigation, token, url, body, state) => {
         }
     })
     .catch((error) => {
-        console.log("Mute")
+        console.log(error)
     })
 }
