@@ -8,6 +8,7 @@ const urls = {
     urlMessage: main + 'message/',
     urlMyprofile: main + 'account/my-profile/',
     urlSearchUser: main + 'search/user/',
+    urlSearchUserId: main + 'search/user/byid/',
     urlCreateChat: main + 'message/chat/',
     urlImage: main+'image/',
     urlRegister: main + 'auth/register/',

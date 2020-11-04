@@ -12,24 +12,51 @@ import path from '../path'
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const FriendList = ({ route, navigation }) => {
-	const authroize = route.params.authroize
-	const {userId, token} = authroize
+	const authorize = route.params.authorize
+	const {userId, token} = authorize
 	const isFocused = useIsFocused()
-	const counter = useRef(0)
 	const [friends, setFriends] = useState([])
-	const url = path.urlFriend
+	const [userFriends, setUserFriends] = useState([])
+	const [friendFilter, setFriendFilter] = useState(userFriends);
+	const [text, setText] = useState("");
+	const urlFriend = path.urlFriend
+	const urlSearch = path.urlSearchUserId
+	const base = []
 
 	useEffect(() => {
-		getLoad(navigation, token, url, setFriends)
-	}, [counter%10 === 0])
+		getLoad(navigation, token, urlFriend, setFriends)
+	}, [isFocused])
 	
+	useEffect(() => {
+		friends.map((value) => {
+			if(value.relationshipState === 'friend'){
+				getLoad(navigation, token, urlSearch+value.id, loadUser)
+			}
+		})
+	}, [friends])
 
+	const loadUser = (user) =>{
+		base.push(user)
+		setUserFriends(base)
+	}
+
+	const inputHandle = (value) => {
+		setText(value);
+		if (value === "") {
+		  setFriendFilter(userFriends);
+		}
+		const valueUpper = value.toUpperCase();
+		const filteredData = friendFilter.filter(
+		  (itemValue) => itemValue.username.toUpperCase().indexOf(valueUpper) > -1
+		);
+		setFriendFilter(filteredData);
+	};
 
 
 	return (
 		<PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
 		<FriendListHeader navigation={navigation} />
-		<FriendListContent navigation={navigation} />
+		<FriendListContent text={text} handleFilter={inputHandle} navigation={navigation} users={userFriends} />
 		</PrimaryContainer>
 	);
 };

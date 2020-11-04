@@ -22,4 +22,10 @@ router.get('/user/:id', async (req, res) =>{
   res.json(...profile)
 })
 
+router.get('/user/byid/:id', async (req, res) =>{
+  const id = req.params.id
+  const profile = await getProfile({profileQuery: {id: id}, otherQuery: {user: req.user}})
+  res.json(...profile)
+})
+
 module.exports = router;

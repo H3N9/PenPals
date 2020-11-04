@@ -10,7 +10,7 @@ const { Relationship, Profile } = db
 router.get('/', async (req, res) =>{
     const friends = await getRelationship({ id: req.user.dataValues.profile.id, type: "friend" })
 
-    res.json(friends)
+    res.json(friends.friends)
 })
 
 router.get('/:id', async (req, res) =>{
