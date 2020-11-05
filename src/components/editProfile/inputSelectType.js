@@ -4,7 +4,7 @@ import { View, Platform, Picker } from "react-native";
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
 
-const InputSelectType = ({ placeholder, newDetail, data }) => {
+const InputSelectType = ({ placeholder, newDetail, data, setNewDetail }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   const dataSource = [
     { label: "England", value: "England" },
@@ -30,7 +30,10 @@ const InputSelectType = ({ placeholder, newDetail, data }) => {
           items={dataSource}
           style={pickerSelectStyles}
           placeholder={{ label: placeholder, value: null }}
-          onValueChange={(value) => (newDetail[data] = value)}
+          onValueChange={(value) => {
+            newDetail[data] = value
+            setNewDetail({...newDetail})
+          }}
         />
       </View>
     );
@@ -40,7 +43,10 @@ const InputSelectType = ({ placeholder, newDetail, data }) => {
         <PickerSelect
           style={{ height: 50, flex: 1 }}
           on
-          onValueChange={(value) => (newDetail[data] = value)}
+          onValueChange={(value) => {
+            newDetail[data] = value
+            setNewDetail({...newDetail})
+          }}
         >
           {dataSource.map((data) => (
             <Picker.Item

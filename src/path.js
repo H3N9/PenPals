@@ -1,4 +1,3 @@
-
 const main = 'http://localhost:3000/'
 //const main = "https://67ce3541f628.ngrok.io/"
 
@@ -13,6 +12,7 @@ const urls = {
     urlImage: main+'image/',
     urlRegister: main + 'auth/register/',
     urlFriend: main + 'friend/'
+    urlUpdateProfile: main+'account/update/'
 }
 
 export default urls

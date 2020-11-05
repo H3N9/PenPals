@@ -7,6 +7,7 @@ import { TextPrimary } from "../../style/themeComponent";
 import DatePicker from "./datePicker";
 
 const InputProfile = ({ newDetail, setNewDetail }) => {
+
   return (
     <View style={{ padding: 20 }}>
       {/* UsernameInput */}
@@ -15,15 +16,17 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
           placeholder="Username"
           newDetail={newDetail}
           data="username"
+          setNewDetail={setNewDetail}
         />
       </View>
       {/* Name & Lastname Input */}
       <View style={styles.inputChildContainer}>
-        <InputTextType placeholder="Name" newDetail={newDetail} data="firstName" />
+        <InputTextType placeholder="Name" newDetail={newDetail} data="firstName" setNewDetail={setNewDetail} />
         <InputTextType
           placeholder="Lastname"
           newDetail={newDetail}
           data="lastName"
+          setNewDetail={setNewDetail}
         />
       </View>
 
@@ -34,11 +37,11 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
         BirthDate
       </TextPrimary>
       <View style={[styles.inputChildContainer, { marginTop: 0 }]}>
-        <DatePicker
+        {/* <DatePicker
           setNewDetail={setNewDetail}
           newDetail={newDetail}
           data="birthDate"
-        />
+        /> */}
       </View>
       {/* Gender Input */}
       <View style={styles.inputChildContainer}>
@@ -50,6 +53,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
             placeholder="Gender"
             newDetail={newDetail}
             data="gender"
+            setNewDetail={setNewDetail}
           />
         </View>
       </View>
@@ -64,6 +68,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
             placeholder="Nation"
             newDetail={newDetail}
             data="nation"
+            setNewDetail={setNewDetail}
           />
         </View>
         <View style={{ flex: 1 }}>
@@ -74,6 +79,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
             placeholder="City"
             newDetail={newDetail}
             data="city"
+            setNewDetail={setNewDetail}
           />
         </View>
       </View>
@@ -83,6 +89,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
           placeholder="Introquotes"
           newDetail={newDetail}
           data="introQuotes"
+          setNewDetail={setNewDetail}
         />
       </View>
       {/* AboutInput */}
@@ -91,6 +98,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
           placeholder="AboutMe"
           newDetail={newDetail}
           data="aboutMe"
+          setNewDetail={setNewDetail}
         />
       </View>
     </View>

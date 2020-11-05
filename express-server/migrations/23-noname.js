@@ -5,9 +5,6 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
-<<<<<<< HEAD
- * addColumn "ChatId" to table "Messages"
-=======
  * createTable "ImagePosts", deps: [Posts]
  * createTable "PostSeens", deps: [Posts, Users]
 >>>>>>> api-test
@@ -17,50 +14,12 @@ var Sequelize = require('sequelize');
 var info = {
     "revision": 23,
     "name": "noname",
-<<<<<<< HEAD
-    "created": "2020-10-27T15:37:33.434Z",
-=======
     "created": "2020-10-28T14:32:32.819Z",
->>>>>>> api-test
     "comment": ""
 };
 
 var migrationCommands = function(transaction) {
     return [{
-<<<<<<< HEAD
-        fn: "addColumn",
-        params: [
-            "Messages",
-            "ChatId",
-            {
-                "type": Sequelize.INTEGER,
-                "field": "ChatId",
-                "onUpdate": "CASCADE",
-                "onDelete": "CASCADE",
-                "references": {
-                    "model": "Chats",
-                    "key": "id"
-                },
-                "allowNull": true
-            },
-            {
-                transaction: transaction
-            }
-        ]
-    }];
-};
-var rollbackCommands = function(transaction) {
-    return [{
-        fn: "removeColumn",
-        params: [
-            "Messages",
-            "ChatId",
-            {
-                transaction: transaction
-            }
-        ]
-    }];
-=======
             fn: "createTable",
             params: [
                 "ImagePosts",
@@ -169,7 +128,6 @@ var rollbackCommands = function(transaction) {
             }]
         }
     ];
->>>>>>> api-test
 };
 
 module.exports = {
