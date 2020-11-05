@@ -27,14 +27,38 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
     age,
     city,
     nation,
-    image
+    image,
+    birthdate
   } = userDetail;
   const imageBackground = {
     uri: "https://www.fungjaizine.com/wp-content/uploads/2019/05/D4B_6117.jpg",
   };
+
+  const imageShow = (image) =>{
+    if(image){
+      return <Image style={styles.imgProfile} source={{uri: (path.urlImage+image)}} />
+    }
+    else{
+      return <Image style={styles.imgProfile} source={require('../../../../assets/man.png')} />
+    }
+  }
+  
+
+  const ageCalculate = (birthdate) =>{
+    const setBirthDate = new Date(birthdate)
+    if(!isNaN(setBirthDate.getTime())){
+      const now = new Date()
+      const deff = now-setBirthDate
+      const day = deff/(1000*3600*24)
+      const years = Math.floor(day/365)
+      return `${years} y.e.`
+    }
+    return ""
+    
+  }
   //const image = require("../../../../assets/man.png");
 
-   const textInfo = `${firstName} ${lastName}\n${gender} ${age} y.e.\n${city} ${nation}`;
+   const textInfo = `${firstName} ${lastName}\n${gender} ${ageCalculate(birthdate)}\n${city} ${nation}`;
  // const textInfo = `${gender} ${age} y.e.\n${city} ${nation}`;
 
   const styles = StyleSheet.create({
@@ -92,7 +116,7 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
           )}
           <View style={styles.userInfo}>
             <View style={[MainStyle.shadow]}>
-              <Image style={styles.imgProfile} source={{uri: (path.urlImage+image)}} />
+              {imageShow(image)}
             </View>
             <View
               style={{ flex: 1, justifyContent: "flex-end", marginLeft: 10 }}

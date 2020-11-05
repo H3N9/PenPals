@@ -11,7 +11,7 @@ const urls = {
     urlCreateChat: main + 'message/chat/',
     urlImage: main+'image/',
     urlRegister: main + 'auth/register/',
-    urlFriend: main + 'friend/'
+    urlFriend: main + 'friend/',
     urlUpdateProfile: main+'account/update/'
 }
 

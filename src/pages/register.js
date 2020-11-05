@@ -42,6 +42,19 @@ const Register = ({navigation}) => {
     }
 
     const submit = async () => {
+        const initProfile = {
+            username: username,
+            firstName: "",
+            lastName: "",
+            nation: "",
+            city: "",
+            intro: "Edit your profile for introduce yourself.",
+            gender: "",
+            image: "",
+            aboutMe: "Edit your profile for introduce yourself.",
+            birthdate: ""
+
+        }
         const response = await fetch(url, {
             method: "POST",
             headers: {
@@ -50,7 +63,8 @@ const Register = ({navigation}) => {
             },
             body: JSON.stringify({
                 username: username,
-                password: password
+                password: password,
+                profile:initProfile
             })
         })
         if(response.status === 200){
