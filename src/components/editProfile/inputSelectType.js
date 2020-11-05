@@ -1,7 +1,7 @@
 import RNPickerSelect from "react-native-picker-select";
 import React from "react";
-import { View, Platform } from "react-native";
-import {Picker} from '@react-native-community/picker'
+import { View, Platform, Picker } from "react-native";
+//import {Picker} from '@react-native-community/picker'
 import styled from "styled-components/native";
 import { useSelector } from "react-redux";
 
