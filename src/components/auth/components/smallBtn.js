@@ -5,20 +5,21 @@ import MainStyle from '../../../style/mainStyle'
 const SmallBtn = ({title, handle}) => {
 
     return(
-        <TouchableOpacity style={styles.btn} onPress={() => handle()}>
-            <Text style={[MainStyle.textWhiteBold, {fontSize: 18}]}>{title}</Text>
+        <TouchableOpacity style={[styles.btn, MainStyle.shadow]} onPress={() => handle()}>
+            <Text style={{fontSize: 18, textAlign: "center", color: "#fff", fontWeight: "bold"}}>{" "+title}</Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
     btn:{
-        backgroundColor: "#FF5350",
+        backgroundColor: "rgba(24,24,24, 0.6)",
         borderRadius: 5,
-        margin: 5,
-        alignItems: 'center',
-        paddingHorizontal: 5,
-        paddingVertical: 2
+        padding: 7,
+        borderRadius: 6,
+        flexDirection:"row",
+        justifyContent : "center",
+        marginVertical: 5
     }
 })
 
