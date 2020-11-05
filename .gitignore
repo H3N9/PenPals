@@ -3,5 +3,8 @@
 /.expo-shared
 /.idea
 /.vscode
-/.package.json
 /back-end/node_modules
+/Back-End
+/debug.log
+/yarn-error.log
+/yarn.lock

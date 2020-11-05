@@ -21,6 +21,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { switchTheme } from "../../redux/themeAction";
 import { lightTheme, darkTheme } from "../style/Theme";
+import { actionAuthorize } from '../../redux/authorize'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
@@ -35,6 +36,11 @@ const Setting = ({ navigation }) => {
       dispatch(switchTheme(lightTheme));
     }
   };
+  const logout = () =>{
+    const data = {id:"", token:""}
+    dispatch(actionAuthorize(data))
+    navigation.navigate("Login")
+  }
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
@@ -73,7 +79,7 @@ const Setting = ({ navigation }) => {
             { justifyContent: "center", borderBottomWidth: 0 },
           ]}
         >
-          <TouchableOpacity style={styles.logOutButton}>
+          <TouchableOpacity onPress={() => logout()} style={styles.logOutButton}>
             <MaterialIcon name={"logout"} style={{ color: "#fff" }} size={19} />
             <Text style={{ color: "#FFF", fontWeight: "bold" }}>SignOut</Text>
           </TouchableOpacity>

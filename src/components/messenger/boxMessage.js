@@ -1,20 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import {
-  SafeAreaView,
   TouchableOpacity,
   FlatList,
   StyleSheet,
   Text,
 } from "react-native";
-import Schema from "../../schema";
 import MainStyle from "../../style/mainStyle";
 import { PrimaryContainer } from "../../style/themeComponent";
-const BoxMessage = ({ texts }) => {
-  const username = Schema.user;
 
-  const [messages, setMessage] = useState(texts);
-  const EachMessage = ({ text, user }) => {
-    if (user === username) {
+
+const BoxMessage = ({ texts, userId }) => {
+
+  const EachMessage = ({ text, sender }) => {
+    if (sender === userId) {
       return (
         <TouchableOpacity style={styles.myMess}>
           <Text style={MainStyle.textWhite}>{text}</Text>
@@ -30,15 +28,16 @@ const BoxMessage = ({ texts }) => {
   };
 
   const renderMessage = ({ item }) => {
-    return <EachMessage text={item.text} user={item.user} />;
+    return <EachMessage text={item.reply} sender={item.userId} />;
   };
 
   return (
     <PrimaryContainer style={styles.boxMess}>
       <FlatList
-        data={messages}
+        data={texts}
         renderItem={renderMessage}
-        keyExtractor={(messages) => messages.id}
+        inverted={-1}
+        keyExtractor={(texts) => texts.id.toString()}
       />
     </PrimaryContainer>
   );

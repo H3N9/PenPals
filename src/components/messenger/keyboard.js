@@ -11,8 +11,14 @@ import {
   EntypoIcon,
 } from "../../style/themeComponent";
 
-const Keyboard = () => {
+const Keyboard = ({onTextChange}) => {
   const [chatText, setChatText] = useState("");
+
+  const handelChatText = () => {
+    onTextChange(chatText)
+    setChatText("")
+  }
+
   return (
     <SecondContainer style={styles.box}>
       <View style={styles.boxIcon}>
@@ -46,7 +52,7 @@ const Keyboard = () => {
         />
         <TouchableOpacity
           style={styles.sendButton}
-          onPress={() => setChatText("")}
+          onPress={() => handelChatText()}
         >
           <FontAwesome
             name="send"

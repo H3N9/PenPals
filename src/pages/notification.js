@@ -17,7 +17,7 @@ const Notification = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const darkModeHandle = () => {
-    if (theme.mode == "light") {
+    if (theme.mode === "light") {
       dispatch(switchTheme(darkTheme));
     } else {
       dispatch(switchTheme(lightTheme));

@@ -1,5 +1,10 @@
 import React from "react";
-import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { TextPrimary, SecondContainer } from "../../style/themeComponent";
 import TextPost from "./components/textPost";
@@ -7,24 +12,28 @@ import ImagePost from "./components/imagePost";
 import MainStyle from "../../style/mainStyle";
 
 const Post = ({ type, date, like, id, user }) => {
-  const image = type.image || undefined;
-  const text = type.text || undefined;
-  const likeControl = () => {};
+  const image = type.image||undefined
+  const text = type.text||undefined
+  const likeControl = () =>{
 
-  const postControl = (image, text) => {
-    if (image && text) {
+  }
+
+  const postControl = (image, text) =>{
+    if(image&&text){
       return (
         <View style={{ paddingVertical: 5 }}>
           <TextPost text={text} />
           <ImagePost />
         </View>
-      );
-    } else if (image) {
-      return <ImagePost />;
-    } else if (text) {
-      return <TextPost text={text} />;
+      )
     }
-  };
+    else if(image){
+      return <ImagePost />
+    }
+    else if(text){
+      return <TextPost text={text} />
+    }
+  }
 
   return (
     <SecondContainer style={[styles.postContainer, MainStyle.shadow]}>

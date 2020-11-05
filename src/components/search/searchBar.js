@@ -44,7 +44,7 @@ const searchBar = () => {
             value={searchText}
             onChangeText={(text) => setSearchText(text)}
             returnKeyType="search"
-            onSubmitEditing={() => console.log(searchText)}
+            onSubmitEditing={() => {}}
             clearButtonMode="always"
           />
         </View>

@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, {useEffect} from "react";
 import { FlatList } from "react-native";
 import Homebar from "../components/homebar";
 import CreatePost from "../components/post/createPost";
 import Post from "../components/post/post";
 import MainStyle from "../style/mainStyle";
-import { Dimensions } from "react-native";
 import { PrimaryContainer } from "../style/themeComponent";
+import {useSelector} from 'react-redux'
 
-const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Home = ({ navigation }) => {
+
+  const token = useSelector((state) => state.Authorize.token)
+  useEffect(() => {
+
+  }, [])
+  
   const initData = [
     {
-      id: "1",
-      user: "Username",
-      type: {
-        image: "image",
-        text: "",
+      id:"1",
+      user:"Username",
+      type:{
+        image:"image",
+        text:""
       },
       date: "50m",
-      like: true,
+      like:true
     },
     {
       id: "2",
@@ -30,7 +35,7 @@ const Home = ({ navigation }) => {
           "ครอบครัวของผมคือมาจาก กาบอง แต่ผมยังมีรากเหง้าใน กาน่า ด้วยที่ซึ่ง โธมัส มาจากที่นั่น ดังนั้นเราก็เป็นครอบครัวเดียวกันด้วย! มันเป็นเรื่องดีสำหรับนักเตะอายุน้อยบางคนของเรา ที่ได้มีนักเตะแบบเขาอยู่ในทีม, ความสามารถในการฝึกฝน, พวกเขาจะได้เรียนรู้มากมายจากเขา.ปิแอร์-เอเมอริค โอบาเมย็องกล่าวถึง โธมัส ปาร์เตย์.",
       },
       date: "50m",
-      like: true,
+      like:true
     },
     {
       id: "3",
@@ -40,9 +45,9 @@ const Home = ({ navigation }) => {
         text: '"ควย" \n ดาวิด ลุยซ์ กล่าวถึง กาเบรียล มากาลเญส',
       },
       date: "50m",
-      like: false,
+      like:false
     },
-  ];
+  ]
 
   // useEffect(() =>{
   //   fetch("http://364edd12ecf8.ngrok.io/register/student")
@@ -110,12 +115,5 @@ const Home = ({ navigation }) => {
   );
 };
 
-const stylesCondition = () => {
-  if (screenWidth >= 768) {
-    return { flex: 1, marginHorizontal: "20%" };
-  } else {
-    return { flex: 1 };
-  }
-};
 
 export default Home;

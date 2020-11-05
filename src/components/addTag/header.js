@@ -45,7 +45,6 @@ const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
         <TouchableOpacity
           style={{ marginLeft: 15 }}
           onPress={() => {
-            console.log(tagSelected);
             navigation.goBack();
           }}
         >

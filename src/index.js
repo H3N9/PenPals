@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View } from "react-native";
+import MyAccount from "./pages/myAccount";
 import Account from "./pages/account";
 import Home from "./pages/home";
 import Messenger from "./pages/messenger";
 import Search from "./pages/search";
 import Notification from "./pages/notification";
 import ChatRoom from "./pages/chatRoom";
-import ViewProfile from "./pages/viewProfile";
 import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
 import FriendList from "./pages/friendList";
@@ -14,6 +14,7 @@ import Setting from "./pages/setting";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
+import Login from '../src/pages/login'
 import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
@@ -21,6 +22,9 @@ import { useSelector } from "react-redux";
 import { PrimaryContainer } from "../src/style/themeComponent";
 import DynamicStatusBar from "./components/global/dynamicStatusBar";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+import Register from './pages/register'
+
+
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
@@ -85,6 +89,15 @@ const HomeTab = () => {
         }}
       />
       <Tab.Screen
+        name="MyAccount"
+        component={MyAccount}
+        options={{
+          tabBarIcon: (tabInfo) => {
+            return <AntDesign name="user" size={26} color={tabInfo.color} />;
+          },
+        }}
+      />
+      {/* <Tab.Screen
         name="Account"
         component={Account}
         options={{
@@ -92,7 +105,7 @@ const HomeTab = () => {
             return <AntDesign name="user" size={26} color={tabInfo.color} />;
           },
         }}
-      />
+      /> */}
     </Tab.Navigator>
   );
 };
@@ -109,7 +122,7 @@ const Index = () => {
 
       <PrimaryContainer style={{ flex: 1 }}>
         <NavigationContainer>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="Login">
             <Stack.Screen
               name="HomeTab"
               component={HomeTab}
@@ -121,14 +134,14 @@ const Index = () => {
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="ViewProfile"
-              component={ViewProfile}
-              options={{
-                headerShown: false,
-                gestureEnabled: true,
-              }}
-            />
-            <Stack.Screen
+            //   name="ViewProfile"
+            //   component={ViewProfile}
+            //   options={{
+            //     headerShown: false,
+            //     gestureEnabled: true,
+            //   }}
+            // />
+            // <Stack.Screen
               name="EditProfile"
               component={EditProfile}
               options={{
@@ -153,6 +166,21 @@ const Index = () => {
             <Stack.Screen
               name="Setting"
               component={Setting}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="Login"
+              component={Login}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="Account"
+              component={Account}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen 
+              name="Register"
+              component={Register}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

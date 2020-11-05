@@ -5,9 +5,10 @@ import { Provider } from "react-redux";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import themeReducer from "./redux/themeReducer";
+import {Authorize} from './redux/authorize'
 
 const store = createStore(
-  combineReducers({ themeReducer }),
+  combineReducers({ themeReducer, Authorize }),
   applyMiddleware(thunk)
 );
 

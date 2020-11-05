@@ -3,18 +3,21 @@ import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
 import ProfileHeader from "./profileHeader";
 import InputProfile from "./inputProfile";
 
-const MainEdit = ({ navigation }) => {
-  const [newDetail, setNewDetail] = useState({
-    username: undefined,
-    name: undefined,
-    lastName: undefined,
-    birthDate: undefined,
-    gender: undefined,
-    nation: undefined,
-    city: undefined,
-    introQuotes: undefined,
-    aboutMe: undefined,
-  }); // New User ProfileDetail
+const MainEdit = ({ navigation, user }) => {
+  // const [newDetail, setNewDetail] = useState({
+  //   username: undefined,
+  //   name: undefined,
+  //   lastName: undefined,
+  //   birthDate: undefined,
+  //   gender: undefined,
+  //   nation: undefined,
+  //   city: undefined,
+  //   introQuotes: undefined,
+  //   aboutMe: undefined,
+  //   image: undefined,
+  // }); // New User ProfileDetail
+
+  const [newDetail, setNewDetail] = useState(user)
 
   return (
     <React.Fragment>

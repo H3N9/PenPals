@@ -14,7 +14,9 @@ import {
 } from "../../../style/themeComponent";
 import { LinearGradient } from "expo-linear-gradient";
 import styled from "styled-components/native";
-import { Value } from "react-native-reanimated";
+import { Value } from "react-native-reanimated"
+import Schema from "../../../schema"
+import path from "../../../path"
 
 const BoxInfo = ({ userDetail, navigation, auth }) => {
   const {
@@ -25,14 +27,15 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
     age,
     city,
     nation,
+    image
   } = userDetail;
   const imageBackground = {
     uri: "https://www.fungjaizine.com/wp-content/uploads/2019/05/D4B_6117.jpg",
   };
-  const image = require("../../../../assets/man.png");
+  //const image = require("../../../../assets/man.png");
 
-  // const textInfo = `${firstName} ${lastName}\n${gender} ${age} y.e.\n${city} ${nation}`;
-  const textInfo = `${gender} ${age} y.e.\n${city} ${nation}`;
+   const textInfo = `${firstName} ${lastName}\n${gender} ${age} y.e.\n${city} ${nation}`;
+ // const textInfo = `${gender} ${age} y.e.\n${city} ${nation}`;
 
   const styles = StyleSheet.create({
     imgProfile: {
@@ -89,7 +92,7 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
           )}
           <View style={styles.userInfo}>
             <View style={[MainStyle.shadow]}>
-              <Image style={styles.imgProfile} source={image} />
+              <Image style={styles.imgProfile} source={{uri: (path.urlImage+image)}} />
             </View>
             <View
               style={{ flex: 1, justifyContent: "flex-end", marginLeft: 10 }}
