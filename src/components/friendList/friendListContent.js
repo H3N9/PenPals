@@ -73,7 +73,6 @@ const FriendListContent = ({ handleFilter, navigation, users, text }) => {
       <BoxFriend user={item} navigation={navigation} />
     );
   };
-  console.log(users)
   return (
     <PrimaryContainer style={{ paddingVertical: 10, flex: 1 }}>
       <InputTextBg

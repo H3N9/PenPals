@@ -17,6 +17,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
   const [ image, setImage ] = useState({ uri: path.urlImage+newDetail.image })
   const [ upload, setUpload ] = useState(0)
   const [ response, setResponse ] = useState('No')
+  
 
   const saveEdit = () => {
     console.log(newDetail);
@@ -109,7 +110,9 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE){
         newDetail.image = xhr.response.filename
-        putLoad(authorize.token, path.urlUpdateProfile, {...newDetail}, redirectAccount)
+        const controller = new AbortController
+        const signal = controller.signal
+        putLoad(authorize.token, path.urlUpdateProfile, {...newDetail}, redirectAccount, signal)
         //putUpdate(authorize.token, path.urlUpdateProfile, newDetail)
       }
     }

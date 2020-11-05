@@ -9,36 +9,39 @@ import {useSelector} from 'react-redux'
 import { useIsFocused } from "@react-navigation/native"
 // import schema from "../schema"
 import path from '../path'
+import {getLoad} from '../fetch'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Search = ({ navigation }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
   const {token} = authorize
-  const [isLoading, setLoading] = useState(true);
   const [users, setUsers] = useState([])
   const url = path.urlSearchUser
   const isFocused = useIsFocused()
+  const controller = new AbortController
+  const signal = controller.signal
 
   useEffect(() =>{
-    fetch(url,{
-      method: 'GET',
-      headers:{
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: token,
-      }     
-    })
-    .then( async (response) => {
-      if(response.status === 200){
-        const json = await response.json()
-        setUsers(json)
-        setLoading(false)
-      }
-      else if(response.status === 401){
-        navigation.navigate("Login")
-      }
-    })
+    getLoad(navigation, token, url, setUsers, signal)
+    // fetch(url,{
+    //   method: 'GET',
+    //   headers:{
+    //       Accept: 'application/json',
+    //       'Content-Type': 'application/json',
+    //       Authorization: token,
+    //   }     
+    // })
+    // .then( async (response) => {
+    //   if(response.status === 200){
+    //     const json = await response.json()
+    //     setUsers(json)
+    //     setLoading(false)
+    //   }
+    //   else if(response.status === 401){
+    //     navigation.navigate("Login")
+    //   }
+    // })
   }, [isFocused])
 
   const renderSuggestion = ({ item, index }) =>{

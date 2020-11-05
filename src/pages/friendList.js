@@ -17,20 +17,22 @@ const FriendList = ({ route, navigation }) => {
 	const isFocused = useIsFocused()
 	const [friends, setFriends] = useState([])
 	const [userFriends, setUserFriends] = useState([])
-	const [friendFilter, setFriendFilter] = useState(userFriends);
+	const [friendFilter, setFriendFilter] = useState([]);
 	const [text, setText] = useState("");
 	const urlFriend = path.urlFriend
 	const urlSearch = path.urlSearchUserId
 	const base = []
+	const controller = new AbortController
+    const signal = controller.signal
 
 	useEffect(() => {
-		getLoad(navigation, token, urlFriend, setFriends)
+		getLoad(navigation, token, urlFriend, setFriends, signal)
 	}, [isFocused])
 	
 	useEffect(() => {
 		friends.map((value) => {
 			if(value.relationshipState === 'friend'){
-				getLoad(navigation, token, urlSearch+value.id, loadUser)
+				getLoad(navigation, token, urlSearch+value.id, loadUser, signal)
 			}
 		})
 	}, [friends])
@@ -38,25 +40,25 @@ const FriendList = ({ route, navigation }) => {
 	const loadUser = (user) =>{
 		base.push(user)
 		setUserFriends(base)
+		setFriendFilter(base)
 	}
 
 	const inputHandle = (value) => {
 		setText(value);
-		if (value === "") {
+		if (value.length === 0) {
 		  setFriendFilter(userFriends);
 		}
 		const valueUpper = value.toUpperCase();
-		const filteredData = friendFilter.filter(
+		const filteredData = userFriends.filter(
 		  (itemValue) => itemValue.username.toUpperCase().indexOf(valueUpper) > -1
 		);
 		setFriendFilter(filteredData);
 	};
 
-
 	return (
 		<PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
 		<FriendListHeader navigation={navigation} />
-		<FriendListContent text={text} handleFilter={inputHandle} navigation={navigation} users={userFriends} />
+		<FriendListContent text={text} handleFilter={inputHandle} navigation={navigation} users={friendFilter} />
 		</PrimaryContainer>
 	);
 };

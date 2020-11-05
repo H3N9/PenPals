@@ -24,8 +24,11 @@ const Login = ({navigation}) => {
     }
 
     const reDirect = async () =>{
+        const controller = new AbortController
+        const signal = controller.signal
         const response = await fetch(url, {
             method: 'POST',
+            signal,
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'

@@ -12,8 +12,10 @@ const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize, room
   	const url = path.urlSearchUser+id_interlocutor
 	const isFocused = useIsFocused()
 
+	const controller = new AbortController
+    const signal = controller.signal
 	useEffect(() => {
-    	getLoad(navigation, authorize.token, url, setInterlocutor)
+    	getLoad(navigation, authorize.token, url, setInterlocutor, signal)
   	}, [isFocused])
   
 	if(interlocutor){

@@ -13,11 +13,11 @@ const MyAccount = ({navigation}) => {
     const [user, setUser] = useState()
     const isFocused = useIsFocused()
 
-    // const controller = new AbortController
-    // const signal = controller.signal
-
+    
+    const controller = new AbortController
+    const signal = controller.signal
     useEffect(() => {
-        getLoad(navigation, token, url, setUser)
+        getLoad(navigation, token, url, setUser, signal)
       }, [isFocused])
 
 

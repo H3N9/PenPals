@@ -42,6 +42,8 @@ const Register = ({navigation}) => {
     }
 
     const submit = async () => {
+        const controller = new AbortController
+        const signal = controller.signal
         const initProfile = {
             username: username,
             firstName: "",
@@ -50,13 +52,15 @@ const Register = ({navigation}) => {
             city: "",
             intro: "Edit your profile for introduce yourself.",
             gender: "",
-            image: "",
+            image: "man.png",
             aboutMe: "Edit your profile for introduce yourself.",
             birthdate: ""
 
         }
+
         const response = await fetch(url, {
             method: "POST",
+            signal,
             headers: {
                 Accept: 'application/json',
                 'Content-Type': 'application/json'

@@ -33,15 +33,6 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
   const imageBackground = {
     uri: "https://www.fungjaizine.com/wp-content/uploads/2019/05/D4B_6117.jpg",
   };
-
-  const imageShow = (image) =>{
-    if(image){
-      return <Image style={styles.imgProfile} source={{uri: (path.urlImage+image)}} />
-    }
-    else{
-      return <Image style={styles.imgProfile} source={require('../../../../assets/man.png')} />
-    }
-  }
   
 
   const ageCalculate = (birthdate) =>{
@@ -116,7 +107,7 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
           )}
           <View style={styles.userInfo}>
             <View style={[MainStyle.shadow]}>
-              {imageShow(image)}
+              <Image style={styles.imgProfile} source={{uri: (path.urlImage+image)}} />
             </View>
             <View
               style={{ flex: 1, justifyContent: "flex-end", marginLeft: 10 }}
