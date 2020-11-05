@@ -15,17 +15,17 @@ const BoxRegister = ({username, repassword, password, handleUsename, handlePassw
         end={{ x: 0.9, y: 0.5 }}
         style={styles.container}
         >   
-            <View style={{flex: 1}}>
-                <Text style={styles.registerText}>Register</Text>
-                {valid.error && <ConditionText title={valid.text} />}
-                <InputWithLabel valid={valid.error} state={handleUsename} secure={false} value={username} title={"Username"} />
-                <InputWithLabel valid={valid.error} state={handlePassword} secure={true} value={password} title={"Password"} />
-                <InputWithLabel valid={valid.error} state={handleRePassword} secure={true} value={repassword} title={"Comfrim Password"} />
-                <SmallBtn handle={handleSubmit} title={"Register"} />
-            </View>    
-            <View style={styles.boxBtn}>       
+            <View style={{flex: 1, justifyContent: "space-between"}}>
+                <View>
+                    <Text style={styles.registerText}>Register</Text>
+                    {valid.error && <ConditionText title={valid.text} />}
+                    <InputWithLabel valid={valid.error} state={handleUsename} secure={false} value={username} title={"Username"} />
+                    <InputWithLabel valid={valid.error} state={handlePassword} secure={true} value={password} title={"Password"} />
+                    <InputWithLabel valid={valid.error} state={handleRePassword} secure={true} value={repassword} title={"Comfrim Password"} />
+                    <SmallBtn handle={handleSubmit} title={"Register"} />
+                </View>
                 <SmallBtn handle={handleLogin} title={"Back to Login"} />
-            </View>
+            </View>          
         </LinearGradient>
     )
 }

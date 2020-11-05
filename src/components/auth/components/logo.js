@@ -1,7 +1,6 @@
 import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 
-
 const Logo = () => {
 
     return(
@@ -14,7 +13,9 @@ const Logo = () => {
 const styles = StyleSheet.create({
     container:{
         alignItems:'center',
-        margin: 5
+        margin: 5,
+        paddingTop: 40,
+
     },
     image:{
         width: 180,
