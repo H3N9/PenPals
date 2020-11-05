@@ -61,7 +61,7 @@ const Suggestion = ({ navigation, user }) => {
             </TouchableOpacity>
             {/* location */}
             <TextPrimary style={{ marginVertical: 1 }}>
-              {city}, {nation}
+              {city} {nation}
             </TextPrimary>
           </View>
           {/* Follower */}
