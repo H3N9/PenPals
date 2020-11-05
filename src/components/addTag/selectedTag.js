@@ -18,7 +18,7 @@ const SelectedTag = ({
   const delTag = (itemValue) => {
     const tagDeleted = tagSelected.filter((value) => value.id !== itemValue.id);
     const enableButton = searchTag.map((value) => {
-      if (itemValue.title == value.title) {
+      if (itemValue.name == value.name) {
         value.isSelected = false;
       }
       return value;
@@ -29,7 +29,7 @@ const SelectedTag = ({
   const renderItem = (tagItem) => {
     return (
       <Tag onPress={() => delTag(tagItem.item)}>
-        <Text>{tagItem.item.title}</Text>
+        <Text>{tagItem.item.name}</Text>
       </Tag>
     );
   };

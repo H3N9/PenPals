@@ -18,7 +18,7 @@ const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
     }
     const valueUpper = value.toUpperCase();
     const filteredData = tagData.filter(
-      (itemValue) => itemValue.title.toUpperCase().indexOf(valueUpper) > -1
+      (itemValue) => itemValue.name.toUpperCase().indexOf(valueUpper) > -1
     );
     setSearchTag(filteredData);
   };

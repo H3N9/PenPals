@@ -49,8 +49,6 @@ export const postLoad = (navigation, token, url, body, state) => {
 }
 
 export const putLoad = (token, url, body, cb) =>{
-
-    console.log(token, url, body)
     fetch(url, {
       method: 'PUT',
       headers:{

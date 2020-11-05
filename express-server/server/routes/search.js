@@ -20,7 +20,7 @@ router.get('/user/:id', async (req, res) =>{
   res.json(...profile)
 })
 
-router.get('/hobb-tag', async (req, res) =>{
+router.post('/hobb-tag', async (req, res) =>{
   const nameQuery = req.body.name
   const hobbTags = await Tag.findAll({
     attributes: ["id", "name", "type"], 
