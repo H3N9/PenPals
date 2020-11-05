@@ -50,4 +50,10 @@ router.get('/fav-tag', async (req, res) =>{
   res.json(favTagResponse)
 })
 
+router.get('/user/byid/:id', async (req, res) =>{
+  const id = req.params.id
+  const profile = await getProfile({profileQuery: {id: id}, otherQuery: {user: req.user}})
+  res.json(...profile)
+})
+
 module.exports = router;

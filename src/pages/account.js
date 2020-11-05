@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView, StyleSheet, SafeAreaView } from "react-native";
-import Navbar from "../components/navbar";
+import { SafeAreaView } from "react-native";
 import BoxProfile from "../components/account/boxProfile";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const db = require('../../models')
 
-const {User} = db
+const {User, Profile} = db
 
 router.get('/', passport.authenticate('jwt', {session: false}), (req, res) =>{
     res.send(req.user)
@@ -27,21 +27,30 @@ router.post('/login', (req, res, next) =>{
 
 router.post('/register', async (req, res) =>{
     const {username, password} = req.body
+    const { profile } = req.body
     const passwordHash = bcrypt.hashSync(password, 10)
-    try{
-        let user = await db.sequelize.transaction((t) =>{
-        return User.create({
-            username: username,
-            password: passwordHash
-        })
-        })
-  
-        user = await User.findByPk(user.id, {attributes: ["id", "username"]})
-        res.json(user)
-
-    }catch (error) {
-        res.json({ error: error.errors[0].message });
+    const exit = await User.findOne({attributes:['id'],where:{username: username}})
+    if(exit){
+        res.status(400).json({ error: "User already exited." })
     }
+    else if(profile){
+        const createUser = await db.sequelize.transaction((t) =>{
+            return User.create({
+                username: username,
+                password: passwordHash
+            })
+        })
+        const userProfile = await db.sequelize.transaction((t) =>{
+            return Profile.create({...profile, userId:createUser.id}, {transaction: t})
+        })
+        const user = await User.findByPk(createUser.id, {attributes: ["id", "username"]})
+        res.json({user:user, profile:userProfile})
+    }
+    else{
+        res.status(400).json({ error: "Syntax error." })
+    }
+    
+        
 })
 
 module.exports = router;

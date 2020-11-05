@@ -14,7 +14,7 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Messenger = ({ navigation }) => {
 		
-	const [messages, setMessages] = useState("")
+	const [messages, setMessages] = useState([])
 	const authorize = useSelector((state) => state.Authorize.authorize)
 	const {token} = authorize
 	const url = path.urlMessage

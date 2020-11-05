@@ -34,7 +34,6 @@ const BoxProfile = ({ id, navigation, user }) => {
 
   //authen
   //const isAuthUser = id === Schema.user;
-  console.log(userId, user.userId)
   const isAuthUser = userId == user.userId
 
   //userList variable
@@ -78,7 +77,13 @@ const BoxProfile = ({ id, navigation, user }) => {
 			room:room,
 			userId:userId
 		})
-	}
+  }
+  
+  const directFriend = () =>{
+    navigation.navigate("FriendList", {
+      authorize:authorize
+    })
+  }
 
 	const controlViewProfile = (auth) => {
 		if (auth) {
@@ -116,7 +121,7 @@ const BoxProfile = ({ id, navigation, user }) => {
         <UserList
           friendCount={friendCount}
           intro={intro}
-          navigation={navigation}
+          navigation={directFriend}
         />
         {controlViewProfile(isAuthUser)}
         <ListTag

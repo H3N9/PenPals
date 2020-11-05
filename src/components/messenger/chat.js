@@ -37,14 +37,24 @@ const Chat = ({ navigation, lastMessage, id_interlocutor, texts, authorize, room
 };
 
 const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId }) => {
+	
 
-	console.log(interlocutor)
+	const setFormatDate = (dateString) =>{
+		const appendZero = (n) =>{
+			return n < 9? "0"+n:n
+		}
+		if(dateString){
+			const date = new Date(lastMessage.createdAt)
+			const minute = appendZero(date.getMinutes())
+			const hour = appendZero(date.getHours())
+			const day = appendZero(date.getDate())
+			const month = appendZero(date.getMonth()+1);
+			return `${day}/${month} ${hour}:${minute}`
+		}
+		return ""
+	}
 
-	const date = new Date(lastMessage.createdAt)
-	const minute = date.getMinutes();
-	const hour = date.getHours();
-	const day = date.getDate();
-	const month = date.getMonth();
+	const date = setFormatDate(lastMessage.createdAt)
 	const usernameAnother = interlocutor.username;
 	const { image } = interlocutor
 
@@ -93,9 +103,7 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId 
 				<TextPrimary style={MainStyle.textBold}>
 				{usernameAnother}
 				</TextPrimary>
-				{ lastMessage.createdAt && <TextPrimary>
-				{day}/{month} {hour}:{minute}
-				</TextPrimary>}
+				<TextPrimary>{date}</TextPrimary>
 			</View>
 			<Text style={MainStyle.textGray}>{lastMessage.reply||""}</Text>
 			</View>
