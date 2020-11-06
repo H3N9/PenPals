@@ -50,7 +50,6 @@ router.post('/register', async (req, res) =>{
         res.status(400).json({ error: "Syntax error." })
     }
     
-        
 })
 
 module.exports = router;

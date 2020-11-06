@@ -1,8 +1,9 @@
 
 
-export const getLoad = (navigation, token, url, state) => {
+export const getLoad = (navigation, token, url, state, signal) => {
     fetch(url, {
         method: 'GET',
+        signal:signal,
         headers:{
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -24,9 +25,10 @@ export const getLoad = (navigation, token, url, state) => {
     })
 }
 
-export const postLoad = (navigation, token, url, body, state) => {
+export const postLoad = (navigation, token, url, body, state, signal) => {
     fetch(url, {
         method: 'POST',
+        signal:signal,
         headers:{
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -48,9 +50,10 @@ export const postLoad = (navigation, token, url, body, state) => {
     })
 }
 
-export const putLoad = (token, url, body, cb) =>{
+export const putLoad = (token, url, body, cb, signal) =>{
     fetch(url, {
       method: 'PUT',
+      signal,
       headers:{
           Accept: 'application/json',
           'Content-Type': 'application/json',

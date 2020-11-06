@@ -1,43 +1,43 @@
 import React from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient';
 import InputWithLabel from './components/inputWithLabel'
 import SmallBtn from './components/smallBtn'
 import Logo from './components/logo'
 import ConditionText from './components/conditionText'
+import { Dimensions } from "react-native";
+
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 
 const BoxLogin = ({username, password, handleUsename, handlePassword, handleSubmit, valid, handleRegister}) => {
     return(
-        <View style={styles.contanier}>
-            <View>
-                <Logo />
-                <InputWithLabel valid={valid.error} state={handleUsename} secure={false} value={username} title={"Username"} />
-                <InputWithLabel valid={valid.error} state={handlePassword} secure={true} value={password} title={"Password"} />
-                {valid.error && <ConditionText title={valid.text} />}
-                <View style={styles.boxBtn}>
+        <LinearGradient
+        colors={["#2082e6", "#223372"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.9, y: 0.5 }}
+        style={styles.container}
+        >
+            <View style={{flex: 1, justifyContent: "space-between"}}>  
+                    <Logo />
                     <View>
-                        <SmallBtn handle={handleRegister} title={"Register"} />
+                        {valid.error && <ConditionText title={valid.text} />}
+                        <InputWithLabel valid={valid.error} state={handleUsename} secure={false} value={username} title={"Username"} />
+                        <InputWithLabel valid={valid.error} state={handlePassword} secure={true} value={password} title={"Password"} />
+                        <SmallBtn handle={handleSubmit} title={"Login"} /> 
                     </View>
-                    <View>
-                        <SmallBtn handle={handleSubmit} title={"Login"} />
-                    </View>
-                </View>
+                    <SmallBtn handle={handleRegister} title={"Register"}/>
             </View>
-        </View>
+        </LinearGradient>
     )
 }
 
 const styles = StyleSheet.create({
-    contanier:{
+    container:{
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'space-around',
+        padding: 25,
     },
-    boxBtn:{
-        flex: 1,
-        flexDirection: 'row',
-        alignSelf: 'flex-end'
-    }
 })
 
 export default BoxLogin

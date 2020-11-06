@@ -1,12 +1,11 @@
 import React from 'react'
 import { View, Image, StyleSheet } from 'react-native'
 
-
 const Logo = () => {
 
     return(
         <View style={styles.container}>
-            <Image style={styles.image} source={require("../../../../assets/logo-dark.png")} />
+            <Image style={styles.image} source={require("../../../../assets/logo_l.png")} />
         </View>
     )
 }
@@ -14,13 +13,14 @@ const Logo = () => {
 const styles = StyleSheet.create({
     container:{
         alignItems:'center',
-        flex: 1,
-        margin: 5
+        margin: 5,
+        paddingTop: 40,
+
     },
     image:{
-        width: 150,
-        height: 50,
-        resizeMode: 'cover'
+        width: 180,
+        height: 80,
+        resizeMode: 'contain'
     }
 })
 

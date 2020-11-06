@@ -2,15 +2,16 @@ import React from 'react'
 import {StyleSheet, View, Image, TouchableOpacity, Text} from 'react-native'
 import { TextPrimary } from "../../../style/themeComponent";
 import MainStyle from "../../../style/mainStyle";
+import path from '../../../path'
 
 
-const BoxFriend = ({image, user, navigation}) => {
+const BoxFriend = ({user, navigation}) => {
 
-    const {username} = user
+    const {username, image} = user
     return (
         <View style={styles.friendContainer}>
         <TouchableOpacity onPress={() => navigation.navigate("Account", {user:user})} style={MainStyle.shadow}>
-          <Image source={{ uri: image }} style={styles.imgProfile} />
+          <Image source={{ uri: path.urlImage+image }} style={styles.imgProfile} />
         </TouchableOpacity>
         <TextPrimary style={styles.username}>{username}</TextPrimary>
 

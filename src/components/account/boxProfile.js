@@ -63,9 +63,11 @@ const BoxProfile = ({ id, navigation, user }) => {
     borderBottomWidth: 3,
   };
   const chatRoom = () =>{
+    const controller = new AbortController
+    const signal = controller.signal
 		const urlCreateChat = path.urlCreateChat
 		const data = {userTwo: user.userId}
-    postLoad(navigation, token, urlCreateChat, data, redirectChat)
+    postLoad(navigation, token, urlCreateChat, data, redirectChat, signal)
   }
 
   const redirectChat = (data) => {

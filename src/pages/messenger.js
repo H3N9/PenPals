@@ -19,9 +19,10 @@ const Messenger = ({ navigation }) => {
 	const {token} = authorize
 	const url = path.urlMessage
 	const isFocused = useIsFocused();
-
+	const controller = new AbortController
+    const signal = controller.signal
 	useEffect(() => {
-		getLoad(navigation, token, url, setMessages)
+		getLoad(navigation, token, url, setMessages, signal)
 	}, [isFocused])
 
 

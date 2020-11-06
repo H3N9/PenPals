@@ -1,49 +1,41 @@
-import React, {useEffect, useState} from 'react'
-import { View, TextInput, StyleSheet } from 'react-native'
+import React, { useEffect, useState } from "react";
+import { View, TextInput, StyleSheet } from "react-native";
 import { TextPrimary } from "../../../style/themeComponent";
-import MainStyle from '../../../style/mainStyle'
+import MainStyle from "../../../style/mainStyle";
 
-
-const InputWithLabel = ({value, title, state, secure, valid}) => {
-    const conditionStyle = () =>{
-        return valid? {backgroundColor: "#FF5350"}:{backgroundColor: 'gray'}
-    }
-    return(
-        <View style={styles.container}>
-            <View style={[styles.boxText, conditionStyle()]}>
-                <TextPrimary style={[MainStyle.textWhiteBold, {fontSize: 20}]}>{title}</TextPrimary>
-            </View>
-            <View>
-                <TextInput value={value} secureTextEntry={secure} style={styles.boxInput} onChangeText={(value) => state(value)}></TextInput>
-            </View>
-        </View>
-    )
-}
+const InputWithLabel = ({ value, title, state, secure, valid }) => {
+  const conditionStyle = () => {
+    return valid ? { borderColor: "#FF5350", borderWidth: 2 } : { borderWidth: 0 };
+  };
+  return (
+    <View style={styles.container}>
+      <TextInput
+        value={value}
+        secureTextEntry={secure}
+        style={[styles.boxInput,  conditionStyle(), MainStyle.shadow]}
+        onChangeText={(value) => state(value)}
+        placeholder={title}
+        clearButtonMode="always"
+      ></TextInput>
+    </View>
+  );
+};
 
 const styles = StyleSheet.create({
-    container:{
-        flex:1,
-        flexDirection:'row',
-        margin: 10
-    },
-    boxText:{
-        borderTopLeftRadius: 8,
-        borderBottomLeftRadius: 8,
-        flex: 1,
-        paddingHorizontal: 5,
-        paddingVertical: 2,
-    },
-    boxInput:{
-        flex: 4,
-        borderTopRightRadius: 5,
-        borderBottomRightRadius: 5,
-        backgroundColor: 'white',
-        fontSize: 14,
-        paddingLeft: 5
-    },
-    text:{
-        
-    }
-})
+  container: {
+    flexDirection: "row",
+    marginVertical: 10,
+  },
+  boxInput: {
+    backgroundColor: "white",
+    fontSize: 15,
+    paddingLeft: 15,
+    padding: 10,
+    flex: 1,
+    borderRadius: 6,
+    borderWidth: 0
+    
+  },
+});
 
-export default InputWithLabel
+export default InputWithLabel;
