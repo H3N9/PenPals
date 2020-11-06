@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import path from '../../path'
 import {postLoad} from '../../fetch'
 
-const BoxProfile = ({ id, navigation, user }) => {
+const BoxProfile = ({ id, navigation, user, setUser }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
   const { userId, token } = authorize
   const theme = useSelector((state) => state.themeReducer.theme);
@@ -133,6 +133,8 @@ const BoxProfile = ({ id, navigation, user }) => {
             pathUrl: path.urlHobbTag
           })}
           isAuthUser={isAuthUser}
+          navigation={navigation}
+          setUser={setUser}
         />
         <ListTag
           tag={favorites}
@@ -141,6 +143,8 @@ const BoxProfile = ({ id, navigation, user }) => {
             pathUrl: path.urlFavTag
           })}
           isAuthUser={isAuthUser}
+          navigation={navigation}
+          setUser={setUser}
         />
         <AboutAcc describe={describe} />
         <SecondContainer style={styles.segmentContainer}>

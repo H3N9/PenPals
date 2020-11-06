@@ -12,18 +12,21 @@ import { putLoad } from "../../fetch"
 import path from "../../path"
 import {useSelector} from 'react-redux'
 
-const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
+const Header = ({ navigation, tagData, setSearchTag, tagSelected, initTag }) => {
   const [text, setText] = useState("");
   const authorize = useSelector((state) => state.Authorize.authorize)
 
   const inputHandle = (value) => {
     if (value == "") {
       setText("");
-      return setSearchTag([]);
+      return setSearchTag(initTag);
     }
     const valueUpper = value.toUpperCase();
-    const filteredData = tagData.filter(
-      (itemValue) => itemValue.name.toUpperCase().indexOf(valueUpper) > -1
+    const filteredData = initTag.filter(
+      (itemValue) => {
+        console.log((itemValue["category"]+" "+itemValue.name))
+        return (itemValue["category"]+" "+itemValue.name).toUpperCase().indexOf(valueUpper) > -1
+      }
     );
     setSearchTag(filteredData);
   };

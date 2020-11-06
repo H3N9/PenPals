@@ -23,6 +23,7 @@ const AddTag = ({ navigation, route }) => {
   const url = route.params.pathUrl
 
   const [searchTag, setSearchTag] = useState([]); //Tag จากผลการค้นหา
+  const [initTag, setInitTag] = useState([]);
   const [tagSelected, setTagSelected] = useState([]); //Tag ที่ถูกเลือก
 
   useEffect(() =>{
@@ -45,6 +46,7 @@ const AddTag = ({ navigation, route }) => {
           return {...item1, isSelected: false}
         })
         setSearchTag(newTagData)
+        setInitTag(newTagData)
       }
     })
   }, [])
@@ -58,6 +60,7 @@ const AddTag = ({ navigation, route }) => {
           tagData={searchTag}
           searchTag={searchTag}
           tagSelected={tagSelected}
+          initTag={initTag}
         />
         <SelectedTag
           tagSelected={tagSelected}

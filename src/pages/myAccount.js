@@ -18,12 +18,11 @@ const MyAccount = ({navigation}) => {
     const signal = controller.signal
     useEffect(() => {
         getLoad(navigation, token, url, setUser, signal)
-      }, [isFocused])
-
+    }, [isFocused])
 
     return (
         <React.Fragment>
-            {user? <BoxProfile user={user} navigation={navigation} />:<ActivityIndicator/>}
+            {user? <BoxProfile user={user} navigation={navigation} setUser={setUser} />:<ActivityIndicator/>}
         </React.Fragment>
     )
     

@@ -5,9 +5,9 @@ import Tag from "./tag";
 import Entypo from "react-native-vector-icons/Entypo";
 import { TextPrimary, SecondContainer } from "../../../style/themeComponent";
 
-const ListTag = ({ tag, title, handle, isAuthUser }) => {
+const ListTag = ({ tag, title, handle, isAuthUser, navigation, setUser }) => {
   const callTag = (value, index) => {
-    return <Tag key={index} tagName={value.name} id={value.id} />;
+    return <Tag key={index} tagName={value.name} id={value.id} isAuthUser={isAuthUser} navigation={navigation} setUser={setUser} />;
   };
 
   const callListTag = (value, index) => {

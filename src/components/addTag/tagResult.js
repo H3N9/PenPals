@@ -26,7 +26,10 @@ const TagResult = ({ tagData, tagSelected, setTagSelected }) => {
       }}
       disabled={tagData.isSelected}
     >
-      <Text style={styles.textTitle}>{tagData.name}</Text>
+      <Text style={styles.textTitle}>
+        {tagData["category"] != undefined && tagData["category"]+" : "}
+        {tagData.name}
+      </Text>
     </TouchableOpacity>
   );
 };
