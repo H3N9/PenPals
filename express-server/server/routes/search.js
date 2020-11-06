@@ -29,7 +29,7 @@ router.post('/hobb-tag', async (req, res) =>{
   res.json(hobbTags)
 })
 
-router.get('/fav-tag', async (req, res) =>{
+router.post('/fav-tag', async (req, res) =>{
   const nameQuery = req.body.name
   const favTags = await Tag.findAll({
     attributes: ["id", "name", "type"], 

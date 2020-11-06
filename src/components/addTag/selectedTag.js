@@ -26,9 +26,9 @@ const SelectedTag = ({
     setSearchTag(enableButton);
     setTagSelected(tagDeleted);
   };
-  const renderItem = (tagItem) => {
+  const renderItem = (tagItem, index) => {
     return (
-      <Tag onPress={() => delTag(tagItem.item)}>
+      <Tag onPress={() => delTag(tagItem.item)} key={index}>
         <Text>{tagItem.item.name}</Text>
       </Tag>
     );
@@ -42,6 +42,7 @@ const SelectedTag = ({
         <FlatList
           data={tagSelected}
           renderItem={renderItem}
+          keyExtractor={item => item.id.toString()}
           horizontal={true}
           style={{ width: "100%" }}
         />

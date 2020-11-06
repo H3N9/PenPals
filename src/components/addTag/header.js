@@ -8,8 +8,13 @@ import {
 } from "react-native";
 import styled from "styled-components/native";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import { putLoad } from "../../fetch"
+import path from "../../path"
+import {useSelector} from 'react-redux'
+
 const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
   const [text, setText] = useState("");
+  const authorize = useSelector((state) => state.Authorize.authorize)
 
   const inputHandle = (value) => {
     if (value == "") {
@@ -22,6 +27,17 @@ const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
     );
     setSearchTag(filteredData);
   };
+
+  const goAccountPage = () =>{
+    navigation.goBack()
+  }
+
+  const addTag = () =>{
+    const formAddTag = {tag: tagSelected.map(item1 => item1.id)}
+    //console.log(formAddTag)
+    putLoad(authorize.token, path.urlAddTag, formAddTag, goAccountPage)
+  }
+
   return (
     <View>
       <MainContainer>
@@ -44,9 +60,7 @@ const Header = ({ navigation, tagData, setSearchTag, tagSelected }) => {
         />
         <TouchableOpacity
           style={{ marginLeft: 15 }}
-          onPress={() => {
-            navigation.goBack();
-          }}
+          onPress={addTag}
         >
           <TextPrimary>Done</TextPrimary>
         </TouchableOpacity>

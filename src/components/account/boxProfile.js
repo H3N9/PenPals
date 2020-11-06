@@ -127,13 +127,17 @@ const BoxProfile = ({ id, navigation, user }) => {
         <ListTag
           tag={hobbies}
           title={"Hobbies & interests Tag"}
-          handle={() => navigation.navigate("AddTag")}
+          handle={() => navigation.navigate("AddTag", {
+            pathUrl: path.urlHobbTag
+          })}
           isAuthUser={isAuthUser}
         />
         <ListTag
           tag={favorites}
           title={"Favorite Tag"}
-          handle={() => navigation.navigate("AddTag")}
+          handle={() => navigation.navigate("AddTag", {
+            pathUrl: path.urlFavTag
+          })}
           isAuthUser={isAuthUser}
         />
         <AboutAcc describe={describe} />

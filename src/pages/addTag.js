@@ -11,7 +11,7 @@ import path from '../path'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const AddTag = ({ navigation }) => {
+const AddTag = ({ navigation, route }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
   const {token} = authorize
   const tagData = [
@@ -20,7 +20,7 @@ const AddTag = ({ navigation }) => {
     { title: "name3", isSelected: false, id: "3" },
     { title: "name4", isSelected: false, id: "4" },
   ];
-  const url = path.urlHobbTag
+  const url = route.params.pathUrl
 
   const [searchTag, setSearchTag] = useState([]); //Tag จากผลการค้นหา
   const [tagSelected, setTagSelected] = useState([]); //Tag ที่ถูกเลือก
