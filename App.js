@@ -6,9 +6,10 @@ import { createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
 import themeReducer from "./redux/themeReducer";
 import {Authorize} from './redux/authorize'
+import { Search } from './redux/searchForm'
 
 const store = createStore(
-  combineReducers({ themeReducer, Authorize }),
+  combineReducers({ themeReducer, Authorize, Search }),
   applyMiddleware(thunk)
 );
 

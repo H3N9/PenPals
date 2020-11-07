@@ -12,6 +12,8 @@ import AgeSelect from "./ageSelect";
 import GenderSelect from "./genderSelect";
 import SelectManyItem from "./selectManyItem";
 import { SecondContainer, TextPrimary } from "../../style/themeComponent";
+import { useDispatch } from 'react-redux'
+import { actionSearch } from '../../../redux/searchForm'
 
 const SearchFilter = ({ modalVisible, setModalVisible }) => {
   const [filterData, setFilterData] = useState({
@@ -21,6 +23,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
     gender: undefined,
     tag: [],
   });
+  const dispatch = useDispatch()
 
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -47,6 +50,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
                 style={MainStyle.modalButton}
                 onPress={() => {
                   setModalVisible(!modalVisible);
+                  dispatch(actionSearch({ age:[Number(filterData.minAge), Number(filterData.maxAge)], tag: filterData.tag }))
                 }}
               >
                 <Text style={MainStyle.textWhite}>Done</Text>

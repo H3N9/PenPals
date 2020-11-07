@@ -50,7 +50,35 @@ export const postLoad = (navigation, token, url, body, state, signal) => {
     })
 }
 
-export const putLoad = (token, url, body, cb, signal) =>{
+export const postLoadCb = (navigation, token, url, body, cb, signal) =>{
+    fetch(url, {
+      method: 'POST',
+      signal,
+      headers:{
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          Authorization: token,
+      },
+      body: JSON.stringify(body)
+    })
+    .then( async (response) =>{
+      if(response.status === 200){
+        const json = await response.json()
+        cb(response.status, json)
+      }
+      else if(response.status === 401){
+        navigation.navigate("Login")
+      }
+      else{
+        cb(response.status, {})
+      }
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+  }
+
+export const putLoad = (navigation, token, url, body, cb, signal) =>{
     fetch(url, {
       method: 'PUT',
       signal,

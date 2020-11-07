@@ -9,12 +9,13 @@ import {useSelector} from 'react-redux'
 import { useIsFocused } from "@react-navigation/native"
 // import schema from "../schema"
 import path from '../path'
-import {getLoad} from '../fetch'
+import {getLoad, postLoad} from '../fetch'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Search = ({ navigation }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
+  const searchForm = useSelector((state) => state.Search)
   const {token} = authorize
   const [users, setUsers] = useState([])
   const url = path.urlSearchUser
@@ -24,25 +25,11 @@ const Search = ({ navigation }) => {
 
   useEffect(() =>{
     getLoad(navigation, token, url, setUsers, signal)
-    // fetch(url,{
-    //   method: 'GET',
-    //   headers:{
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //       Authorization: token,
-    //   }     
-    // })
-    // .then( async (response) => {
-    //   if(response.status === 200){
-    //     const json = await response.json()
-    //     setUsers(json)
-    //     setLoading(false)
-    //   }
-    //   else if(response.status === 401){
-    //     navigation.navigate("Login")
-    //   }
-    // })
-  }, [isFocused])
+  }, [])
+
+  useEffect(() =>{
+    postLoad(navigation, token, url, searchForm, setUsers, signal)
+  }, [searchForm])
 
   const renderSuggestion = ({ item, index }) =>{
     return (<Suggestion user={item} key={index} navigation={navigation} />)

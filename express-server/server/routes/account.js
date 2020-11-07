@@ -73,7 +73,7 @@ router.put('/remove-tag', async (req, res) =>{
         res.json(setTags)
     }
 
-    res.json(setTags)
+    //res.json(setTags)
 })
 
 module.exports = router

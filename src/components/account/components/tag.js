@@ -15,7 +15,6 @@ const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
   }
 
   const deleteTag = () =>{
-    //console.log({tag: [ id ]})
     putLoad(authorize.token, path.urlReomvetag, {tag: [ id ]}, reloadPage)
   }
 

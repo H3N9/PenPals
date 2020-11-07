@@ -14,6 +14,12 @@ router.get('/user', async (req, res) =>{
   res.json(profile)
 })
 
+router.post('/user', async (req, res) =>{
+  let query = await createQueryProfile(req)
+  const profile = await getProfile(query)
+  res.json(profile)
+})
+
 router.get('/user/:id', async (req, res) =>{
   const id = req.params.id
   const profile = await getProfile({profileQuery: {userId: id}, otherQuery: {user: req.user}})
