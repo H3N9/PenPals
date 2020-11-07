@@ -11,6 +11,7 @@ import EditProfile from "./pages/editProfile";
 import AddTag from "./pages/addTag";
 import FriendList from "./pages/friendList";
 import Setting from "./pages/setting";
+import SubSearch from './pages/subSearch'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
@@ -182,6 +183,15 @@ const Index = () => {
               name="Register"
               component={Register}
               options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="SubSearch"
+              component={SubSearch}
+              options={{
+                tabBarIcon: (tabInfo) => {
+                  return <AntDesign name="search1" size={26} color={tabInfo.color} />;
+                },
+              }}
             />
           </Stack.Navigator>
         </NavigationContainer>

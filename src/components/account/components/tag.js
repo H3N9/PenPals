@@ -1,12 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { putLoad } from "../../../fetch"
+import { putLoad, postLoadCb } from "../../../fetch"
 import path from "../../../path"
 import {useSelector} from 'react-redux'
+import { CommonActions } from '@react-navigation/native'
+import { useDispatch } from 'react-redux'
+import { actionSearch } from '../../../../redux/searchForm'
 
 const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
+  const dispatch = useDispatch()
+  const controller = new AbortController()
+  const signal = controller.signal
 
   const reloadPage = (status, data) =>{
     if (data.id !== undefined){
@@ -36,9 +42,21 @@ const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
     }
   }
 
+  const searchByTag = () =>{
+    //dispatch(actionSearch({tag: [ id ]}))
+    // navigation.dispatch(
+    //       CommonActions.navigate({
+    //         name: "Search"
+    //       })
+    // )
+
+    navigation.navigate("SubSearch", {searchForm: {tag: [id]}})
+  }
+
   return (
     <TouchableOpacity 
       style={styles.tagButton}
+      onPress={searchByTag}
       onLongPress={deleteAlert}
       delayLongPress={1000}
     >

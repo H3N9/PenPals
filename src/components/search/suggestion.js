@@ -81,8 +81,8 @@ const Suggestion = ({ navigation, user }) => {
 
         {/* Tag */}
         <View style={{ flexDirection: "row" }}>
-          {(hobbies[0].list.length > 0) && <Tag tagName={tag1.name} id={tag1.id} />}
-          {(favorites.length > 0) && <Tag tagName={tag2.name} id={tag2.id} />}
+          {(hobbies[0].list.length > 0) && <Tag tagName={tag1.name} id={tag1.id} navigation={navigation}/>}
+          {(favorites.length > 0) && <Tag tagName={tag2.name} id={tag2.id} navigation={navigation}/>}
         </View>
 
         <View style={{ flex: 1, overflow: "hidden", marginTop: 10 }}>

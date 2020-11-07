@@ -78,7 +78,7 @@ export const postLoadCb = (navigation, token, url, body, cb, signal) =>{
     })
   }
 
-export const putLoad = (navigation, token, url, body, cb, signal) =>{
+export const putLoad = (token, url, body, cb, signal) =>{
     fetch(url, {
       method: 'PUT',
       signal,
