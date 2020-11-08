@@ -33,11 +33,11 @@ const modalSelect = ({
   const fetchData = async () => {
     const data = await fetch(fetchUrl);
     const jsonData = await data.json();
-    const allCountry = jsonData.map((value, index) => {
-      return { title: value.name, id: index.toString(), flag: value.flag };
+    const allData = jsonData.map((value, index) => {
+      return { title: value.name, id: index.toString() };
     });
-    setSearchData([...allCountry]);
-    setInfo([...allCountry]);
+    setSearchData([...allData]);
+    setInfo([...allData]);
   };
   useEffect(() => {
     fetchData();

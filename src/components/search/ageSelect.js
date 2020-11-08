@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { StyleSheet, View } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import {
@@ -8,12 +8,16 @@ import {
   MaterialIcon,
 } from "../../style/themeComponent";
 
-const AgeSelect = ({ filterData, setFilterData }) => {
+const AgeSelect = ({ filterData, setFilterData}) => {
+  const [min, setMin] = useState(filterData.minAge)
+  const [max, setMax] = useState(filterData.maxAge)
   const updateMinAge = (value) => {
     filterData.minAge = value;
+    setMin(value)
     setFilterData(filterData);
   };
   const updateMaxAge = (value) => {
+    setMax(value)
     filterData.maxAge = value;
     setFilterData(filterData);
   };
@@ -27,7 +31,7 @@ const AgeSelect = ({ filterData, setFilterData }) => {
         <InputTextBg
           keyboardType="numeric"
           style={styles.textInput}
-          value={filterData.minAge}
+          value={min}
           onChangeText={(value) => updateMinAge(value)}
           maxLength={2}
         />
@@ -35,7 +39,7 @@ const AgeSelect = ({ filterData, setFilterData }) => {
         <InputTextBg
           keyboardType="numeric"
           style={styles.textInput}
-          value={filterData.maxAge}
+          value={max}
           onChangeText={(value) => updateMaxAge(value)}
           maxLength={2}
         />

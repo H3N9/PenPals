@@ -47,6 +47,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
                 style={MainStyle.modalButton}
                 onPress={() => {
                   setModalVisible(!modalVisible);
+                  console.log(filterData)
                 }}
               >
                 <Text style={MainStyle.textWhite}>Done</Text>
@@ -63,7 +64,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
               setFilterData={setFilterData}
               focusData="country"
               title="Country"
-              fetchUrl="https://restcountries.eu/rest/v2/all?fields=name;flag"
+              fetchUrl="https://restcountries.eu/rest/v2/all?fields=name"
             />
             <SelectManyItem
               filterData={filterData}

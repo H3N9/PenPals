@@ -10,7 +10,6 @@ import {
   EntypoIcon,
 } from "../../style/themeComponent";
 import { FlatList } from "react-native-gesture-handler";
-import styled from "styled-components";
 
 const CountrySelect = ({
   filterData,

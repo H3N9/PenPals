@@ -50,8 +50,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginVertical: 10,
     marginBottom: 20,
-    marginHorizontal: 7,
-    borderRadius: 10,
+
   },
   createImgProfile: {
     resizeMode: "cover",

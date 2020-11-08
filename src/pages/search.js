@@ -68,13 +68,14 @@ const Search = ({ navigation }) => {
   //const id = ["1", "2", "3"];
     <PrimaryContainer style={MainStyle.mainBackground}>
       <SearchBar />
-      <SecondContainer style={{ flex: 1 }}>
+      <PrimaryContainer style={{ flex: 1 }}>
         <FlatList
           data={users}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
         />
-      </SecondContainer>
+      </PrimaryContainer>
     </PrimaryContainer>
 
     // <PrimaryContainer style={MainStyle.mainBackground}>

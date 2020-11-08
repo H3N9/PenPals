@@ -26,6 +26,7 @@ const PostImage = ({ images, AccountDetailSection }) => {
         renderItem={rederImage}
         keyExtractor={(item) => item.id}
         numColumns={2}
+        showsVerticalScrollIndicator={false}
       />
     </SafeAreaView>
   );

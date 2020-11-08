@@ -7,10 +7,7 @@ import {
   TextPrimary,
   FontAwesomeIcon,
   EntypoIcon,
-  PrimaryContainer,
-  SecondContainer,
 } from "../../style/themeComponent";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { Dimensions } from "react-native";
 import path from '../../path'
 
@@ -61,7 +58,7 @@ const Suggestion = ({ navigation, user }) => {
             </TouchableOpacity>
             {/* location */}
             <TextPrimary style={{ marginVertical: 1 }}>
-              {city}, {nation}
+              {city} {nation}
             </TextPrimary>
           </View>
           {/* Follower */}

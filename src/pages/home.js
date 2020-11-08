@@ -110,6 +110,7 @@ const Home = ({ navigation }) => {
         data={initData}
         renderItem={renderPostItem}
         keyExtractor={(item) => item.id.toString()}
+        showsVerticalScrollIndicator={false}
       />
     </PrimaryContainer>
   );
