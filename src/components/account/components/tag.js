@@ -50,7 +50,7 @@ const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
     //       })
     // )
 
-    navigation.navigate("SubSearch", {searchForm: {tag: [id]}})
+    navigation.navigate("SubSearch", {searchForm: {tag: [id]}, name: tagName })
   }
 
   return (

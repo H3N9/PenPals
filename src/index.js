@@ -187,11 +187,12 @@ const Index = () => {
             <Stack.Screen
               name="SubSearch"
               component={SubSearch}
-              options={{
-                tabBarIcon: (tabInfo) => {
-                  return <AntDesign name="search1" size={26} color={tabInfo.color} />;
-                },
-              }}
+              options = {({ route }) => ({ title: route.params.name })}
+              // options={{
+              //   tabBarIcon: (tabInfo) => {
+              //     return <AntDesign name="search1" size={26} color={tabInfo.color} />;
+              //   },
+              // }}
             />
           </Stack.Navigator>
         </NavigationContainer>

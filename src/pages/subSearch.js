@@ -10,12 +10,14 @@ import { useIsFocused } from "@react-navigation/native"
 // import schema from "../schema"
 import path from '../path'
 import {getLoad, postLoad} from '../fetch'
+import Tag from '../components/account/components/tag'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
-const Search = ({ navigation, route }) => {
+const SubSearch = ({ navigation, route }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
   const searchForm = route.params.searchForm
+  const name = route.params.name
   const {token} = authorize
   const [users, setUsers] = useState([])
   const url = path.urlSearchUser
@@ -24,12 +26,9 @@ const Search = ({ navigation, route }) => {
   const signal = controller.signal
 
   useEffect(() =>{
+    navigation.setOptions({ title: "Tag | "+name })
     postLoad(navigation, token, url, searchForm, setUsers, signal)
-  }, [])
-
-  const renderSuggestion = ({ item, index }) =>{
-    return (<Suggestion user={item} key={index} navigation={navigation} />)
-  }
+  }, [searchForm])
 
   const renderItem = ({ item }) => {
     return <Suggestion user={item} navigation={navigation} />;
@@ -48,6 +47,14 @@ const Search = ({ navigation, route }) => {
   );
 };
 
+SubSearch.navigationOptions = (navigationData) =>{
+  const name = navigationData.navigation.getParam("name");
+  console.log(name)
+  const headerTitle = "Tag "+name
+
+  return { headerTitle }
+}
+
 const stylesCondition = () => {
   if (screenWidth >= 768) {
     return { flex: 1, marginHorizontal: "20%" };
@@ -56,4 +63,4 @@ const stylesCondition = () => {
   }
 };
 
-export default Search;
+export default SubSearch;
