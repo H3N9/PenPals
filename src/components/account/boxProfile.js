@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import path from '../../path'
 import {postLoad} from '../../fetch'
 
-const BoxProfile = ({ id, navigation, user, setUser }) => {
+const BoxProfile = ({ navigation, user, setUser }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
   const { userId, token } = authorize
   const theme = useSelector((state) => state.themeReducer.theme);
@@ -30,7 +30,7 @@ const BoxProfile = ({ id, navigation, user, setUser }) => {
   //const user = Schema.getProfile(id);
 
   //listTag variable
-  const { hobbies, favorites } = user;
+  const { id, hobbies, favorites } = user;
 
   //authen
   //const isAuthUser = id === Schema.user;
@@ -83,7 +83,8 @@ const BoxProfile = ({ id, navigation, user, setUser }) => {
   
   const directFriend = () =>{
     navigation.navigate("FriendList", {
-      authorize:authorize
+      authorize:authorize,
+      profileId: id
     })
   }
 

@@ -13,6 +13,7 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 
 const FriendList = ({ route, navigation }) => {
 	const authorize = route.params.authorize
+	const profileId = route.params.profileId
 	const {userId, token} = authorize
 	const isFocused = useIsFocused()
 	const [friends, setFriends] = useState([])
@@ -20,28 +21,34 @@ const FriendList = ({ route, navigation }) => {
 	const [friendFilter, setFriendFilter] = useState([]);
 	const [text, setText] = useState("");
 	const urlFriend = path.urlFriend
+	const urlFriendById = path.urlFriend+"/"+profileId+"/"
 	const urlSearch = path.urlSearchUserId
 	const base = []
 	const controller = new AbortController
     const signal = controller.signal
 
-	useEffect(() => {
-		getLoad(navigation, token, urlFriend, setFriends, signal)
-	}, [isFocused])
+	// useEffect(() => {
+	// 	getLoad(navigation, token, urlFriend, setFriends, signal)
+	// }, [isFocused])
 	
-	useEffect(() => {
-		friends.map((value) => {
-			if(value.relationshipState === 'friend'){
-				getLoad(navigation, token, urlSearch+value.id, loadUser, signal)
-			}
-		})
-	}, [friends])
+	// useEffect(() => {
+	// 	friends.map((value) => {
+	// 		if(value.relationshipState === 'friend'){
+	// 			getLoad(navigation, token, urlSearch+value.id, loadUser, signal)
+	// 		}
+	// 	})
+	//}, [friends])
 
-	const loadUser = (user) =>{
-		base.push(user)
-		setUserFriends(base)
-		setFriendFilter(base)
+	const loadUser = (users) =>{
+		// console.log(user)
+		// base.push(user)
+		setUserFriends(users)
+		setFriendFilter(users)
 	}
+
+	useEffect(() =>{
+		getLoad(navigation, token, urlFriendById, loadUser, signal)
+	}, [profileId])
 
 	const inputHandle = (value) => {
 		setText(value);

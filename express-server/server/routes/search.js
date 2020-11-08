@@ -26,6 +26,26 @@ router.get('/user/:id', async (req, res) =>{
   res.json(...profile)
 })
 
+router.get('/tag', async (req, res) =>{
+  const tags = await Tag.findAll({ attributes: ["id", "name", "type"], include: [
+    {model: FavTag, as: "favTag", include: [
+      {model: Category, as: "category", attributes: ["id", "name"]}
+    ]}
+  ]})
+
+  const tagResponse = tags.map((item1) =>{
+    const favTag = item1.dataValues.favTag
+    let category = favTag
+    if (favTag !== null)
+      category = favTag.category.name
+    const returnData = item1.dataValues
+    delete returnData["favTag"]
+    return {...returnData, category}
+  })
+
+  res.json(tagResponse)
+})
+
 router.post('/hobb-tag', async (req, res) =>{
   const nameQuery = req.body.name
   const hobbTags = await Tag.findAll({

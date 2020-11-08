@@ -14,6 +14,7 @@ import SelectManyItem from "./selectManyItem";
 import { SecondContainer, TextPrimary } from "../../style/themeComponent";
 import { useDispatch } from 'react-redux'
 import { actionSearch } from '../../../redux/searchForm'
+import path from '../../path'
 
 const SearchFilter = ({ modalVisible, setModalVisible }) => {
   const [filterData, setFilterData] = useState({
