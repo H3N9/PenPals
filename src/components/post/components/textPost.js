@@ -4,7 +4,7 @@ import { TextPrimary } from "../../../style/themeComponent";
 
 const TextPost = ({ text }) => {
   return (
-    <View>
+    <View style={{paddingHorizontal: 3}}>
       <TextPrimary style={styles.postTitle}>{text}</TextPrimary>
     </View>
   );

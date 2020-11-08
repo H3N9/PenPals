@@ -7,10 +7,7 @@ import {
   TextPrimary,
   FontAwesomeIcon,
   EntypoIcon,
-  PrimaryContainer,
-  SecondContainer,
 } from "../../style/themeComponent";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { Dimensions } from "react-native";
 import path from '../../path'
 

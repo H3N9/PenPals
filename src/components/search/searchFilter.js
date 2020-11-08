@@ -67,7 +67,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
               setFilterData={setFilterData}
               focusData="country"
               title="Country"
-              fetchUrl="https://restcountries.eu/rest/v2/all?fields=name;flag"
+              fetchUrl="https://restcountries.eu/rest/v2/all?fields=name"
             />
             <SelectManyItem
               filterData={filterData}

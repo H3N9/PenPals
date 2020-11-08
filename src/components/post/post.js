@@ -31,7 +31,7 @@ const Post = ({ type, date, like, id, user }) => {
       return <ImagePost />
     }
     else if(text){
-      return <TextPost text={text} />
+      return <TextPost text={text}/>
     }
   }
 
@@ -52,9 +52,8 @@ const Post = ({ type, date, like, id, user }) => {
         </View>
       </View>
 
-      <View style={{ flex: 1, paddingVertical: 0 }}>
+      <View style={{ flex: 1 }}>
         {postControl(image, text)}
-
         <TouchableOpacity style={styles.likeButton}>
           <AntDesign
             name={like ? "heart" : "hearto"}
@@ -72,10 +71,10 @@ const styles = StyleSheet.create({
   postContainer: {
     flex: 1,
     flexDirection: "column",
-    paddingVertical: 5,
-    marginBottom: 20,
-    marginHorizontal: 7,
-    borderRadius: 10,
+    paddingVertical: 7,
+    marginBottom: 15,
+    marginHorizontal: 0,
+    borderRadius: 0,
   },
   postImgProfile: {
     resizeMode: "cover",

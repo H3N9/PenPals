@@ -46,6 +46,7 @@ const Messenger = ({ navigation }) => {
 			data={messages}
 			renderItem={renderItem}
 			keyExtractor={(messages) => messages.id.toString()}
+			showsVerticalScrollIndicator={false}
 			/>
 		</SafeAreaView>
 		</PrimaryContainer>

@@ -16,7 +16,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
 import Login from '../src/pages/login'
-import { AntDesign, Entypo, Ionicons } from "@expo/vector-icons";
+import { AntDesign, Entypo, Ionicons, FontAwesome } from "@expo/vector-icons";
 
 import { ThemeProvider } from "styled-components/native";
 import { useSelector } from "react-redux";
@@ -46,7 +46,7 @@ const HomeTab = () => {
         component={Home}
         options={{
           tabBarIcon: (tabInfo) => {
-            return <AntDesign name="home" size={26} color={tabInfo.color} />;
+            return <Entypo name="home" size={26}  color={tabInfo.color} />;
           },
         }}
       />
@@ -94,7 +94,7 @@ const HomeTab = () => {
         component={MyAccount}
         options={{
           tabBarIcon: (tabInfo) => {
-            return <AntDesign name="user" size={26} color={tabInfo.color} />;
+            return <FontAwesome name="user" size={26} color={tabInfo.color} />;
           },
         }}
       />
@@ -148,7 +148,7 @@ const Index = () => {
               options={{
                 cardOverlayEnabled: true,
                 headerShown: false,
-                ...TransitionPresets.ModalPresentationIOS,
+                ...TransitionPresets.ModalSlideFromBottomIOS,
               }}
             />
             <Stack.Screen
