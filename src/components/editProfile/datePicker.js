@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import { View, Button, Platform } from "react-native";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-const datePicker = ({ newDetail, data }) => {
+const datePicker = ({ newDetail, setNewDetail, show, setShow }) => {
+ 
   const [date, setDate] = useState(new Date());
 
-  const onChange = (event, selectedDate) => {
-    const currentDate = selectedDate || date;
-    const birthDate = `${currentDate.getDate()}-${
-      currentDate.getMonth() + 1
-    }-${currentDate.getFullYear()}`;
-    setDate(currentDate);
-    newDetail[data] = birthDate;
+  const onChange = (date) => {
+    const birthDate = `${date.getDate()}-${
+      date.getMonth() + 1
+    }-${date.getFullYear()}`;
+    newDetail.birthdate = birthDate
+    setNewDetail({...newDetail})
+    console.log(newDetail)
   };
 
   return (
     <View style={{ flex: 1 }}>
-      <DateTimePicker
-        testID="dateTimePicker"
-        value={date}
+      <DateTimePickerModal
+        isVisible={show}
         mode={"date"}
-        is24Hour={true}
-        display="default"
-        onChange={onChange}
+        headerTextIOS="Select BirthDate"
+        onConfirm={(date) => onChange(date)}
+        onCancel={() => setShow(!show)}
+        isDarkModeEnabled={false}
       />
     </View>
   );

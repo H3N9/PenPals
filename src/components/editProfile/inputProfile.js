@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Text } from "react-native";
+import React, {useState} from "react";
+import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import InputTextType from "./inputTextType";
 import InputSelectType from "./inputSelectType";
@@ -7,7 +7,7 @@ import { TextPrimary } from "../../style/themeComponent";
 import DatePicker from "./datePicker";
 
 const InputProfile = ({ newDetail, setNewDetail }) => {
-
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   return (
     <View style={{ padding: 20 }}>
       {/* UsernameInput */}
@@ -37,11 +37,16 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
         BirthDate
       </TextPrimary>
       <View style={[styles.inputChildContainer, { marginTop: 0 }]}>
-        {/* <DatePicker
-          setNewDetail={setNewDetail}
-          newDetail={newDetail}
-          data="birthDate"
-        /> */}
+        <TouchableOpacity onPress={()=> setDatePickerVisibility(!isDatePickerVisible)} style={styles.dateButton}>
+          <TextPrimary style={{fontSize: 16, textAlign: "center"}}>{newDetail.birthdate}</TextPrimary>
+          <DatePicker
+            setNewDetail={setNewDetail}
+            newDetail={newDetail}
+            data="birthDate"
+            show={isDatePickerVisible}
+            setShow={setDatePickerVisibility}
+          />
+        </TouchableOpacity>
       </View>
       {/* Gender Input */}
       <View style={styles.inputChildContainer}>
@@ -110,6 +115,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 10,
   },
+  dateButton:{
+    flex: 1,
+    borderBottomWidth: 1,
+    padding: 5,
+    borderColor: "#777",
+  }
 });
 
 export default InputProfile;
