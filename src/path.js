@@ -1,5 +1,5 @@
 //const main = 'http://localhost:3000/'
-const main = "http://ff93ed8fd132.ngrok.io/"
+const main = "http://7c6f85be8a20.ngrok.io/"
 
 const urls = {
     urlSocket: main,
