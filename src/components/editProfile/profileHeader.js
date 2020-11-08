@@ -105,7 +105,6 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
       setUpload(100)
       setResponse(xhr.response)
     })
-    console.log(formData)
     const url = path.urlImage
     xhr.onreadystatechange = function() {
       if (xhr.readyState == XMLHttpRequest.DONE){
@@ -148,6 +147,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
           }
           else{
             //putUpdate(authorize.token, path.urlUpdateProfile, newDetail)
+            //console.log(newDetail)
             putLoad(authorize.token, path.urlUpdateProfile, newDetail, redirectAccount)
           }
           //navigation.navigate("MyAccount")

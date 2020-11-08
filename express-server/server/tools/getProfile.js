@@ -6,7 +6,6 @@ const getRelationship = require('./getRelationship')
 
 module.exports = async ({ profileQuery, otherQuery }) =>{
     const myProfile = await Profile.findOne({attributes:["id"], where: {userId: otherQuery.user.id}})
-    console.log(profileQuery)
     const dataProfile = await Profile.findAll({
     where: profileQuery,
     attributes: {exclude: ["createdAt", "updatedAt"]},

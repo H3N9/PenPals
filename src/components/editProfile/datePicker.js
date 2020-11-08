@@ -7,9 +7,7 @@ const datePicker = ({ newDetail, setNewDetail, show, setShow }) => {
   const [date, setDate] = useState(new Date());
 
   const onChange = (date) => {
-    const birthDate = `${date.getDate()}-${
-      date.getMonth() + 1
-    }-${date.getFullYear()}`;
+    const birthDate = `${date.getFullYear()}-${date.getMonth() + 1 }-${date.getDate()}`
     newDetail.birthdate = birthDate
     setNewDetail({...newDetail})
     console.log(newDetail)

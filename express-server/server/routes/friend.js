@@ -16,8 +16,11 @@ router.get('/', async (req, res) =>{
 router.get('/:id', async (req, res) =>{
     const id = req.params.id
     const friends = await getRelationship({ id: id, type: "friend" })
+    const profileIdForm = friends.friends.map((item1) => item1.id)
+    const users = await getProfile({ profileQuery: {id: {[Op.in]: profileIdForm}}, otherQuery: {user: req.user} })
+    //console.log(userIdForm)
 
-    res.json(friends)
+    res.json(users)
 })
 
 router.get('/count/:id', async (req, res) =>{
