@@ -47,7 +47,8 @@ const mainStyle = StyleSheet.create({
     elevation: 1,
   },
   modalView: {
-    borderRadius: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
     padding: 10,
     height: "100%",
   },
