@@ -9,6 +9,7 @@ const { Post, Profile, User } = db
 
 router.get('/all', async (req, res) =>{
     const posts = await Post.findAll()
+    console.log(posts[0].setImagePost)
     res.json(posts)
 })
 
