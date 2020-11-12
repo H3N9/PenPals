@@ -4,11 +4,23 @@ import MainStyle from "../../style/mainStyle";
 import PostModal from "./postModal";
 import { SecondContainer } from "../../style/themeComponent";
 
-const CreatePost = () => {
+const CreatePost = ({post, setPost}) => {
   const [text, setText] = useState("");
+  const [image, setImage] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   const posted = () => {
+    const newPostObj = {
+      id: (post.length+1).toString(),
+      user: "Username",
+      type:{
+        image: image === null ? "" : image,
+        text: text
+      },
+      date: "50m",
+      like:false
+    }
+    setPost([...post, newPostObj])
     setModalVisible(!modalVisible);
   };
 
@@ -34,6 +46,8 @@ const CreatePost = () => {
       </SecondContainer>
       <PostModal
         text={text}
+        image={image}
+        setImage={setImage}
         setText={setText}
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}

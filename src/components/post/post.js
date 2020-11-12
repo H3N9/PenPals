@@ -23,12 +23,12 @@ const Post = ({ type, date, like, id, user }) => {
       return (
         <View style={{ paddingVertical: 5 }}>
           <TextPost text={text} />
-          <ImagePost />
+          <ImagePost imageUrl={image}/>
         </View>
       )
     }
     else if(image){
-      return <ImagePost />
+      return <ImagePost imageUrl={image} />
     }
     else if(text){
       return <TextPost text={text}/>

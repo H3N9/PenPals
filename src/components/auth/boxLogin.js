@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, StyleSheet, KeyboardAvoidingView, ScrollView } from 'react-native'
+import { View, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native'
 import { LinearGradient } from 'expo-linear-gradient';
 import InputWithLabel from './components/inputWithLabel'
 import SmallBtn from './components/smallBtn'
@@ -18,7 +18,7 @@ const BoxLogin = ({username, password, handleUsename, handlePassword, handleSubm
         end={{ x: 0.9, y: 0.5 }}
         style={styles.container}
         >
-            <View style={{flex: 1, justifyContent: "space-between"}}>  
+            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={{flex: 1, justifyContent: "space-between"}}>  
                     <Logo />
                     <View>
                         {valid.error && <ConditionText title={valid.text} />}
@@ -27,7 +27,7 @@ const BoxLogin = ({username, password, handleUsename, handlePassword, handleSubm
                         <SmallBtn handle={handleSubmit} title={"Login"} /> 
                     </View>
                     <SmallBtn handle={handleRegister} title={"Register"}/>
-            </View>
+            </KeyboardAvoidingView>
         </LinearGradient>
     )
 }

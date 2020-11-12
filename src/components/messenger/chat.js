@@ -118,7 +118,8 @@ const styles = StyleSheet.create({
   chatContainer: {
     flexDirection: "row",
     marginHorizontal: 15,
-    marginTop: 10,
+	marginTop: 10,
+	marginBottom: 5
   },
 });
 

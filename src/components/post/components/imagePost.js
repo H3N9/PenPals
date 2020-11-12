@@ -1,12 +1,12 @@
 import React from "react";
-import { View, Image, StyleSheet, Dimensions } from "react-native";
+import { View, Image, StyleSheet, Dimensions, Text } from "react-native";
 
-const ImagePost = () => {
+const ImagePost = ({imageUrl}) => {
   return (
     <View>
       <Image
         style={styles.image}
-        source={require("../../../../assets/5.png")}
+        source={{uri : imageUrl}}
       />
     </View>
   );
