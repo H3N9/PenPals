@@ -5,10 +5,10 @@ const { Op } = require('sequelize')
 
 const db = require("../../models")
 
-const { Post, Profile, User } = db
+const { Post, Profile, User, ImagePost } = db
 
 router.get('/all', async (req, res) =>{
-    const posts = await Post.findAll()
+    const posts = await Post.findAll({include:["imagePost"]})
     console.log(posts[0].setImagePost)
     res.json(posts)
 })
@@ -20,12 +20,18 @@ router.get('/', async (req, res) =>{
     const friendsId = friends.map((item1) => item1.id)
     const postFriend = await Profile.findAll({ where: {id: {[Op.in]: friendsId}}, include: [
         {model: User, as:"user", include: [
-            {model: Post, as: "post", attributes: ["id", "title", "userId"]}
+            {model: Post, as: "post", attributes: ["id", "title", "userId"], include: [
+                "imagePost" 
+            ]}
         ]}
     ] })
     const posts = postFriend.reduce((acc1, curr1) =>{
-        const data = curr1.dataValues.user.post.map((item2) => item2.dataValues)
-        console.log(data)
+        console.log(curr1.dataValues.user.post)
+        const data = curr1.dataValues.user.post.map((item2) => {
+            if (item2.dataValues.imagePost !== null)
+                return {...item2.dataValues, imagePost: item2.dataValues.imagePost.url}
+            return {...item2.dataValues}
+        })
         return [...acc1, ...data]
     }, [])
     res.json(posts)
@@ -38,8 +44,16 @@ router.post('/create', async (req, res) =>{
     const post = await db.sequelize.transaction((t) =>{
         return Post.create({...data, userId: user.id}, {transaction: t})
     })
+    if (data.imagePost !== "" && data.imagePost !== undefined){
+        console.log(11)
+        const imagePost = await db.sequelize.transaction((t) =>{
+            return ImagePost.create({ postId: post.id, url: data.imagePost }, {transaction: t})
+        })
+    }
 
-    res.json(post)
+    const newPost = await Post.findOne({ where: {id : post.id}, include:["imagePost"] })
+
+    res.json(newPost)
 })
 
 router.delete('/delete/:id', async (req, res) =>{
