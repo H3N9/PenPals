@@ -51,7 +51,7 @@ const PostModal = ({
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={MainStyle.centeredView}>
         <SecondContainer style={MainStyle.modalView}>
-          <KeyboardAvoidingView keyboardVerticalOffset={25} style={{flex:1}} behavior={Platform.OS == "ios" ? "padding" : "height"}>
+         
           <View style={[MainStyle.modalHeader, { alignItems: "center" }]}>
             <TouchableOpacity
               style={[styles.button]}
@@ -72,14 +72,16 @@ const PostModal = ({
               <Text style={MainStyle.textWhite}>Post</Text>
             </TouchableOpacity>
           </View>
-            <InputText
-              multiline={true}
-              placeholder="Type Something"
-              placeholderTextColor="#555"
-              style={styles.textInput}
-              onChangeText={(text) => setText(text)}
-              value={text}
-            />
+            <View style={{flex: 1}}>
+              <InputText
+                multiline={true}
+                placeholder="Type Something"
+                placeholderTextColor="#555"
+                style={styles.textInput}
+                onChangeText={(text) => setText(text)}
+                value={text}
+              />
+            </View>
             {image !== null ? 
               (
                 <PrimaryContainer style={[{flex: 0.4, borderRadius: 10, marginBottom: 10}, MainStyle.shadow]}>
@@ -97,7 +99,6 @@ const PostModal = ({
                 <TextPrimary style={{textAlign: "center", fontWeight:"500", paddingLeft: 5}}>Select Image</TextPrimary>
               </PrimaryContainer>
             </TouchableOpacity>             
-          </KeyboardAvoidingView>
         </SecondContainer>     
       </View>  
     </Modal>
@@ -115,7 +116,6 @@ const styles = StyleSheet.create({
   textInput: {
     fontSize: 26,
     marginTop: 10,
-    flex: 1,
   },
   imgButton:{
     borderRadius: 5,
