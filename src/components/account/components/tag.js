@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, Alert } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, Alert, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { putLoad, postLoadCb } from "../../../fetch"
 import path from "../../../path"
@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux'
 import { CommonActions } from '@react-navigation/native'
 import { useDispatch } from 'react-redux'
 import { actionSearch } from '../../../../redux/searchForm'
+import {EntypoIcon} from "../../../style/themeComponent";
 
 const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
@@ -66,7 +67,15 @@ const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
         start={{ x: 0, y: 0 }}
         end={{ x: 0.9, y: 0.5 }}
       >
-        <Text style={styles.tagText}>{tagName}{isAuthUser && "❌"}</Text>
+        <Text style={styles.tagText}>
+          {tagName}
+        </Text>
+        {isAuthUser &&  
+          <EntypoIcon
+            name="circle-with-cross"
+            size={16}
+            style={{ color: "#FFF", paddingLeft: 3}}
+          />}
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -77,6 +86,8 @@ const styles = StyleSheet.create({
     color: "#FFF",
     textAlign: "center",
     fontWeight: "600",
+    justifyContent: "center",
+    alignItems: "center"
   },
   tagButton: {
     borderRadius: 25,
@@ -86,6 +97,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     borderRadius: 12,
     marginRight: 5,
+    flexDirection: "row",
+    alignItems: "center"
   },
 });
 export default Tag;

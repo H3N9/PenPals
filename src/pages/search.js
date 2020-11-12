@@ -57,7 +57,7 @@ const Search = ({ navigation }) => {
     //   />)}
   //const id = ["1", "2", "3"];
     <PrimaryContainer style={MainStyle.mainBackground}>
-      <SearchBar />
+      <SearchBar navigation={navigation} />
       <PrimaryContainer style={{ flex: 1 }}>
         <FlatList
           data={users}

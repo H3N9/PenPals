@@ -21,6 +21,9 @@ import path from '../../path'
 import {postLoad} from '../../fetch'
 
 const BoxProfile = ({ navigation, user, setUser }) => {
+  
+  const [friendStatus, setFriendStatus] = useState("NotFriend") // จำลองสถานะเพื่อน
+  
   const authorize = useSelector((state) => state.Authorize.authorize)
   const { userId, token } = authorize
   const theme = useSelector((state) => state.themeReducer.theme);
@@ -88,6 +91,25 @@ const BoxProfile = ({ navigation, user, setUser }) => {
     })
   }
 
+  const friendHandle = () =>{
+    if(friendStatus === "NotFriend"){
+      setFriendStatus("Requested")
+      console.log(friendStatus)
+    }
+    else if(friendStatus === "Requested"){
+      setFriendStatus("Friend")
+      console.log(friendStatus)
+    }
+    else if(friendStatus === "Friend"){
+      setFriendStatus("Confirm/Decline")
+      console.log(friendStatus)
+    }
+    else{
+      setFriendStatus("NotFriend")
+      console.log(friendStatus)
+    }
+  }
+
 	const controlViewProfile = (auth) => {
 		if (auth) {
 		return (
@@ -95,7 +117,7 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			<ContactButton
 				title={"Edit Profile"}
 				handle={() => navigation.navigate("EditProfile", {user: user})}
-				iconName={"pencil-square-o"}
+				iconName={"account-edit"}
 			/>
 			</View>
 		);
@@ -104,13 +126,15 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			<View style={styles.contact}>
 			<ContactButton
 				title={"Add Friend"}
-				handle={() => {}}
-				iconName={"md-person-add"}
+				handle={() => friendHandle()}
+        iconName={"md-person-add"}
+        friendStatus={friendStatus}
 			/>
 			<ContactButton
 				title={"Message"}
 				handle={() => chatRoom()}
-				iconName={"ios-chatbubbles"}
+        iconName={"ios-chatbubbles"}
+        friendStatus={friendStatus}
 			/>
 			</View>
 		);

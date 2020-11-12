@@ -16,6 +16,8 @@ import {
 } from "../../style/themeComponent";
 import { useSelector } from "react-redux";
 import Modal from "react-native-modal";
+import {getLoad, postLoad} from '../../fetch'
+import path from '../../path'
 const modalSelect = ({
   modalVisible,
   setModalVisible,
@@ -24,20 +26,25 @@ const modalSelect = ({
   setFilterData,
   focusData,
   fetchUrl,
+  navigation
 }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
+  const authorize = useSelector((state) => state.Authorize.authorize)
   const [text, setText] = useState("");
   const [searchData, setSearchData] = useState([]); //เก็บข้อมูลผลการค้นหา
   const [info, setInfo] = useState([]); //เก็บข้อมูลที่ fetch มาทั้งหมด
+  const controller = new AbortController
+  const signal = controller.signal
 
-  const fetchData = async () => {
-    const data = await fetch(fetchUrl);
-    const jsonData = await data.json();
-    const allData = jsonData.map((value, index) => {
+  const modifyData = (info) =>{
+    const allData = info.map((value, index) => {
       return { title: value.name, id: index.toString() };
     });
     setSearchData([...allData]);
     setInfo([...allData]);
+  }
+  const fetchData = async () => {
+    getLoad(navigation, authorize.token, fetchUrl, modifyData, signal)
   };
   useEffect(() => {
     fetchData();

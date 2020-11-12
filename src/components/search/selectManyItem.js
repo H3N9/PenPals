@@ -17,6 +17,7 @@ const CountrySelect = ({
   focusData,
   title,
   fetchUrl,
+  navigation
 }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   const [modalVisible, setModalVisible] = useState(false);
@@ -70,6 +71,7 @@ const CountrySelect = ({
           filterData={filterData}
           setFilterData={setFilterData}
           fetchUrl={fetchUrl}
+          navigation={navigation}
         />
       </PrimaryContainer>
       <PrimaryContainer style={styles.selectMany}>

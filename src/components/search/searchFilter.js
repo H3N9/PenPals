@@ -16,7 +16,8 @@ import { useDispatch } from 'react-redux'
 import { actionSearch } from '../../../redux/searchForm'
 import path from '../../path'
 
-const SearchFilter = ({ modalVisible, setModalVisible }) => {
+const SearchFilter = ({ modalVisible, setModalVisible, navigation }) => {
+
   const [filterData, setFilterData] = useState({
     minAge: undefined,
     maxAge: undefined,
@@ -25,6 +26,7 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
     tag: [],
   });
   const dispatch = useDispatch()
+  
 
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -69,13 +71,15 @@ const SearchFilter = ({ modalVisible, setModalVisible }) => {
               focusData="country"
               title="Country"
               fetchUrl="https://restcountries.eu/rest/v2/all?fields=name"
+              navigation={navigation}
             />
             <SelectManyItem
               filterData={filterData}
               setFilterData={setFilterData}
               focusData="tag"
               title="Tag"
-              fetchUrl="https://restcountries.eu/rest/v2/all?fields=name"
+              fetchUrl={path.urlTag}
+              navigation={navigation}
             />
           </SecondContainer>
         </View>

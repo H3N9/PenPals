@@ -14,7 +14,7 @@ import {
   AntDesignIcon,
 } from "../../style/themeComponent";
 
-const searchBar = () => {
+const searchBar = ({navigation}) => {
   const [searchText, setSearchText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
   return (
@@ -65,6 +65,7 @@ const searchBar = () => {
       <SearchFilter
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        navigation={navigation}
       />
     </View>
   );

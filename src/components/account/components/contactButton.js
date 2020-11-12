@@ -1,9 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import mainStyle from "../../../style/mainStyle";
-import Icon from "react-native-vector-icons/Ionicons";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-const ContactButton = ({ title, handle, iconName }) => {
+// import Icon from "react-native-vector-icons/Ionicons";
+// import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { MaterialCommunityIcons } from '@expo/vector-icons'; 
+const ContactButton = ({ title, handle, iconName, friendStatus }) => {
   const styles = StyleSheet.create({
     button: {
       flexDirection: "row",
@@ -18,14 +19,20 @@ const ContactButton = ({ title, handle, iconName }) => {
   });
   return (
     <TouchableOpacity style={styles.button} onPress={handle}>
-      {iconName === "pencil-square-o" ? (
-        <FontAwesome name={iconName} size={22} color="white" />
+      {iconName === "account-edit" ? (
+        <MaterialCommunityIcons name={iconName} size={24} color="white" />
       ) : (
-        <Icon name={iconName} size={22} color="white"></Icon>
+        title === "Message" ?(
+          <Text style={{color: "#FFF"}}>Chat</Text>
+        )
+        :
+        (
+          <Text style={{color: "#FFF"}}>{friendStatus}</Text>
+        )
       )}
 
       <Text style={[[mainStyle.textWhiteBold], { textAlign: "center" }]}>
-        {iconName === "pencil-square-o" ? " " + title : null}
+        {iconName === "account-edit" ? " " + title : null}
       </Text>
     </TouchableOpacity>
   );
