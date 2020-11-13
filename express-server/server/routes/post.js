@@ -25,7 +25,6 @@ router.get('/', async (req, res) =>{
             ]}
         ]}
     ] })
-    console.log(postFriend[0])
     const posts = postFriend.reduce((acc1, curr1) =>{
         console.log(curr1.dataValues.user.post)
         const data = curr1.dataValues.user.post.map((item2) => {
