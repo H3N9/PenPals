@@ -16,6 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     User.associate = (models) =>{
         User.hasOne(models.Profile, {foreignKey: 'userId', as: 'profile'})
         User.hasMany(models.Post, {foreignKey: 'userId', as: 'post'})
+        //User.hasMany(models.Like, {foreignKey: 'userId', as: 'like'})
+        User.belongsToMany(models.Post, {through: 'Like', foreignKey: 'userId', as: 'like'})
     }
 
     User.getAll = () =>{

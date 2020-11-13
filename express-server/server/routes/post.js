@@ -5,7 +5,7 @@ const { Op } = require('sequelize')
 
 const db = require("../../models")
 
-const { Post, Profile, User, ImagePost } = db
+const { Post, Profile, User, ImagePost, Like } = db
 
 router.get('/all', async (req, res) =>{
     const posts = await Post.findAll({include:["imagePost"]})
@@ -65,6 +65,15 @@ router.delete('/delete/:id', async (req, res) =>{
     })
 
     res.redirect('/post')
+})
+
+router.put('/like', async (req, res) =>{
+    const postId = req.body.postId
+    const post = await Post.findOne({ where: {id : postId}, include: ["userLike"]})
+    
+    //await post.setUserLike([ ])
+
+    res.json(post)
 })
 
 module.exports = router;
