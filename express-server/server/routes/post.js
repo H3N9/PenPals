@@ -20,17 +20,22 @@ router.get('/', async (req, res) =>{
     const friendsId = friends.map((item1) => item1.id)
     const postFriend = await Profile.findAll({ where: {id: {[Op.in]: friendsId}}, include: [
         {model: User, as:"user", include: [
-            {model: Post, as: "post", attributes: ["id", "title", "userId"], include: [
+            {model: Post, as: "post", attributes: ["id", "title", "userId", "createdAt"], include: [
                 "imagePost" 
             ]}
         ]}
     ] })
+    console.log(postFriend[0])
     const posts = postFriend.reduce((acc1, curr1) =>{
         console.log(curr1.dataValues.user.post)
         const data = curr1.dataValues.user.post.map((item2) => {
             if (item2.dataValues.imagePost !== null)
-                return {...item2.dataValues, imagePost: item2.dataValues.imagePost.url}
-            return {...item2.dataValues}
+                return {...item2.dataValues, 
+                    imagePost: item2.dataValues.imagePost.url,
+                    firstName: curr1.dataValues.firstName,
+                    lastName: curr1.dataValues.lastName
+                }
+            return {...item2.dataValues, firstName: curr1.dataValues.firstName, lastName: curr1.dataValues.lastName}
         })
         return [...acc1, ...data]
     }, [])
@@ -45,7 +50,6 @@ router.post('/create', async (req, res) =>{
         return Post.create({...data, userId: user.id}, {transaction: t})
     })
     if (data.imagePost !== "" && data.imagePost !== undefined){
-        console.log(11)
         const imagePost = await db.sequelize.transaction((t) =>{
             return ImagePost.create({ postId: post.id, url: data.imagePost }, {transaction: t})
         })
