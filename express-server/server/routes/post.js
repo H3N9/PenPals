@@ -14,6 +14,7 @@ router.get('/all', async (req, res) =>{
 })
 
 router.get('/', async (req, res) =>{
+    const user = req.user
     const userProfile = req.user.dataValues.profile
     //console.log(userProfile.id)
     const { friends } = await getRelationship({ id:userProfile.id, type: "friend" })
@@ -21,20 +22,29 @@ router.get('/', async (req, res) =>{
     const postFriend = await Profile.findAll({ where: {id: {[Op.in]: friendsId}}, include: [
         {model: User, as:"user", include: [
             {model: Post, as: "post", attributes: ["id", "title", "userId", "createdAt"], include: [
-                "imagePost" 
+                "imagePost", "userLike"
             ]}
         ]}
     ] })
     const posts = postFriend.reduce((acc1, curr1) =>{
-        console.log(curr1.dataValues.user.post)
         const data = curr1.dataValues.user.post.map((item2) => {
-            if (item2.dataValues.imagePost !== null)
-                return {...item2.dataValues, 
+            const indexUserLike = item2.dataValues.userLike.findIndex((item3) => item3.dataValues.id === user.id)
+            const isLiked = true?(indexUserLike !== -1):false
+            const likeCount = item2.dataValues.userLike.length
+            const returnData = {...item2.dataValues,
+                firstName: curr1.dataValues.firstName,
+                lastName: curr1.dataValues.lastName,
+                isLiked,
+                likeCount
+            }
+            delete returnData["userLike"]
+            if (item2.dataValues.imagePost !== null){
+                return {...returnData, 
                     imagePost: item2.dataValues.imagePost.url,
-                    firstName: curr1.dataValues.firstName,
-                    lastName: curr1.dataValues.lastName
                 }
-            return {...item2.dataValues, firstName: curr1.dataValues.firstName, lastName: curr1.dataValues.lastName}
+            }
+            return returnData
+            //return {...item2.dataValues, firstName: curr1.dataValues.firstName, lastName: curr1.dataValues.lastName}
         })
         return [...acc1, ...data]
     }, [])
@@ -72,9 +82,19 @@ router.delete('/delete/:id', async (req, res) =>{
 
 router.put('/like', async (req, res) =>{
     const postId = req.body.postId
+    const user = req.user
     const post = await Post.findOne({ where: {id : postId}, include: ["userLike"]})
-    
-    //await post.setUserLike([ ])
+    const userLike = post.dataValues.userLike.map((item1) =>item1.dataValues.id)
+    const indexUserLike = userLike.findIndex(item1 => item1 === user.id)
+    if (indexUserLike === -1){
+        await post.setUserLike([...userLike, user.id])
+        res.json({ status: "liked" })
+    }
+    else{
+        const removeUserLike = [...userLike.slice(0, indexUserLike), ...userLike.slice(indexUserLike+1)]
+        await post.setUserLike(removeUserLike)
+        res.json({ status: "unliked" })
+    }
 
     res.json(post)
 })
