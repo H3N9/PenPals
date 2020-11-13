@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Image, StyleSheet, Dimensions, Text } from "react-native";
-
+import path from '../../../path'
 const ImagePost = ({imageUrl}) => {
   return (
     <View>
       <Image
         style={styles.image}
-        source={{uri : imageUrl}}
+        source={{uri : path.urlImage+imageUrl}}
       />
     </View>
   );
