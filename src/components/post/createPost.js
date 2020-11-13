@@ -3,25 +3,40 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import PostModal from "./postModal";
 import { SecondContainer } from "../../style/themeComponent";
+import {useSelector} from 'react-redux'
+import path from '../../path'
+import {postLoad} from '../../fetch'
 
-const CreatePost = ({post, setPost}) => {
+const CreatePost = ({post, setPost, navigation}) => {
   const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const controller = new AbortController
+  const signal = controller.signal
+  const authorize = useSelector((state) => state.Authorize.authorize)
+
+  const PostToDB = (data) =>{
+    console.log(data)
+    // setPost([...post, data])
+    // setModalVisible(!modalVisible);
+  }
 
   const posted = () => {
+    // const newPostObj = {
+    //   id: (post.length+1).toString(),
+    //   user: "Username",
+    //   type:{
+    //     image: image === null ? "" : image,
+    //     text: text
+    //   },
+    //   date: "50m",
+    //   like:false
+    // }
     const newPostObj = {
-      id: (post.length+1).toString(),
-      user: "Username",
-      type:{
-        image: image === null ? "" : image,
-        text: text
-      },
-      date: "50m",
-      like:false
+      title: text,
+      imagePost: image
     }
-    setPost([...post, newPostObj])
-    setModalVisible(!modalVisible);
+    // postLoad(navigation, authorize.token, path.CreatePost, newPostObj, PostToDB, signal)
   };
 
   return (

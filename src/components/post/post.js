@@ -11,9 +11,9 @@ import TextPost from "./components/textPost";
 import ImagePost from "./components/imagePost";
 import MainStyle from "../../style/mainStyle";
 
-const Post = ({ type, date, like, id, user }) => {
-  const image = type.image||undefined
-  const text = type.text||undefined
+const Post = ({ id, title, imagePost, user, like }) => {
+  // const image = type.image||undefined
+  // const text = type.text||undefined
   const likeControl = () =>{
 
   }
@@ -47,13 +47,13 @@ const Post = ({ type, date, like, id, user }) => {
         <View style={{ justifyContent: "center" }}>
           <View style={{ flexDirection: "row" }}>
             <TextPrimary style={styles.postUsername}>{user}</TextPrimary>
-            <TextPrimary>{date}</TextPrimary>
+            <TextPrimary>{"date"}</TextPrimary>
           </View>
         </View>
       </View>
 
       <View style={{ flex: 1 }}>
-        {postControl(image, text)}
+        {postControl(imagePost, title)}
         <TouchableOpacity style={styles.likeButton}>
           <AntDesign
             name={like ? "heart" : "hearto"}

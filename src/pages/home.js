@@ -6,46 +6,56 @@ import Post from "../components/post/post";
 import MainStyle from "../style/mainStyle";
 import { PrimaryContainer } from "../style/themeComponent";
 import {useSelector} from 'react-redux'
-
+import {getLoad} from '../fetch'
+import path from '../path'
 
 const Home = ({ navigation }) => {
-  const initData = [
-    {
-      id:"1",
-      user:"Username",
-      type:{
-        image: "https://is4-ssl.mzstatic.com/image/thumb/Music/v4/be/ee/3c/beee3cc9-d88b-a7db-a4fe-decf09f00908/source/600x600bb.jpg",
-        text:""
-      },
-      date: "50m",
-      like:true
-    },
-    {
-      id: "2",
-      user: "Username",
-      type: {
-        image: "https://is4-ssl.mzstatic.com/image/thumb/Music/v4/be/ee/3c/beee3cc9-d88b-a7db-a4fe-decf09f00908/source/600x600bb.jpg",
-        text:
-          "ครอบครัวของผมคือมาจาก กาบอง แต่ผมยังมีรากเหง้าใน กาน่า ด้วยที่ซึ่ง โธมัส มาจากที่นั่น ดังนั้นเราก็เป็นครอบครัวเดียวกันด้วย! มันเป็นเรื่องดีสำหรับนักเตะอายุน้อยบางคนของเรา ที่ได้มีนักเตะแบบเขาอยู่ในทีม, ความสามารถในการฝึกฝน, พวกเขาจะได้เรียนรู้มากมายจากเขา.ปิแอร์-เอเมอริค โอบาเมย็องกล่าวถึง โธมัส ปาร์เตย์.",
-      },
-      date: "50m",
-      like:true
-    },
-    {
-      id: "3",
-      user: "Username",
-      type: {
-        image: "",
-        text: '"ควย" \n ดาวิด ลุยซ์ กล่าวถึง กาเบรียล มากาลเญส',
-      },
-      date: "50m",
-      like:false
-    },
-  ]
-  const [post, setPost] = useState(initData)
-  const token = useSelector((state) => state.Authorize.token)
-  useEffect(() => {
+  const controller = new AbortController
+  const signal = controller.signal
+  const authorize = useSelector((state) => state.Authorize.authorize)
 
+  // const initData = [
+  //   {
+  //     id:"1",
+  //     user:"Username",
+  //     type:{
+  //       image: "https://is4-ssl.mzstatic.com/image/thumb/Music/v4/be/ee/3c/beee3cc9-d88b-a7db-a4fe-decf09f00908/source/600x600bb.jpg",
+  //       text:""
+  //     },
+  //     date: "50m",
+  //     like:true
+  //   },
+  //   {
+  //     id: "2",
+  //     user: "Username",
+  //     type: {
+  //       image: "https://is4-ssl.mzstatic.com/image/thumb/Music/v4/be/ee/3c/beee3cc9-d88b-a7db-a4fe-decf09f00908/source/600x600bb.jpg",
+  //       text:
+  //         "ครอบครัวของผมคือมาจาก กาบอง แต่ผมยังมีรากเหง้าใน กาน่า ด้วยที่ซึ่ง โธมัส มาจากที่นั่น ดังนั้นเราก็เป็นครอบครัวเดียวกันด้วย! มันเป็นเรื่องดีสำหรับนักเตะอายุน้อยบางคนของเรา ที่ได้มีนักเตะแบบเขาอยู่ในทีม, ความสามารถในการฝึกฝน, พวกเขาจะได้เรียนรู้มากมายจากเขา.ปิแอร์-เอเมอริค โอบาเมย็องกล่าวถึง โธมัส ปาร์เตย์.",
+  //     },
+  //     date: "50m",
+  //     like:true
+  //   },
+  //   {
+  //     id: "3",
+  //     user: "Username",
+  //     type: {
+  //       image: "",
+  //       text: '"ควย" \n ดาวิด ลุยซ์ กล่าวถึง กาเบรียล มากาลเญส',
+  //     },
+  //     date: "50m",
+  //     like:false
+  //   },
+  // ]
+  const [post, setPost] = useState([])
+  const token = useSelector((state) => state.Authorize.token)
+  const setData = (info) =>{
+    setPost([...info])
+    console.log(info)
+  }
+
+  useEffect(() => {
+    getLoad(navigation, authorize.token, path.urlPost, setData, signal)
   }, [])
   
  
@@ -76,38 +86,28 @@ const Home = ({ navigation }) => {
   // };
 
   const renderPostItem = ({ item }) => {
-    if (item.id == "1") {
-      return (
-        <React.Fragment>
-          <Homebar navigation={navigation} />
-          <CreatePost post={post} setPost={setPost}/>
-          <Post
-            key={item.id}
-            id={item.id}
-            type={item.type}
-            like={item.like}
-            date={item.date}
-            user={item.user}
-          />
-        </React.Fragment>
-      );
-    } else {
       return (
         <Post
-          key={item.id}
+          key={item.id.toString()}
           id={item.id}
-          type={item.type}
-          like={item.like}
-          date={item.date}
-          user={item.user}
+          title={item.title}
+          imagePost={item.imagePost}
+          // date={item.date}
+          user={item.userId}
+          like={true}
         />
-      );
-    }
+      )
   };
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
       <FlatList
+        ListHeaderComponent={(
+          <React.Fragment>
+            <Homebar navigation={navigation} />
+            <CreatePost post={post} setPost={setPost} navigation={navigation}/>
+          </React.Fragment>
+        )}
         data={post}
         renderItem={renderPostItem}
         keyExtractor={(item) => item.id.toString()}
