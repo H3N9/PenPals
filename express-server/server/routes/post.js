@@ -56,19 +56,30 @@ router.get('/', async (req, res) =>{
 router.post('/create', async (req, res) =>{
     const data = req.body
     const user = req.user
+    let imagePost = { url: null }
 
     const post = await db.sequelize.transaction((t) =>{
         return Post.create({...data, userId: user.id}, {transaction: t})
     })
     if (data.imagePost !== "" && data.imagePost !== undefined){
-        const imagePost = await db.sequelize.transaction((t) =>{
+        imagePost = await db.sequelize.transaction((t) =>{
             return ImagePost.create({ postId: post.id, url: data.imagePost }, {transaction: t})
         })
     }
 
-    const newPost = await Post.findOne({ where: {id : post.id}, include:["imagePost"] })
+    const newPost = await Post.findOne({ where: {id : post.id}, attributes: ["id", "title", "userId", "createdAt"],include:["imagePost"] })
+    const responseObj = {
+        ...newPost.dataValues,
+        imagePost: imagePost.url,
+        firstName: user.profile.dataValues.firstName,
+        lastName: user.profile.dataValues.lastName,
+        profileId: user.profile.dataValues.id,
+        imageProfile: user.profile.dataValues.image,
+        isLiked: false,
+        likeCount: 0
+    }
 
-    res.json(newPost)
+    res.json(responseObj)
 })
 
 router.delete('/delete/:id', async (req, res) =>{

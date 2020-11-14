@@ -1,4 +1,4 @@
-
+import path from "./path"
 
 export const getLoad = (navigation, token, url, state, signal) => {
     fetch(url, {
@@ -99,3 +99,21 @@ export const putLoad = (token, url, body, cb, signal) =>{
       }
     })
   }
+
+export const imageUpload = (imageUri, cb) =>{
+    const xhr = new XMLHttpRequest()
+    let formData = new FormData()
+    formData.append("image", {uri: imageUri, name: 'image.jpg', type: 'image/jpeg'})
+    //xhr.upload.addEventListener('progress', handleProgress)
+    // xhr.addEventListener('load', () =>{
+    // })
+    const url = path.urlImage
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == XMLHttpRequest.DONE){
+          cb(xhr.response.filename)
+        }
+    }
+    xhr.open('POST', url)
+    xhr.responseType = 'json'
+    xhr.send(formData)
+}

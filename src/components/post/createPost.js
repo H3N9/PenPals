@@ -5,7 +5,7 @@ import PostModal from "./postModal";
 import { SecondContainer } from "../../style/themeComponent";
 import {useSelector} from 'react-redux'
 import path from '../../path'
-import {postLoad} from '../../fetch'
+import {postLoad, imageUpload} from '../../fetch'
 
 const CreatePost = ({post, setPost, navigation}) => {
   const [text, setText] = useState("");
@@ -15,28 +15,30 @@ const CreatePost = ({post, setPost, navigation}) => {
   const signal = controller.signal
   const authorize = useSelector((state) => state.Authorize.authorize)
 
-  const PostToDB = (data) =>{
-    console.log(data)
+  const posted = (data) =>{
+    setPost([data, ...post])
+  }
+
+  const postToDB = (imageName) =>{
+    const newPostObj = {
+      title: text,
+      imagePost: imageName
+    }
+    postLoad(navigation, authorize.token, path.urlCreatePost, newPostObj, posted, signal)
     // setPost([...post, data])
     // setModalVisible(!modalVisible);
   }
 
-  const posted = () => {
-    // const newPostObj = {
-    //   id: (post.length+1).toString(),
-    //   user: "Username",
-    //   type:{
-    //     image: image === null ? "" : image,
-    //     text: text
-    //   },
-    //   date: "50m",
-    //   like:false
-    // }
+  const imageUploadPosted = () => {
     const newPostObj = {
       title: text,
-      imagePost: image
+      imagePost: ""
     }
-    // postLoad(navigation, authorize.token, path.CreatePost, newPostObj, PostToDB, signal)
+    setModalVisible(!modalVisible);
+    if (image !== null)
+      imageUpload(image, postToDB)
+    else
+      postLoad(navigation, authorize.token, path.urlCreatePost, newPostObj, posted, signal)
   };
 
   return (
@@ -66,7 +68,7 @@ const CreatePost = ({post, setPost, navigation}) => {
         setText={setText}
         setModalVisible={setModalVisible}
         modalVisible={modalVisible}
-        posted={posted}
+        posted={imageUploadPosted}
       />
     </React.Fragment>
   );

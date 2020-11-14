@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   StyleSheet,
   View,
@@ -10,13 +10,23 @@ import { TextPrimary, SecondContainer } from "../../style/themeComponent";
 import TextPost from "./components/textPost";
 import ImagePost from "./components/imagePost";
 import MainStyle from "../../style/mainStyle";
+import {useSelector} from 'react-redux'
 import path from "../../path"
+import { putLoad } from "../../fetch"
 
-const Post = ({ id, title, imagePost, data, like }) => {
+const Post = ({ id, title, imagePost, data, initLike }) => {
   // const image = type.image||undefined
   // const text = type.text||undefined
+  const controller = new AbortController
+  const signal = controller.signal
+  const authorize = useSelector((state) => state.Authorize.authorize)
+  const [like, setLike] = useState(initLike)
   const likeControl = () =>{
-
+    setLike(!like)
+    const body = {
+      postId: id
+    }
+    putLoad(authorize.token, path.urlLike, body, (a) =>{}, signal)
   }
 
   const postControl = (image, text) =>{
@@ -55,7 +65,7 @@ const Post = ({ id, title, imagePost, data, like }) => {
 
       <View style={{ flex: 1 }}>
         {postControl(imagePost, title)}
-        <TouchableOpacity style={styles.likeButton}>
+        <TouchableOpacity style={styles.likeButton} onPress={likeControl}>
           <AntDesign
             name={like ? "heart" : "hearto"}
             size={24}

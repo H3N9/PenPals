@@ -99,7 +99,7 @@ const Home = ({ navigation }) => {
           imagePost={item.imagePost}
           // date={item.date}
           data={item}
-          like={true}
+          initLike={item.isLiked}
         />
       )
   };
