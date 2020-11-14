@@ -8,7 +8,7 @@ const { Notification, User, Profile } = db
 router.get('/', async (req, res) =>{
     const user = req.user
 
-    const notifi = await Notification.findAll({ where: {userId: user.id}, attributes:["type", "createdAt"], include: [
+    const notifi = await Notification.findAll({ where: {userId: user.id}, attributes:["type", "createdAt", "isReaded"], include: [
         {model: User, as: "sender", include: ["profile"]}
     ]})
 
