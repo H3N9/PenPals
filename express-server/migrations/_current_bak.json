@@ -109,17 +109,6 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
-                },
-                "PostId": {
-                    "allowNull": true,
-                    "references": {
-                        "model": "Posts",
-                        "key": "id"
-                    },
-                    "onDelete": "SET NULL",
-                    "onUpdate": "CASCADE",
-                    "field": "PostId",
-                    "seqType": "Sequelize.INTEGER"
                 }
             },
             "indexes": []
@@ -207,6 +196,51 @@
             },
             "indexes": []
         },
+        "Likes": {
+            "tableName": "Likes",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "postId": {
+                    "field": "postId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Posts",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "userId": {
+                    "field": "userId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Messages": {
             "tableName": "Messages",
             "schema": {
@@ -234,6 +268,17 @@
                     "allowNull": false,
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "ChatId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Chats",
+                        "key": "id"
+                    },
+                    "onDelete": "CASCADE",
+                    "onUpdate": "CASCADE",
+                    "field": "ChatId",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "userId": {
                     "allowNull": true,
@@ -563,5 +608,5 @@
             "indexes": []
         }
     },
-    "revision": 24
+    "revision": 25
 }

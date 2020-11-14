@@ -199,13 +199,6 @@
         "Likes": {
             "tableName": "Likes",
             "schema": {
-                "id": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "field": "id",
-                    "seqType": "Sequelize.INTEGER"
-                },
                 "postId": {
                     "field": "postId",
                     "allowNull": true,
@@ -215,6 +208,8 @@
                     },
                     "onDelete": "NO ACTION",
                     "onUpdate": "CASCADE",
+                    "primaryKey": true,
+                    "unique": "Likes_userId_postId_unique",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "userId": {
@@ -226,6 +221,8 @@
                     },
                     "onDelete": "NO ACTION",
                     "onUpdate": "CASCADE",
+                    "primaryKey": true,
+                    "unique": "Likes_userId_postId_unique",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "createdAt": {
@@ -269,7 +266,7 @@
                     "field": "updatedAt",
                     "seqType": "Sequelize.DATE"
                 },
-                "ChatId": {
+                "chatId": {
                     "allowNull": true,
                     "references": {
                         "model": "Chats",
@@ -277,7 +274,7 @@
                     },
                     "onDelete": "CASCADE",
                     "onUpdate": "CASCADE",
-                    "field": "ChatId",
+                    "field": "chatId",
                     "seqType": "Sequelize.INTEGER"
                 },
                 "userId": {
@@ -290,17 +287,62 @@
                     "onUpdate": "CASCADE",
                     "field": "userId",
                     "seqType": "Sequelize.INTEGER"
+                }
+            },
+            "indexes": []
+        },
+        "Notifications": {
+            "tableName": "Notifications",
+            "schema": {
+                "id": {
+                    "allowNull": false,
+                    "primaryKey": true,
+                    "autoIncrement": true,
+                    "field": "id",
+                    "seqType": "Sequelize.INTEGER"
                 },
-                "chatId": {
+                "userId": {
+                    "field": "userId",
                     "allowNull": true,
                     "references": {
-                        "model": "Chats",
+                        "model": "Users",
                         "key": "id"
                     },
-                    "onDelete": "SET NULL",
+                    "onDelete": "NO ACTION",
                     "onUpdate": "CASCADE",
-                    "field": "chatId",
                     "seqType": "Sequelize.INTEGER"
+                },
+                "type": {
+                    "field": "type",
+                    "seqType": "Sequelize.ENUM('friend request', 'profile visitors')"
+                },
+                "senderId": {
+                    "field": "senderId",
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "NO ACTION",
+                    "onUpdate": "CASCADE",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "isReaded": {
+                    "defaultValue": {
+                        "value": false
+                    },
+                    "field": "isReaded",
+                    "seqType": "Sequelize.BOOLEAN"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
                 }
             },
             "indexes": []
@@ -608,5 +650,5 @@
             "indexes": []
         }
     },
-    "revision": 25
+    "revision": 26
 }
