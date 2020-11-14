@@ -13,9 +13,9 @@ const screenWidth = Math.round(Dimensions.get('window').width);
 const BoxLogin = ({username, password, handleUsename, handlePassword, handleSubmit, valid, handleRegister}) => {
     return(
         <LinearGradient
-        colors={["#2082e6", "#223372"]}
+        colors={["#31cdb0", "#223372"]}
         start={{ x: 0, y: 0 }}
-        end={{ x: 0.9, y: 0.5 }}
+        end={{ x: 0.6, y: 0.55 }}
         style={styles.container}
         >
             <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} style={{flex: 1, justifyContent: "space-between"}}>  

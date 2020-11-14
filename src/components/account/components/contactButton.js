@@ -24,8 +24,8 @@ const ContactButton = ({ title, handle, iconName, friendStatus }) => {
       ) : (
         title === "Message" ?(
           <React.Fragment>
-            <Icon name={iconName} size={24} />
-            <Text style={{color: "#FFF"}}>Chat</Text>
+            <Icon name={iconName} size={24} color="#fff"/>
+            <Text style={{color: "#FFF"}}>{" "+"Chat"}</Text>
           </React.Fragment>
         )
         :
