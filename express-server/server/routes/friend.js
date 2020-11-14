@@ -4,8 +4,9 @@ const db = require('../../models')
 const { Op } = require('sequelize')
 const getProfile = require('../tools/getProfile')
 const getRelationship = require('../tools/getRelationship')
+const { createNotification } = require('../tools/notificationTool')
 
-const { Relationship, Profile } = db
+const { Relationship, Profile, Notification } = db
 
 router.get('/', async (req, res) =>{
     const friends = await getRelationship({ id: req.user.dataValues.profile.id, type: "friend" })
@@ -42,6 +43,7 @@ router.put('/set-relationship', async (req, res) =>{
     const partiesFriend = list.friends.map((item1) => item1.id)
 
     if (relationshipState === "not friend"){
+        await createNotification(user.id, parties.userId, "friend request")
         await myProfile.setFriend([...myFriend, friendId])
     }
     else if (relationshipState === "friend request"){

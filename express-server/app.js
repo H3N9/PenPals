@@ -25,6 +25,7 @@ app.use('/post',  passport.authenticate('jwt', {session: false}), require('./ser
 app.use('/auth', require('./server/routes/auth'))
 app.use('/set-data', passport.authenticate('jwt', {session: false}), require('./server/routes/setData'))
 app.use('/message', passport.authenticate('jwt', {session:false}), require('./server/routes/chat'))
+app.use('/notification', passport.authenticate('jwt', {session:false}), require('./server/routes/notification'))
 app.use('/image', require('./server/routes/image'))
 
 //io.listen(http,connected(io))
