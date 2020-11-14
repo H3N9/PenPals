@@ -8,6 +8,7 @@ import { PrimaryContainer } from "../style/themeComponent";
 import {useSelector} from 'react-redux'
 import {getLoad} from '../fetch'
 import path from '../path'
+import { diffTime } from '../time'
 
 const Home = ({ navigation }) => {
   const controller = new AbortController
@@ -50,8 +51,12 @@ const Home = ({ navigation }) => {
   const [post, setPost] = useState([])
   const token = useSelector((state) => state.Authorize.token)
   const setData = (info) =>{
-    setPost([...info])
-    console.log(info)
+    const newInfo = info.map((item1) =>{
+      const diffTimeData = diffTime(item1.createdAt)
+      return {...item1, time: diffTimeData.time, diffTime: diffTimeData.diffTime}
+    })
+    console.log(newInfo)
+    setPost(newInfo)
   }
 
   useEffect(() => {
@@ -93,7 +98,7 @@ const Home = ({ navigation }) => {
           title={item.title}
           imagePost={item.imagePost}
           // date={item.date}
-          user={item.userId}
+          data={item}
           like={true}
         />
       )

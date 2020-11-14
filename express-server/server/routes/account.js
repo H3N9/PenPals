@@ -13,14 +13,8 @@ router.get('/my-profile', async (req, res) =>{
 
 router.get('/profile/:id', async (req, res) =>{
     const id = req.params.id
-    const myProfile = await Profile.findOne({where: {userId: req.user.id}})
-
-    const friendState = await Relationship.findAll({ 
-        where: {[Op.or]: [
-            {profileId: myProfile.id, friendId: id}, {profileId: id, friendId: myProfile.id}
-        ]} 
-    })
-    res.json(friendState)
+    const profile = await getProfile({profileQuery: { id }, otherQuery: {user: req.user}})
+    res.json(...profile)
 })
 
 router.put('/update', async (req, res) =>{

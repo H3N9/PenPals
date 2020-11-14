@@ -10,8 +10,9 @@ import { TextPrimary, SecondContainer } from "../../style/themeComponent";
 import TextPost from "./components/textPost";
 import ImagePost from "./components/imagePost";
 import MainStyle from "../../style/mainStyle";
+import path from "../../path"
 
-const Post = ({ id, title, imagePost, user, like }) => {
+const Post = ({ id, title, imagePost, data, like }) => {
   // const image = type.image||undefined
   // const text = type.text||undefined
   const likeControl = () =>{
@@ -40,14 +41,14 @@ const Post = ({ id, title, imagePost, user, like }) => {
       <View style={styles.boxIdentity}>
         <View>
           <Image
-            source={require("../../../assets/man.png")}
+            source={{uri: path.urlImage+data.imageProfile}}
             style={styles.postImgProfile}
           />
         </View>
         <View style={{ justifyContent: "center" }}>
           <View style={{ flexDirection: "row" }}>
-            <TextPrimary style={styles.postUsername}>{user}</TextPrimary>
-            <TextPrimary>{"date"}</TextPrimary>
+            <TextPrimary style={styles.postUsername}>{data.firstName} {data.lastName}</TextPrimary>
+            <TextPrimary>{data.time}</TextPrimary>
           </View>
         </View>
       </View>
