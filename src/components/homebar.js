@@ -1,23 +1,28 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { useSelector } from "react-redux";
-import { AntDesignIcon } from "../style/themeComponent";
-const Homebar = ({ navigation }) => {
+import { AntDesignIcon, TextPrimary } from "../style/themeComponent";
+const Homebar = ({ navigation, title }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
   return (
     <View style={styles.homebar}>
       <View style={styles.boxContent}>
-        {theme.mode == "dark" ? (
-          <Image
-            source={require("../../assets/logo.png")}
-            style={{ resizeMode: "cover", height: 30, width: 100 }}
-          />
-        ) : (
-          <Image
-            source={require("../../assets/logo-dark.png")}
-            style={{ resizeMode: "cover", height: 30, width: 100 }}
-          />
-        )}
+        {title === "Home" ?
+          theme.mode == "dark" ? (
+            <Image
+              source={require("../../assets/logo.png")}
+              style={{ resizeMode: "cover", height: 30, width: 100 }}
+            />
+          ) : (
+            <Image
+              source={require("../../assets/logo-dark.png")}
+              style={{ resizeMode: "cover", height: 30, width: 100 }}
+            />
+          )
+          :
+          <TextPrimary style={{ fontSize: 27, fontWeight: "bold" }}>{title}</TextPrimary>
+        }
+        
       </View>
       <View style={styles.boxContent}>
         <TouchableOpacity onPress={() => navigation.navigate("Setting")}>
@@ -32,7 +37,7 @@ const styles = StyleSheet.create({
   homebar: {
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 15,
+    padding: 10,
     paddingHorizontal: 20,
   },
   boxContent: {

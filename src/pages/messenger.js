@@ -40,7 +40,7 @@ const Messenger = ({ navigation }) => {
 	};
 	return (
 		<PrimaryContainer style={MainStyle.mainBackground}>
-		<Homebar navigation={navigation} />
+		<Homebar navigation={navigation} title="Messenger"/>
 		<SafeAreaView style={stylesCondition()}>
 			<FlatList
 			data={messages}

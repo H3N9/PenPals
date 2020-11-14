@@ -1,70 +1,94 @@
 import React from "react";
-import { View, ScrollView, Switch } from "react-native";
+import { View, SafeAreaView, FlatList, TouchableOpacity, Image, Text, StyleSheet } from "react-native";
 import Homebar from "../components/homebar";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
-
-import styled from "styled-components/native";
-import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
-import { switchTheme } from "../../redux/themeAction";
-import { lightTheme, darkTheme } from "../style/Theme";
+import {
+  TextPrimary,
+  SecondContainer,
+  InputText,
+  PrimaryContainer,
+  EntypoIcon
+} from "../style/themeComponent";
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Notification = ({ navigation }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
-  const dispatch = useDispatch();
-
-  const darkModeHandle = () => {
-    if (theme.mode === "light") {
-      dispatch(switchTheme(darkTheme));
-    } else {
-      dispatch(switchTheme(lightTheme));
-    }
-  };
+  const Data = [
+    {
+      id: "1",
+      userImg: "https://resources.premierleague.com/premierleague/photos/players/250x250/p37605.png",
+      userName: "Mesut Ozil",
+      title: "ส่งคำขอเป็นเพื่อนกับคุณ"
+    },
+    {
+      id: "2",
+      userImg: "https://resources.premierleague.com/premierleague/photos/players/250x250/p37605.png",
+      userName: "Mesut Ozil",
+      title: "ส่งคำขอเป็นเพื่อนกับคุณ"
+    },
+    {
+      id: "3",
+      userImg: "https://resources.premierleague.com/premierleague/photos/players/250x250/p37605.png",
+      userName: "Mesut Ozil",
+      title: "ส่งคำขอเป็นเพื่อนกับคุณ"
+    },
+  ]
+  const renderItem = ({item}) =>{
+    return(
+      <TouchableOpacity style={[styles.notiItem, {backgroundColor: theme.secondBackground}]}>
+        <View style={[MainStyle.shadow]}>
+          <Image style={[styles.imgProfile]} source={{uri: item.userImg}}/>
+        </View>
+         <View style={{flex: 1, paddingLeft: 10 }}>
+          <TextPrimary style={{fontSize: 16, fontWeight: "500"}}>{item.userName}</TextPrimary>
+          <TextPrimary>{item.title}</TextPrimary>
+         </View>   
+      </TouchableOpacity>
+    )
+  }
 
   return (
-    <Container style={MainStyle.mainBackground}>
-      <ScrollView style={stylesCondition()}>
-        <Homebar navigation={navigation} />
-        <View
-          style={{
-            alignItems: "center",
-            flexDirection: "row",
-            justifyContent: "center",
-          }}
-        >
-          <TextPrimary style={{ fontWeight: "bold" }}>Darkmode</TextPrimary>
-          <Switch
-            trackColor={{ false: "#767577", true: "#81b0ff" }}
-            thumbColor={theme.mode == "light" ? "#f4f3f4" : "#f4f3f4"}
-            ios_backgroundColor="#3e3e3e"
-            onValueChange={() => darkModeHandle()}
-            value={theme.mode == "light" ? false : true}
-          />
-        </View>
-      </ScrollView>
-    </Container>
+    <PrimaryContainer style={MainStyle.mainBackground}>
+      <Homebar navigation={navigation} title="Notification"/>
+      <SafeAreaView style={{flex: 1}}>
+        <FlatList
+          data={Data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
+      </SafeAreaView>
+    </PrimaryContainer>
   );
 };
 
-const stylesCondition = () => {
-  if (screenWidth >= 768) {
-    return { flex: 1, marginHorizontal: "20%" };
-  } else {
-    return { flex: 1 };
+const styles = StyleSheet.create({
+  imgProfile:{
+    width: 70,
+    height: 70,
+    borderRadius: 50,
+
+  },
+  notiItem:{
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 10,
+    paddingHorizontal: 15,
+    paddingVertical: 7,
+    borderRadius: 10,
+    marginHorizontal: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+	    width: 0,
+	    height: 1,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 1.35,
+    elevation: 0
+
   }
-};
+})
 
-const Container = styled.View`
-  background-color: ${(props) => props.theme.primaryBackground};
-`;
-
-const SecondContainer = styled.View`
-  background-color: ${(props) => props.theme.secondBackground};
-`;
-const TextPrimary = styled.Text`
-  color: ${(props) => props.theme.textColor};
-`;
 export default Notification;

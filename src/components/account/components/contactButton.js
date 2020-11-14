@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import mainStyle from "../../../style/mainStyle";
-// import Icon from "react-native-vector-icons/Ionicons";
+import Icon from "react-native-vector-icons/Ionicons";
 // import FontAwesome from "react-native-vector-icons/FontAwesome";
 import { MaterialCommunityIcons } from '@expo/vector-icons'; 
 const ContactButton = ({ title, handle, iconName, friendStatus }) => {
@@ -13,7 +13,7 @@ const ContactButton = ({ title, handle, iconName, friendStatus }) => {
       backgroundColor: "#757575",
       borderRadius: 20,
       paddingVertical: 10,
-      marginHorizontal: iconName === "pencil-square-o" ? 10 : 20,
+      marginHorizontal: iconName === "account-edit" ? 10 : 20,
       flex: 1,
     },
   });
@@ -23,7 +23,10 @@ const ContactButton = ({ title, handle, iconName, friendStatus }) => {
         <MaterialCommunityIcons name={iconName} size={24} color="white" />
       ) : (
         title === "Message" ?(
-          <Text style={{color: "#FFF"}}>Chat</Text>
+          <React.Fragment>
+            <Icon name={iconName} size={24} />
+            <Text style={{color: "#FFF"}}>Chat</Text>
+          </React.Fragment>
         )
         :
         (

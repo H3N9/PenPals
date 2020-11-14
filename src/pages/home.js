@@ -109,7 +109,7 @@ const Home = ({ navigation }) => {
       <FlatList
         ListHeaderComponent={(
           <React.Fragment>
-            <Homebar navigation={navigation} />
+            <Homebar navigation={navigation} title="Home"/>
             <CreatePost post={post} setPost={setPost} navigation={navigation}/>
           </React.Fragment>
         )}
