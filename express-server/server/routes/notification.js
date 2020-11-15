@@ -3,6 +3,7 @@ const router = express.Router();
 const db = require('../../models')
 const { Op } = require('sequelize')
 const getProfile = require('../tools/getProfile')
+const { createNotification } = require('../tools/notificationTool')
 const { Notification, User, Profile } = db
 
 router.get('/', async (req, res) =>{
@@ -25,6 +26,14 @@ router.get('/', async (req, res) =>{
     })
 
     res.json(responseObj)
+})
+
+router.post('/profile-visitors', async (req, res) =>{
+    const user = req.user
+    const receiver = req.body.userId
+
+    await createNotification(user.id, receiver, "profile visitors")
+    res.json({ status: "OK" })
 })
 
 module.exports = router;

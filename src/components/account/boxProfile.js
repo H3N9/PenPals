@@ -52,6 +52,9 @@ const BoxProfile = ({ navigation, user, setUser }) => {
   //authen
   //const isAuthUser = id === Schema.user;
   const isAuthUser = userId == user.userId
+  if (!isAuthUser && user.relationshipState === 'not friend'){
+    postLoad(navigation, authorize.token, path.urlProfileVisitors, { userId: user.userId }, ()=>{}, signal)
+  }
 
   //userList variable
   const friendCount = user.friendCount;
