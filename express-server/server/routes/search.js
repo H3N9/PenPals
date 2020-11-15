@@ -22,7 +22,7 @@ router.post('/user', async (req, res) =>{
 
 router.get('/user/:id', async (req, res) =>{
   const id = req.params.id
-  const profile = await getProfile({profileQuery: {userId: id}, otherQuery: {user: req.user}})
+  const profile = await getProfile({profileQuery: {id: id}, otherQuery: {user: req.user}})
   res.json(...profile)
 })
 

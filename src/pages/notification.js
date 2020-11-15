@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { View, SafeAreaView, FlatList, TouchableOpacity, Image, Text, StyleSheet } from "react-native";
 import Homebar from "../components/homebar";
 import MainStyle from "../style/mainStyle";
@@ -11,12 +11,18 @@ import {
   PrimaryContainer,
   EntypoIcon
 } from "../style/themeComponent";
+import path from "../path"
+import { getLoad } from "../fetch"
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Notification = ({ navigation }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
-  const Data = [
+  const controller = new AbortController
+  const signal = controller.signal
+  const authorize = useSelector((state) => state.Authorize.authorize)
+  const [message, setMessage] = useState([])
+  const initData = [
     {
       id: "1",
       userImg: "https://resources.premierleague.com/premierleague/photos/players/250x250/p37605.png",
@@ -36,15 +42,26 @@ const Notification = ({ navigation }) => {
       title: "ส่งคำขอเป็นเพื่อนกับคุณ"
     },
   ]
+
+  const redirectToAccountPage = (user) =>{
+    navigation.navigate("Account", { user: user })
+  }
+
+  useEffect(() =>{
+    getLoad(navigation, authorize.token, path.urlNotification, setMessage, signal)
+  }, [])
+
   const renderItem = ({item}) =>{
     return(
-      <TouchableOpacity style={[styles.notiItem, {backgroundColor: theme.secondBackground}]}>
+      <TouchableOpacity style={[styles.notiItem, {backgroundColor: theme.secondBackground}]}
+      onPress={() => {getLoad(navigation, authorize.token, path.urlSearchUser+item.sender.profileId, redirectToAccountPage, signal)}}
+      >
         <View style={[MainStyle.shadow]}>
-          <Image style={[styles.imgProfile]} source={{uri: item.userImg}}/>
+          <Image style={[styles.imgProfile]} source={{uri: path.urlImage+item.sender.imageProfile}}/>
         </View>
          <View style={{flex: 1, paddingLeft: 10 }}>
-          <TextPrimary style={{fontSize: 16, fontWeight: "500"}}>{item.userName}</TextPrimary>
-          <TextPrimary>{item.title}</TextPrimary>
+          <TextPrimary style={{fontSize: 16, fontWeight: "500"}}>{item.sender.firstName} {item.sender.lastName}</TextPrimary>
+          <TextPrimary>{item.type}</TextPrimary>
          </View>   
       </TouchableOpacity>
     )
@@ -55,9 +72,9 @@ const Notification = ({ navigation }) => {
       <Homebar navigation={navigation} title="Notification"/>
       <SafeAreaView style={{flex: 1}}>
         <FlatList
-          data={Data}
+          data={message}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
+          keyExtractor={(item) => item.id.toString()}
         />
       </SafeAreaView>
     </PrimaryContainer>

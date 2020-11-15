@@ -55,7 +55,6 @@ const Home = ({ navigation }) => {
       const diffTimeData = diffTime(item1.createdAt)
       return {...item1, time: diffTimeData.time, diffTime: diffTimeData.diffTime}
     })
-    console.log(newInfo)
     setPost(newInfo)
   }
 

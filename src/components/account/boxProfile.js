@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import BoxInfo from "./components/boxInfo";
 import UserList from "./components/userList";
@@ -18,16 +19,29 @@ import {
 import PostImage from "./components/postImage";
 import { useSelector } from "react-redux";
 import path from '../../path'
-import {postLoad} from '../../fetch'
+import {postLoad, putLoad} from '../../fetch'
 
 const BoxProfile = ({ navigation, user, setUser }) => {
+
+  const friendButtonHandle = (status) =>{
+    console.log(status)
+    if (status === "not friend")
+      return "Add Friend"
+    else if (status === "friend request")
+      return "confirm"
+    else
+      return status
+  }
   
-  const [friendStatus, setFriendStatus] = useState("NotFriend") // จำลองสถานะเพื่อน
+  const [friendStatus, setFriendStatus] = useState(user.relationshipState) // จำลองสถานะเพื่อน
+  const [friendButton, setFriendButton] = useState(friendButtonHandle(user.relationshipState))
   
   const authorize = useSelector((state) => state.Authorize.authorize)
   const { userId, token } = authorize
   const theme = useSelector((state) => state.themeReducer.theme);
   const [postSegment, setPostSegment] = useState("photo");
+  const controller = new AbortController
+  const signal = controller.signal
   //All variable will be here
   //const user = Schema.data.user[parseInt(id)-1]
   //const user = Schema.getProfile(id);
@@ -66,8 +80,6 @@ const BoxProfile = ({ navigation, user, setUser }) => {
     borderBottomWidth: 3,
   };
   const chatRoom = () =>{
-    const controller = new AbortController
-    const signal = controller.signal
 		const urlCreateChat = path.urlCreateChat
 		const data = {userTwo: user.userId}
     postLoad(navigation, token, urlCreateChat, data, redirectChat, signal)
@@ -92,21 +104,43 @@ const BoxProfile = ({ navigation, user, setUser }) => {
   }
 
   const friendHandle = () =>{
-    if(friendStatus === "NotFriend"){
-      setFriendStatus("Requested")
-      console.log(friendStatus)
-    }
-    else if(friendStatus === "Requested"){
-      setFriendStatus("Friend")
-      console.log(friendStatus)
-    }
-    else if(friendStatus === "Friend"){
-      setFriendStatus("Confirm/Decline")
-      console.log(friendStatus)
+    if (friendStatus === "friend"){
+      Alert.alert(
+        "Unfriend!",
+        "Are you sure to unfriend",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { text: "OK", onPress: () => {
+            putLoad(authorize.token, path.urlSetRelationship, { friendId: id }, (a) =>{}, signal)
+            setFriendStatus("not friend")
+            setFriendButton(friendButtonHandle("not friend"))
+          }}
+        ],
+        { cancelable: false }
+      );
     }
     else{
-      setFriendStatus("NotFriend")
-      console.log(friendStatus)
+      putLoad(authorize.token, path.urlSetRelationship, { friendId: id }, (a) =>{}, signal)
+      if(friendStatus === "not friend"){
+        setFriendStatus("request sent")
+        setFriendButton(friendButtonHandle("request sent"))
+      }
+      else if(friendStatus === "friend request"){
+        setFriendStatus("friend")
+        setFriendButton(friendButtonHandle("friend"))
+      }
+      else if(friendStatus === "request sent"){
+        setFriendStatus("not friend")
+        setFriendButton(friendButtonHandle("not friend"))
+      }
+      else{
+        setFriendStatus("not friend")
+        setFriendButton(friendButtonHandle("not friend"))
+      }
     }
   }
 
@@ -128,7 +162,7 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 				title={"Add Friend"}
 				handle={() => friendHandle()}
         iconName={"md-person-add"}
-        friendStatus={friendStatus}
+        friendStatus={friendButton}
 			/>
 			<ContactButton
 				title={"Message"}
