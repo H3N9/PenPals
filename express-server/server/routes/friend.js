@@ -32,11 +32,16 @@ router.put('/set-relationship', async (req, res) =>{
     let relationshipState = "not friend"
 
     let list = await getRelationship({ id: myProfile.id, type: "" })
-    console.log(list)
     const myFriend = list.friends.map((item1) =>{
-        if (item1.id === friendId)
+        if (item1.id === friendId ){
             relationshipState = item1.relationshipState
-        return item1.id
+            return item1.id
+        }
+        else if (item1.relationshipState === "friend")
+            return item1.id
+    }).filter((item1) =>{
+        if (item1 !== undefined)
+            return true
     })
 
     list = await getRelationship({ id: friendId, type: "" })
