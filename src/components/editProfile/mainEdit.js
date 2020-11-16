@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { View, StyleSheet, TouchableOpacity, Text, KeyboardAvoidingView } from "react-native";
 import ProfileHeader from "./profileHeader";
 import InputProfile from "./inputProfile";
 
@@ -26,7 +26,7 @@ const MainEdit = ({ navigation, user }) => {
         setNewDetail={setNewDetail}
         newDetail={newDetail}
       />
-      <InputProfile newDetail={newDetail} setNewDetail={setNewDetail} />
+      <InputProfile newDetail={newDetail} setNewDetail={setNewDetail} navigation={navigation}/>
     </React.Fragment>
   );
 };
