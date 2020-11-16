@@ -54,7 +54,7 @@ const Notification = ({ navigation }) => {
   const renderItem = ({item}) =>{
     return(
       <TouchableOpacity style={[styles.notiItem, {backgroundColor: theme.secondBackground}]}
-      onPress={() => {getLoad(navigation, authorize.token, path.urlSearchUser+item.sender.profileId, redirectToAccountPage, signal)}}
+      onPress={() => {getLoad(navigation, authorize.token, path.urlSearchUser+item.sender.userId, redirectToAccountPage, signal)}}
       >
         <View style={[MainStyle.shadow]}>
           <Image style={[styles.imgProfile]} source={{uri: path.urlImage+item.sender.imageProfile}}/>
