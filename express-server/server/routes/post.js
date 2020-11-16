@@ -16,7 +16,6 @@ router.get('/all', async (req, res) =>{
 router.get('/', async (req, res) =>{
     const user = req.user
     const userProfile = req.user.dataValues.profile
-    //console.log(userProfile.id)
     const { friends } = await getRelationship({ id:userProfile.id, type: "friend" })
     const friendsId = friends.map((item1) => item1.id)
     const postFriend = await Profile.findAll({ where: {id: {[Op.in]: friendsId}}, include: [
@@ -26,7 +25,21 @@ router.get('/', async (req, res) =>{
             ]}
         ]}
     ] })
-    posts = postResponse(postFriend, user)
+    const posts = postResponse(postFriend, user)
+    res.json(posts)
+})
+
+router.get('/:id', async (req, res) =>{
+    const user = req.user
+    const id = req.params.id
+    const rawPosts = await Profile.findAll({ where: { userId: id }, include: [
+        {model: User, as:"user", include: [
+            {model: Post, as: "post", attributes: ["id", "title", "userId", "createdAt"], include: [
+                "imagePost", "userLike"
+            ]}
+        ]}
+    ] })
+    const posts = postResponse(rawPosts, user)
     res.json(posts)
 })
 

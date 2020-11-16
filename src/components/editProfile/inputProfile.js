@@ -6,9 +6,10 @@ import InputSelectType from "./inputSelectType";
 import { TextPrimary } from "../../style/themeComponent";
 import DatePicker from "./datePicker";
 
-const InputProfile = ({ newDetail, setNewDetail }) => {
+const InputProfile = ({ newDetail, setNewDetail, navigation }) => {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
   return (
+    
     <View style={{ padding: 20 }}>
       {/* UsernameInput */}
       <View style={styles.inputChildContainer}>
@@ -59,6 +60,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
             newDetail={newDetail}
             data="gender"
             setNewDetail={setNewDetail}
+            navigation={navigation}
           />
         </View>
       </View>
@@ -74,13 +76,12 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
             newDetail={newDetail}
             data="nation"
             setNewDetail={setNewDetail}
+            navigation={navigation}
+            link={"https://restcountries.eu/rest/v2/all?fields=name"}
           />
         </View>
         <View style={{ flex: 1 }}>
-          <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
-            City
-          </TextPrimary>
-          <InputSelectType
+          <InputTextType
             placeholder="City"
             newDetail={newDetail}
             data="city"
@@ -107,6 +108,7 @@ const InputProfile = ({ newDetail, setNewDetail }) => {
         />
       </View>
     </View>
+
   );
 };
 
