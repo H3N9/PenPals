@@ -242,7 +242,6 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			posts={posts}
 			AccountDetailSection={AccountDetailSection}
 			state={postSegment}
-			user={user}
 			/>
 		</PrimaryContainer>
 	);

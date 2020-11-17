@@ -10,7 +10,7 @@ import {
 import path from '../../../path'
 import Post from '../../post/post'
 
-const RenderProfile = ({ posts, AccountDetailSection, state, user }) => {
+const RenderProfile = ({ posts, AccountDetailSection, state }) => {
   
   const urlImage = path.urlImage
   const column = state === 'photo'? 2:1
@@ -19,8 +19,7 @@ const RenderProfile = ({ posts, AccountDetailSection, state, user }) => {
       return <Image key={item.id.toString()} source={{uri:urlImage+item.imagePost}} style={styles.image} />;
     }
     else if(state === 'text'){
-      console.log("ss")
-      return <Post id={item.id} title={item.title} imagePost={null} data={user} initLike={item.isLiked}/>
+      return <Post id={item.id} title={item.title} imagePost={null} data={item} initLike={item.isLiked}/>
     }
     return null
     
