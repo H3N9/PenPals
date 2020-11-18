@@ -100,7 +100,7 @@ export const putLoad = (token, url, body, cb, signal) =>{
     })
   }
 
-export const imageUpload = (imageUri, cb) =>{
+export const imageUpload = (imageUri, state) =>{
     const xhr = new XMLHttpRequest()
     let formData = new FormData()
     formData.append("image", {uri: imageUri, name: 'image.jpg', type: 'image/jpeg'})
@@ -110,7 +110,7 @@ export const imageUpload = (imageUri, cb) =>{
     const url = path.urlImage
     xhr.onreadystatechange = function() {
         if (xhr.readyState == XMLHttpRequest.DONE){
-          cb(xhr.response.filename)
+          state(xhr.response.filename)
         }
     }
     xhr.open('POST', url)

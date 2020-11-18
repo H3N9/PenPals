@@ -1,5 +1,5 @@
-//const main = 'http://localhost:3000/'
-const main = "https://chilly-wombat-92.loca.lt/"
+const main = 'http://localhost:3000/'
+//const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {
     urlSocket: main,
