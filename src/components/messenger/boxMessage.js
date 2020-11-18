@@ -11,19 +11,19 @@ import { PrimaryContainer } from "../../style/themeComponent";
 
 const BoxMessage = ({ texts, userId }) => {
 
+  const RederText = (text) => {
+    return (
+      <TouchableOpacity style={styles.myMess}>
+        <Text style={MainStyle.textWhite}>{text}</Text>
+      </TouchableOpacity>
+    );
+  }
+
   const EachMessage = ({ text, sender }) => {
     if (sender === userId) {
-      return (
-        <TouchableOpacity style={styles.myMess}>
-          <Text style={MainStyle.textWhite}>{text}</Text>
-        </TouchableOpacity>
-      );
+      return <RederText text={text} />
     } else {
-      return (
-        <TouchableOpacity style={styles.anoMess}>
-          <Text style={MainStyle.textWhite}>{text}</Text>
-        </TouchableOpacity>
-      );
+      return <RederText text={text} />
     }
   };
 

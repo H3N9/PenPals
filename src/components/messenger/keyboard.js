@@ -11,6 +11,7 @@ import {
   InputText,
   EntypoIcon,
 } from "../../style/themeComponent";
+import * as ImagePicker from 'expo-image-picker'
 
 const Keyboard = ({onTextChange, setImage}) => {
   const [chatText, setChatText] = useState("");

@@ -7,7 +7,7 @@ import MainStyle from "../style/mainStyle";
 import { PrimaryContainer } from "../style/themeComponent";
 import io from 'socket.io-client'
 import path from '../path'
-import * as ImagePicker from 'expo-image-picker'
+import {imageUpload} from '../fetch'
 
 
 
@@ -40,7 +40,7 @@ const ChatRoom = ({ navigation, route }) => {
 	}, [texts])
 
 	const handleMyMessage = (text) =>{
-		if(text.length > 0){
+		if(text.length > 0 && image === null){
 			const sendingText = {
 				"reply":text,
 				"type":"text",
@@ -48,6 +48,17 @@ const ChatRoom = ({ navigation, route }) => {
 				"chatId":room
 			}
 			socket.emit('userSend', (sendingText))
+		}
+		else if(image !== null){
+			const sendingText = {
+				"reply":image,
+				"type":"image",
+				"userId":userId,
+				"chatId":room
+			}
+			socket.emit('userSend', (sendingText))
+			imageUpload(image, ()=>{})
+			setImage(null)
 		}
 		
 	}
