@@ -18,8 +18,8 @@ const RenderProfile = ({ posts, AccountDetailSection, state }) => {
     if(item.imagePost !== null && state === 'photo'){
       return <Image key={item.id.toString()} source={{uri:urlImage+item.imagePost}} style={styles.image} />;
     }
-    else if(state === 'text'){
-      return <Post id={item.id} title={item.title} imagePost={null} data={item} initLike={item.isLiked}/>
+    else if(state === 'all'){
+      return <Post id={item.id} title={item.title} imagePost={item.imagePost} data={item} initLike={item.isLiked}/>
     }
     return null
     

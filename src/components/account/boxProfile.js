@@ -225,9 +225,9 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			<TouchableOpacity
 				style={[
 				styles.segmentItem,
-				postSegment == "text" ? segmentBorder : null,
+				postSegment == "all" ? segmentBorder : null,
 				]}
-				onPress={() => setPostSegment("text")}
+				onPress={() => setPostSegment("all")}
 			>
 				<EntypoIcon name={"text"} size={24} style={styles.segmentText} />
 			</TouchableOpacity>
