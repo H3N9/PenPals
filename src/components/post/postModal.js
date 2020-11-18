@@ -9,7 +9,6 @@ import {
   PrimaryContainer,
   EntypoIcon
 } from "../../style/themeComponent";
-import { ScrollView } from 'react-native-gesture-handler';
 
 const PostModal = ({
   text,

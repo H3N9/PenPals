@@ -7,6 +7,7 @@ import MainStyle from "../style/mainStyle";
 import { PrimaryContainer } from "../style/themeComponent";
 import io from 'socket.io-client'
 import path from '../path'
+import * as ImagePicker from 'expo-image-picker'
 
 
 
@@ -16,7 +17,7 @@ const ChatRoom = ({ navigation, route }) => {
 	const { initialTexts, interlocutor, room, userId } = route.params;
 	
 	const [texts, setTexts] = useState()
-	
+	const [image, setImage] = useState(null)
 	
 	useEffect(() => {
 		const urlSocket = path.urlSocket
@@ -51,6 +52,8 @@ const ChatRoom = ({ navigation, route }) => {
 		
 	}
 
+	
+
 
 	return (
 		<PrimaryContainer style={MainStyle.mainBackground}>
@@ -65,7 +68,7 @@ const ChatRoom = ({ navigation, route }) => {
 			keyboardVerticalOffset={Platform.OS == "ios" ? 20 : 0}
 			>
 			<View style={styles.keyboard}>
-				<Keyboard onTextChange={handleMyMessage} />
+				<Keyboard onTextChange={handleMyMessage} setImage={setImage} />
 			</View>
 			</KeyboardAvoidingView>
 		</PrimaryContainer>
