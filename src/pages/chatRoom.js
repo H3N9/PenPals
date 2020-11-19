@@ -39,8 +39,19 @@ const ChatRoom = ({ navigation, route }) => {
 		})
 	}, [texts])
 
-	const handleMyMessage = (text) =>{
-		if(text.length > 0 && image === null){
+	const keepImage = (image) => {
+		const sendingText = {
+			"reply":image,
+			"type":"image",
+			"userId":userId,
+			"chatId":room
+		}
+		socket.emit('userSend', (sendingText))
+		setImage(null)
+	}
+
+	const handleMyMessage = async (text) =>{
+		if(text.length > 0){
 			const sendingText = {
 				"reply":text,
 				"type":"text",
@@ -50,15 +61,7 @@ const ChatRoom = ({ navigation, route }) => {
 			socket.emit('userSend', (sendingText))
 		}
 		else if(image !== null){
-			const sendingText = {
-				"reply":image,
-				"type":"image",
-				"userId":userId,
-				"chatId":room
-			}
-			socket.emit('userSend', (sendingText))
-			imageUpload(image, ()=>{})
-			setImage(null)
+			imageUpload(image, keepImage)
 		}
 		
 	}

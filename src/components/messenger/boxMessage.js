@@ -4,31 +4,40 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  Image,
+  Dimensions
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import { PrimaryContainer } from "../../style/themeComponent";
+import path from '../../path'
 
 
 const BoxMessage = ({ texts, userId }) => {
-
-  const RederText = (text) => {
-    return (
-      <TouchableOpacity style={styles.myMess}>
-        <Text style={MainStyle.textWhite}>{text}</Text>
-      </TouchableOpacity>
-    );
+  const RederText = ({text, type, side}) => {
+    if(type === 'text'){
+      return (
+        <TouchableOpacity style={side}>
+          <Text style={MainStyle.textWhite}>{text}</Text>
+        </TouchableOpacity>
+      )
+    }
+    else if(type === 'image'){
+      return (
+        <TouchableOpacity style={side}>
+          <Image style={styles.image} source={{uri:path.urlImage+text}} />
+        </TouchableOpacity>
+      )
+    }
+   
   }
 
-  const EachMessage = ({ text, sender }) => {
-    if (sender === userId) {
-      return <RederText text={text} />
-    } else {
-      return <RederText text={text} />
-    }
-  };
-
   const renderMessage = ({ item }) => {
-    return <EachMessage text={item.reply} sender={item.userId} />;
+    const sender = item.userId
+    if (sender === userId) {
+      return <RederText text={item.reply} type={item.type} side={styles.myMess} />
+    } else {
+      return <RederText text={item.reply} type={item.type} side={styles.anoMess} />
+    }
   };
 
   return (
@@ -62,6 +71,12 @@ const styles = StyleSheet.create({
   boxMess: {
     flex: 10,
   },
+  image:{
+    width: 300,
+    height: 300,
+    borderRadius: 5,
+  }
+
 });
 
 export default BoxMessage;
