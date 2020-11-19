@@ -7,6 +7,7 @@ import MainStyle from "../style/mainStyle";
 import { PrimaryContainer } from "../style/themeComponent";
 import io from 'socket.io-client'
 import path from '../path'
+import {imageUpload} from '../fetch'
 
 
 
@@ -16,7 +17,7 @@ const ChatRoom = ({ navigation, route }) => {
 	const { initialTexts, interlocutor, room, userId } = route.params;
 	
 	const [texts, setTexts] = useState()
-	
+	const [image, setImage] = useState(null)
 	
 	useEffect(() => {
 		const urlSocket = path.urlSocket
@@ -39,7 +40,7 @@ const ChatRoom = ({ navigation, route }) => {
 	}, [texts])
 
 	const handleMyMessage = (text) =>{
-		if(text.length > 0){
+		if(text.length > 0 && image === null){
 			const sendingText = {
 				"reply":text,
 				"type":"text",
@@ -48,8 +49,21 @@ const ChatRoom = ({ navigation, route }) => {
 			}
 			socket.emit('userSend', (sendingText))
 		}
+		else if(image !== null){
+			const sendingText = {
+				"reply":image,
+				"type":"image",
+				"userId":userId,
+				"chatId":room
+			}
+			socket.emit('userSend', (sendingText))
+			imageUpload(image, ()=>{})
+			setImage(null)
+		}
 		
 	}
+
+	
 
 
 	return (
@@ -65,7 +79,7 @@ const ChatRoom = ({ navigation, route }) => {
 			keyboardVerticalOffset={Platform.OS == "ios" ? 20 : 0}
 			>
 			<View style={styles.keyboard}>
-				<Keyboard onTextChange={handleMyMessage} />
+				<Keyboard onTextChange={handleMyMessage} setImage={setImage} />
 			</View>
 			</KeyboardAvoidingView>
 		</PrimaryContainer>
