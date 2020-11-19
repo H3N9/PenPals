@@ -27,7 +27,7 @@ const PostModal = ({
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
         if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+          console.log('Sorry, we need camera roll permissions to make this work!')
         }
       }
     })();

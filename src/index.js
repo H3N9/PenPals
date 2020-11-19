@@ -12,6 +12,7 @@ import AddTag from "./pages/addTag";
 import FriendList from "./pages/friendList";
 import Setting from "./pages/setting";
 import SubSearch from './pages/subSearch'
+import CreateTag from './pages/createTag'
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { TransitionPresets } from "@react-navigation/stack";
@@ -187,12 +188,12 @@ const Index = () => {
             <Stack.Screen
               name="SubSearch"
               component={SubSearch}
-              options = {({ route }) => ({ title: route.params.name })}
-              // options={{
-              //   tabBarIcon: (tabInfo) => {
-              //     return <AntDesign name="search1" size={26} color={tabInfo.color} />;
-              //   },
-              // }}
+              options = {({ route }) => ({ title: route.params.name }), {headerShown: false}}
+            />
+            <Stack.Screen
+              name="CreateTag"
+              component={CreateTag}
+              options = {{headerShown: false}}
             />
           </Stack.Navigator>
         </NavigationContainer>

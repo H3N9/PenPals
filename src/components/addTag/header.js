@@ -7,7 +7,7 @@ import {
   Keyboard,
 } from "react-native";
 import styled from "styled-components/native";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { putLoad } from "../../fetch"
 import path from "../../path"
 import {useSelector} from 'react-redux'
@@ -48,7 +48,7 @@ const Header = ({ navigation, tagData, setSearchTag, tagSelected, initTag }) => 
           style={{ marginRight: 15, padding: 5 }}
           onPress={() => navigation.goBack()}
         >
-          <SimpleLine name="arrow-left" size={20} />
+          <FontAwesome name="chevron-left" size={20} />
         </TouchableOpacity>
         <InputText
           placeholder="Search Tag"
@@ -62,8 +62,9 @@ const Header = ({ navigation, tagData, setSearchTag, tagSelected, initTag }) => 
           }}
         />
         <TouchableOpacity
-          style={{ marginLeft: 15 }}
+          style={{ marginLeft: 15, opacity: tagSelected.length === 0 ? 0.5 : 1 }}
           onPress={addTag}
+          disabled={tagSelected.length === 0}
         >
           <TextPrimary>Done</TextPrimary>
         </TouchableOpacity>
@@ -84,7 +85,7 @@ const InputText = styled.TextInput`
 const MainContainer = styled.View`
   background-color: ${(props) => props.theme.secondBackground};
   flex-direction: row;
-  padding: 15px 10px;
+  padding: 10px 10px;
   align-items: center;
 `;
 
@@ -92,7 +93,7 @@ const TextPrimary = styled.Text`
   color: ${(props) => props.theme.textColor};
 `;
 
-const SimpleLine = styled(SimpleLineIcons)`
+const FontAwesome = styled(FontAwesomeIcon)`
   color: ${(props) => props.theme.textColor};
 `;
 

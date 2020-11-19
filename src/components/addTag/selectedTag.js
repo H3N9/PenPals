@@ -8,6 +8,7 @@ import {
 } from "react-native";
 import { color, Value } from "react-native-reanimated";
 import styled from "styled-components/native";
+import {EntypoIcon} from "../../style/themeComponent";
 
 const SelectedTag = ({
   tagSelected,
@@ -29,7 +30,12 @@ const SelectedTag = ({
   const renderItem = (tagItem, index) => {
     return (
       <Tag onPress={() => delTag(tagItem.item)} key={index}>
-        <Text>{tagItem.item.name}</Text>
+        <Text style={{color: "#FFF", fontWeight: "500", fontSize: 15}}>{tagItem.item.name}</Text>
+        <EntypoIcon
+            name="circle-with-cross"
+            size={16}
+            style={{ color: "#FFF", paddingLeft: 3}}
+        />
       </Tag>
     );
   };
@@ -67,7 +73,8 @@ const Tag = styled.TouchableOpacity`
   border-radius: 50px;
   padding: 3px 7px;
   margin: 0 2px;
-  background: #ff5350;
+  background: #888;
+  flex-direction: row;
 `;
 
 export default SelectedTag;

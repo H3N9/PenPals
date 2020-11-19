@@ -14,6 +14,7 @@ const Home = ({ navigation }) => {
   const controller = new AbortController
   const signal = controller.signal
   const authorize = useSelector((state) => state.Authorize.authorize)
+  const [users, setUsers] = useState([])
 
   // const initData = [
   //   {
@@ -56,10 +57,11 @@ const Home = ({ navigation }) => {
       return {...item1, time: diffTimeData.time, diffTime: diffTimeData.diffTime}
     })
     setPost(newInfo)
+    // console.log(info)
   }
-
   useEffect(() => {
     getLoad(navigation, authorize.token, path.urlPost, setData, signal)
+    getLoad(navigation, authorize.token, path.urlSearchUser, setUsers, signal)
   }, [])
   
  
@@ -90,6 +92,7 @@ const Home = ({ navigation }) => {
   // };
 
   const renderPostItem = ({ item }) => {
+      const user = users.find((value) => value.userId === item.userId)
       return (
         <Post
           key={item.id.toString()}
@@ -99,6 +102,9 @@ const Home = ({ navigation }) => {
           // date={item.date}
           data={item}
           initLike={item.isLiked}
+          likeCount={item.likeCount}
+          navigation={navigation}
+          userId={user} 
         />
       )
   };

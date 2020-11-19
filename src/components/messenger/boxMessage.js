@@ -4,25 +4,42 @@ import {
   FlatList,
   StyleSheet,
   Text,
+  Dimensions
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import { PrimaryContainer } from "../../style/themeComponent";
+import { LinearGradient } from 'expo-linear-gradient';
 
+const screenWidth = Math.round(Dimensions.get('window').width);
 
 const BoxMessage = ({ texts, userId }) => {
 
   const EachMessage = ({ text, sender }) => {
     if (sender === userId) {
       return (
-        <TouchableOpacity style={styles.myMess}>
-          <Text style={MainStyle.textWhite}>{text}</Text>
+        <LinearGradient
+          colors={["#56ccf2", "#2f80ed"]}
+          start={{ x: 0, y: 0.1 }}
+          end={{ x: 0.6, y: 0.55 }}
+          style={styles.myMess}
+        >
+        <TouchableOpacity>
+          <Text style={styles.textChat}>{text}</Text>
         </TouchableOpacity>
+        </LinearGradient>
       );
     } else {
       return (
-        <TouchableOpacity style={styles.anoMess}>
-          <Text style={MainStyle.textWhite}>{text}</Text>
-        </TouchableOpacity>
+              <LinearGradient
+                colors={["#ff5350", "#BB213a"]}
+                start={{ x: 0, y: 0.1 }}
+                end={{ x: 0.6, y: 0.55 }}
+                style={styles.anoMess}
+              >
+                <TouchableOpacity>
+                  <Text style={styles.textChat}>{text}</Text>
+                </TouchableOpacity>
+              </LinearGradient>      
       );
     }
   };
@@ -45,23 +62,33 @@ const BoxMessage = ({ texts, userId }) => {
 
 const styles = StyleSheet.create({
   myMess: {
-    backgroundColor: "#779ecb",
     padding: 10,
+    paddingHorizontal: 13,
     alignSelf: "flex-end",
     flex: 1,
-    borderRadius: 5,
-    margin: 5,
+    borderRadius: 15,
+    marginHorizontal: 15,
+    marginVertical: 5,
+    maxWidth: screenWidth/2
   },
   anoMess: {
-    backgroundColor: "#FF5350",
     padding: 10,
+    paddingHorizontal: 13,
     alignSelf: "flex-start",
-    borderRadius: 5,
-    margin: 5,
+    borderRadius: 15,
+    marginVertical: 5,
+    marginHorizontal: 15,
+    flex: 1,
+    maxWidth: screenWidth/1.5
   },
   boxMess: {
     flex: 10,
   },
+  textChat:{
+    color: "#FFF",
+    fontWeight: "500",
+    fontSize: 15
+  }
 });
 
 export default BoxMessage;

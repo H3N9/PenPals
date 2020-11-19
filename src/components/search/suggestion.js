@@ -2,11 +2,12 @@ import React from "react";
 import { StyleSheet, View, Text, Image, TouchableOpacity } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import Tag from "../account/components/tag";
-
+import { useSelector } from "react-redux";
 import {
   TextPrimary,
   FontAwesomeIcon,
   EntypoIcon,
+  Ionic,
 } from "../../style/themeComponent";
 import { Dimensions } from "react-native";
 import path from '../../path'
@@ -15,6 +16,7 @@ const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Suggestion = ({ navigation, user }) => {
   //const user = Schema.getProfile(userId);
+  const theme = useSelector((state) => state.themeReducer.theme);
   const {
     username,
     image,
@@ -45,7 +47,6 @@ const Suggestion = ({ navigation, user }) => {
           //source={require("../../../assets/man.png")}
           source={{ uri: path.urlImage+image }}
         />
-        <View style={styles.onlineStatus} />
       </TouchableOpacity>
       <View style={{ flex: 1, marginLeft: 7 }}>
         <View style={[styles.userDetail]}>
@@ -62,16 +63,14 @@ const Suggestion = ({ navigation, user }) => {
             </TextPrimary>
           </View>
           {/* Follower */}
-          <View style={{ flex: 1 }}>
-            <TextPrimary>{age}</TextPrimary>
+          <View style={{ flex: 2, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
+            {gender === "male" ? <FontAwesomeIcon name="male" size={22} color="white" /> : <FontAwesomeIcon name="female" size={22} color="white" />}
+            <TextPrimary style={{fontSize: 15, fontWeight: "600"}}>{" "+age}</TextPrimary>
           </View>
 
           <View style={styles.menuSugges}>
-            <TouchableOpacity>
-              <EntypoIcon name="chat" size={22} color="white" />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <FontAwesomeIcon name="bookmark" size={22} color="white" />
+            <TouchableOpacity style={{backgroundColor: theme.mode === "light" ? "#DDD": "#444", width: 35, height:35, borderRadius: 50, justifyContent: "center", alignItems: "center",}}>
+              <Ionic name="ios-chatbubbles" size={22} color="white" />
             </TouchableOpacity>
           </View>
         </View>
@@ -111,19 +110,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flex: 1,
   },
-  onlineStatus: {
-    width: 20,
-    height: 20,
-    borderRadius: 100,
-    backgroundColor: "green",
-    position: "absolute",
-    right: 0,
-    bottom: 40,
-  },
   menuSugges: {
-    flex: 1.5,
+    flex: 1,
     flexDirection: "row",
-    justifyContent: "space-between",
+    alignItems: "center",
+    justifyContent: "center"
   },
   imgProfile: {
     width: 70,

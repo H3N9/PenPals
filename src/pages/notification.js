@@ -14,6 +14,7 @@ import {
 import path from "../path"
 import { getLoad } from "../fetch"
 
+
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Notification = ({ navigation }) => {
@@ -22,26 +23,6 @@ const Notification = ({ navigation }) => {
   const signal = controller.signal
   const authorize = useSelector((state) => state.Authorize.authorize)
   const [message, setMessage] = useState([])
-  const initData = [
-    {
-      id: "1",
-      userImg: "https://resources.premierleague.com/premierleague/photos/players/250x250/p37605.png",
-      userName: "Mesut Ozil",
-      title: "ส่งคำขอเป็นเพื่อนกับคุณ"
-    },
-    {
-      id: "2",
-      userImg: "https://resources.premierleague.com/premierleague/photos/players/250x250/p37605.png",
-      userName: "Mesut Ozil",
-      title: "ส่งคำขอเป็นเพื่อนกับคุณ"
-    },
-    {
-      id: "3",
-      userImg: "https://resources.premierleague.com/premierleague/photos/players/250x250/p37605.png",
-      userName: "Mesut Ozil",
-      title: "ส่งคำขอเป็นเพื่อนกับคุณ"
-    },
-  ]
 
   const redirectToAccountPage = (user) =>{
     navigation.navigate("Account", { user: user })
@@ -53,7 +34,7 @@ const Notification = ({ navigation }) => {
 
   const renderItem = ({item}) =>{
     return(
-      <TouchableOpacity style={[styles.notiItem, {backgroundColor: theme.secondBackground}]}
+      <TouchableOpacity style={[styles.notiItem, {backgroundColor: theme.primaryBackground}]}
       onPress={() => {getLoad(navigation, authorize.token, path.urlSearchUser+item.sender.userId, redirectToAccountPage, signal)}}
       >
         <View style={[MainStyle.shadow]}>
@@ -91,20 +72,9 @@ const styles = StyleSheet.create({
   notiItem:{
     flexDirection: "row",
     alignItems: "center",
-    marginBottom: 10,
+    marginBottom: 5,
     paddingHorizontal: 15,
     paddingVertical: 7,
-    borderRadius: 10,
-    marginHorizontal: 10,
-    shadowColor: "#000",
-    shadowOffset: {
-	    width: 0,
-	    height: 1,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 1.35,
-    elevation: 0
-
   }
 })
 

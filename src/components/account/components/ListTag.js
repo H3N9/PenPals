@@ -13,7 +13,7 @@ const ListTag = ({ tag, title, handle, isAuthUser, navigation, setUser }) => {
   const callListTag = (value, index) => {
     return (
       <View style={styles.boxTag} key={index}>
-        <TextPrimary style={styles.tagText}>{value.name} :</TextPrimary>
+        <TextPrimary style={styles.tagText}>{value.name}</TextPrimary>
         <View style={styles.boxTagList}>{value.list.map(callTag)}</View>
       </View>
     );
@@ -24,7 +24,7 @@ const ListTag = ({ tag, title, handle, isAuthUser, navigation, setUser }) => {
       style={[styles.tagTitle, MainStyle.boxContent, MainStyle.shadow]}
     >
       <View style={styles.headerContainer}>
-        <TextPrimary style={[MainStyle.textBold, { fontSize: 18 }]}>
+        <TextPrimary style={{ fontSize: 18, fontWeight: "700" }}>
           {title}
         </TextPrimary>
         {isAuthUser ? (
@@ -42,7 +42,8 @@ const styles = StyleSheet.create({
   boxTag: {
     flex: 1,
     flexDirection: "row",
-    marginVertical: 5,
+    marginVertical: 7,
+    alignItems: "center"
   },
   boxTagList: {
     flex: 3,
@@ -57,6 +58,8 @@ const styles = StyleSheet.create({
   },
   tagText: {
     marginHorizontal: 10,
+    fontWeight: "500",
+    fontSize: 15
   },
   tagTitle: {
     marginHorizontal: 10,

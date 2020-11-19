@@ -14,6 +14,7 @@ export const getLoad = (navigation, token, url, state, signal) => {
         if(response.status === 200){
             const json = await response.json()
             state(json)
+
             
         }
         else if(response.status === 401){

@@ -1,4 +1,4 @@
-const main = 'http://localhost:3000/'
+const main = 'https://afraid-octopus-35.loca.lt/'
 //const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {
