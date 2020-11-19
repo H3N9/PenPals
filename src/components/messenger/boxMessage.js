@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Text,
   Image,
-  Dimensions
+  Dimensions,
 } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import { PrimaryContainer } from "../../style/themeComponent";
@@ -24,7 +24,7 @@ const BoxMessage = ({ texts, userId }) => {
     else if(type === 'image'){
       return (
         <TouchableOpacity style={side}>
-          <Image style={styles.image} source={{uri:path.urlImage+text}} />
+            <Image style={styles.image} source={{uri:path.urlImage+text}} />
         </TouchableOpacity>
       )
     }
@@ -67,13 +67,14 @@ const styles = StyleSheet.create({
     alignSelf: "flex-start",
     borderRadius: 5,
     margin: 5,
+    flex: 1,
   },
   boxMess: {
     flex: 10,
   },
   image:{
-    width: 300,
     height: 300,
+    width: 300,
     borderRadius: 5,
   }
 

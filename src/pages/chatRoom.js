@@ -51,7 +51,7 @@ const ChatRoom = ({ navigation, route }) => {
 	}
 
 	const handleMyMessage = async (text) =>{
-		if(text.length > 0){
+		if(text.length > 0 && image === null){
 			const sendingText = {
 				"reply":text,
 				"type":"text",
