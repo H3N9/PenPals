@@ -1,4 +1,4 @@
-const main = 'https://afraid-octopus-35.loca.lt/'
+const main = 'https://fluffy-dolphin-40.loca.lt/'
 //const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {

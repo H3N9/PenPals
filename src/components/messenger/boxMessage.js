@@ -24,36 +24,36 @@ const BoxMessage = ({ texts, userId }) => {
 
   const EachMessage = ({ text, sender }) => {
     if (sender === userId) {
-// <<<<<<< HEAD
-//       return (
-//         <LinearGradient
-//           colors={["#56ccf2", "#2f80ed"]}
-//           start={{ x: 0, y: 0.1 }}
-//           end={{ x: 0.6, y: 0.55 }}
-//           style={styles.myMess}
-//         >
-//         <TouchableOpacity>
-//           <Text style={styles.textChat}>{text}</Text>
-//         </TouchableOpacity>
-//         </LinearGradient>
-//       );
-//     } else {
-//       return (
-//               <LinearGradient
-//                 colors={["#ff5350", "#BB213a"]}
-//                 start={{ x: 0, y: 0.1 }}
-//                 end={{ x: 0.6, y: 0.55 }}
-//                 style={styles.anoMess}
-//               >
-//                 <TouchableOpacity>
-//                   <Text style={styles.textChat}>{text}</Text>
-//                 </TouchableOpacity>
-//               </LinearGradient>      
-//       );
-      return <RederText text={text} />
+      return (
+        <LinearGradient
+          colors={["#56ccf2", "#2f80ed"]}
+          start={{ x: 0, y: 0.1 }}
+          end={{ x: 0.6, y: 0.55 }}
+          style={styles.myMess}
+        >
+        <TouchableOpacity>
+          <Text style={styles.textChat}>{text}</Text>
+        </TouchableOpacity>
+        </LinearGradient>
+      );
     } else {
-      return <RederText text={text} />
-    }
+      return (
+              <LinearGradient
+                colors={["#ff5350", "#BB213a"]}
+                start={{ x: 0, y: 0.1 }}
+                end={{ x: 0.6, y: 0.55 }}
+                style={styles.anoMess}
+              >
+                <TouchableOpacity>
+                  <Text style={styles.textChat}>{text}</Text>
+                </TouchableOpacity>
+              </LinearGradient>      
+      );
+      }
+    //   return <RederText text={text} />
+    // } else {
+    //   return <RederText text={text} />
+    // }
   };
 
   const renderMessage = ({ item }) => {
