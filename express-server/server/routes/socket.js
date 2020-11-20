@@ -24,12 +24,13 @@ const connected = (app) =>{
             const text = await db.sequelize.transaction((t) => {
                 return Message.create(sendingText, {transaction:t})
             })
-            const {id, reply, userId, chatId, createdAt} = text.dataValues
+            const {id, reply, userId, chatId, type, createdAt} = text.dataValues
             const json = {
                 id,
                 reply,
                 userId,
                 chatId,
+                type,
                 createdAt
             }
             //{id:0, reply:"good", userId: 8, chatId: 1}

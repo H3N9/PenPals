@@ -14,10 +14,10 @@ const getAllMessage = async (userId) => {
         chat.dataValues['userId'] = userId
         chat.dataValues.message.sort((val1, val2) => val2.id - val1.id)
         const messages = chat.dataValues.message.map(val => val.dataValues)
-        chat.dataValues['lastMessage'] = messages[0] || {}
-        // if(chat.dataValues.lastMessage.type === 'image'){
-        //     chat.dataValues.lastMessage.reply = 'send message'
-        // }
+        chat.dataValues['lastMessage'] = Object.assign({}, messages[0]) || {}
+        if(chat.dataValues.lastMessage.type === 'image'){
+            chat.dataValues.lastMessage.reply = 'send message'
+        }
         delete chat.dataValues.userOne
         delete chat.dataValues.userTwo
     })
