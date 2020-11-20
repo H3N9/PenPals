@@ -10,6 +10,7 @@ import {
   SecondContainer,
   InputText,
   EntypoIcon,
+  FontAwesomeIcon
 } from "../../style/themeComponent";
 import * as ImagePicker from 'expo-image-picker'
 
@@ -21,7 +22,7 @@ const Keyboard = ({onTextChange, setImage}) => {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
         if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+          console.log('Sorry, we need camera roll permissions to make this work!');
         }
       }
     })();
@@ -80,9 +81,8 @@ const Keyboard = ({onTextChange, setImage}) => {
           style={styles.sendButton}
           onPress={() => handelChatText()}
         >
-          <FontAwesome
+          <FontAwesomeIcon
             name="send"
-            color="#ffb347"
             size={24}
             style={{ textAlign: "center" }}
           />
