@@ -14,15 +14,26 @@ import {
 import SwitchSelector from "react-native-switch-selector";
 import path from "../path"
 import { getLoad } from "../fetch"
-
+import ModalSelect from '../components/editProfile/modalSelect'
 
 
 const CreateTag = ({ navigation }) => {
+  const theme = useSelector((state) => state.themeReducer.theme);
   const [tagType, setTagType] = useState("HobbiesTag")
+  const [modalVisible, setModalVisible] = useState(false);
+  const [ newTag, setNewTag ] = useState({type: undefined, tagName: ""}) 
+  const controller = new AbortController
+  const signal = controller.signal
+  const authorize = useSelector((state) => state.Authorize.authorize)
   const tagData = [
     { label: "HobbiesTag", value: "HobbiesTag" },
     { label: "FavoriteTag", value: "FavoriteTag" },
   ];
+  // const [ hobbTag, setHobbTag ] = useState([])
+
+  // useEffect(()=>{
+  //   getLoad(navigation, authorize.token, path.urlHobbTag, setHobbTag, signal)
+  // })
   return (
     <PrimaryContainer style={[MainStyle.mainBackground]}>
         <PrimaryContainer style={{padding: 10, flexDirection: "row", justifyContent: "space-between"}} >
@@ -32,7 +43,7 @@ const CreateTag = ({ navigation }) => {
                 size={22}
               />
           </TouchableOpacity>
-          <TouchableOpacity style={{padding: 5, justifyContent: "center"}} onPress={() => navigation.goBack()}>
+          <TouchableOpacity style={{padding: 5, justifyContent: "center"}} onPress={() => {console.log(newTag)}}>
               <TextPrimary style={{fontSize: 16, fontWeight: "600"}}>Create</TextPrimary>
           </TouchableOpacity>
         </PrimaryContainer>
@@ -60,12 +71,21 @@ const CreateTag = ({ navigation }) => {
               }}
             />
             {tagType === "FavoriteTag" ? 
-              <InputTextBg 
-              placeholder="Type"
-              style={styles.input}
-              placeholderTextColor="#777"
-              clearButtonMode="always"
-            /> :
+              <React.Fragment>
+                <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={[styles.typeSelect, {backgroundColor: theme.secondBackground}]}>
+                  <Text style={{color: newTag.type === undefined ? "#777" : "#1a1a1a", fontSize: 16}}>{newTag.type}</Text>
+                </TouchableOpacity>
+                <ModalSelect
+                  modalVisible={modalVisible}
+                  setModalVisible={setModalVisible}
+                  focusData={"type"}
+                  filterData={newTag}
+                  setFilterData={setNewTag}
+                  fetchUrl={path.urlTag}
+                  navigation={navigation}
+                />
+              </React.Fragment>
+               :
               null
             }    
             <InputTextBg 
@@ -73,6 +93,10 @@ const CreateTag = ({ navigation }) => {
               style={styles.input}
               placeholderTextColor="#777"
               clearButtonMode="always"
+              onChangeText={(value) => {
+                newTag.tagName = value
+                setNewTag(newTag)
+              }}
             />
         </View>  
     </PrimaryContainer>
@@ -85,6 +109,19 @@ const styles = StyleSheet.create({
     fontSize: 16,
     borderRadius: 5,
     marginVertical: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+	    width: 0,
+	    height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1,
+    elevation: 3,
+  },
+  typeSelect:{
+    padding: 10,
+    marginTop: 20,
+    borderRadius: 5,
     shadowColor: "#000",
     shadowOffset: {
 	    width: 0,

@@ -1,4 +1,4 @@
-const main = 'https://massive-fox-10.loca.lt/'
+const main = 'https://breezy-seahorse-80.loca.lt/'
 //const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {

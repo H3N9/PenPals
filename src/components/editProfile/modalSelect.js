@@ -50,8 +50,6 @@ const modalSelect = ({
     else{
       getLoad(navigation, authorize.token, fetchUrl, modifyData, signal)
     }
-    console.log(focusData)
-    
   };
   useEffect(() => {
     fetchData();
