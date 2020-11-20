@@ -23,9 +23,20 @@ const Notification = ({ navigation }) => {
   const signal = controller.signal
   const authorize = useSelector((state) => state.Authorize.authorize)
   const [message, setMessage] = useState([])
+  const [refresh, setRefresh] = useState(false)
 
   const redirectToAccountPage = (user) =>{
     navigation.navigate("Account", { user: user })
+  }
+
+  //สำหรับการ Refresh หน้า
+  const notiRefresh = (info) =>{
+    setMessage(info)
+    setRefresh(false)   
+  }
+  const refreshHandle = async() =>{
+    setRefresh(true)
+    getLoad(navigation, authorize.token, path.urlNotification, notiRefresh, signal)
   }
 
   useEffect(() =>{
@@ -56,6 +67,8 @@ const Notification = ({ navigation }) => {
           data={message}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
+          refreshing={refresh}
+          onRefresh={refreshHandle}
         />
       </SafeAreaView>
     </PrimaryContainer>

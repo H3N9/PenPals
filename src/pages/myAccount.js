@@ -5,7 +5,7 @@ import {ActivityIndicator} from 'react-native'
 import path from '../path'
 import { getLoad } from '../fetch'
 import { useIsFocused } from '@react-navigation/native';
-
+import { PrimaryContainer } from "../style/themeComponent";
 const MyAccount = ({navigation}) => {
     const authorize = useSelector((state) => state.Authorize.authorize)
     const {token} = authorize
@@ -22,7 +22,9 @@ const MyAccount = ({navigation}) => {
 
     return (
         <React.Fragment>
-            {user? <BoxProfile user={user} navigation={navigation} setUser={setUser} />:<ActivityIndicator/>}
+            <PrimaryContainer style={[{ paddingTop: 0, flex: 1 }]}>
+                {user? <BoxProfile user={user} navigation={navigation} setUser={setUser} />:<ActivityIndicator/>}
+            </PrimaryContainer>
         </React.Fragment>
     )
     

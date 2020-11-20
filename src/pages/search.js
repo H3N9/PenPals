@@ -22,6 +22,17 @@ const Search = ({ navigation }) => {
   const isFocused = useIsFocused()
   const controller = new AbortController
   const signal = controller.signal
+  // const [refresh, setRefresh] = useState(false)
+
+  //สำหรับการ Refresh หน้า
+  // const userRefresh = (info) =>{
+  //   setUsers(info)
+  //   setRefresh(false)   
+  // }
+  // const refreshHandle = async() =>{
+  //   setRefresh(true)
+  //   getLoad(navigation, token, url, userRefresh, signal)
+  // }
 
   useEffect(() =>{
     getLoad(navigation, token, url, setUsers, signal)
@@ -64,6 +75,8 @@ const Search = ({ navigation }) => {
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           showsVerticalScrollIndicator={false}
+          // refreshing={refresh}
+          // onRefresh={refreshHandle}
         />
       </PrimaryContainer>
     </PrimaryContainer>
