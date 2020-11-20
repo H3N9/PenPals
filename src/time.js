@@ -15,11 +15,11 @@ export const diffTime = (createdAt) =>{
     if (day > 0)
         returnObj["time"] = day+" day"
     else if(hour > 0)
-        returnObj["time"] = hour+" h"
+        returnObj["time"] = hour+"h"
     else if(minute > 0)
-        returnObj["time"] = minute+" m"
+        returnObj["time"] = minute+"m"
     else if(seconds > 0)
-        returnObj["time"] = seconds+" s"
+        returnObj["time"] = seconds+"s"
     
     return {...returnObj, diffTime: {
         day, hour, minute, seconds

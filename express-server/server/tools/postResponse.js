@@ -21,6 +21,9 @@ module.exports = (posts, user) =>{
             }
             return returnData
         })
-        return [...acc1, ...data].reverse();
+        const returnData = [...acc1, ...data]
+        returnData.sort((a, b) => b.id-a.id)
+
+        return returnData
     }, [])
 }

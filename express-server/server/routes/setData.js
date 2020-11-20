@@ -51,9 +51,6 @@ router.post('/add-profile', async (req, res) =>{
 
 router.post('/tag', async (req, res) =>{
   const data = req.body
-  // const tag = await db.sequelize.transaction((t) =>{
-  //   return Tag.create(data, {transaction: t})
-  // })
   let tag = await Tag.findOne({where: {name: data.name}})
   if (!tag){
     tag = await db.sequelize.transaction((t) =>{

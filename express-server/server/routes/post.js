@@ -76,9 +76,12 @@ router.delete('/delete/:id', async (req, res) =>{
     const id = req.params.id
     const user = req.user
 
-    const post = await db.sequelize.transaction((t) =>{
-        return Post.destroy({ where: {id:id, userId: user.id} })
-    })
+    const post = await Post.findOne({ where: {id: id, userId: user.id} })
+    if (post !== null){
+        await post.setUserLike([])
+        await ImagePost.destroy({ where: {postId: id} })
+        await Post.destroy({ where: {id:id, userId: user.id} })
+    }
 
     res.redirect('/post')
 })

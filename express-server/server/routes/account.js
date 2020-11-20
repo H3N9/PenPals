@@ -4,7 +4,7 @@ const db = require('../../models')
 const getProfile = require('../tools/getProfile')
 const { Op } = require('sequelize')
 
-const { Profile, Relationship, Tag } = db
+const { Profile, Relationship, Tag, Category, FavTag } = db
 
 router.get('/my-profile', async (req, res) =>{
     const profile = await getProfile({profileQuery: {userId: req.user.id}, otherQuery: {user: req.user}})
@@ -68,6 +68,36 @@ router.put('/remove-tag', async (req, res) =>{
     }
 
     //res.json(setTags)
+})
+
+router.post('/create-tag', async (req, res) =>{
+    const data = req.body
+    let tag = await Tag.findOne({where: {name: data.name}})
+    if (!tag){
+      tag = await db.sequelize.transaction((t) =>{
+          return Tag.create(data, {transaction: t})
+        })
+    }
+    if (data.category && data.type === 'favorites'){
+  
+      let category = await Category.findOne({where: { name: data.category }})
+      if (!category){
+        category = await db.sequelize.transaction((t) =>{
+          return Category.create({ name: data.category }, {transaction: t})
+        })
+      }
+      const favTag = await db.sequelize.transaction((t) =>{
+        return FavTag.create({ tagId: tag.dataValues.id, categoryId: category.dataValues.id }, {transaction: t})
+      })
+      res.json(favTag)
+    }
+    res.json(tag)
+})
+
+router.get('/category', async (req, res) =>{
+    const categories = await Category.findAll({ attributes: ["id", "name"] })
+
+    res.json(categories)
 })
 
 module.exports = router
