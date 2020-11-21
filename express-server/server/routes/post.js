@@ -83,7 +83,7 @@ router.put('/delete', async (req, res) =>{
         await Post.destroy({ where: {id:id, userId: user.id} })
     }
 
-    res.redirect('/post')
+    res.redirect('/post/'+user.id)
 })
 
 router.put('/like', async (req, res) =>{
