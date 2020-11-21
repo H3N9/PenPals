@@ -40,6 +40,7 @@ export const postLoad = (navigation, token, url, body, state, signal) => {
     .then( async (response) => {
         if(response.status === 200){
             const json = await response.json()
+            console.log(json)
             state(json)
         }
         else if(response.status === 401){
