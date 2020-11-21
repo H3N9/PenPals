@@ -17,6 +17,8 @@ const CreatePost = ({post, setPost, navigation}) => {
 
   const posted = (data) =>{
     setPost([data, ...post])
+    setText("")
+    setImage(null)
   }
 
   const postToDB = (imageName) =>{

@@ -3,7 +3,7 @@ import Suggestion from "../components/search/suggestion";
 import MainStyle from "../style/mainStyle";
 import SearchBar from "../components/search/searchBar";
 import { Dimensions, ActivityIndicator, FlatList, View, Text } from "react-native";
-import { PrimaryContainer, SecondContainer } from "../style/themeComponent";
+import { PrimaryContainer, SecondContainer, TextPrimary, FontAwesomeIcon } from "../style/themeComponent";
 import { Value } from "react-native-reanimated";
 import {useSelector} from 'react-redux'
 import { useIsFocused } from "@react-navigation/native"
@@ -11,8 +11,8 @@ import { useIsFocused } from "@react-navigation/native"
 import path from '../path'
 import {getLoad, postLoad} from '../fetch'
 import Tag from '../components/account/components/tag'
+import { TouchableOpacity } from "react-native-gesture-handler";
 
-const screenWidth = Math.round(Dimensions.get("window").width);
 
 const SubSearch = ({ navigation, route }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
@@ -36,31 +36,33 @@ const SubSearch = ({ navigation, route }) => {
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
-      <SecondContainer style={{ flex: 1 }}>
+        <PrimaryContainer style={{padding: 10}} >
+          <TouchableOpacity style={{padding: 5, flexDirection: "row", alignItems: "center", justifyContent:"space-between"}} onPress={() => navigation.goBack()}>
+              <FontAwesomeIcon
+                name="chevron-left"
+                size={22}
+              />
+          </TouchableOpacity>
+        </PrimaryContainer>
         <FlatList
+          ListHeaderComponent={
+            <TextPrimary style={{fontSize: 30, fontWeight: "bold", paddingLeft: 15, padding: 5}}>{name}</TextPrimary>
+          }
           data={users}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
         />
-      </SecondContainer>
     </PrimaryContainer>
   );
 };
 
-SubSearch.navigationOptions = (navigationData) =>{
-  const name = navigationData.navigation.getParam("name");
-  console.log(name)
-  const headerTitle = "Tag "+name
+// SubSearch.navigationOptions = (navigationData) =>{
+//   const name = navigationData.navigation.getParam("name");
+//   console.log(name)
+//   const headerTitle = "Tag"
 
-  return { headerTitle }
-}
+//   return { headerTitle }
+// }
 
-const stylesCondition = () => {
-  if (screenWidth >= 768) {
-    return { flex: 1, marginHorizontal: "20%" };
-  } else {
-    return { flex: 1 };
-  }
-};
 
 export default SubSearch;

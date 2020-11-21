@@ -23,16 +23,23 @@ const FriendListContent = ({ handleFilter, navigation, users, text }) => {
     );
   };
   return (
-    <PrimaryContainer style={{ paddingVertical: 10, flex: 1 }}>
-      <InputTextBg
-        placeholder="Type to Search"
-        placeholderTextColor="#AAA"
-        style={styles.textInput}
-        value={text}
-        onChangeText={(value) => handleFilter(value)}
-        clearButtonMode="always"
-      />
+    <PrimaryContainer style={{ paddingVertical: 10, flex: 1 }}>  
+          
+          
       <FlatList
+        ListHeaderComponent={
+          <React.Fragment>
+            <TextPrimary style={{fontSize: 30, fontWeight: "bold", paddingLeft: 15, padding: 7}}>Friend</TextPrimary>
+            <InputTextBg
+            placeholder="Type to Search"
+            placeholderTextColor="#AAA"
+            style={styles.textInput}
+            value={text}
+            onChangeText={(value) => handleFilter(value)}
+            clearButtonMode="always"
+          />
+          </React.Fragment>
+        }
         data={users}
         renderItem={renderItem}
         keyExtractor={(item) => item.id.toString()}

@@ -12,7 +12,7 @@ const TextPost = ({ text }) => {
 
 const styles = StyleSheet.create({
   postTitle: {
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: "100",
     paddingVertical: 5,
     paddingHorizontal: 10,

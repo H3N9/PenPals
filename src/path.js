@@ -23,7 +23,9 @@ const urls = {
     urlLike: main+'post/like/',
     urlNotification: main+'notification/',
     urlSetRelationship: main+'friend/set-relationship/',
-    urlProfileVisitors: main+'notification/profile-visitors/'
+    urlProfileVisitors: main+'notification/profile-visitors/',
+    urlGetCategory: main+'/account/category',
+    urlCreateTag: main+'/account/create-tag'
 }
 
 export default urls

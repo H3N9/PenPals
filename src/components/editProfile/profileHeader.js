@@ -28,7 +28,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
       if (Platform.OS !== 'web') {
         const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
         if (status !== 'granted') {
-          alert('Sorry, we need camera roll permissions to make this work!');
+          console.log('Sorry, we need camera roll permissions to make this work!')
         }
       }
     })();
@@ -172,7 +172,6 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: "#FF5350",
     flex: 1,
     padding: 20,
   },

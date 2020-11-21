@@ -4,9 +4,10 @@ import {
   View,
   Image,
   TouchableOpacity,
+  Alert
 } from "react-native";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import { TextPrimary, SecondContainer } from "../../style/themeComponent";
+import { TextPrimary, SecondContainer, FontAwesomeIcon } from "../../style/themeComponent";
 import TextPost from "./components/textPost";
 import ImagePost from "./components/imagePost";
 import MainStyle from "../../style/mainStyle";
@@ -14,18 +15,22 @@ import {useSelector} from 'react-redux'
 import path from "../../path"
 import { putLoad } from "../../fetch"
 
-const Post = ({ id, title, imagePost, data, initLike }) => {
+const Post = ({ id, title, imagePost, data, initLike, likeCount, navigation, userData, isUser}) => {
   // const image = type.image||undefined
   // const text = type.text||undefined
+  const theme = useSelector((state) => state.themeReducer.theme);
   const controller = new AbortController
   const signal = controller.signal
   const authorize = useSelector((state) => state.Authorize.authorize)
   const [like, setLike] = useState(initLike)
+  const [ numlike, setNumlike ] = useState(likeCount)
+
   const likeControl = () =>{
     setLike(!like)
     const body = {
       postId: id
     }
+    setNumlike(!like ? numlike+1 : numlike-1)
     putLoad(authorize.token, path.urlLike, body, (a) =>{}, signal)
   }
 
@@ -46,21 +51,51 @@ const Post = ({ id, title, imagePost, data, initLike }) => {
     }
   }
 
+  const deleteAlert = () =>{
+      Alert.alert(
+        "Delete Post?",
+        "Are you sure to remove this post",
+        [
+          {
+            text: "Cancel",
+            onPress: () => console.log("Cancel Pressed"),
+            style: "cancel"
+          },
+          { 
+            text: "Delete",
+            onPress: () => {},
+            style: 'destructive'
+          }
+        ],
+        { cancelable: false }
+      );
+  }
+
   return (
     <SecondContainer style={[styles.postContainer, MainStyle.shadow]}>
       <View style={styles.boxIdentity}>
-        <View>
-          <Image
-            source={{uri: path.urlImage+data.imageProfile}}
-            style={styles.postImgProfile}
-          />
+        <View style={{flexDirection: "row", flex: 1}}>
+          <TouchableOpacity onPress={() => userData ? navigation.navigate("Account", { user: userData }) : {}}>
+            <Image
+              source={{uri: path.urlImage+data.imageProfile}}
+              style={styles.postImgProfile}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity style={{ justifyContent: "center" }}  onPress={() => userData ? navigation.navigate("Account", { user: userData }) : {}}>
+            <View style={{ flexDirection: "row" }}>
+              <TextPrimary style={styles.postUsername}>{data.firstName} {data.lastName}</TextPrimary>
+              <TextPrimary>{data.time}</TextPrimary>
+            </View>
+          </TouchableOpacity>
         </View>
-        <View style={{ justifyContent: "center" }}>
-          <View style={{ flexDirection: "row" }}>
-            <TextPrimary style={styles.postUsername}>{data.firstName} {data.lastName}</TextPrimary>
-            <TextPrimary>{data.time}</TextPrimary>
-          </View>
-        </View>
+        { isUser ?
+          <TouchableOpacity style={[styles.deletePost,{backgroundColor: theme.mode === "dark" ? "rgba(200, 200, 200, 0.3);" : "rgba(0, 0, 0, 0.6);"}]}  onPress={() => deleteAlert()} >
+           <FontAwesomeIcon name="trash" size={22} style={{color: "#fff"}}/>
+          </TouchableOpacity>
+          :
+          null
+        }
+       
       </View>
 
       <View style={{ flex: 1 }}>
@@ -69,9 +104,9 @@ const Post = ({ id, title, imagePost, data, initLike }) => {
           <AntDesign
             name={like ? "heart" : "hearto"}
             size={24}
-            color={like ? "#ff5350" : "#AAA"}
+            color={like ? "#ff5350" : "#777"}
           />
-          <TextPrimary style={{ marginLeft: 4 }}>{like}</TextPrimary>
+          <TextPrimary style={{ marginLeft: 4 }}>{numlike}</TextPrimary>
         </TouchableOpacity>
       </View>
     </SecondContainer>
@@ -107,7 +142,16 @@ const styles = StyleSheet.create({
   boxIdentity: {
     flexDirection: "row",
     paddingHorizontal: 5,
+    alignItems: "center"
   },
+  deletePost:{
+    justifyContent:"center",
+    alignItems: "center",
+    width: 32,
+    height: 32,
+    borderRadius: 50,
+    marginRight: 5
+  }
 });
 
 export default Post;

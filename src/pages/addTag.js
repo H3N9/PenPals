@@ -1,25 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { View, StyleSheet, ScrollView, Text } from "react-native";
+import { View, StyleSheet, ScrollView, Text, TouchableOpacity } from "react-native";
 import MainStyle from "../style/mainStyle";
-import { Dimensions } from "react-native";
-import { PrimaryContainer, TextPrimary } from "../style/themeComponent";
+import { PrimaryContainer, TextPrimary, Ionic } from "../style/themeComponent";
 import Header from "../components/addTag/header";
 import TagResult from "../components/addTag/tagResult";
 import {useSelector} from 'react-redux'
 import SelectedTag from "../components/addTag/selectedTag";
+import { FontAwesome } from '@expo/vector-icons'; 
 import path from '../path'
-
-const screenWidth = Math.round(Dimensions.get("window").width);
+// import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AddTag = ({ navigation, route }) => {
+  const theme = useSelector((state) => state.themeReducer.theme);
   const authorize = useSelector((state) => state.Authorize.authorize)
   const {token} = authorize
-  const tagData = [
-    { title: "name1", isSelected: false, id: "1" },
-    { title: "name2", isSelected: false, id: "2" },
-    { title: "name3", isSelected: false, id: "3" },
-    { title: "name4", isSelected: false, id: "4" },
-  ];
   const url = route.params.pathUrl
 
   const [searchTag, setSearchTag] = useState([]); //Tag จากผลการค้นหา
@@ -53,7 +47,7 @@ const AddTag = ({ navigation, route }) => {
 
   return (
     <PrimaryContainer style={MainStyle.mainBackground}>
-      <View style={stylesCondition()}>
+      <View style={{flex: 1}}>
         <Header
           navigation={navigation}
           setSearchTag={setSearchTag}
@@ -69,9 +63,11 @@ const AddTag = ({ navigation, route }) => {
           setSearchTag={setSearchTag}
         />
         <ScrollView>
-          <View style={styles.tagResultContainer}>
+          <View style={[styles.tagResultContainer, styles.shadow]}>
             {searchTag.length === 0 ? (
-              <TextPrimary style={styles.noResult}>No Result</TextPrimary>
+              <React.Fragment>
+                <TextPrimary style={styles.noResult}>No Result</TextPrimary>
+              </React.Fragment>
             ) : (
               searchTag.map((itemValue) => (
                 <TagResult
@@ -82,25 +78,22 @@ const AddTag = ({ navigation, route }) => {
                 />
               ))
             )}
-          </View>
+          </View>      
         </ScrollView>
       </View>
+      <TouchableOpacity onPress={() => navigation.navigate("CreateTag")} style={[styles.createTag, styles.shadow]}>
+        <FontAwesome name="plus" size={24} color="white" />
+      </TouchableOpacity>
     </PrimaryContainer>
   );
 };
 
-const stylesCondition = () => {
-  if (screenWidth >= 768) {
-    return { flex: 1, marginHorizontal: "20%" };
-  } else {
-    return { flex: 1 };
-  }
-};
 
 const styles = StyleSheet.create({
   tagResultContainer: {
     justifyContent: "center",
     margin: 5,
+    
   },
   noResult: {
     fontSize: 25,
@@ -108,5 +101,28 @@ const styles = StyleSheet.create({
     marginTop: 50,
     opacity: 0.4,
   },
+  createTag:{
+    alignItems: "center",
+    margin: 20,
+    borderRadius: 50,
+    width: 55,
+    height: 55,
+    justifyContent: "center",
+    backgroundColor: "#F15F79",
+    position: "absolute",
+    bottom: 0,
+    right: 0
+  },
+  shadow:{
+    shadowColor: "#000",
+    shadowOffset: {
+	    width: 0,
+	    height: 1,
+    },
+    shadowOpacity: 0.38,
+    shadowRadius: 1.5,
+    elevation: 3,
+  }
+  
 });
 export default AddTag;

@@ -17,8 +17,9 @@ import styled from "styled-components/native";
 import { Value } from "react-native-reanimated"
 import Schema from "../../../schema"
 import path from "../../../path"
-
+import {useSelector} from 'react-redux'
 const BoxInfo = ({ userDetail, navigation, auth }) => {
+  const theme = useSelector((state) => state.themeReducer.theme);
   const {
     username,
     gender,
@@ -77,20 +78,20 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
 
   return (
     <React.Fragment>
-      <ImageBackground style={styles.main} source={imageBackground}>
         <LinearGradient
-          colors={["transparent", "rgba(0,0,0,1)"]}
+          colors={theme.mode === "dark" ? ["#212121", "rgba(0,0,0,1)"] : ["#FFF", "rgba(0,0,0,1)"] }
           start={{ x: 0, y: 0 }}
           end={{ x: 0, y: 0.98 }}
         >
           {!auth && (
             <TouchableOpacity
               style={{
+                marginTop: 10,
                 marginLeft: 15,
                 width: 37,
                 height: 37,
                 justifyContent: "center",
-                backgroundColor: "rgba(0, 0, 0, 0.6);",
+                backgroundColor: theme.mode === "dark" ? "rgba(200, 200, 200, 0.3);" : "rgba(0, 0, 0, 0.6);",
                 borderRadius: 500,
               }}
               onPress={() => navigation.goBack()}
@@ -100,7 +101,7 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
                 size={20}
                 style={{
                   textAlign: "center",
-                  color: "#fff",
+                  color: "#FFF",
                 }}
               />
             </TouchableOpacity>
@@ -119,8 +120,7 @@ const BoxInfo = ({ userDetail, navigation, auth }) => {
             </View>
           </View>
         </LinearGradient>
-      </ImageBackground>
-      <View style={{ backgroundColor: "#000" }}>
+      <View style={{ backgroundColor: theme.mode === "light" ? "rgba(0,0,0,1)" : "rgba(0,0,0,1)" }}>
         <BorderView
           style={{
             padding: 15,

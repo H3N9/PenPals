@@ -4,26 +4,19 @@ import {
   SecondContainer,
   SimpleLineIcon,
   TextPrimary,
+  FontAwesomeIcon,
+  PrimaryContainer
 } from "../../style/themeComponent";
 
 const FriendListHeader = ({ navigation }) => {
   return (
-    <SecondContainer style={styles.headerContainer}>
+    <PrimaryContainer style={styles.headerContainer}>
       <View style={{ flex: 1 }}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <SimpleLineIcon name={"arrow-left"} size={20} />
+          <FontAwesomeIcon name="chevron-left" size={22} />
         </TouchableOpacity>
       </View>
-      <View style={{ flex: 1 }}>
-        <TextPrimary
-          style={{ textAlign: "center", fontWeight: "bold", fontSize: 18 }}
-        >
-          Friend
-        </TextPrimary>
-      </View>
-
-      <View style={{ flex: 1 }}></View>
-    </SecondContainer>
+    </PrimaryContainer>
   );
 };
 const styles = StyleSheet.create({
@@ -32,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     padding: 10,
-    paddingVertical: 15,
+
   },
 });
 export default FriendListHeader;

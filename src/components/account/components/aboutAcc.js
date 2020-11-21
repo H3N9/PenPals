@@ -5,10 +5,10 @@ import { TextPrimary } from "../../../style/themeComponent";
 const AboutAcc = ({ describe }) => {
   return (
     <View style={styles.aboutMe}>
-      <TextPrimary style={[MainStyle.textBold, { fontSize: 20 }]}>
+      <TextPrimary style={{ fontSize: 20, fontWeight: "700" }}>
         About Me
       </TextPrimary>
-      <TextPrimary>{describe}</TextPrimary>
+      <TextPrimary style={{paddingHorizontal: 10, padding: 3}}>{describe}</TextPrimary>
     </View>
   );
 };
@@ -16,7 +16,7 @@ const AboutAcc = ({ describe }) => {
 const styles = StyleSheet.create({
   aboutMe: {
     marginVertical: 20,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
   },
 });
 

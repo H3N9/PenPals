@@ -5,6 +5,7 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Material from "react-native-vector-icons/MaterialCommunityIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
+import { Ionicons } from '@expo/vector-icons'; 
 import FontAwesome5 from "react-native-vector-icons/FontAwesome5";
 
 export const TextPrimary = styled.Text`
@@ -55,3 +56,8 @@ export const FontistoIcon = styled(Fontisto)`
 export const FontAwesome5Icon = styled(FontAwesome5)`
   color: ${(props) => props.theme.textColor};
 `;
+
+export const Ionic = styled(Ionicons)`
+  color: ${(props) => props.theme.textColor};
+`;
+

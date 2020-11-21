@@ -53,7 +53,12 @@ const SearchFilter = ({ modalVisible, setModalVisible, navigation }) => {
                 style={MainStyle.modalButton}
                 onPress={() => {
                   setModalVisible(!modalVisible);
-                  dispatch(actionSearch({ age:[Number(filterData.minAge), Number(filterData.maxAge)], tag: filterData.tag }))
+                  dispatch(actionSearch({ 
+                    age:[Number(filterData.minAge), Number(filterData.maxAge)], 
+                    tag: filterData.tag,
+                    country: filterData.country,
+                    gender: filterData.gender
+                  }))
                 }}
               >
                 <Text style={MainStyle.textWhite}>Done</Text>
