@@ -13,27 +13,35 @@ import {
 } from "../style/themeComponent";
 import SwitchSelector from "react-native-switch-selector";
 import path from "../path"
-import { getLoad } from "../fetch"
+import { postLoad } from "../fetch"
 import ModalSelect from '../components/editProfile/modalSelect'
 
 
 const CreateTag = ({ navigation }) => {
   const theme = useSelector((state) => state.themeReducer.theme);
-  const [tagType, setTagType] = useState("HobbiesTag")
+
+  const [tagType, setTagType] = useState("hobbies")
   const [modalVisible, setModalVisible] = useState(false);
-  const [ newTag, setNewTag ] = useState({type: undefined, tagName: ""}) 
+  const [ newTag, setNewTag ] = useState({type: tagType, name: "", category: ""})
+
   const controller = new AbortController
   const signal = controller.signal
   const authorize = useSelector((state) => state.Authorize.authorize)
   const tagData = [
-    { label: "HobbiesTag", value: "HobbiesTag" },
-    { label: "FavoriteTag", value: "FavoriteTag" },
+    { label: "HobbiesTag", value: "hobbies" },
+    { label: "FavoriteTag", value: "favorites" },
   ];
-  // const [ hobbTag, setHobbTag ] = useState([])
 
-  // useEffect(()=>{
-  //   getLoad(navigation, authorize.token, path.urlHobbTag, setHobbTag, signal)
-  // })
+  const CreateTag = () => {
+    if(tagType === "hobbies"){
+      newTag.category = ""
+      setNewTag(newTag)
+      console.log("hobbies")
+    }
+    console.log(newTag)
+    postLoad(navigation, authorize.token, path.urlCreateTag, newTag, () => console.log("asd"), signal)
+    navigation.goBack()
+  }
   return (
     <PrimaryContainer style={[MainStyle.mainBackground]}>
         <PrimaryContainer style={{padding: 10, flexDirection: "row", justifyContent: "space-between"}} >
@@ -43,7 +51,7 @@ const CreateTag = ({ navigation }) => {
                 size={22}
               />
           </TouchableOpacity>
-          <TouchableOpacity style={{padding: 5, justifyContent: "center"}} onPress={() => {console.log(newTag)}}>
+          <TouchableOpacity style={{padding: 5, justifyContent: "center"}} onPress={() => CreateTag()}>
               <TextPrimary style={{fontSize: 16, fontWeight: "600"}}>Create</TextPrimary>
           </TouchableOpacity>
         </PrimaryContainer>
@@ -68,22 +76,15 @@ const CreateTag = ({ navigation }) => {
               initial={0}
               onPress={(value) => {
                 setTagType(value)
+                newTag.type = value
+                setNewTag(newTag)        
               }}
             />
-            {tagType === "FavoriteTag" ? 
+            {tagType === "favorites" ? 
               <React.Fragment>
                 <TouchableOpacity onPress={() => setModalVisible(!modalVisible)} style={[styles.typeSelect, {backgroundColor: theme.secondBackground}]}>
-                  <Text style={{color: newTag.type === undefined ? "#777" : "#1a1a1a", fontSize: 16}}>{newTag.type}</Text>
+                  <Text style={{color: newTag.category === "" ? "#777" : "#1a1a1a", fontSize: 16}}>{newTag.category === "" ? "Category" : newTag.category}</Text>
                 </TouchableOpacity>
-                <ModalSelect
-                  modalVisible={modalVisible}
-                  setModalVisible={setModalVisible}
-                  focusData={"type"}
-                  filterData={newTag}
-                  setFilterData={setNewTag}
-                  fetchUrl={path.urlTag}
-                  navigation={navigation}
-                />
               </React.Fragment>
                :
               null
@@ -94,9 +95,18 @@ const CreateTag = ({ navigation }) => {
               placeholderTextColor="#777"
               clearButtonMode="always"
               onChangeText={(value) => {
-                newTag.tagName = value
+                newTag.name = value
                 setNewTag(newTag)
               }}
+            />
+            <ModalSelect
+              modalVisible={modalVisible}
+              setModalVisible={setModalVisible}
+              focusData={"category"}
+              filterData={newTag}
+              setFilterData={setNewTag}
+              fetchUrl={path.urlGetCategory}
+              navigation={navigation}
             />
         </View>  
     </PrimaryContainer>

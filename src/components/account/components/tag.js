@@ -59,7 +59,7 @@ const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
       style={styles.tagButton}
       onPress={searchByTag}
       onLongPress={deleteAlert}
-      delayLongPress={1000}
+      delayLongPress={500}
     >
       <LinearGradient
         colors={["#2A39AA", "#348AD9"]}
@@ -91,6 +91,7 @@ const styles = StyleSheet.create({
   },
   tagButton: {
     borderRadius: 25,
+    marginBottom: 5
   },
   gradient: {
     padding: 5,

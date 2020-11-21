@@ -1,4 +1,4 @@
-const main = 'https://red-sheep-85.loca.lt/'
+const main = 'https://heavy-cougar-91.loca.lt/'
 //const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {
@@ -23,7 +23,9 @@ const urls = {
     urlLike: main+'post/like/',
     urlNotification: main+'notification/',
     urlSetRelationship: main+'friend/set-relationship/',
-    urlProfileVisitors: main+'notification/profile-visitors/'
+    urlProfileVisitors: main+'notification/profile-visitors/',
+    urlGetCategory: main+'/account/category',
+    urlCreateTag: main+'/account/create-tag'
 }
 
 export default urls

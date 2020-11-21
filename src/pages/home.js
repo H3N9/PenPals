@@ -67,6 +67,7 @@ const Home = ({ navigation }) => {
 
   const renderPostItem = ({ item }) => {
       const user = users.find((value) => value.userId === item.userId)
+      console.log(user)
       return (
         <Post
           key={item.id.toString()}
@@ -77,7 +78,8 @@ const Home = ({ navigation }) => {
           initLike={item.isLiked}
           likeCount={item.likeCount}
           navigation={navigation}
-          userId={user} 
+          userData={user}
+          isUser={item.userId === authorize.userId}
         />
       )
   };
