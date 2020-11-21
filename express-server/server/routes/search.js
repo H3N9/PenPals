@@ -17,6 +17,7 @@ router.get('/user', async (req, res) =>{
 router.post('/user', async (req, res) =>{
   let query = await createQueryProfile(req)
   const profile = await getProfile(query)
+  console.log(query)
   res.json(profile)
 })
 

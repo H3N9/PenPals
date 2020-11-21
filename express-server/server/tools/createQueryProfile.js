@@ -11,8 +11,11 @@ module.exports = async (req) =>{
     if (dataForm["age"] !== undefined && dataForm["age"].length != 0){
         query.otherQuery["age"] = dataForm["age"]
     }
-    if (dataForm["country"] !== undefined && dataForm["country"] !== ""){
+    if (dataForm["country"] !== undefined && dataForm["country"].length != 0){
         query.profileQuery["nation"] = dataForm["country"]
+    }
+    if (dataForm["gender"] !== undefined && dataForm["gender"] != 'Any'){
+        query.profileQuery['gender'] = dataForm['gender'].toLowerCase()
     }
     
     return query

@@ -1,4 +1,4 @@
-const main = 'https://heavy-cougar-91.loca.lt/'
+const main = 'http://72351c28b382.ngrok.io/'
 //const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {

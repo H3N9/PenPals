@@ -72,8 +72,8 @@ router.post('/create', async (req, res) =>{
     res.json(responseObj)
 })
 
-router.delete('/delete/:id', async (req, res) =>{
-    const id = req.params.id
+router.put('/delete', async (req, res) =>{
+    const id = req.body.id
     const user = req.user
 
     const post = await Post.findOne({ where: {id: id, userId: user.id} })
