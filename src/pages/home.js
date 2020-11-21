@@ -37,7 +37,9 @@ const Home = ({ navigation }) => {
     getLoad(navigation, authorize.token, path.urlSearchUser, setUsers, signal)
   }, [])
   
-  
+  const refreshAfterDelete = () =>{
+    getLoad(navigation, authorize.token, path.urlPost, setData, signal)
+  }
  
 
   // useEffect(() =>{
@@ -67,7 +69,6 @@ const Home = ({ navigation }) => {
 
   const renderPostItem = ({ item }) => {
       const user = users.find((value) => value.userId === item.userId)
-      console.log(user)
       return (
         <Post
           key={item.id.toString()}
@@ -80,6 +81,7 @@ const Home = ({ navigation }) => {
           navigation={navigation}
           userData={user}
           isUser={item.userId === authorize.userId}
+          refreshAfterDelete={refreshAfterDelete}
         />
       )
   };

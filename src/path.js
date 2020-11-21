@@ -1,4 +1,4 @@
-const main = 'http://72351c28b382.ngrok.io/'
+const main = 'https://witty-eel-41.loca.lt/'
 //const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {
@@ -25,7 +25,8 @@ const urls = {
     urlSetRelationship: main+'friend/set-relationship/',
     urlProfileVisitors: main+'notification/profile-visitors/',
     urlGetCategory: main+'/account/category',
-    urlCreateTag: main+'/account/create-tag'
+    urlCreateTag: main+'/account/create-tag',
+    urlRemovePost: main+'/post/delete'
 }
 
 export default urls
