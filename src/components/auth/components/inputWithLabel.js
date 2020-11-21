@@ -16,6 +16,7 @@ const InputWithLabel = ({ value, title, state, secure, valid }) => {
         onChangeText={(value) => state(value)}
         placeholder={title}
         clearButtonMode="always"
+        autoCapitalize = 'none'
       ></TextInput>
     </View>
   );
