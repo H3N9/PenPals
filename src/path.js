@@ -1,4 +1,4 @@
-const main = 'https://calm-chipmunk-46.loca.lt/'
+const main = 'https://penpalss.herokuapp.com/'
 //const main = "https://red-sheep-45.loca.lt/"
 
 const urls = {
