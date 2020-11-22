@@ -188,6 +188,7 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			friendCount={friendCount}
 			intro={intro}
 			navigation={directFriend}
+			userDetail={user}
 			/>
 			{controlViewProfile(isAuthUser)}
 			<ListTag

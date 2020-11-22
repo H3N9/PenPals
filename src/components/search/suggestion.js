@@ -30,6 +30,8 @@ const Suggestion = ({ navigation, user }) => {
     favorites,
     describe,
     gender,
+    firstName,
+    lastName
   } = user;
   let tag1
   let tag2
@@ -78,10 +80,10 @@ const Suggestion = ({ navigation, user }) => {
             <TouchableOpacity
               onPress={() => navigation.navigate("Account", { user: user })}
             >
-              <TextPrimary style={MainStyle.textBold}>{username}</TextPrimary>
+              <TextPrimary style={{fontWeight: "700", fontSize: 15}}>{firstName} {lastName}</TextPrimary>
             </TouchableOpacity>
             {/* location */}
-            <TextPrimary style={{ marginVertical: 1 }}>
+            <TextPrimary style={{ marginVertical: 3, fontSize: 13 }}>
               {city} {nation}
             </TextPrimary>
           </View>

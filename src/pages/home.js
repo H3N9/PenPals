@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import Homebar from "../components/homebar";
 import CreatePost from "../components/post/createPost";
 import Post from "../components/post/post";
@@ -87,13 +87,12 @@ const Home = ({ navigation }) => {
   };
 
   return (
-    <PrimaryContainer style={MainStyle.mainBackground}>
+    <PrimaryContainer style={MainStyle.mainBackground}>  
       <FlatList
         ListHeaderComponent={(
-          <React.Fragment>
-            <Homebar navigation={navigation} title="Home"/>
-            <CreatePost post={post} setPost={setPost} navigation={navigation}/>
-          </React.Fragment>
+          <View style={{paddingBottom: 10}}>
+            <Homebar navigation={navigation} title="Home"/>  
+          </View>
         )}
         data={post}
         renderItem={renderPostItem}
@@ -102,6 +101,7 @@ const Home = ({ navigation }) => {
         refreshing={refresh}
         onRefresh={refreshHandle}
       />
+      <CreatePost post={post} setPost={setPost} navigation={navigation}/>
     </PrimaryContainer>
   );
 };

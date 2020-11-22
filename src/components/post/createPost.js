@@ -6,6 +6,8 @@ import { SecondContainer } from "../../style/themeComponent";
 import {useSelector} from 'react-redux'
 import path from '../../path'
 import {postLoad, imageUpload} from '../../fetch'
+import { LinearGradient } from 'expo-linear-gradient';
+import { Entypo } from '@expo/vector-icons'; 
 
 const CreatePost = ({post, setPost, navigation}) => {
   const [text, setText] = useState("");
@@ -45,24 +47,26 @@ const CreatePost = ({post, setPost, navigation}) => {
 
   return (
     <React.Fragment>
-      <SecondContainer
+      {/* <SecondContainer
         style={[styles.createContainer, MainStyle.boxContent, MainStyle.shadow]}
-      >
-        <View style={{ flexDirection: "row", alignItems: "center" }}>
-          <Image
-            source={require("../../../assets/man.png")}
-            style={styles.createImgProfile}
-          />
+      > */}
+        <LinearGradient
+        colors={["#5B86E5", "#36D1DC"]}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 0.1, y: 0.95 }}
+        style={[styles.createContainer, MainStyle.shadow]}
+        >
           <TouchableOpacity
-            style={styles.postInput}
+            style={styles.shadow}
             onPress={() => {
               setModalVisible(true);
             }}
           >
-            <Text style={MainStyle.textGray}>Press To Post</Text>
+            <Entypo name="new-message" size={24} color="white" />
+  
           </TouchableOpacity>
-        </View>
-      </SecondContainer>
+        </LinearGradient>
+      {/* // </SecondContainer> */}
       <PostModal
         text={text}
         image={image}
@@ -79,10 +83,14 @@ const CreatePost = ({post, setPost, navigation}) => {
 const styles = StyleSheet.create({
   createContainer: {
     flexDirection: "column",
-    paddingVertical: 20,
-    paddingHorizontal: 10,
-    marginVertical: 10,
-    marginBottom: 20,
+    width: 56,
+    height: 56,
+    position: "absolute",
+    bottom: 10,
+    right: 10,
+    borderRadius: 28,
+    alignItems: "center",
+    justifyContent: "center",
 
   },
   createImgProfile: {
@@ -100,6 +108,17 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     padding: 10,
   },
+  shadow:{
+    shadowColor: "#000",
+    shadowOffset: {
+	    width: 0,
+	    height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+
+  }
 });
 
 export default CreatePost;

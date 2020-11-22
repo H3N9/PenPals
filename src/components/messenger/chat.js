@@ -85,17 +85,6 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId 
 				]}
 				source={{uri: path.urlImage+image}}
 				/>
-				<View
-				style={{
-					width: 20,
-					height: 20,
-					backgroundColor: "green",
-					position: "absolute",
-					bottom: 0,
-					right: -3,
-					borderRadius: 50,
-				}}
-				/>
 			</View>
 			</View>
 			<View style={{ flex: 1, marginHorizontal: 10 }}>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, Modal, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, Image, SafeAreaView } from "react-native";
+import { Text, View, Modal, TouchableOpacity, StyleSheet, KeyboardAvoidingView, Platform, ImageBackground, SafeAreaView, TouchableWithoutFeedback, Keyboard } from "react-native";
 import MainStyle from "../../style/mainStyle";
 import * as ImagePicker from 'expo-image-picker';
 import {
@@ -46,8 +46,10 @@ const PostModal = ({
   };
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
       <View style={MainStyle.centeredView}>
         <SecondContainer style={MainStyle.modalView}>
+          
          
           <View style={[MainStyle.modalHeader, { alignItems: "center" }]}>
             <TouchableOpacity
@@ -62,9 +64,9 @@ const PostModal = ({
               Createpost
             </TextPrimary>
             <TouchableOpacity
-              style={[styles.postButton, styles.button]}
+              style={[styles.postButton, styles.button,{ opacity: text === "" && image === null ? 0.4: 1, backgroundColor: text === "" && image === null ? "#777" : "rgba(52, 138, 217, 0.8)"}]}
               onPress={() => posted()}
-              disabled={text === ""}
+              disabled={text === "" && image === null}
             >
               <Text style={MainStyle.textWhite}>Post</Text>
             </TouchableOpacity>
@@ -79,25 +81,31 @@ const PostModal = ({
                 value={text}
               />
             </View>
+            
             {image !== null ? 
               (
-                <PrimaryContainer style={[{flex: 0.4, borderRadius: 10, marginBottom: 10}, MainStyle.shadow]}>
-                  <Image style={styles.imgPost} source={{uri: image}} resizeMode="cover"/>
-                  <TouchableOpacity style={styles.delImg} onPress={() => setImage(null)}>
-                    <EntypoIcon name={"cross"} size={24} style={{color: "#FFF"}} />
-                  </TouchableOpacity>
-                </PrimaryContainer>  
+                <View style={[{flex: 0.4, borderRadius: 10, marginBottom: 10, alignItems: "flex-end"}, MainStyle.shadow]}>
+                    <ImageBackground style={styles.imgPost} source={{uri: image}} resizeMode="cover" imageStyle={{ borderRadius: 10}}>
+                      <TouchableOpacity style={styles.delImg} onPress={() => setImage(null)}>
+                        <EntypoIcon name={"cross"} size={24} style={{color: "#FFF"}} />
+                      </TouchableOpacity>
+                    </ImageBackground>
+                </View>  
               ):
               null
             }
+            <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} keyboardVerticalOffset={Platform.OS == "ios" ? 25 : 0}>
             <TouchableOpacity onPress={pickImage}>
               <PrimaryContainer style={[styles.imgButton, MainStyle.shadow]}>
                 <EntypoIcon name={"images"} size={20} />
                 <TextPrimary style={{textAlign: "center", fontWeight:"500", paddingLeft: 5}}>Select Image</TextPrimary>
               </PrimaryContainer>
-            </TouchableOpacity>             
-        </SecondContainer>     
+            </TouchableOpacity>  
+            </KeyboardAvoidingView>
+        </SecondContainer>    
       </View>  
+      </TouchableWithoutFeedback> 
+
     </Modal>
   );
 };
@@ -108,7 +116,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   postButton: {
-    backgroundColor: "#FF5350",
   },
   textInput: {
     fontSize: 26,
@@ -116,16 +123,15 @@ const styles = StyleSheet.create({
   },
   imgButton:{
     borderRadius: 5,
-    padding: 7,
+    padding: 10,
     justifyContent: "center",
     alignItems: "center",
     flexDirection: "row"
   },
   imgPost:{
-    width: "100%",
-    height: "100%",
-    borderRadius: 10
-    
+    width: '100%',
+    height: '100%',
+    aspectRatio: 1.25,  
   },
   delImg:{
     position: "absolute",

@@ -132,7 +132,7 @@ const styles = StyleSheet.create({
     height: 47,
     width: 47,
     borderRadius: 50,
-    backgroundColor: "#FF5350",
+    backgroundColor: "#777",
     marginRight: 10,
   },
   postUsername: {
