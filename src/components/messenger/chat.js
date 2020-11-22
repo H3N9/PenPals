@@ -91,8 +91,8 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId 
 			<View
 				style={{ flexDirection: "row", justifyContent: "space-between" }}
 			>
-				<TextPrimary style={MainStyle.textBold}>
-				{usernameAnother}
+				<TextPrimary style={[MainStyle.textBold, {fontWeight: "700", fontSize: 15}]}>
+				{interlocutor.firstName} {interlocutor.lastName}
 				</TextPrimary>
 				<TextPrimary>{date}</TextPrimary>
 			</View>
