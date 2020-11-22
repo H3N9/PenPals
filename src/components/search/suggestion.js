@@ -19,6 +19,7 @@ const Suggestion = ({ navigation, user }) => {
   //const user = Schema.getProfile(userId);
   const theme = useSelector((state) => state.themeReducer.theme);
   const authorize = useSelector((state) => state.Authorize.authorize)
+  const searchForm = useSelector((state) => state.Search)
   const {token, userId} = authorize
   const {
     username,
@@ -54,12 +55,30 @@ const Suggestion = ({ navigation, user }) => {
 				room:room,
 				userId:userId
 			})
-	}
+  }
+
+  const findTag = (listTag, init) =>{
+    let tag = init
+    listTag.forEach((item1) =>{
+      item1.list.forEach((item2) =>{
+        if (searchForm.tag.includes(item2.name)){
+          tag = item2
+        }
+      })
+    })
+
+    return tag
+  }
 
   if (hobbies[0].list.length > 0)
-    tag1 = hobbies[0].list[0];
+      tag1 = hobbies[0].list[0];
   if (favorites.length > 0)
-    tag2 = favorites[0].list[0];
+      tag2 = favorites[0].list[0];
+  
+  if (searchForm.tag !== undefined && searchForm.tag.length > 0){
+    tag1 = findTag(hobbies, tag1)
+    tag2 = findTag(favorites, tag2)
+  }
 
   return (
     <View style={[styles.boxContent, MainStyle.boxContent]}>

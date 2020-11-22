@@ -51,6 +51,13 @@ const Tag = ({ id, tagName, navigation, isAuthUser, setUser }) => {
     //       })
     // )
 
+    dispatch(actionSearch({ 
+      age:[1, 90], 
+      tag: [tagName],
+      country: undefined,
+      gender: "Any"
+    }))
+
     navigation.navigate("SubSearch", {searchForm: {tag: [id]}, name: tagName })
   }
 
