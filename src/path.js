@@ -24,10 +24,10 @@ const urls = {
     urlNotification: main+'notification/',
     urlSetRelationship: main+'friend/set-relationship/',
     urlProfileVisitors: main+'notification/profile-visitors/',
-    urlGetCategory: main+'/account/category',
-    urlCreateTag: main+'/account/create-tag',
-    urlRemovePost: main+'/post/delete',
-    urlQuickSearch: main+'/search/quick'
+    urlGetCategory: main+'account/category',
+    urlCreateTag: main+'account/create-tag',
+    urlRemovePost: main+'post/delete',
+    urlQuickSearch: main+'search/quick'
 }
 
 export default urls
