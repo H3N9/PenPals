@@ -14,7 +14,7 @@ import {
 } from "../../style/themeComponent";
 import * as ImagePicker from 'expo-image-picker'
 
-const Keyboard = ({onTextChange, setImage}) => {
+const Keyboard = ({onTextChange, onImageChange}) => {
   const [chatText, setChatText] = useState("");
 
   useEffect(() => {
@@ -42,7 +42,7 @@ const Keyboard = ({onTextChange, setImage}) => {
 		});
 		
 		if (!result.cancelled) {
-			setImage(result.uri);
+			onImageChange(result.uri);
 		}
 	}
 

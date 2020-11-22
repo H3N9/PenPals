@@ -11,12 +11,15 @@ import {
 } from "../../style/themeComponent";
 import { Dimensions } from "react-native";
 import path from '../../path'
+import {postLoad} from '../../fetch'
 
 const screenWidth = Math.round(Dimensions.get("window").width);
 
 const Suggestion = ({ navigation, user }) => {
   //const user = Schema.getProfile(userId);
   const theme = useSelector((state) => state.themeReducer.theme);
+  const authorize = useSelector((state) => state.Authorize.authorize)
+  const {token, userId} = authorize
   const {
     username,
     image,
@@ -30,6 +33,26 @@ const Suggestion = ({ navigation, user }) => {
   } = user;
   let tag1
   let tag2
+  const controller = new AbortController
+	const signal = controller.signal
+
+  const chatRoom = () =>{
+    console.log("okay")
+		const urlCreateChat = path.urlCreateChat
+		const data = {userTwo: user.userId}
+		postLoad(navigation, token, urlCreateChat, data, redirectChat, signal)
+	}
+
+	const redirectChat = (data) => {
+			const room = data.id
+			const texts = data.message
+			navigation.navigate("ChatRoom", {
+				initialTexts: texts,
+				interlocutor: user,
+				room:room,
+				userId:userId
+			})
+	}
 
   if (hobbies[0].list.length > 0)
     tag1 = hobbies[0].list[0];
@@ -69,7 +92,7 @@ const Suggestion = ({ navigation, user }) => {
           </View>
 
           <View style={styles.menuSugges}>
-            <TouchableOpacity style={{backgroundColor: theme.mode === "light" ? "#DDD": "#444", width: 35, height:35, borderRadius: 50, justifyContent: "center", alignItems: "center",}}>
+            <TouchableOpacity onPress={() => chatRoom()} style={{backgroundColor: theme.mode === "light" ? "#DDD": "#444", width: 35, height:35, borderRadius: 50, justifyContent: "center", alignItems: "center",}}>
               <Ionic name="ios-chatbubbles" size={22} color="white" />
             </TouchableOpacity>
           </View>

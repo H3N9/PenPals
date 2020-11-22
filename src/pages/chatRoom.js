@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { View, StyleSheet, KeyboardAvoidingView, Platform } from "react-native";
+import { View, StyleSheet, KeyboardAvoidingView, Platform, Image } from "react-native";
 import BoxMessage from "../components/messenger/boxMessage";
 import BarMessage from "../components/messenger/barMessage";
 import Keyboard from "../components/messenger/keyboard";
@@ -17,7 +17,6 @@ const ChatRoom = ({ navigation, route }) => {
 	const { initialTexts, interlocutor, room, userId } = route.params;
 	
 	const [texts, setTexts] = useState()
-	const [image, setImage] = useState(null)
 	
 	useEffect(() => {
 		const urlSocket = path.urlSocket
@@ -39,7 +38,11 @@ const ChatRoom = ({ navigation, route }) => {
 		})
 	}, [texts])
 
-	const keepImage = (image) => {
+	const handleImage = (image) => {
+		imageUpload(image, keepImage)
+	}
+
+	const keepImage = (image) =>{
 		const sendingText = {
 			"reply":image,
 			"type":"image",
@@ -47,11 +50,12 @@ const ChatRoom = ({ navigation, route }) => {
 			"chatId":room
 		}
 		socket.emit('userSend', (sendingText))
-		setImage(null)
 	}
 
+
+
 	const handleMyMessage = async (text) =>{
-		if(text.length > 0 && image === null){
+		if(text.length > 0 ){
 			const sendingText = {
 				"reply":text,
 				"type":"text",
@@ -59,11 +63,7 @@ const ChatRoom = ({ navigation, route }) => {
 				"chatId":room
 			}
 			socket.emit('userSend', (sendingText))
-		}
-		else if(image !== null){
-			imageUpload(image, keepImage)
-		}
-		
+		}		
 	}
 
 	
@@ -82,7 +82,7 @@ const ChatRoom = ({ navigation, route }) => {
 			keyboardVerticalOffset={Platform.OS == "ios" ? 20 : 0}
 			>
 			<View style={styles.keyboard}>
-				<Keyboard onTextChange={handleMyMessage} setImage={setImage} />
+				<Keyboard onTextChange={handleMyMessage} onImageChange={handleImage} />
 			</View>
 			</KeyboardAvoidingView>
 		</PrimaryContainer>

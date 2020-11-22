@@ -73,8 +73,8 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 		borderBottomWidth: 3,
 	};
 	const chatRoom = () =>{
-			const urlCreateChat = path.urlCreateChat
-			const data = {userTwo: user.userId}
+		const urlCreateChat = path.urlCreateChat
+		const data = {userTwo: user.userId}
 		postLoad(navigation, token, urlCreateChat, data, redirectChat, signal)
 	}
 

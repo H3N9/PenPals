@@ -34,6 +34,7 @@ const connected = (app) =>{
                 createdAt
             }
             //{id:0, reply:"good", userId: 8, chatId: 1}
+            console.log(`Receive ${sendingText}`)
             io.to(user.room).emit('serverSend', json)
             
         })
