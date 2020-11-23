@@ -40,6 +40,7 @@ const Search = ({ navigation }) => {
   }, [])
 
   useEffect(() =>{
+    console.log(searchForm)
     if (searchForm.keyword !== undefined){
       if (searchForm.keyword[0] === ""){
         getLoad(navigation, token, url, setUsers, signal)
@@ -49,7 +50,8 @@ const Search = ({ navigation }) => {
       }
     }
     else{
-      postLoad(navigation, token, url, searchForm, setUsers, signal)
+      if (searchForm.country !== undefined)
+        postLoad(navigation, token, url, searchForm, setUsers, signal)
     }
   }, [searchForm])
 
