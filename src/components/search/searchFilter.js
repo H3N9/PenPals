@@ -19,8 +19,8 @@ import path from '../../path'
 const SearchFilter = ({ modalVisible, setModalVisible, navigation }) => {
 
   const [filterData, setFilterData] = useState({
-    minAge: undefined,
-    maxAge: undefined,
+    minAge: "0",
+    maxAge: "90",
     country: [],
     gender: undefined,
     tag: [],

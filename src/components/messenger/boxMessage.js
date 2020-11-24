@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     marginHorizontal: 13,
     marginVertical: 5,
-    maxWidth: screenWidth/1.8
+    maxWidth: screenWidth/1.4
   },
   anoMess: {
     padding: 10,
@@ -96,9 +96,10 @@ const styles = StyleSheet.create({
     fontSize: 15
   },
   image:{
-    height: screenWidth/1.5,
-    width: screenWidth/2,
-    borderRadius: 15,
+    width: '100%',
+    height: undefined,
+    aspectRatio: 1.325,
+    
   }
 });
 

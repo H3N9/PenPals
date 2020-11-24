@@ -17,7 +17,6 @@ module.exports = async (listTag) =>{
           {model: Profile, as: 'profile', attributes: ["id"], through:{ attributes: [] } }
         ]
       })
-    console.log(tagProfile[0].dataValues)
     const result = Array.from(new Set(tagProfile.reduce((acc1, curr1) =>{
     return [...acc1, ...curr1.profile.reduce((acc2, curr2) =>{
         return [...acc2, curr2.id]

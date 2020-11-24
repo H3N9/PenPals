@@ -8,7 +8,7 @@ const AboutAcc = ({ describe }) => {
       <TextPrimary style={{ fontSize: 20, fontWeight: "700" }}>
         About Me
       </TextPrimary>
-      <TextPrimary style={{paddingHorizontal: 10, padding: 3}}>{describe}</TextPrimary>
+      <TextPrimary style={{paddingHorizontal: 7, padding: 3}}>{describe}</TextPrimary>
     </View>
   );
 };

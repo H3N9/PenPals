@@ -15,7 +15,7 @@ import {useSelector} from 'react-redux'
 import path from "../../path"
 import { putLoad } from "../../fetch"
 
-const Post = ({ id, title, imagePost, data, initLike, likeCount, navigation, userData, isUser}) => {
+const Post = ({ id, title, imagePost, data, initLike, likeCount, navigation, userData, isUser, refreshAfterDelete}) => {
   // const image = type.image||undefined
   // const text = type.text||undefined
   const theme = useSelector((state) => state.themeReducer.theme);
@@ -50,7 +50,6 @@ const Post = ({ id, title, imagePost, data, initLike, likeCount, navigation, use
       return <TextPost text={text}/>
     }
   }
-
   const deleteAlert = () =>{
       Alert.alert(
         "Delete Post?",
@@ -63,7 +62,13 @@ const Post = ({ id, title, imagePost, data, initLike, likeCount, navigation, use
           },
           { 
             text: "Delete",
-            onPress: () => {},
+            onPress: () => {
+              const body = {
+                id: id
+              }
+              putLoad(authorize.token, path.urlRemovePost, body, () => refreshAfterDelete(), signal)
+              
+            },
             style: 'destructive'
           }
         ],
@@ -127,7 +132,7 @@ const styles = StyleSheet.create({
     height: 47,
     width: 47,
     borderRadius: 50,
-    backgroundColor: "#FF5350",
+    backgroundColor: "#777",
     marginRight: 10,
   },
   postUsername: {

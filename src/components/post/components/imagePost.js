@@ -7,6 +7,7 @@ const ImagePost = ({imageUrl}) => {
       <Image
         style={styles.image}
         source={{uri : path.urlImage+imageUrl}}
+        resizeMode="cover"
       />
     </View>
   );
@@ -14,9 +15,10 @@ const ImagePost = ({imageUrl}) => {
 
 const styles = StyleSheet.create({
   image: {
-    height: Dimensions.get("window").width - 50,
-    width: "100%",
-    marginTop: 5,
+    width: '100%',
+    height: undefined,
+    aspectRatio: 1.35,
+    
   },
 });
 

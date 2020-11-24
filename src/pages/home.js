@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import { FlatList } from "react-native";
+import { FlatList, View } from "react-native";
 import Homebar from "../components/homebar";
 import CreatePost from "../components/post/createPost";
 import Post from "../components/post/post";
@@ -37,7 +37,9 @@ const Home = ({ navigation }) => {
     getLoad(navigation, authorize.token, path.urlSearchUser, setUsers, signal)
   }, [])
   
-  
+  const refreshAfterDelete = () =>{
+    getLoad(navigation, authorize.token, path.urlPost, setData, signal)
+  }
  
 
   // useEffect(() =>{
@@ -67,7 +69,6 @@ const Home = ({ navigation }) => {
 
   const renderPostItem = ({ item }) => {
       const user = users.find((value) => value.userId === item.userId)
-      console.log(user)
       return (
         <Post
           key={item.id.toString()}
@@ -80,18 +81,18 @@ const Home = ({ navigation }) => {
           navigation={navigation}
           userData={user}
           isUser={item.userId === authorize.userId}
+          refreshAfterDelete={refreshAfterDelete}
         />
       )
   };
 
   return (
-    <PrimaryContainer style={MainStyle.mainBackground}>
+    <PrimaryContainer style={MainStyle.mainBackground}>  
       <FlatList
         ListHeaderComponent={(
-          <React.Fragment>
-            <Homebar navigation={navigation} title="Home"/>
-            <CreatePost post={post} setPost={setPost} navigation={navigation}/>
-          </React.Fragment>
+          <View style={{paddingBottom: 10}}>
+            <Homebar navigation={navigation} title="Home"/>  
+          </View>
         )}
         data={post}
         renderItem={renderPostItem}
@@ -100,6 +101,7 @@ const Home = ({ navigation }) => {
         refreshing={refresh}
         onRefresh={refreshHandle}
       />
+      <CreatePost post={post} setPost={setPost} navigation={navigation}/>
     </PrimaryContainer>
   );
 };

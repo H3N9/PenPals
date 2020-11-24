@@ -94,7 +94,7 @@ const InputProfile = ({ newDetail, setNewDetail, navigation }) => {
         <InputTextType
           placeholder="Introquotes"
           newDetail={newDetail}
-          data="introQuotes"
+          data="intro"
           setNewDetail={setNewDetail}
         />
       </View>

@@ -39,6 +39,10 @@ const Notification = ({ navigation }) => {
     getLoad(navigation, authorize.token, path.urlNotification, notiRefresh, signal)
   }
 
+  const setMessageReverse = (arrObj) =>{
+
+  }
+
   useEffect(() =>{
     getLoad(navigation, authorize.token, path.urlNotification, setMessage, signal)
   }, [])
@@ -52,7 +56,7 @@ const Notification = ({ navigation }) => {
           <Image style={[styles.imgProfile]} source={{uri: path.urlImage+item.sender.imageProfile}}/>
         </View>
          <View style={{flex: 1, paddingLeft: 10 }}>
-          <TextPrimary style={{fontSize: 16, fontWeight: "500"}}>{item.sender.firstName} {item.sender.lastName}</TextPrimary>
+          <TextPrimary style={{fontSize: 16, fontWeight: "600"}}>{item.sender.firstName} {item.sender.lastName}</TextPrimary>
           <TextPrimary>{item.type}</TextPrimary>
          </View>   
       </TouchableOpacity>
@@ -64,7 +68,7 @@ const Notification = ({ navigation }) => {
       <Homebar navigation={navigation} title="Notification"/>
       <SafeAreaView style={{flex: 1}}>
         <FlatList
-          data={message}
+          data={message.reverse()}
           renderItem={renderItem}
           keyExtractor={(item) => item.id.toString()}
           refreshing={refresh}

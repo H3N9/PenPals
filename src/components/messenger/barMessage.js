@@ -30,7 +30,7 @@ const BarMessage = ({ navigation, interlocutor }) => {
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate("Account", {user:interlocutor})}>
           <TextPrimary style={[MainStyle.textBold, { fontSize: 19, marginHorizontal: 20 }]}>
-            {friendName}
+          {interlocutor.firstName} {interlocutor.lastName}
           </TextPrimary>
         </TouchableOpacity>
       </View>

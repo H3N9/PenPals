@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Keyboard,
 } from "react-native";
+import { useDispatch } from 'react-redux'
 import MainStyle from "../../style/mainStyle";
 import SearchFilter from "./searchFilter";
 import {
@@ -13,10 +14,13 @@ import {
   InputTextBg,
   AntDesignIcon,
 } from "../../style/themeComponent";
+import { quickSearch } from '../../../redux/searchForm'
 
 const searchBar = ({navigation}) => {
   const [searchText, setSearchText] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
+  const dispatch = useDispatch()
+
   return (
     <View style={{ marginVertical: 10, paddingBottom: 0 }}>
       <View style={styles.headerContainer}>
@@ -44,7 +48,10 @@ const searchBar = ({navigation}) => {
             value={searchText}
             onChangeText={(text) => setSearchText(text)}
             returnKeyType="search"
-            onSubmitEditing={() => {}}
+            onSubmitEditing={() => {
+              const arrKeyword = searchText.split(' ')
+              dispatch(quickSearch({keyword: arrKeyword}))
+            }}
             clearButtonMode="always"
           />
         </View>

@@ -19,6 +19,7 @@ const Search = ({ navigation }) => {
   const {token} = authorize
   const [users, setUsers] = useState([])
   const url = path.urlSearchUser
+  const quickSearchUrl = path.urlQuickSearch
   const isFocused = useIsFocused()
   const controller = new AbortController
   const signal = controller.signal
@@ -39,7 +40,19 @@ const Search = ({ navigation }) => {
   }, [])
 
   useEffect(() =>{
-    postLoad(navigation, token, url, searchForm, setUsers, signal)
+    console.log(searchForm)
+    if (searchForm.keyword !== undefined){
+      if (searchForm.keyword[0] === ""){
+        getLoad(navigation, token, url, setUsers, signal)
+      }
+      else{
+        postLoad(navigation, token, quickSearchUrl, { keyword: searchForm.keyword }, setUsers, signal)
+      }
+    }
+    else{
+      if (searchForm.country !== undefined)
+        postLoad(navigation, token, url, searchForm, setUsers, signal)
+    }
   }, [searchForm])
 
   const renderSuggestion = ({ item, index }) =>{

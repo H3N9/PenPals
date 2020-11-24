@@ -144,6 +144,11 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 		getLoad(navigation, token, urlMyPost, setposts, signal)
 	}
 
+	const refreshAfterDelete = () =>{
+		const urlMyPost = path.urlPost+user.userId
+		getLoad(navigation, token, urlMyPost, setposts, signal)
+	}
+
 		const controlViewProfile = (auth) => {
 			if (auth) {
 			return (
@@ -183,6 +188,7 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			friendCount={friendCount}
 			intro={intro}
 			navigation={directFriend}
+			userDetail={user}
 			/>
 			{controlViewProfile(isAuthUser)}
 			<ListTag
@@ -242,6 +248,7 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			posts={posts}
 			AccountDetailSection={AccountDetailSection}
 			state={postSegment}
+			refreshAfterDelete={refreshAfterDelete}
 			/>
 		</PrimaryContainer>
 	);
