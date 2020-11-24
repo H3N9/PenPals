@@ -43,7 +43,7 @@ const Successed = ({ navigation, lastMessage, interlocutor, texts, room, userId 
 
 	const setFormatDate = (dateString) =>{
 		const appendZero = (n) =>{
-			return n < 9? "0"+n:n
+			return n < 10? "0"+n:n
 		}
 		if(dateString){
 			const date = new Date(lastMessage.createdAt)
