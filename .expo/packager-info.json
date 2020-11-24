@@ -1,10 +1,10 @@
 {
-  "webpackServerPort": null,
+  "webpackServerPort": 19006,
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://es-rty.anonymous.penpals.exp.direct",
   "packagerNgrokUrl": "https://packager.es-rty.anonymous.penpals.exp.direct",
   "ngrokPid": 6676,
   "devToolsPort": 19002,
   "packagerPort": 19001,
-  "packagerPid": 13920
+  "packagerPid": 2448
 }

@@ -5,14 +5,11 @@ import {
   StyleSheet,
   Text,
   Image,
-  Dimensions,
-  View
+  Dimensions
 } from "react-native";
-import MainStyle from "../../style/mainStyle";
 import { LinearGradient } from 'expo-linear-gradient';
 import { PrimaryContainer } from "../../style/themeComponent";
 import path from '../../path'
-import { TextPrimary, SecondContainer } from "../../style/themeComponent";
 const screenWidth = Math.round(Dimensions.get('window').width);
 
 const BoxMessage = ({ texts, userId }) => {
@@ -51,31 +48,6 @@ const BoxMessage = ({ texts, userId }) => {
   const renderMessage = ({ item }) => {
     const sender = item.userId
     if (sender === userId) {
-    //   return (
-    //     <LinearGradient
-    //       colors={["#56ccf2", "#2f80ed"]}
-    //       start={{ x: 0, y: 0.1 }}
-    //       end={{ x: 0.6, y: 0.55 }}
-    //       style={styles.myMess}
-    //     >
-    //     <TouchableOpacity>
-    //       <Text style={styles.textChat}>{text}</Text>
-    //     </TouchableOpacity>
-    //     </LinearGradient>
-    //   );
-    // } else {
-    //   return (
-    //           <LinearGradient
-    //             colors={["#ff5350", "#BB213a"]}
-    //             start={{ x: 0, y: 0.1 }}
-    //             end={{ x: 0.6, y: 0.55 }}
-    //             style={styles.anoMess}
-    //           >
-    //             <TouchableOpacity>
-    //               <Text style={styles.textChat}>{text}</Text>
-    //             </TouchableOpacity>
-    //           </LinearGradient>      
-    //   );
       return <RederText text={item.reply} type={item.type} side={styles.myMess} user="user"/>
     } else {
       return <RederText text={item.reply} type={item.type} side={styles.anoMess} user="opposite" />

@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Platform
 } from "react-native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
 import {
   SecondContainer,
   InputText,
@@ -48,16 +47,6 @@ const Keyboard = ({onTextChange, onImageChange}) => {
 
   return (
     <SecondContainer style={styles.box}>
-      <View style={styles.boxIcon}>
-        <TouchableOpacity>
-          <EntypoIcon
-            name="camera"
-            color="#fff"
-            size={22}
-            style={{ textAlign: "center" }}
-          />
-        </TouchableOpacity>
-      </View>
       <View style={styles.boxIcon}>
         <TouchableOpacity onPress={handleUploadImage}>
           <EntypoIcon

@@ -34,11 +34,6 @@ const BarMessage = ({ navigation, interlocutor }) => {
           </TextPrimary>
         </TouchableOpacity>
       </View>
-      <View style={styles.boxText}>
-        <TouchableOpacity>
-          <EntypoIcon name="dots-three-horizontal" size={25} />
-        </TouchableOpacity>
-      </View>
     </SecondContainer>
   );
 };
