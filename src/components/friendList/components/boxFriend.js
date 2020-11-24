@@ -14,10 +14,6 @@ const BoxFriend = ({user, navigation}) => {
           <Image source={{ uri: path.urlImage+image }} style={styles.imgProfile} />
         </TouchableOpacity>
         <TextPrimary style={styles.username}>{username}</TextPrimary>
-
-        <TouchableOpacity style={styles.unfriendButton}>
-          <Text style={{ color: "#fff", fontWeight: "bold" }}>UnFriend</Text>
-        </TouchableOpacity>
       </View>
     )
 }
