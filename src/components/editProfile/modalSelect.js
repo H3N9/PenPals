@@ -43,7 +43,7 @@ const modalSelect = ({
   }
   const fetchData = async () => {
     if(focusData === "gender"){
-      const allData = [{title: "male", id: "1"}, {title: "female", id: "2"}]
+      const allData = [{title: "male", id: "1"}, {title: "female", id: "2"}, {title: "other", id: "3"}]
       setSearchData([...allData]);
       setInfo([...allData]);
     }

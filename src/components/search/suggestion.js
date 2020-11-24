@@ -108,8 +108,8 @@ const Suggestion = ({ navigation, user }) => {
           </View>
           {/* Follower */}
           <View style={{ flex: 2, flexDirection: "row", alignItems: "center", justifyContent: "center" }}>
-            {gender === "male" ? <FontAwesomeIcon name="male" size={22} color="white" /> : <FontAwesomeIcon name="female" size={22} color="white" />}
-            <TextPrimary style={{fontSize: 15, fontWeight: "600"}}>{" "+age}</TextPrimary>
+            {gender === "male" ? <FontAwesomeIcon name="mars" size={22} color="white" /> : gender === "female" ? <FontAwesomeIcon name="venus" size={22} color="white" />:<FontAwesomeIcon name="transgender" size={22} color="white" />}
+            <TextPrimary style={{fontSize: 15, fontWeight: "600"}}> {age? age:0}</TextPrimary>
           </View>
 
           <View style={styles.menuSugges}>

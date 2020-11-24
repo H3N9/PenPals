@@ -51,7 +51,7 @@ const Register = ({navigation}) => {
             nation: "",
             city: "",
             intro: "Edit your profile for introduce yourself.",
-            gender: "",
+            gender: "other",
             image: "man.png",
             aboutMe: "Edit your profile for introduce yourself.",
             birthdate: ""
