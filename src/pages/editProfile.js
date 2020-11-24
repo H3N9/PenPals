@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView } from "react-native";
+import { View, ScrollView, KeyboardAvoidingView } from "react-native";
 import MainEdit from "../components/editProfile/mainEdit";
 import MainStyle from "../style/mainStyle";
 import { Dimensions } from "react-native";
@@ -11,9 +11,15 @@ const EditProfile = ({ route, navigation }) => {
   const user = route.params.user
   return (
     <PrimaryContainer style={[MainStyle.mainBackground, { paddingTop: 0 }]}>
+      <KeyboardAvoidingView
+      style={{flex: 1}}
+			  behavior={Platform.OS == "ios" ? "padding" : "height"}
+			  keyboardVerticalOffset={Platform.OS == "ios" ? 60 : 0}
+			>
       <ScrollView style={stylesCondition()}>
         <MainEdit user={user} navigation={navigation} />
       </ScrollView>
+      </KeyboardAvoidingView>
     </PrimaryContainer>
   );
 };

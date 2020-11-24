@@ -14,6 +14,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
   //const image = require("../../../assets/man.png");
   const [isChangeImage, setIsChangeImage] = useState(false)
   const authorize = useSelector((state) => state.Authorize.authorize)
+  const theme = useSelector((state) => state.themeReducer.theme);
   const [ image, setImage ] = useState({ uri: path.urlImage+newDetail.image })
   const [ upload, setUpload ] = useState(0)
   const [ response, setResponse ] = useState('No')
@@ -135,7 +136,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
     <View style={styles.headerContainer}>
       <View style={styles.buttonSession}>
         <TouchableOpacity
-          style={styles.backButton}
+          style={[styles.backButton, {backgroundColor: theme.mode === "dark" ? "rgba(200, 200, 200, 0.3)" : "rgba(0,0,0,0.7)"}]}
           onPress={() => navigation.goBack()}
         >
           <Icons name="chevron-left" color="#fff" size={21} />
@@ -151,7 +152,7 @@ const ProfileHeader = ({ navigation, setNewDetail, newDetail }) => {
             putLoad(authorize.token, path.urlUpdateProfile, newDetail, redirectAccount)
           }
           //navigation.navigate("MyAccount")
-          }} style={styles.backButton}>
+          }}  style={[styles.backButton, {backgroundColor: theme.mode === "dark" ? "rgba(200, 200, 200, 0.3)" : "rgba(0,0,0,0.7)"}]}>
           <AntDesign name="save" color="#fff" size={21} />
         </TouchableOpacity>
       </View>
@@ -197,7 +198,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.6,
   },
   backButton: {
-    backgroundColor: "rgba(0,0,0,0.5)",
+    
     width: 39,
     height: 39,
     borderRadius: 50,
