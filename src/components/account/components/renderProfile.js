@@ -11,7 +11,7 @@ import path from '../../../path'
 import Post from '../../post/post'
 import {useSelector} from 'react-redux'
 
-const RenderProfile = ({ posts, AccountDetailSection, state, refreshAfterDelete }) => {
+const RenderProfile = ({ posts, AccountDetailSection, state, refreshAfterDelete, refresh, refreshHandle }) => {
   const authorize = useSelector((state) => state.Authorize.authorize)
   const urlImage = path.urlImage
   const column = state === 'photo'? 2:1
@@ -34,6 +34,8 @@ const RenderProfile = ({ posts, AccountDetailSection, state, refreshAfterDelete 
         keyExtractor={(item) => item.id.toString()}
         numColumns={1}
         showsVerticalScrollIndicator={false}
+        refreshing={refresh}
+        onRefresh={refreshHandle}
       />
     </SafeAreaView>
   );

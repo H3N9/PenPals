@@ -1,10 +1,10 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View, Platform } from "react-native";
+import { StyleSheet, View, Platform, SafeAreaView } from "react-native";
 
 const DynamicStatusBar = ({ style }) => {
   return (
-    <View
+    <SafeAreaView
       style={[
         styles.statusBar,
         { backgroundColor: style == "light" ? "#212121" : "#FFF" },
@@ -14,7 +14,7 @@ const DynamicStatusBar = ({ style }) => {
         style={style}
         backgroundColor={style == "light" ? "#212121" : "#FFF"}
       ></StatusBar>
-    </View>
+    </SafeAreaView>
   );
 };
 

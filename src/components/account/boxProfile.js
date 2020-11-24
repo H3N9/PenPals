@@ -40,6 +40,8 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 	const { userId, token } = authorize
 	const theme = useSelector((state) => state.themeReducer.theme);
 	const [postSegment, setPostSegment] = useState("photo");
+	const [refresh, setRefresh] = useState(false)
+
 	const controller = new AbortController
 	const signal = controller.signal
 	//All variable will be here
@@ -144,6 +146,18 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 		getLoad(navigation, token, urlMyPost, setposts, signal)
 	}
 
+	const disableRefresh = (info) =>{
+		setposts(info)
+		setRefresh(false)
+	}
+
+	const refreshHandle = () =>{
+		setRefresh(true)
+		const urlMyPost = path.urlPost+user.userId
+		getLoad(navigation, authorize.token, urlMyPost, disableRefresh, signal)
+	  }
+
+ 
 	const refreshAfterDelete = () =>{
 		const urlMyPost = path.urlPost+user.userId
 		getLoad(navigation, token, urlMyPost, setposts, signal)
@@ -249,6 +263,8 @@ const BoxProfile = ({ navigation, user, setUser }) => {
 			AccountDetailSection={AccountDetailSection}
 			state={postSegment}
 			refreshAfterDelete={refreshAfterDelete}
+			refresh={refresh}
+        	refreshHandle={refreshHandle}
 			/>
 		</PrimaryContainer>
 	);

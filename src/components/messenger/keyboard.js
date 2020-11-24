@@ -99,9 +99,9 @@ const styles = StyleSheet.create({
   input: {
     borderColor: "#898989",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 50,
     paddingHorizontal: 7,
-    paddingVertical: 5,
+    paddingVertical: 7,
     marginVertical: 5,
     flex: 1,
   },
